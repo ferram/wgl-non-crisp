@@ -65,10 +65,10 @@ A \GM-model $\stru{W,R,e}$ is
 \emph{witnessed} iff every world $w$ having at least one $R$-successor
 satisfies the following properties:
 \begin{itemize}
-\item if $e(w,\Box \a)=r$, 
+\item if $e(w,\Box \a)=r$, then 
    there is $w'$   s.t.~ $R(w,w')>0$ and $R(w,w') \to e(w',\a) = r$;
 
-\item if $e(w,\Diam \a)=r$, 
+\item if $e(w,\Diam \a)=r$, then
    there is $w'$  s.t.~$R(w,w')>0$ and $R(w,w')\land e(w'\a) = r$.
   
 \end{itemize}
@@ -140,7 +140,7 @@ Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
 If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,\psi)=1$. Otherwise,
 it holds that $e(w, \neg\neg \Box \a)=0$, and this implies $e(w, \Box \a)=0$.
 Note that $w$ must have at least one $R$-successor, otherwise we would get  $e(w, \Box \a)=1$.
-Hence, there exists $w'\in W$ such that $R(w,w') >0$ and
+Hence, there exists a witnessing $w'\in W$ such that $R(w,w') >0$ and
 $R(w,w') \to e(w',\a) = 0$. It follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
 We get $e(w,  \Box\neg \neg  \a)=0$,
 hence $e(w, \psi) = 1$. Having proved that $e(w, \psi) = 1$, we conclude  $\psi\in \GWL$.
