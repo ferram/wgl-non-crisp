@@ -1,0 +1,325 @@
+
+\section{Appendix}
+
+
+\subsection{Non  interdefinability of the modal operators}\label{app:noninterdBD}
+
+The non interdefinability of the modal operators in $\GCL$ has been proved in~\cite{RodriguezV:21} by exploiting  algebraic semantics.
+Here we rephrase the argumentation using  witnessed crisp models ($\GWCM$-models);
+more specifically, we show that:
+
+\begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*]    
+ \item\label{defBD:P1}
+   there is no  $\Box$-free formula $\varphi$ such that
+   $\Box p \tto\varphi$ is valid in  $\GWCL$; 
+
+\item\label{defBD:P2}
+  there is no  $\Diam$-free formula $\psi$ such that
+   $\Diam p \tto\psi$ is valid in  $\GWCL$. 
+
+\end{enumerate}
+As a consequence, the modal  operators are not  interdefinable in any  modal logic contained in  $\GWCL$.
+We recall that in a  $\GWCM$-model $\stru{W,R,e}$,   $R\subseteq W\times W$.
+
+
+% \noindent
+% Below we refer to the model  in Fig.~\ref{fig:ind}; as usual,
+% in defining the evaluation relation $e$,
+% we only display the values $e(w,q)$ such that $e(w,q)>0$.
+
+
+
+
+
+
+\begin{lemma}\label{lemma:defBD}
+  Let $\M^\ast=\stru{W,R,e}$ be the  $\GWCM$-model defined in Fig.~\ref{fig:ind}.
+
+  
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
+ \item\label{lemma:defBD:1}
+   For every $\Box$-free formula $\varphi$,
+   $e(w_0,\varphi)\in\{0,\,0.5,\,1\}$.
+
+\item\label{lemma:defBD:2}
+   For every $\Diam$-free formula $\psi$,
+   $e(w_0,\psi)\in\{0,\,0.4,\,1\}$.
+
+   
+\end{enumerate}
+   
+\end{lemma}
+
+\begin{proof}
+  One can easily prove that, for every formula $\a$, the following facts hold:
+
+  
+  
+  \begin{enumerate}[label=(\arabic*), ref=(\arabic*),leftmargin=*]    
+ \item\label{lemma:defBD:F1}
+ $e(w_1,\a)\in\{0,\,0.4,\,1\}$.
+
+\item\label{lemma:defBD:F2}
+ $e(w_2,\a)=\Phi(e(w_1,\a))$,
+  where $\Phi(0)=0$,  $\Phi(0.4)=0.5$, $\Phi(1)=1$.
+
+\end{enumerate}
+We prove~\ref{lemma:defBD:1}, by induction on the structure of $\varphi$.
+If $\varphi\in\PV\cup\{\bot\}$, we have $e(w_0,\varphi) = 0$.
+The cases $\varphi=\a\land \b$,  $\varphi=\a\lor \b$ and  $\varphi=\a\to \b$
+easily follow by the induction hypothesis.
+Let $\varphi = \Diam \a$.
+By~\ref{lemma:defBD:F1} and~\ref{lemma:defBD:F2},
+one of the following properties~\ref{lemma:defBD:A}--\ref{lemma:defBD:C} holds:
+
+
+  \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]    
+ \item\label{lemma:defBD:A}
+$e(w_1,\a) = e(w_2,\a) = 0$.
+
+\item\label{lemma:defBD:B}
+$e(w_1,\a) =  0.4$ and   $e(w_2,\a) = 0.5$.
+
+
+\item\label{lemma:defBD:C}
+$e(w_1,\a) = e(w_2,\a) = 1$.
+\end{enumerate}
+In case~\ref{lemma:defBD:A} we get  $e(w_0,\Diam \a)=0$, in case~\ref{lemma:defBD:B}  $e(w_0,\Diam \a)=0.5$, in case~\ref{lemma:defBD:C}
+$e(w_0,\Diam \a)=1$; this concludes the proof of~\ref{lemma:defBD:1}.
+The proof of~\ref{lemma:defBD:2} is similar. \qed
+
+  
+\end{proof}
+
+\begin{proposition}\label{prop:gwclBD}
+Properties~\ref{defBD:P1} and~\ref{defBD:P2} holds.
+  \end{proposition}  
+
+  \begin{proof}
+    Let us assume, by contradiction, that property~\ref{defBD:P1} does not hold.
+    Then, there exists  a  $\Box$-free formula $\varphi$ such that
+    $\Box p \tto\varphi$ is valid in  $\GWCL$. As a consequence,
+    in the \GCM-model $\M^\ast$ in  Fig.~\ref{fig:ind} we have
+    $e(w_0, \Box p \tto\varphi)=1$. Since    $e(w_0, \Box p)= 0.4$,
+    we get $e(w_0, \varphi)= 0.4$, in contradiction with Lemma~\ref{lemma:defBD}\ref{lemma:defBD:1}.
+This proves that~\ref{defBD:P1} holds. The proof of~\ref{defBD:P2} is similar.  \qed
+  \end{proof}
+
+
+\begin{proposition}\label{prop:defBD}
+The modal operators $\Box$ and $\Diam$ are not interdefinable in any modal logic contained in $\GWCL$.
+  \end{proposition}  
+
+  \begin{proof}
+    Let $L$ be any modal logic contained in  $\GWCL$ and  let us assume
+    that  in $L$ the operator $\Box$ can be defined.
+    Then, there exists a $\Box$-free formula $\varphi$ such that
+    $\Box p\tto\varphi\in L$. Since $L\subseteq \GWCL$, we get
+     $\Box p\tto\varphi\in \GWCL$, in contradiction with Lemma~\ref{prop:gwclBD}.
+The proof for  $\Diam$ is similar.
+  \end{proof}
+
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\linewidth}
+    \begin{tikzpicture}[scale=0.8]
+      % WORLDS  
+      % w0
+      \draw[fill] (0,-0.5) circle (3pt)
+      +(0,-0)   node (w0)  {}  % used to label the circle 
+      +(0,-0.3) node  {$w_0$}
+      ;
+      
+      
+      % w1
+      \draw[fill] (-1,1) circle (3pt)
+      +(0,0)   node (w1)  {}  % used to label the circle 
+      +(-0.6,0) node{$w_1$}
+      +(0,0.5) node{$p=0.4$}
+      ;
+      
+      % w2
+      \draw[fill] (1,1) circle (3pt)
+      +(0,0)   node (w2)  {}  % used to label the circle 
+      +(-0.6,0) node{$w_2$}
+      +(0,0.5) node{$p=0.5$}
+      ;
+      
+
+      
+      % ARROWS
+      \draw[->] (w0) -- (w1);
+      \draw[->] (w0) -- (w2);
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{0.5\linewidth}
+    \[\small
+    \begin{array}{l}
+      % -----------------------------------------      
+      \fcolorbox{black}{gray!10}{
+        \begin{minipage}{16em}\small
+          $W=\{\,w_0,\,w_1,\,w_2\,\}$
+          \\
+          $R =\{\,(w_0,w_1),\,(w_0,w_2)\,\}$
+          \\
+          $e(w_1,p) = 0.4,\,e(w_2,p) = 0.5$  
+        \end{minipage}
+      } % end box    
+      % -----------------------------------------  
+    \end{array}
+    \]
+  \end{minipage}
+  \caption{The \GCM-model  $\M^\ast=\stru{W,R,e}$.}
+  \label{fig:ind}
+\end{figure}
+  
+
+\section*{Proofs}\label{app:proofs}
+
+
+
+\begin{lemmaref}{\ref{lemma:soundRule}}
+  Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
+  $\Gamma$ be the conclusion of $\rho$ and let $\M$ be a \GWM-model.
+  If $\M\models\G$, then there exists a premise $\G'$ of $\rho$ such
+  that $\M\models\G'$.
+\end{lemmaref}
+
+\begin{proof}
+\inlinetodo{** OLD PROOF **}
+
+  Let $\Ical$ be an $\M$-interpretation, let $w$ be a label of $\LC$ and
+$w^\star$ a world of $\M$.  By $\reass{\Ical}{w}{w^\star}$ we denote
+the $\M$-interpretation $\Ical'$ such that $\Ical'(w) = w^\star$ and
+$\Ical'(x)= \Ical(x)$ for every $x\neq w$ (where $x$ is either a label
+or a constant).  The definition of $\reass{\Ical}{c}{r}$, where $c$ is
+a constant of $\LC$ and $r\in [0,1]_Q$, is similar.
+
+\smallskip
+Let $\G$ be the conclusion of rule $\rho$ of $\Calcw$ and let us assume
+$\M\models_\Ical\G$, where $\M=\stru{W,R,e}$; we show that there
+exists a premise $\G'$ of $\rho$ and an $\M$-interpretation $\Ical'$
+such that $\M\models_{\Ical'}\G'$.
+
+%If $\rho$ is an axiom rule, the assertion trivially holds since there
+%is no $\M$-interpretation $\Ical$ such that $\M\models_\Ical\G$.  
+The case $\rho=\ruleAxat$ has already been discussed in the paper.
+If $\rho$ is one of the rules $\land\lt$, $\land\gt$, $\lor\lt$,
+$\lor\gt$, the assertion easily follows.
+
+Let us consider the application
+\[
+%% IMP LTS 
+\AXC{$\overbrace{w :\b \leq b,\, w :\a > b,\,  b  < t,\,  \G_0}^{\G_1}$}    
+% ------------------------------------------    
+\RightLabel{$\to < $}
+\UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
+\DP
+\]
+By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
+and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
+\b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
+$e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b <
+t$.  If $\b\in\PV\cup\{\bot\}$, then $b$ stands for $w:\b$, hence
+$\M\models_\Ical \G_1$.  Let us assume $\b\not\in\PV\cup\{\bot\}$; in
+this case $b$ is a fresh constant.  Let $r = e(\Ical(w),\b)$
+($r\in[0,1]_Q$) and $\Ical'=\reass{\Ical}{b}{r}$.  We remark that, for
+every constraint $\chi$ not containing $b$, $\M\models_\Ical \chi$ iff
+$\M\models_{\Ical'} \chi$.  Since $\M\models_{\Ical} \G_0$ and $b$
+does not occur in $\G_0$, we get $\M\models_{\Ical'} \G_0$.  It is
+easy to check that $\M\models_{\Ical'} w :\b \leq b$ and
+$\M\models_{\Ical'} w :\a > b$ and $\M\models_{\Ical'} b < t$, hence
+$\M\models_{\Ical'} \G_1$.
+
+Let us consider the application
+\[
+%% IMP LTE 
+\AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
+\AXC{$\overbrace{w :\b \leq b,\,  w :\a > b,\,  b \leq  t,\,\G_0}^{\G_2}$}    
+% ------------------------------------------    
+\RightLabel{$\to\leq$}
+\BIC{$\underbrace{w: \a\to \b \leq t,\,\G_0}_{\G}$}
+\DP
+\]
+By the hypothesis, $\M\models_{\Ical} w: \a\to \b \leq t$ and
+$\M\models_{\Ical} \G_0$, hence $e(\Ical(w), \a\to \b)\leq \Ical(t)$.
+Let us assume $e(\Ical(w),\a) \leq e(\Ical(w),\b)$. Then,
+$e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
+$\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
+$\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
+e(\Ical(w),\b)$.  We have $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
+hence $\M\models_\Ical w:\b \leq t$.  If $\b\in\PV\cup\{\bot\}$, then
+$b= w:\b$ and we get $\M\models_\Ical \G_2$.  Assume
+$\b\not\in\PV\cup\{\bot\}$ (thus $b$ is a fresh constant), let $r =
+e(\Ical(w),\b)$ ($r\in[0,1]_Q$) and $\Ical'=\reass{\Ical}{b}{r}$.
+Since $\M\models_{\Ical} \G_0$ and $b$ does not occur in $\G_0$, we
+get $\M\models_{\Ical'} \G_0$.  Moreover, one can easily check that
+$\M\models_{\Ical'} w :\b \leq b$ and $\M\models_{\Ical'} w :\a > b$
+and $\M\models_{\Ical'} b \leq t$; we conclude $\M\models_{\Ical'}
+\G_2$.
+
+
+Let us consider the application
+\[
+%% IMP GT 
+\AXC{$\overbrace{w :\a \leq a,\,  w :\b \geq a,\,1\gt t,\, \G_0}^{\G_1}$}    
+\AXC{$\overbrace{w:\b \gt t,\, \G_0}^{\G_2}$}
+% ------------------------------------------       
+\RightLabel{$\to\gt$}
+\BIC{$\underbrace{w: \a\to \b \gt t,\,\G_0}_{\G}$}
+\DP
+\]
+By the hypothesis, $\M\models_{\Ical} w: \a\to \b \gt t$ and
+$\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\a\to\b) \gt\Ical(t)$.  We
+can reason as in the cases concerning rules $\to<$ and $\to\leq$.  If
+$e(\Ical(w),\a) > e(\Ical(w),\b)$, then $e(\Ical(w),\a\to \b) =
+e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
+$e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case $e(\Ical(w),\a\to
+\b) = 1$, which implies $1 \gt \Ical(t)$.  We can prove that
+$\M\models_{\Ical'} \G_1$, where $\Ical'=\Ical$ if
+$\a\in\PV\cup\{\bot\}$, $\Ical'= \reass{\Ical}{a}{e(\Ical(w), \a)}$
+otherwise.
+
+Let us consider the application
+\[
+\AXC{$\overbrace{1 \lt t,\,\Phizo{\G_0}}^{\G_1}$}
+\AXC{$\overbrace{w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_2}$}
+% -----------------------------------------
+\RightLabel{$\Box\lt$}
+\BIC{$\underbrace{w:\Box\a \lt t,\,\G_0}_{\G}$}    
+\DP
+\]
+By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
+$\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt \Ical(t)$.
+Let us assume that the world $\Ical(w)$ of $\M$ has no $R$-successors.
+For every formula $\varphi$, $e(\Ical(w),\Box\varphi) = 1$ and
+$e(\Ical(w),\Diam\varphi) = 0$, and this implies that $\M\models_\Ical
+\G_1$.  Let us assume that $\Ical(w)$ has at least one
+$R$-successor. Since $\M$ is a $\GWCM$-model, there exists a world
+$w^\star$ of $\M$ such that $\Ical(w) R w^\star$ and $e(\Ical(w),\Box
+\a) = e(w^\star, \a)$.  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We
+remark that, for every constraint $\chi$ not containing $w_1$,
+$\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$.  Since
+$\M\models_{\Ical}\G_0$ and $w_1$ does not occur in $\G_0$, we get
+$\M\models_{\Ical'}\G_0$.  By the fact that $e(\Ical(w),\Box \a)\lt
+\Ical(t)$ and $e(\Ical(w),\Box \a) = e(w^\star, \a)$, we have $e(w^\star, \a)\lt
+\Ical(t)$, and this implies $\M\models_{\Ical'} w_1:\a \lt t$. Let
+$\chi\in\Phibd{\G,w,w_1}$ and assume that $\chi=w_1 : \b \gt t'$.  We
+have $w : \Box \b \gt t'\in \G_0$, hence $e(\Ical(w),\Box \b) \gt
+\Ical(t')$.  Since $\Ical(w) R w^\star$, it follows that $e(w^\star,
+\b) \gt \Ical(t')$, and this implies $\M\models_{\Ical'} \chi$.
+Similarly, if $\chi=w_1 : \b \lt t'$, namely $w : \Diam \b \lt t'\in
+\G_0$, we get $\M\models_{\Ical'} \chi$.  We conclude
+$\M\models_{\Ical'} \G_2$.
+
+The case where $\rho$ is  rule $\Diam\gt$ is similar.
+\qed  
+\end{proof}
+
+  
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 

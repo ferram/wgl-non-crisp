@@ -1,0 +1,112 @@
+\section{Introduction ** OLD **}\label{sec:intro}
+
+% \inlinetodo{ {\bf Stress in the introduction}.  Additionally, we are
+%   confident that the relationship between Gödel-Kripke models and
+%   linear bi-relational models is of considerable interest to the CADE
+%   community, as it provides a means to compare a calculus defined
+%   under one semantics with that defined under the other.
+  
+%   Finally, regarding our second contribution, we would like to mention
+%   that while the bi-relational semantics may appear orthogonal to the
+%   primary goals of the conference, we believe that this perspective
+%   enriches the logical landscape by placing $\GWCL$ within the broader
+%   framework of intuitionistic modal logics. Our construction of a
+%   mutual correspondence (Lemma 5 and Prop. 6) offers a novel and
+%   accessible characterization, bypassing technical machinery such as
+%   universal algebra, and shows that $\GWCL$ can be embedded naturally
+%   within a known semantic tradition.  
+
+%   Kripke semantics with fuzzy accessibility. The standard approach considers relations
+%   valued in [0,1], reflecting degrees of accessibility. This leads to rich logics which
+%   can capture uncertainty and vagueness in agent systems.
+% }
+
+One of the most important challenges in Knowledge Representation and
+Reasoning is to set up a homogeneous framework to represent and
+combine the notions of incompleteness, uncertainty and vagueness. In
+this sense, different many-valued modal logics have become a lingua
+franca for, among others, the specification and analysis of knowledge
+and communication in multi-agent and distributed systems. Notably,
+G\"odel Modal Logic $\GKL$ has provided an adequate logical foundation
+for these tasks, so it has been widely studied in the last decade.
+
+In general, $\GKL$ semantics rests on G{\"o}del Kripke models
+(\emph{\GM-models}), the generalization of the classical Kripke
+semantics for modal logics, where both propositions at each world and
+the accessibility relation are valued in the standard G{\"o}del
+algebra $[0,1]$, namely the algebraic semantics of the well-known
+intermediate G\"odel-Dummett Logic. The minimal logics over
+{\GM-models} have been deeply investigated by Caicedo and Rodriguez in
+\cite{CaiRod2010,CaiRod2015}.  A peculiar subclass of this kind of
+models is obtained by restricting to crisp models
+(\emph{\GCM-models}), where the accessibility relation only takes
+classical values, i.e., it is valued in $\{0,1\}$.
+%%A peculiar subclass of this kind of
+%%models is obtained by restricting to crisp models
+%%(\emph{\GCM-models}), where the accessibility relation only takes
+%%classical values, i.e., it is valued in $\{0,1\}$.
+The logic $\GCL$ arising from \GCM-models has been characterized in
+\cite{RodriguezV:21}. More general approaches, focusing mainly on
+finite residuated lattices, have been developed by
+Fitting~\cite{Fi92a,Fi92b}, Priest~\cite{Pr08b}, and Bou et
+al.~\cite{BoEsGoRo11}, and for other relevant fuzzy logics
+in~\cite{HaTe13,ViEsGo16}.
+
+In this line of research, we introduce a logic called $\GWCL$, which
+is semantically characterized by \emph{witnessed} G\"odel crisp Kripke
+models (\GWCM-models); in \GWCM-models, the value of a modal formula
+$\Box \a$ or $\Diamond \a$ in a world $w$ coincides with (thus, is
+witnessed by) the value of $\a$ in a world accessible from $w$. A
+crucial point is that $\GWCL$ has the finite model property (if
+$\varphi\not\in\GWCL$, than there exists a finite \GWCM-model falsifying
+$\varphi$), while such a property fails for the bi-modal logics
+arising from {\GM-models} and from {\GCM-models}.
+
+Another important aspect to consider is that the semantical approach
+to modal many-valued logics considered here differs from the
+alternative significant framework for modal substructural logics
+studied, for instance, in~\cite{Kam02,O93,Re93b}.  This latter
+framework is based on a syntactic definition of the logics, obtained
+by extending substructural logics with modalities governed by some of
+the usual axioms and rules for the modalities of classical modal
+logics. The resulting logics are complete with respect to a
+bi-relational Kripke semantics, where the evaluation function typical
+of \GM-models is replaced by additional relations, similar to the
+semantics used in intuitionistic modal logics.  A prominent
+contribution of this paper is to establish a simple connection between
+the semantics of $\GWCL$ and a bi-relational semantics, showing that
+$\GWCL$ can be naturally embedded within the well-established semantic
+tradition of intuitionistic modal logics. This connection provides a
+means to compare a calculus defined under one semantics with that
+defined under the other.
+
+As for practical reasoning in AI, research has primarily focused on
+developing efficient calculi for the aforementioned many-valued
+logics.  Metcalfe and Olivetti in \cite{MetOli1,MetOli2} have provided
+variants of a hypersequent structure called \emph{sequent of relations
+  calculus} (firstly introduced by Baaz and Ferm\"uller in
+\cite{BaazF99}) for several fragments of $\GKL$. Galmiche and Salhi
+use a similar approach in \cite{GalSal2010} for studying a family of
+G\"odel hybrid logics.  Burns in~\cite{BURNS2020} surveys the
+approaches based on hypersequents; in particular, it is maintained
+that relational hypersequents provide a unified proof theory for many
+modal logics with cut-free complete treatments.  Here we propose for
+$\GWCL$ a different approach inspired by the tableau calculus
+presented in~\cite{BilkovaFK:22}, but overcoming some flaws in it.
+
+To sum up, the main result of this paper is the definition of a new
+calculus $\Calcc$ which is sound and complete for the logic $\GWCL$.
+We design a terminating decision procedure for $\Calcc$ with
+countermodel generation, consisting in a standard backward proof
+search strategy for which we provide an implementation, called
+\texttt{gwcref} (accessible at~\cite{gwcrefProver}).
+%%, in the Java framework JTabWb~\cite{FerrariFF:17a}. 
+Finally we explore a novel and simple connection between the
+$\GWCM$-models and the bi-relational Kripke semantics. For the omitted
+proofs, we refer the reader to the appendix available online at the
+URL referenced in~\cite{gwcrefProver}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 

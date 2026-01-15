@@ -1,0 +1,247 @@
+\section{Basic Definitions}
+\label{sec:basic}
+
+Formulas are built over a countable set of propositional variables
+$\PV$, using the propositional connectives $\land$, $\lor$, $\to$, the
+constant $\bot$ and the modal connectives $\Box$, $\Diam$.  We write
+$\neg \varphi$ as a shorthand for $\varphi\to \bot$.  The symbols
+$\land$, $\lor$ and $\to$ are also used to denote algebraic
+operations.
+The \emph{G\"odel algebra} is a structure
+$\stru{[0,1],\land,\lor,\to}$ where:
+\[
+a\land b = \min(a,b)
+\qquad
+a \lor b = \max(a,b)
+\qquad
+a\to b =
+\begin{cases}
+  1 & \mbox{if $a\leq b$}\\
+  b &  \mbox{if $a > b$}     
+\end{cases}
+\]
+
+%% Gc-model
+\noindent
+ A \emph{\GM-model} (\emph{G\"odel  model}) $\M$ is a structure
+ $\stru{W,R,e}$ where $W$ is a nonempty set (the set of worlds),
+$R$ is a map $W\times W\to [0,1]$ and  $e : W \times \PV\to [0,1]$.
+If $R : W\times W\to \{0,1\}$, we say that $\M$ is \emph{crisp};
+in this case,  $R \subseteq W\times W$. 
+%We write $w_1 R w_2$ to mean that $(w_1,w_2)\in R$;
+The map $e$ is extended to arbitrary formulas as follows:
+\begin{itemize}
+\item $e(w,\bot) = 0$;
+\item $e(w,\a \star \b) = e(w,\a) \star e(w,\b)$, for $\star\in \{\,\land,\,\lor,\,\to\,\}$;
+\item $e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}$;
+\item $e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}$.
+\end{itemize}
+
+
+\noindent
+Note that:
+%$e(w,\neg\a)\in \{0,1\}$, and $e(w,\neg\a)=1$ iff $e(w,\a)=0$. 
+\[
+ e(w,\neg\a) =
+ \begin{cases}
+   1 & \mbox{if $e(w,\a)=0$}    
+   \\
+   0 &   \mbox{if $e(w,\a)> 0$} 
+ \end{cases}
+ \qquad
+ e(w,\neg\neg\a) =
+ \begin{cases}
+   1 & \mbox{if $e(w,\a) > 0$}    
+   \\
+   0 &   \mbox{if $e(w,\a)= 0$} 
+ \end{cases}
+\]
+\noindent
+A world $w'$ is an $R$-successor of $w$
+iff  $R(w, w')>0$.
+Let us  assume that  $w$ has no $R$-successors; since  $R(w,w')=0$ for every $w'\in W$, 
+  $e(w,\Box \a) = 1$ and $r(w,\Diam \a) = 0$.
+A \GM-model $\stru{W,R,e}$ is
+\emph{witnessed} iff every world $w$ having at least one $R$-successor
+satisfies the following properties:
+\begin{itemize}
+\item if $e(w,\Box \a)=r$, 
+   there is $w'$   s.t.~ $R(w,w')>0$ and $R(w,w') \to e(w',\a) = r$;
+
+\item if $e(w,\Diam \a)=r$, 
+   there is $w'$  s.t.~$R(w,w')>0$ and $R(w,w')\land e(w'\a) = r$.
+  
+\end{itemize}
+Thus, the values   $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by the $R$-successor $w'$.
+As a consequence, in the definitions of $e(w,\Box \a)$ and  $e(w,\Diam \a)$,
+the infimum and the superior are just the minimum and the maximum.
+Note that  every finite \GM-model is witnessed.
+We stress that, if $w$ has no $R$-successors, then
+$e(w,\Box\varphi)=1$ and $e(w,\Diam\varphi)=0$, even if such
+values are not witnessed. 
+% (these peculiar cases are not considered in~\cite{BilkovaFK:22}).
+A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
+$e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
+valid in $\M$, we say that $\M$ is a \emph{countermodel} for
+$\varphi$; thus, $\M$ contains a world $w$ such that $e(w,\varphi) <
+1$.
+% In the sequel, by \GWM-model, we mean a witnessed \GM-model;
+% by  \GWCM-model we mean a witnessed crisp model.
+A model $\M=\stru{W,R,e}$ is \emph{discrete} if $W$ is
+finite and the image of $e$ is a finite subset of $\Qrange$, the set
+of rational numbers in the range $[0,1]$.
+
+
+
+%We introduce the following logics:
+
+
+Let  $\GL$ be the G\"odel-Dummett Logic, obtained by by extending
+Intuitionistic Propositional Logic $\IPL$ with the linearity axiom
+$(\a\to\b)\lor (\b\to \a)$.
+%We recall the axiomatization of $\GCL$ given in~\cite{RodriguezV:21}.
+G\"odel Modal Logic $\GKL$ is obtained by
+adding to $\GL$ the following axioms and rules ($\vdash$ refers to
+provability in $\GKL$):
+\[
+\begin{tabular}{m{3em}m{12em}m{3em}m{16em}}
+  $(K_\Box)$ & $\Box(\a \to \b)\to (\Box\a\to \Box \b)$ & 
+  $(K_\Diam)$ & $\Diam(\a \lor \b)\to (\Diam\a\lor \Diam \b)$
+  \qquad $(F_\Diam)\; \neg \Diam\bot$ 
+  \\
+  $(FS_1)$ & $\Diam(\a \to \b)\to (\Box\a\to \Diam \b)$ & 
+  $(FS_2)$ & $(\Diam \a \to\Box \b)\to \Box(\a\to  \b)$
+  \\
+  $(N_\Box)$ & $\vdash \a$ implies $\vdash \Box\a$ &
+  $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$                                                   
+\end{tabular}
+\]
+We introduce some logics extending   $\GKL$, by providing a semantic characterization;
+the mutual relationships between these logics  are displayed in Fig.~\ref{fig:diagram}
+and discussed below.
+
+\begin{itemize}
+\item $\GCL$ is the set of formulas valid in every crisp \GM-model (see~\cite{RodriguezV:21});
+\item  $\GWL$  is the set of formulas valid in every witnessed \GM-model;
+\item $\GWCL$ is the set of formulas valid in every  witnessed crisp \GM-model (see~\cite{FerFioRod:2025}).
+\end{itemize}
+
+
+\noindent
+The logic $\GCL$ is obtained by adding the axiom $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$
+to  $\GKL$ (see~\cite{RodriguezV:21}).
+ The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
+All the inclusions between the logics shown in Fig.~\ref{fig:diagram}  are strict.
+Let $\psi=\Box \neg\neg \a\to \neg\neg \Box \a$. 
+In~\cite{FerFioRod:2025},
+it is proved that   $\psi\in\GWCL$ and $\psi\not\in\GCL$.
+We show that $\psi\in\GWL$.
+Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
+If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,\psi)=1$. Otherwise,
+it holds that $e(w, \neg\neg \Box \a)=0$, and this implies $e(w, \Box \a)=0$.
+Note that $w$ must have at least one $R$-successor, otherwise we would get  $e(w, \Box \a)=1$.
+Hence, there exists $w'\in W$ such that $R(w,w') >0$ and
+$R(w,w') \to e(w',\a) = 0$. It follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
+We get $e(w,  \Box\neg \neg  \a)=0$,
+hence $e(w, \psi) = 1$. Having proved that $e(w, \psi) = 1$, we conclude  $\psi\in \GWL$.
+
+Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$;
+we show that $\varphi\not\in\GWL$
+by providing a  countermodel for $\varphi$.
+Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}. 
+Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
+$\varphi\not\in\GWL$.
+
+
+We point out that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
+interdefinable.
+This is proved for  $\GCL$ in~\cite{RodriguezV:21};
+in App.~\ref{app:noninterdBD} the proof is extended to all the other considered modal logics.
+
+
+
+
+
+\begin{figure}[t]
+  \centering
+  \input{fig-GWC-logics-diagram.tex}
+  %\input{fig-diagram}
+  \caption{Logics overview.}
+  \label{fig:diagram}
+\end{figure}
+
+
+\begin{figure}[t]
+  \centering
+\[\small
+  \begin{array}{c}
+    \begin{minipage}{10em}
+    \begin{tikzpicture}[scale=0.8]
+      % WORLDS  
+      % w0
+      \draw[fill] (0,0) circle (3pt)
+      +(0,-0)   node (w0)  {}  % used to label the circle 
+      +(0,-0.3) node  {$w_0$}
+      ;
+      
+      % w1 
+      \draw[fill]  (0,1.5) circle (3pt)
+      +(0,0)   node (w1)  {}  % used to label the circle 
+      +(-0.6,0)  node  {$w_1$} 
+      +(1.2,0.2) node  {$p=0.5$}
+      +(1.2,-0.2) node  {$q=0.6$}
+      ;
+      
+
+      % ARROWS
+      \draw[->] (w0) -- (w1) node[above left=-1.4] {0.6} ;
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{20em}
+    \[\small
+    \begin{array}{l}
+      % -----------------------------------------      
+      \fcolorbox{black}{gray!10}{
+        \begin{minipage}{15em}\small
+          $W=\{\,w_0,\,\,w_1\,\}$
+          \\[.5ex]
+          $R(w_0,w_1) = 0.6$
+          \\[.5ex]
+          $e(w_1,p) = 0.5,\; e(w_1,q)=0.6$
+        \end{minipage}
+      } % end box    
+      % -----------------------------------------  
+    \end{array}
+\]
+  \end{minipage} 
+\\[10ex]
+    \begin{array}{rcl}
+     e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_1)\to e(w_1,p\lor q)\,\}\,=\, 0.6 \to 0.5 \lor 0.6 \,=\,1
+    \\[1ex]
+    e(w_0,\Box p) &=&
+    \inf\{\, R(w_0,w_1)\to e(w_1,p)\,\} \,=\,  0.6 \to 0.5   \,=\, 0.5
+\\[1ex]
+    e(w_0,\Diam q)&=&
+    \sup\{\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\, 0.6 \land 0.6 \,=\, 0.6
+\\[1ex]
+    e(w_0,\, \varphi) &=& 1\to (0.5\lor 0.6) \,=\, 0.6
+\end{array}
+    \end{array}
+  \]
+  
+  \caption{A countermodel  for the formula $\varphi=\Box (p\lor q)\to (\Box p \lor \Diam q) $.}
+  \label{fig:countGW}
+\end{figure}
+
+
+\noindent
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 

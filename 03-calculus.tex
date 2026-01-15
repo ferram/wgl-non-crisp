@@ -1,0 +1,1141 @@
+\section{The Calculus $\Calcw$}
+\label{sec_calculus}
+
+%%#############################  CALCULUS - PROPOSITIONAL RULES  ################################
+\begin{figure}[t]
+  \[%\large
+  \centering
+  \begin{array}{c}
+    %% AXAT 
+    \mbox{$\lt\in\{\,<,\,\leq\,\}$,\hspace{1em} $\gt \in \{\,>,\,\geq\,\}$}\qquad\qquad
+    \AXC{}
+    \RightLabel{\small$\ruleAxat$}
+    \UIC{$\G$}    
+    \DP
+    \quad\mbox{if $\Atmp{\G}$ is not consistent}
+    %% \hspace{3em}
+    %% %% AX0 
+    %% \AXC{}
+    %% \RightLabel{\small$\ruleAxz$}
+    %% \UIC{$w:\a <0,\G$}    
+    %% \DP
+    %% \hspace{3em}
+    %% %% AX1 
+    %% \AXC{}
+    %% \RightLabel{\small$\ruleAxo$}
+    %% \UIC{$w:\a >1,\G$}    
+    %%\DP
+    \\[4ex]
+    %% AND GT 
+    \AXC{$w: \a \gt t,\, w: \b\gt t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$\land\gt$}
+    \UIC{$w: \a\land \b \gt t,\,\G$}
+    \DP
+    \hspace{4em}
+    %% AND LT 
+    \AXC{$w: \a \lt t,\, \G$}    
+    \AXC{$w: \b \lt t,\, \G$}
+    % ------------------------------------------      
+    \RightLabel{$\land\lt$}
+    \BIC{$w: \a\land \b \lt t,\,\G$}
+    \DP
+    \\[4ex]    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    %% OR LT 
+    \AXC{$w: \a \lt t,\, w: \b \lt t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$\lor\lt$}
+    \UIC{$w: \a\lor \b \lt t,\,\G$}
+    \DP
+    \hspace{4em}
+    %% OR GT 
+    \AXC{$w: \a \gt t,\,  \G$}
+    \AXC{$w: \b \gt t,\,  \G$}
+    % ------------------------------------------        
+    \RightLabel{$\lor\gt$}
+    \BIC{$w: \a\lor \b \gt t,\,\G$}
+    \DP
+ \\[4ex]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% IMP LTS prop
+ \AXC{$w :\a >w : p,\, w : p  < t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$\to < \;(\dag)$}
+    \UIC{$w: \a\to p < t,\,\G$}
+    \DP
+\hspace{1em}
+    %% IMP LTS 
+    \AXC{$w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$\to < \;(\dag)$}
+    \UIC{$w: \a\to \b < t,\,\G$}
+    \DP
+    \\[4ex]
+    %% IMP LTE prop
+    \AXC{$t \geq 1,\, \G$}    
+    \AXC{$w :\a >w : p,\,w : p \leq  t,\,\G$}    
+    % ------------------------------------------    
+   % \insertBetweenHyps{\hskip -0.01em}
+    \RightLabel{$\to\leq\,(\dag)$}
+    \BIC{$w: \a\to p \leq t,\,\G$}
+    \DP
+\\[4ex]    
+    %% IMP LTE
+    \AXC{$t \geq 1,\, \G$}    
+    \AXC{$  w :\a > w : q,\,    w :\b \leq w : q,\,   w : q \leq  t,\,\G$}    
+    % ------------------------------------------    
+    \RightLabel{$\to\leq\,(\dag)$}
+    \BIC{$w: \a\to \b \leq t,\,\G$}
+    \DP
+    \\[4ex]   
+ %% IMP GT prop
+    \AXC{$w :\a \leq w : p,\,1\gt t,\, \G$}    
+    \AXC{$w:p \gt t,\, \G$}
+    % ------------------------------------------       
+    \RightLabel{$\to\gt\,(\dag)$}
+    \BIC{$w: \a\to p \gt t,\,\G$}
+    \DP
+    \\[4ex]
+    %% IMP GT 
+    \AXC{$w :\a\ \leq w : q,\, w : \b \geq w :q ,\, 1\gt t,\, \G$}    
+    \AXC{$w:\b \gt t,\, \G$}
+    % ------------------------------------------       
+    \RightLabel{$\to\gt\,(\dag)$}
+    \BIC{$w: \a\to \b \gt t,\,\G$}
+    \DP
+    %%% WHERE ....
+    \\[2ex]
+    \begin{minipage}{1.0\linewidth}
+      \[
+      \begin{array}{l}
+        \Atmp{\G} \;=\;
+        \Atm{\G}\;\cup\;
+        \{\, 1 > t~|~ w : \Box \a > t \in \G\,\}\;\cup\;
+        \{\, 0 < t~|~ w : \Diam \a < t \in \G\,\}
+        \\[1ex]   
+        (\dag)\quad p\in\PV\cup\{\bot\},\;  \b\not\in\PV\cup\{\bot\},\;\mbox{$q$ is a new propositional variable}
+        \end{array}
+       \]
+    \end{minipage}   
+  \end{array}
+  \]
+ \caption{The calculus $\Calcw$, propositional rules ($\Gamma$ is a multiset of constraints).}
+  \label{fig:calc1}
+\end{figure}
+%################
+
+
+
+%%#############################  CALCULUS - MODAL RULES  ################################
+\begin{figure}[t]
+  \[%\large
+  \centering
+  \begin{array}{c}
+%% BOX LT  1      
+     \AXC{$1 \lt t,\,\Phizo{\G,w}$}
+     \AXC{$R(w,w_1) > 0,\,R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G$}
+     % -----------------------------------------
+     \RightLabel{$\Box\lt_1$}
+     \BIC{$w:\Box\a \lt t,\,\G$}    
+     \DP
+     \\[4ex]
+    %% BOX LT  2      
+     \AXC{$R(w,w_1) > 0,\,R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,R(w,w') > 0,\,\G$}
+     % -----------------------------------------
+     \RightLabel{$\Box\lt_2$}
+     \UIC{$w:\Box\a \lt t,\,R(w,w') > 0,\, \G$}    
+     \DP
+     \\[4ex]
+%% DIAM GT L  1    
+     \AXC{$0 \gt t,\,\Phizo{\G,w}$}
+     \AXC{$R(w,w_1)>0,\,R(w,w_1)\land w_1:\a \gt t,\,\Phibd{\G,w,w_1},\,\G$}
+     % ------------------------------------------
+     \RightLabel{$\Diam\gt_1$}
+     \BIC{$w:\Diam\a \gt t,\,\G$}    
+    \DP
+ \\[4ex]
+     %% DIAM GT L  2   
+     \AXC{$R(w,w_1)>0,\,R(w,w_1)\land w_1:\a \gt t,\,\Phibd{\G,w,w_1},\, R(w,w') > 0,\, \G$}
+     % ------------------------------------------
+     \RightLabel{$\Diam\gt_2$}
+     \UIC{$w:\Diam\a \gt t,\,R(w,w') > 0,\,\G$}    
+    \DP
+     %%% WHERE ....
+     \\[3ex]
+     \begin{minipage}{1.0\linewidth}
+       \[
+       \begin{array}{l}
+         \mbox{$w_1$ is a new label}
+         \\[1ex]
+      \Phizo{\G,w}\,=\,\begin{minipage}{62ex}
+        in $\G$  apply the  following replacements:   $w:\Box \a \mapsto  1$,
+        $w:\Diam \a \mapsto 0$
+         \end{minipage}
+        \\[1ex]
+         \Phibd{\G,w, w_1}\,=\,
+         \{\, R(w,w_1)\to w_1: \b \gt t~|~w :\Box \b\gt t \in\G  \,\}\,\cup\,
+         \{\, R(w,w_1)\land w_1: \b \lt t~|~w :\Diam \b\lt t \in\G  \,\}
+        \end{array}
+\]
+\end{minipage}
+\end{array}
+    \]
+    \caption{The calculus $\Calcw$, modal rules ($\Gamma$ is a multiset of constraints).}
+  \label{fig:calc2}
+\end{figure}
+%################
+
+
+
+%%#############################  CALCULUS - R-RULES  ################################
+\begin{figure}[t]
+  \[%\large
+  \centering
+  \begin{array}{c}
+    %% R AND GT 
+    \AXC{$R(w,w') \gt t,\, w': \a\gt t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$R\land\gt$}
+    \UIC{$R(w,w') \land w': \a \gt t,\,\G$}
+    \DP
+    \hspace{4em}
+    %% R AND LT 
+    \AXC{$R(w,w') \lt t,\, \G$}    
+    \AXC{$w': \a \lt t,\, \G$}
+    % ------------------------------------------      
+    \RightLabel{$R\land\lt$}
+    \BIC{$R(w,w') \land w':\a \lt t,\,\G$}
+    \DP
+    \\[4ex]
+%==============================================================
+    %% R IMP LTS - PROP
+    \AXC{$R(w,w')> w': p,\,  w':p  < t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$R\to <\,(\dag)$}
+    \UIC{$R(w,w') \to w':p < t,\,\G$}
+    \DP
+\\[4ex]
+ %% R IMP LTS 
+    \AXC{$R(w,w')> w': q,\,w':\a \leq w':q,\,  w':q  < t,\,  \G$}    
+    % ------------------------------------------    
+    \RightLabel{$R\to <\,(\dag)$}
+    \UIC{$R(w,w') \to w':\a < t,\,\G$}
+    \DP
+    \\[4ex]    
+    %% R IMP LTE - PROP
+    \AXC{$t \geq 1,\, \G$}    
+    \AXC{$R(w,w')> w':p,\,  w':p \leq  t,\,\G$}    
+    % ------------------------------------------    
+    \RightLabel{$R\to\leq\,(\dag)$}
+    \BIC{$R(w,w')\to w':p \leq t,\,\G$}
+    \DP
+\\[4ex]    
+    %% R IMP LTE 
+    \AXC{$t \geq 1,\, \G$}    
+    \AXC{$R(w,w')> w':q,\,w':\a\leq w':q,\,  w':q \leq  t,\,\G$}    
+    % ------------------------------------------    
+    \RightLabel{$R\to\leq\,(\dag)$}
+    \BIC{$R(w,w')\to w':\a \leq t,\,\G$}
+    \DP
+    \\[4ex]   
+    %% R IMP GT 
+    \AXC{$w' :\a \geq R(w,w'),\,1\gt t,\, \G$}    
+    \AXC{$w':\a \gt t,\, \G$}
+    % ------------------------------------------       
+    \RightLabel{$R\to\gt$}
+    \BIC{$R(w,w')\to w':\a \gt t,\,\G$}
+    \DP
+%%% WHERE ....
+    \\[4ex]
+     (\dag)\quad p\in\PV\cup\{\bot\},\;  \a\not\in\PV\cup\{\bot\},\;\mbox{$q$ is a new propositional variable}
+  \end{array}
+  \]
+  \caption{The calculus $\Calcw$,  $R$-rules ($\Gamma$ is a multiset of constraints).}
+  \label{fig:calc3}
+\end{figure}
+%#########################################################################
+
+
+
+
+
+We introduce the calculus $\Calcw$ for $\GWL$;
+we call  \GWM-model  a witnessed \GM-model.
+We mainly
+follow~\cite{BilkovaFK:22,FerFioRod:2025}.
+% We mainly
+% follow~\cite{BilkovaFK:22}, where the calculus $\TKGL$ for $\KGL$ is
+% presented.  The logic $\KGL$ is an extension of $\GWCL$ over a more
+% expressive language, including an involutive negation and a
+% co-implication. Note that $\KGL$ has the finite model property, hence
+% $\KGL$-models are witnessed.
+The constraint language $\LC$ is defined over a countable set of 
+labels, each representing a world of a \GWM-model. 
+%Constraints are built using the order relations $<$, $\leq$, $>$, $\geq$.
+In the following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
+formula,  $p\in \PV$,  $r\in\Qrange$,   $R$ is a designated relation symbol  and
+$\abstractorder\in \{<,\leq,>,\geq\,\}$.  
+\[
+\begin{array}{rcl}
+  \mbox{labelled formula} & \;\coloneqq&\; w :\varphi                            
+                             \\
+  \mbox{atomic c-term $t$}  &\; \coloneqq&\; r~|~w :p~|~w :\bot~|~R(w,w')
+  \\[.5ex]
+  \mbox{c-term $u$}  & \;\coloneqq&\; t~|~w : \varphi~|~R(w,w')\land w':\varphi~|~R(w,w')\to w':\varphi
+ \\[.5ex]
+  \mbox{constraint $\chi$}   &\; \coloneqq&\; u \abstractorder t
+\end{array}
+\]
+If  $w:\varphi$ occurs in   a c-term $u$, we say  that $u$ has label $w$.
+A constraint of the form $t \abstractorder t$ is called \emph{atomic};
+if $\chi= w:\varphi \abstractorder t$ is non-atomic and $\sharp$ is
+the main connective of $\varphi$, we say that $\chi$ is a
+\emph{$\sharp$-constraint}.
+Constraints where $u$ is   $R(w,w')\land w':\varphi$ or
+$R(w,w')\to w':\varphi$ are called
+\emph{$R$-constraints}.
+Given a multiset of constraints $\G$, by
+$\Atm{\G}$ we denote the set of atomic constraints in $\G$.
+Let $\M=\stru{W,R,e}$ be a \GWM-model. An $\M$-interpretation of
+$\LC$ is a function $\Ical$ mapping labels of $\LC$ to $W$.
+We extend $\Ical$ as follows:
+\begin{itemize}
+\item $\Ical(r) = r$, for every $r\in \Qrange$;
+\item $\Ical( w:\varphi) = e(\Ical(w), \varphi)$;
+\item $\Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)$;
+\item $\Ical\left(R(w,w') \odot w':\varphi\right) = \Ical\left(R(w,w')\right) \odot   \Ical(w': \varphi)$,
+  where $\odot\in\{\land, \to\}$.
+ \end{itemize}
+%% ???? It is easy to check that, for every c-term $u$, $\Ical(u)$ belongs to $\Qrange$.
+Note that, for every c-term $u$, $\Ical(u)$ belongs to $[0,1]$.
+ We introduce the relations
+$\models_\Ical$ and $\models$, where $\M$ is a \GWM-model, $\Ical$ an
+$\M$-interpretation, $\Gamma$ a multiset of constraints.
+\begin{itemize}
+\item $\M\models_\Ical u \abstractorder t$ iff   $\Ical(u)  \abstractorder \Ical(t)$;
+  
+\item $\M\models_\Ical \Gamma$ iff $\M\models_\Ical\chi$, for every
+  $\chi\in\Gamma$;
+
+\item $\M\models \Gamma$ iff $\M\models_\Ical \Gamma$ for some
+  $\M$-interpretation $\Ical$.
+\end{itemize}
+A \emph{substitution} $\s$ is a function mapping each atomic c-term of the
+form  $w : p$  or $R(w,w')$ to a rational number in $\Qrange$; $\s$
+is extended to all the atomic c-terms by setting $\s(r)=r$, for $r\in
+\Qrange$, and $\s(w:\bot)=0$.  Let $\Gat$ be a set of atomic
+constraints.  By $\s(\Gat)$ we denote the set of constraints obtained
+by replacing every atomic c-term $t$ occurring in $\Gat$ with $\s(t)$;
+note that $\s(\Gat)$ is a set of rational constraints of the form $r_1
+\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$.
+Consistency of a set of atomic constraints is defined as follows:
+\begin{itemize}[leftmargin=*]
+\item $\Gat$ is \emph{consistent} iff there exists a substitution $\s$
+  such that all the constraints in $\s(\Gat)$ hold; we call $\s$ a
+  \emph{solution} to $\Gat$.
+\end{itemize}
+We remark that consistency of $\Gat$ can be checked by a Constraint
+Solver over $Q$: one has to abstract  the c-terms $w : p$ and $R(w,w')$ occurring in $\Gat$
+by introducing new variables ranging over
+$\Qrange$, and then check the consistency of the obtained constraints
+by exploiting the solver.
+
+
+
+Hereafter, $\lt\in\{<,\leq\}$ and $\gt \in \{>,\geq\}$. The rules of the calculus
+$\Calcw$ are displayed in Fig.~\ref{fig:calc1} (propositional rules),  Fig.~\ref{fig:calc2}
+(modal rules) and  Fig.~\ref{fig:calc3} ($R$-rules).
+%%The axiom rules (namely, the rules without premises) are $\ruleAxat$,
+%%$\ruleAxz$ and $\ruleAxo$.  
+% It consists of propositional rules, i.e., the axiom rule $\ruleAxat$
+% and rules for the propositional connectives,  the modal rules
+% $\Box\lt$ and $\Diam\gt$ and rules to handle $R$-constraints.
+The \emph{main constraint} of a rule application is the constraint displayed in the conclusion.
+% Differently from
+% $\TKGL$~\cite{BilkovaFK:22}, some rules of $\Calcw$ require the
+% introduction of new constants, since constraints of the form $u
+% \abstractorder w : \a$ are allowed only in the case
+% $\a\in\PV\cup\{\bot\}$.  E.g., let us compare the rule for $\to <$ of
+% $\TKGL$, rewritten in our notation as $\to < '$, and the rule $\to <$
+% of $\Calcw$:
+% \[
+% %% IMP LTS - BILKOVA 
+% \AXC{$w :\a > w : \b,\,  w :\b  < t,\,  \G$}    
+% % ------------------------------------------    
+% \RightLabel{$\to < '$}
+% \UIC{$w: \a\to \b < t,\,\G$}
+% \DP
+% \qquad
+%   %% IMP LTS 
+%     \AXC{$w :\b \leq b,\, w :\a > b,\,  b  < t,\,  \G$}    
+%     % ------------------------------------------    
+%     \RightLabel{$\to < $}
+%     \UIC{$w: \a\to \b < t,\,\G$}
+%     \DP
+% \]
+% If $\b\in\PV\cup\{\bot\}$, then $b$ stands for $w :\b$ and the two
+% rules essentially coincide.  If $\b\not\in\PV\cup\{\bot\}$, $b$ is a
+% new constant (namely, $b$ does not occur in the conclusion)
+% representing $w :\b$; to ensure the equivalence between $b$ and $w :
+% \b$, in the premise we add the constraint $w : \b \leq b$, the
+% converse constraint $w : \b \geq b$ can be omitted.  The role of the
+% new constants in rules $\to\leq$ and $\to\gt$ is similar.
+Rules for implication, having a main constraint of the form
+$w:\a\to \b\abstractorder t$, are defined according to the form of $\b$.
+% if $\b\not\in\PV\cup\{\bot\}$, we have to introduce a new propositional
+% variable $q$ since constraints of the form $u \abstractorder w:\b$ are not allowed.
+Let us consider the rule $\to <$, having main
+constraint $w:\a\to \b < t$.
+If $\b=p$, with $p\in \PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$ and $w:p < t$.
+Let $\b\not\in\PV\cup\{\bot\}$;
+since the constraint $w:\a > w:\b$ is not allowed,
+we introduce a new propositional variable $q$ behaving as $\b$ in $w$;
+in the premise we need the constraint $w:\b\leq w:q$,
+while the converse constraint $w:\b\geq w:q$ can be omitted.
+There are two modal rules  having  main constraint  $w:\Box\a \lt t$.
+The former one, having two premises, can always be  applied.
+The latter, having one premise, requires the presence of at least a constraint of the form
+$R(w,w')>0$ (thus, we are assuming that $w$ has at least one $R$-successor).
+Similarly, there are  two rules having main constraint  $w:\Diam\a \gt t$.
+Both modal rules introduce a new label $w_1$.
+%in the right premise; we say that
+% \emph{$w_1$ is generated by $w$}.
+ $R$-rules (see Fig.~\ref{fig:calc3})
+are similar to the corresponding propositional rules.
+The definitions of $\Calcw$-tree and
+$\Calcw$-derivation are the usual ones (see, e.g.,~\cite{TroSch:00}).
+
+\inlinetodo{
+We remark that $\Calcw$ has the \emph{subformula property}, namely: if
+$\Tcal$ is a $\Calcw$-tree having $\G_0$ as root, every formula
+occurring in $\Tcal$ inside a constraint  (e.g., the formula $\varphi$
+in the constraint $R(w,w')\to w':\varphi$) is a subformula of a formula in $\G_0$
+or a new propositional variable.
+}
+By $\provesw{\Gamma}$ we mean that there exists a
+$\Calcw$-derivation of $\Gamma$.  In the rest of this section we show
+that $\Calcw$ is a sound and complete calculus for $\GWL$, where
+soundness and completeness are formalized as follows:
+
+\begin{itemize}
+\item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for every  \GWM-model $\M$;
+\item (Completeness) if $\M\not\models\G$, for every \GWM-model  $\M$, then $\provesw{\Gamma}$.
+\end{itemize}
+We stress that in rule $\ruleAxat$ it is not enough to check the
+consistency of $\Atm{\G}$.
+Indeed, let us consider the set of constraints $\G=\{w : \Box p > w:p,\,w:p\leq 1,\,w:p\geq 1\}$.
+Clearly, there is no  \GWM-model   $\M$  such that
+$\M\models \G$ hence,  by completeness,  $\G$ must  be  provable in $\Calcw$.
+The only possible way to prove $\G$ is by an application of rule $\ruleAxat$.
+If $\ruleAxat$  checked the consistency of  $\Atm{\G}$, 
+ $\G$ would not be  proved, since  $\Atm{\G}=\{w:p\leq 1,\,w:p\geq 1 \}$  is  consistent.
+Instead,  $\ruleAxat$ evaluates  $\Atmp{\G} =\Atm{\G}\cup \{1 > w:p\}$;
+since $\Atmp{\G}$ is not consistent,  $\G$ is proved by $\ruleAxat$.
+% However, there is no  \GWM-model   $\M=\stru{W,R,e}$  and $\Ical$ such
+% that $\M\models_\Ical \G$, since $e(\Ical(w), \Box \a) \leq 1$.
+% In $\Calcw$,  $\G$ is provable in $\Calcw$ since rule
+% $\ruleAxat$ checks the consistency of $\Atmp{\G} = \{1 > 1\}$.
+% Indeed, let $\G=\{w : \Box \a >w:p, w:p \leq 1,
+% w:p \geq 1\}$. Clearly, there are no  \GWM-model  $\M=\stru{W,R,e}$  and $\Ical$ such
+% that $\M\models_\Ical \G$, otherwise we would get $e(\Ical(w),p)=1$ and
+% $e(\Ical(w), \Box \a) >  e(\Ical(w),p)$, namely $e(\Ical(w), \Box \a) > 1$,
+% a contradiction.  We point out that
+% $\Atm{\G}$ is consistent, but $\G$ is provable in $\Calcw$ since rule
+% $\ruleAxat$ checks the consistency of
+% $\Atmp{\G} = \{1 > w:p,\,w:p \leq 1,\,w:p \geq 1\}$.
+
+
+
+
+
+
+\bigskip 
+\inlinetodo{**TO DO**
+An example of $\Calcw$-derivation is shown in Fig.~\ref{fig:der}.  
+In representing derivations, we underline the main constraint of a rule
+application; moreover, we omit redundant constraints (e.g.,
+constraints of the kind $t \leq t$ and multiple copies of the same
+constraint).}
+
+
+To prove the soundness of $\Calcw$, we need the
+following:
+
+%%######### EXAMPLE DERIVATION #########
+\begin{figure}[t]
+  \centering\small
+  ** TO DO **
+  % \[
+  % \begin{array}{l}
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_1$}
+  %   % ////////////////////////////////////////////////////////////////////////////////////////
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_3$}
+  %   % //////////////////
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_5$}
+  %   % ////////
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_6$ }
+  %   % ==========================
+  %   \RightLabel{$\to \leq$}
+  %   \BIC{$\underline{w_1:\neg p \leq c_2},\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D$}
+  %   % /////
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_4$}
+  %   % ===================
+  %   \RightLabel{$\to \gt$}
+  %   \BIC{$w_1:p \leq c_1,\,\underline{w_1:\neg \neg p > c_0},\,\D$}
+  %   % //////////////////
+  %   \RightLabel{$\Box\lt$}
+  %   \BIC{$\underline{w: \Box p \leq c_1},\,\D$}
+  %   % /////////////////////////////////////
+  %   \AXC{}
+  %   \RightLabel{$\ruleAxat$}
+  %   \UIC{$\G_2$}
+  %   % ==================================
+  %   \insertBetweenHyps{\hskip -5em}
+  %   \RightLabel{$\to \gt$}
+  %   \BIC{$\underline{w:\neg  \Box p > w:\bot},\,w:\bot \leq c_0,\,w: \Box \neg \neg p > c_0,\,c_0 < 1$ }
+  %   % ==========================================================================================
+  %   \RightLabel{$\to \leq$}
+  %   \insertBetweenHyps{\hskip -7em}
+  %   \BIC{$\underline{w:\neg \neg  \Box p \leq c_0},\;w: \Box \neg \neg p > c_0,\;c_0 < 1$}
+  %   % -----------------------------------------------------
+  %   \RightLabel{$\to <$}
+  %   \UIC{$\underline{w: \Box \neg \neg p \to \neg \neg  \Box p < 1}$}
+  %   \DP
+  %   % #############################################    
+  %   \\[14ex]
+  %   \D = w:\bot \geq c_1,\,1 > w:\bot,\,w:\bot \leq c_0,\,
+  %   w: \Box \neg \neg p > c_0,\,c_0 < 1
+  %   \\[.5ex]    
+  %   \G_1=c_0 \geq 1,\,   w: \Box \neg \neg p > c_0,\,c_0 < 1
+  %   \\[.5ex]    
+  %   \G_2 = w:\bot > w:\bot,\,w:\bot \leq c_0,\, w: \Box \neg \neg p > c_0,\,c_0 < 1
+  %   \\[.5ex]    
+  %   \G_3 =1 \leq c_1,  w:\bot \geq c_1,\,1 > w:\bot,\,w:\bot \leq c_0,\, 1 > c_0,\,c_0 < 1
+  %   \\[.5ex]
+  %   \G_4 = w_1 : \bot >  c_0,\,w_1:p \leq c_1,\,\D
+  %   \\[.5ex]   
+  %   \G_5 = c_2\geq 1,\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D
+  %   \\[.5ex]    
+  %   \G_6 =  w_1 : p > w_1 :\bot,\, w_1 :\bot\leq c_2 ,\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D
+  % \end{array}   
+  % \]
+  \caption{$\Calcw$-derivation of $w:...$.}
+  \label{fig:der}
+\end{figure}
+
+\begin{lemma}\label{lemma:soundRule}
+  Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
+  $\Gamma$ be the conclusion of $\rho$ and let $\M$ be a \GWM-model.
+  If $\M\models\G$, then there exists a premise $\G'$ of $\rho$ such
+  that $\M\models\G'$.
+\end{lemma}
+
+\begin{proof}
+  Let $\rho$ be the rule $\ruleAxat$; since the rule has no premises,
+  we have to show that there is no $\M$ such that $\M\models \G$.  Let
+  us assume, by contradiction, that there is a \GWM-model $\M=\stru{W,R,e}$ and an
+  $\M$-interpretation $\Ical$ such that $\M\models_\Ical \G$.  If $ w
+  : \Box \a > t \in \G$, then $e(\Ical(w), \Box \a) > \Ical(t)$, hence
+  $1 > \Ical(t)$, which implies $\M\models_\Ical 1 > t$.  Similarly,
+  if $ w : \Diam \a < t \in \G$, then $\M\models_\Ical 0 < t$.  This
+  proves that $\M\models_\Ical \Atmp{\G}$.  By exploiting $e$ and
+  $\Ical$, one can define a solution to $\Atmp{\G}$\footnote{Note that irrational values $e(w,p)$ and $R(w,w')$
+    must be approximated with rationals.};
+  accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
+  conclude that $\M$ does not exist. %
+  The cases concerning the other rules are detailed in the
+  Appendix~\ref{app:proofs}.
+\end{proof}
+
+\begin{proposition}[Soundness]\label{prop:sound}
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
+  \item\label{prop:sound:1} If $\provesw{\G}$, then $\M\not\models
+    \G$, for every \GWM-model $\M$.
+    
+  \item\label{prop:sound:2} $\provesw w:\varphi < 1$ implies
+    $\varphi\in\GWL$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof} 
+  Point~\ref{prop:sound:1} can be  proved by induction on the
+  depth of a $\Calcw$-derivation of $\G$, by exploiting
+  Lemma~\ref{lemma:soundRule}.  Let
+  us  assume  $\varphi\not\in\GWL$.  Then, there exists a \GWM-model
+  $\M=\stru{W,R,e}$ and a world $ w^\star\in W$ such that
+  $e(w^\star,\varphi) < 1$.  Let $\Ical$ be an $\M$-interpretation
+  mapping $w$ to $w^\star$; it holds that $\M\models_\Ical w:\varphi < 1$. 
+  By~\ref{prop:sound:1},
+we get $\nprovesw w:\varphi < 1$, and this
+proves~\ref{prop:sound:2}. 
+\end{proof}
+
+
+
+
+
+\noindent
+We show that $\Calcw$ is \emph{strongly terminating}, namely: there
+exists a well-founded relation $\prec$ such that, for every
+application $\rho$ of a rule of $\Calcw$, if $\G$ is the conclusion of
+$\rho$ and $\G'$ any of the premises of $\rho$, then $\G'\prec \G$.
+Equivalently, given a finite multiset $\G$ and repeatedly applying the
+rules of $\Calcw$ upwards, proof search eventually halts, no matter
+which strategy is used.
+
+
+The size of a formula $\varphi$, denoted by  $\size{\varphi}$, is defined as follows
+\[
+\size{\varphi} \;=\;
+    \begin{cases}
+      0 & \mbox{if $\varphi\in\PV\cup\{\bot\}$}
+          \\
+\size{\a} + \size{\b} + 1  & \mbox{if $\varphi=\a\land\b$ or $\varphi=\a\lor\b$ or $\varphi=\a\to\b$}
+  \\
+\size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
+    \end{cases}
+\]
+We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
+\[\small
+  \begin{array}{l}
+   \wg{u} \;=\;
+    \begin{cases}
+      0 & \mbox{if $u$ is an atomic c-term}
+          \\
+      \size{\varphi} &     \mbox{if $u = w:\varphi$}
+\\
+ \size{\varphi} + 1  &\mbox{if $u = R(w,w')\land w':\varphi$ or $u = R(w,w')\to w':\varphi$ }
+      \end{cases}
+\\[6ex]
+  \wg{u \abstractorder t}  \,=\, \wg{u}
+  \hspace{5em}
+    \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
+\end{array}    
+\]
+The multisets 
+$\G[w]$ and   $\sizem{\G}$ are defined as follows:
+\[
+  \G[w] \,=\,\{\,
+u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
+  \,\}
+\qquad
+\sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
+    \]
+Let $\Theta_1$ and $\Theta_2$ be finite multisets of natural numbers;
+we set:% \\[.5ex]
+\[
+  \Theta_1 \precm \Theta_2
+%\qquad\IFF\qquad
+\quad\mbox{iff}\quad
+  \Theta_1\neq
+ \Theta_2 \;\land\; \left(\; \forall k_1 \in \Theta_1\setminus
+   \Theta_2.\ \exists k_2\in \Theta_2 \setminus \Theta_1.\ k_1 < k_2
+  \;\right).
+\]  
+The relation $\precm$ is a multiset order, hence $\precm$ is
+well-founded (see~\cite{BaaderN:98}, Th.~2.5.5 and Lemma 2.5.6).
+%Given a label $w$, we call $w$-constraint a constraint of the form
+%$w:\varphi \abstractorder t$ or $R(w,w')\land w':\varphi \abstractorder t $ or $R(w,w')\to w':\varphi \abstractorder t$.
+% Given a multiset of constraints $\G$, let $\size{\G}$ be the number of
+% logical connectives occurring in $\G$, let $\G[w]$ be the multiset of
+% labelled formulas in $\G$ having label $w$; let $\sizem{\G}$ be the
+% multiset of $\size{\G[w]}$, for every label $w$ occurring in $\G$.
+% For instance, in the application of rule $\Box\lt$ displayed above, we
+% have $\sizem{\G_0}=\{3\}$, $\sizem{\G_1}=\emptyset$ and
+% $\sizem{\G_2}=\{0,2\}$ (where $0=\size{\,\G_2[w_1]\,}$ and
+% $2=\size{\,\G_2[w]\,}$).
+We introduce the following relation $\precc$ between finite multisets
+of constraints:
+%\\[.5ex]\mbox{}$\quad\quad\quad\G_1 \precc \G_2$ iff $\sizem{\G_1} \precm\sizem{\G_2} $.\\[.5ex]  
+\[
+\G_1 \precc \G_2 \quad\mbox{iff}\quad \sizem{\G_1} \precm\sizem{\G_2}. 
+\]  
+%Note that $\G_1\precc \G_0$ and $\G_2\precc \G_0$.
+
+\begin{proposition}\label{prop:term}
+\mbox{}
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+  \item\label{prop:term:1}
+    The relation $\precc$ is well-founded.  
+  \item\label{prop:term:2}
+    The calculus $\Calcw$ is strongly terminating.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Point~\ref{prop:term:1} follows from the fact that $\precm$ is
+  well-founded.  Point~\ref{prop:term:2} holds since $\precc$ matches
+  the definition of strong termination for $\Calcw$.  
+\end{proof}
+
+\noindent
+By Prop.~\ref{prop:term}\ref{prop:term:2}, any backward proof search
+strategy for $\Calcw$ terminates.
+Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus on strategies
+where failure is certified by countermodels, i.e.: if proof search
+for a multiset of constraints $\G$ fails, a \GWM-model $\M$ such that
+$\M\models \G$ can be built; we call $\M$ a countermodel for $\G$,
+since $\M$ ascertains that $\G$ is not provable in $\Calcw$ (by
+its soundness).
+
+Let $\G$ be a multiset of constraints;
+$\G$ is \emph{reduced}  if no rule of $\Calcw$ can be backward applied to $\G$.
+An application  of a modal rule   with conclusion $\G$
+is  \emph{plain} iff the following conditions hold:
+\begin{itemize}
+\item no propositional rule of $\Calcw$ can  be backward applied to~$\G$.
+\item Let $w: \varphi\abstractorder t$ be the main constraint of the application; 
+ then,  $\G$ does not contain any constraint  of the form $R(w,w')>0$.
+   \end{itemize}
+To represent a branch $\Bcal$ of a $\Calcw$-tree, we use the notation
+$\stru{\G_0,\dots,\G_n}$ where, for every $0 \leq k < n$, $\G_k$ is
+the conclusion of an application  of a rule $\rho$ of $\Calcw$ and
+$\G_{k+1}$ is one of the premises of $\rho$;
+the notation $\app{\chi}{\G_k}{\G_{k+1}}$ means that $\rho$ has been applied
+with  main constraint $\chi$.
+A branch $\Bcal=\stru{\G_0,\dots,\G_n}$ is \emph{saturated}
+iff the following holds:
+  
+\begin{itemize}[leftmargin=*]
+\item $\G_0$ is a finite set of constraints of the form $w:\varphi\abstractorder t$;
+
+\item  $\G_n$ is reduced;
+\item every application of a modal rule in $\Bcal$ is plain.
+%  for every $k\geq 0$, if $\G_k$ is the conclusion of a modal rule, then $\G_k$ is p-reduced.
+\end{itemize}
+
+\noindent
+We show that, by exploiting  $\G_n$, we can build a countermodel for $\G_0$.
+Let $\Gat$ be  a finite consistent set of atomic constraints and let $\s$ be a solution to $\Gat$.
+By  $\Mod{\Gat,\sigma}$ we denote the $\GWM$-model  $\M=\stru{W,R,e}$
+such that $W$ is the set of labels occurring in $\Gat$ and:
+\[\small
+  \begin{array}{l}
+R(w,w') \;=\;
+\begin{cases}
+  \s(R(w,w')) & \mbox{if $R(w,w')$ occurs in $\Gat$}  
+  \\
+  0 & \mbox{otherwise}
+\end{cases}
+\qquad
+  e(w,p) \;=\;
+\begin{cases}
+  \s(w:p) & \mbox{if $w:p$ occurs in $\Gat$}  
+  \\
+  0 & \mbox{otherwise}
+\end{cases}
+  \end{array}
+  \]
+Note that  $\M$ is a discrete $\GWM$-model.
+The canonical interpretation of $\Mod{\Gat,\sigma}$ 
+is the interpretation $\Ical$ such that
+$I(w)=w$ for every label $w$.
+Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch, let  $\s$ be a solution to
+$\Atmp{\G_n}$ and  $\M=\Mod{\Atmp{\G_n},\s}$;
+in the next lemma we show that
+ $\M\models_\Ical \G_0$, where $\Ical$ is the canonical interpretation.
+
+
+
+
+\begin{example}\label{ex:satBrancj}
+  Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor q)$.
+  We show a saturated branch $\Bcal$ having root $\G_0=\{w_0:\varphi < 1\}$.
+When the applied rule has
+  two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
+  the selected one; in every rule application,
+  the main constraint is underlined.
+\[\small
+  \begin{array}{l}
+\AXC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
+% ----------------------------------------------
+ \RightLabel{$R\land\lt(l)$}
+    \UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\; \underline{R(w_0,w_1)\land w_1 : q \leq c},\;\;\D$}
+% ----------------------------------------------
+\RightLabel{$\lor\gt(r)$}
+ \UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  \underline{w_1 :p\lor q \geq R(w_0,w_1)},\;\; 1> c,\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$}
+% -------------------------------------------------------------
+ \RightLabel{$R\to\gt(l)$}
+\UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  \underline{R(w_0,w_1)\to w_1 :p\lor q > c},\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$} 
+% ----------------------------------------------
+ \RightLabel{$R\to\leq(r)$}
+    \UIC{$\underline{R(w_0,w_1)\to w_1 :p \leq c},\;\;  R(w_0,w_1)\to w_1 :p\lor q > c,\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$} 
+  % ----------------------------------------------
+\RightLabel{$\Box\lt_1(r)$}
+ \UIC{$w_0:  \Box(p\lor q) > c,\;\; \underline{w_0 : \Box p \leq  c},\;\; w_0: \Diam q  \leq  c,\;\;  c   < 1$} 
+%----------------------------------------------
+\RightLabel{$\lor\lt$}
+\UIC{$w_0:  \Box(p\lor q) > c,\;\;\underline{w_0 : (\Box p\lor \Diam q) \leq c},\;\; c  < 1$}
+%----------------------------------------------
+\RightLabel{$\to <$}
+\UIC{\underline{$w_0:  \Box(p\lor q) \to (\Box p\lor \Diam q)  < 1$}}
+    \DP
+\\[15ex]
+% ###############################################
+c = w_0:q_0\qquad\D\;=\;\{\,  R(w_0,w_1) > 0,\;\;   w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
+  \end{array}
+    \]  
+    Let $\G$ be the top sequent; the set $\Atmp{\G}$ consists of the following atomic constraints:
+    \[\small
+  R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;  R(w_0,w_1) > 0,\;\; c < 1  
+    \]
+The set   $\Atmp{\G}$ is consistent; a solution to $\Atmp{\G}$ is any substitution $\s$ on  $\Atmp{\G}$ such that
+    \[
+      \sigma(w_1:p)\, < \,\sigma\left(R(w_0,w_1)\right)\,\leq\, \sigma(c) \,< 1
+      \qquad
+      \sigma\left(R(w_0,w_1)\right)\,\leq \, \sigma(w_1: q) \,\leq\, 1
+\]
+For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_n},\s}$ satisfies
+$\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is the canonical interpretation,
+hence $\M$ is a countermodel for $\varphi$, witnessing that $\varphi\not\in\GWL$.
+A  solution $\s^\star$ is  given by setting $\sigma^\star(w_1:p) = 0.5$ and
+$\sigma^\star(R(w_0,w_1))= \sigma^\star(c) =  \sigma^\star(w_1:q) = 0.6$.
+The model $\Mod{\Atmp{\G_n},\s^\star}$  is essentially the same as the one displayed in Fig.~\ref{fig:countGW},
+the only   difference is in the evaluation of $q_0$ in $w_0$.
+\EndEx
+\end{example}
+
+
+
+\begin{lemma}\label{lemma:count}
+  Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch and let $\s$ be a solution to
+  $\Atmp{\G_n}$.
+  Let $\M=\Mod{\Atmp{\G_n},\s}$,  $\Ical$  the canonical interpretation
+  of $\M$ 
+  and   $\Gstar=\bigcup_{k\in\{0,\dots,n\}}\G_k$.
+Then, $\M\models_\Ical \Gstar$.
+\end{lemma}
+
+
+\begin{proof}
+  Let $\M=\stru{W,R,e}$; since $\M=\Mod{\Atmp{\G_n},\s}$, with $\s$ is a solution to $\Atmp{\G_n}$,
+  it holds that:
+\begin{enumerate}[label=(\arabic*), ref=(\arabic*),leftmargin=*]
+% (Atmp)
+ \item\label{lemma:count:atmp}
+  $\M\models_\Ical \Atmp{\G_n}$.
+\end{enumerate}
+Let $\chi\in \Gstar$;  by induction on $\wg{\chi}$,  we show that $\M\models_\Ical \chi$.
+ If  $\wg{\chi}=0$, then $\chi$ is atomic. This implies that $\chi\in\G_n$,
+  hence  $\M\models_\Ical \chi$ by~\ref{lemma:count:atmp}.
+  
+  Let $\wg{\chi}>0$ and let us assume that  $\chi\not\in \G_n$.
+  Then, there exists $k \geq  0$ such that
+  $\app{\chi}{\G_k}{\G_{k+1}}$. 
+We proceed by a case analysis on the structure of $\chi$.
+
+
+  %%%%%%%%%%%%%%%%
+  Let $\chi= w:\a\land \b\gt t$. 
+  Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get $w:\a\gt t\in \G_{k+1}$
+  and $w:\b \gt t\in \G_{k+1}$. 
+  By the induction hypothesis   $\M\models_\Ical w:\a\gt t$ and $\M\models_\Ical w:\b \gt t $, and 
+this implies  $\M\models_\Ical w:\a\land \b\gt t$.
+The cases
+$\chi = R(w,w')\land w':\a \gt t$ and
+$\chi= w:\a\lor \b\lt t$ 
+are similar.
+
+%%%%%%%%%%%%%%%%
+Let $\chi= w:\a\land \b\lt t$.
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get
+$w:\a\lt t \in \G_{k+1}$ or $w:\b\lt t  \in \G_{k+1}$.
+By the induction hypothesis $\M\models_\Ical  w:\a\lt t $ or $\M\models_\Ical w:\b\lt t $, hence
+ $\M\models_\Ical  w:\a\land \b\lt t$.
+ The cases
+ $\chi = R(w,w')\land w':\a \lt t$ and
+ $\chi= w:\a\lor \b\gt t$ are similar.
+ 
+ 
+ %%%%%%%%%%%%%%%% 
+Let $\chi= w:\a\to \b < t$; 
+we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get:
+ \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*]
+% (A)
+ \item\label{lemma:count:impless:1}
+ $\{\,w:\a > w : q,\, w:\b \leq w : q,\,w: q < t\,\} \subseteq \G_{k+1}$. 
+\end{enumerate}
+ By the induction hypothesis,
+for every constraint $\chi'$  in~\ref{lemma:count:impless:1}
+  $\M\models_\Ical \chi'$, hence:
+\[
+e(w,\a) > e(w,q) \qquad e(w,\b) \leq e(w,q) \qquad e(w,q) < \Ical(t)
+\]  
+Since $e(w,\a) > e(w,\b)$, we get  $e(w,\a\to \b) = e(w,\b)$, hence  $e(w,\a\to \b) < \Ical(t)$,
+which implies $\M\models_\Ical  w:\a\to \b < t  $.
+
+
+%%%%%%%%%%%%%%%%
+Let $\chi= w:\a\to \b \leq t$; 
+we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
+Since   $\app{\chi}{\G_k}{\G_{k+1}}$,   one of the followings two subcases holds:
+
+ \begin{enumerate}[label=(B\arabic*), ref=(B\arabic*),leftmargin=*]
+% (B1)
+ \item\label{lemma:count:impleq:1}
+    $t\geq 1\in \G_{k+1}$;
+
+% (B2)
+    \item\label{lemma:count:impleq:2}
+$\{\,w:\a> w :q,\,w:\b\leq w:q,\,w:q\leq t\,\} \subseteq \G_{k+1}$.
+\end{enumerate}
+Let us assume that~\ref{lemma:count:impleq:1} holds.
+By the induction hypothesis, we get $\M\models_\Ical t\geq 1$,
+and this implies
+$\M\models_\Ical\chi$. Let us assume that~\ref{lemma:count:impleq:2} holds.
+By the induction hypothesis, for every constraint $\chi'$  in~\ref{lemma:count:impleq:2},
+ $\M\models_\Ical \chi'$, hence:
+\[
+e(w,\a) > e(w,q) \qquad e(w,\b) \leq e(w,q) \qquad e(w,q) \leq \Ical(t)
+\]  
+Since $e(w,\a) > e(w,\b)$,
+we get  $e(w,\a\to \b) = e(w,\b)$, hence  $e(w,\a\to \b) \leq \Ical(t)$,
+which implies $\M\models_\Ical  w:\a\to \b \leq t$.
+
+
+%%%%%%%%%%%%%%%%
+Let $\chi= w:\a\to \b \gt t$;
+we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
+Since   $\app{\chi}{\G_k}{\G_{k+1}}$,
+one of the followings two subcases holds:
+
+ \begin{enumerate}[label=(C\arabic*), ref=(C\arabic*),leftmargin=*]
+% (C1)
+ \item\label{lemma:count:implgt:1}
+$\{\,w:\a \leq w:q,\,w:\b\geq  w:q,\,1\gt t\,\}\subseteq\G_{k+1}$;
+
+
+
+% (C2)    
+    \item\label{lemma:count:implgt:2}
+$w:\b\gt t\in\G_{k+1}$.
+\end{enumerate}
+
+\noindent
+Let us assume that case~\ref{lemma:count:implgt:1} holds.
+By the induction hypothesis,   for every constraint $\chi'$  in~\ref{lemma:count:implgt:1},
+ $\M\models_\Ical \chi'$, hence:
+\[
+e(w,\a) \leq  e(w,q) \qquad e(w,\b) \geq e(w,q) \qquad 1 \gt \Ical(t)
+\]  
+Since $e(w,\a)\leq  e(w,\b)$, we get $e(w,\a\to \b)=1$, hence  $e(w,\a\to \b)\gt \Ical(t)$,
+which implies $\M\models_\Ical\chi$.
+In case~\ref{lemma:count:implgt:2}, by the induction hypothesis we get $\M\models_\Ical w:\b\gt t$,
+namely $e(w,\b)\gt\Ical(t)$.
+Since $e(w,\a\to\b)\geq e(w,\b)$, we get
+$\M\models_\Ical   w:\a\to \b \gt t$.
+The cases concerning $R$-constrains can be proved as the corresponding propositional cases.
+
+
+%%%%%%%%%%%%%%%%
+
+Let $\chi= w:\Box\a\lt t$
+and let us assume that $\G_k$ is the conclusion of rule $\Box\lt_1$.
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$,
+one of the following two subcases  holds:
+
+ \begin{enumerate}[label=(D\arabic*), ref=(D\arabic*),leftmargin=*]
+ % (D1)
+ \item\label{lemma:count:boxlt:1}
+$1 \lt t\in\G_{k+1}$; % and $\Phizo{\G_k,w}\subseteq \G_{k+1}$.
+
+   
+ % (D2)
+ \item\label{lemma:count:boxlt:2}
+$\{\,R(w,w_1) > 0,\,R(w,w_1)\to w_1:\a\lt t\,\}\subseteq \G_{k+1}$.
+\end{enumerate}
+Let us assume that~\ref{lemma:count:boxlt:1} holds.
+Since  the application of $\Box\lt_1$ is plain,
+$\G_{k}$ does not contain any constraint of the form $R(w,w') > 0$.
+Moreover,  every constraint in $\G_{k+1}$  
+of the form $w:\varphi \abstractorder t'$
+fulfills the condition $\varphi\in\PV\cup\{\bot\}$;
+hence, no new constraint
+of the form  $R(w,w') > 0$  can be generated by an application
+of a modal rule in the sub-branch $\stru{\G_{k+1},\dots,\G_n}$.
+As a consequence,   $\G_{n}$ does not contain any constraint   $R(w,w') > 0$;
+thus, $w$ has no $R$-successors in $\M$, and this implies
+ $e(w,\Box\a) = 1$. Since $1 \lt t\in\G_{k+1}$,
+by the induction hypothesis $\M\models_\Ical 1 \lt t$; we conclude
+$\M\models_\Ical w: \Box\a \lt t$.
+Let us assume that~\ref{lemma:count:boxlt:2} holds.
+By the induction hypothesis,
+ for every constraint $\chi'$  in~\ref{lemma:count:boxlt:2},
+ $\M\models_\Ical \chi'$, hence:
+ \[
+R(w,w_1) > 0  \qquad e(w_1,\, R(w,w_1)\to w_1:\a)\,\lt\, \Ical(t)
+\]
+Since $w$ has at least one $R$-successor, 
+$e(w,\Box \a) \leq  e(w_1,\, R(w,w_1)\to w_1:\a)$, and this implies $\M\models_\Ical  w:\Box\a\lt t$.
+If the applied   rule  is $\Box\lt_2$, only  case~\ref{lemma:count:boxlt:2} must be considered.
+The case  $\chi= w:\Diam\a\gt t$ is similar.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+It remains to consider the cases where $\wg{\chi}>0$ and   $\chi\in \G_n$,
+namely  $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$;
+we only discuss the former one.
+
+Let $\chi= w:\Box\a\gt t$. If $w$ has no $R$-successors, then
+ $e(w,\Box\a)=1$, hence we have to show that $\M\models_\Ical 1 \gt t$.
+%namely $1 \gt \Ical(t)$.
+The case where $\gt$ is $\geq$ is immediate. 
+Let $\gt$ be  $>$.
+Since  $\chi\in\G_n$, we get $1 >t\in\Atmp{\G_n}$,
+thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
+
+
+Let us assume that $w$ has at least one  $R$-successor
+and let $w'$ be any of the   $R$-successors of $w$.
+We show that:
+
+ \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=5]
+% (E)
+ \item\label{lemma:count:boxgt}
+$\M\models_\Ical R(w,w') \to w':\a\gt t$.
+  \end{enumerate}
+ Since the constraint $\chi_R = R(w,w')> 0$ belongs to $\G_n$,  there exists
+ $k \geq 0$  such that $\chi_R$ is introduced in the set $\G_{k+1}$, namely:
+$\chi_R\in\G_{k+1}$ and, for every  $0\leq i \leq k$,  $\chi_R\not \in \G_i$.
+Accordingly, $\G_{k+1}$ is the right premise of an application of a  modal rule $\rho$
+having conclusion $\G_{k}$.
+Note that the label $w'$ is introduced in $\G_{k+1}$. Since the application
+of $\rho$ is plain, reasoning as in the proof of~\ref{lemma:count:boxlt:1}
+one can prove that   $\chi\in \G_{k}$.
+Since $\Phibd{\G,w,w'}\subseteq \G_{k+1}$, we get
+$R(w,w') \to w':\a\gt t \in\G_{k+1}$,
+hence~\ref{lemma:count:boxgt} holds by the induction hypothesis.
+By~\ref{lemma:count:boxgt}, we conclude  $\M\models_\Ical w:\Box\a\gt t$.
+\end{proof}
+
+
+\begin{proposition}\label{prop:satBranch}
+  Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch.
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+  \item\label{prop:satBranch:1}
+    There exists a  \GWM-model $\M$ such that $\M\models\G_0$.
+    
+  \item\label{prop:satBranch:2}
+    If $\G_0=\{ w : \varphi < 1\}$, then $\varphi\not\in\GWL$.
+  \end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+Let $\Bs$ be a backward proof search strategy for $\Calcw$; we say that
+$\Bs$ is \emph{plain} iff all the modal rule applications performed by
+$\Bs$ are plain.
+
+
+\begin{lemma}\label{lemma:search}
+  Let $\Bs$ be a plain proof search strategy for $\Calcw$ and let
+  $\G_0$ be a finite multiset of constraints of the form $w:\varphi\abstractorder t$.  If $\Bs$ fails to prove
+  $\G_0$, then a discrete countermodel for $\G_0$ can be built.
+\end{lemma}
+
+
+\begin{proof}
+  Assume that   $\Bs$ fails.
+  By tracking the computation, we can build an open branch
+  $\Bcal$  having root $\G_0$. 
+  Since $\Bs$ is plain, the branch $\Bcal$ is saturated,
+  hence from $\Bcal $ a discrete countermodel for $\G_0$ can be extracted
+ (see Prop~\ref{prop:satBranch}\ref{prop:satBranch:1}).
+\end{proof}
+
+\noindent
+We remark that $\Bs$ does  not need to implement backtracking.
+
+
+
+\begin{proposition}[Completeness]\label{prop:compl}
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+  \item\label{prop:compl:1} If $\nprovesw{w: \varphi < 1}$, then there exists a
+discrete   for countermodel for $\varphi$.
+  \item\label{prop:compl:2}
+    If $\nprovesw{w : \varphi < 1}$, then  $\varphi\not\in\GWL$.
+  \item\label{prop:compl:3} If $\varphi\not\in\GWL$, then then there
+    exists a discrete countermodel for $\varphi$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Point~\ref{prop:compl:1} follows from Lemma~\ref{lemma:search}.
+  Point~\ref{prop:compl:2} follows from~\ref{prop:compl:1},
+  since a countermodel for $w :\varphi < 1$ certifies that $\varphi\not\in\GWL$.
+  Point~\ref{prop:compl:3} follows from~\ref{prop:compl:1} since, by soundness of $\Calcw$,
+  $\varphi\not\in\GWL$ implies $\nprovesw{w : \varphi < 1}$.
+\end{proof}
+
+\noindent
+\inlinetodo{**OLD**}
+
+By Prop.~\ref{prop:compl}\ref{prop:compl:3}, $\GWL$ has the finite
+model property. Let $\varphi\not\in\GWL$ and let $\M$ be the discrete
+countermodel extracted from an open branch having root
+$w_0:\varphi<1$.  One can easily prove that the depth of $\M$ is
+bounded by $\size{\varphi}$ and that every world of $\M$ has at most
+$\size{\varphi}$ R-successors; this implies that the size of $\M$ is
+$O(\size{\varphi}^{\size{\varphi}})$ (see
+Th.~4.1~\cite{BilkovaFK:22}).  Note that it is not possible to build
+$\M$ one branch at a time, since the constraints generated during the
+expansion of a branch have global validity and must be kept throughout
+the construction.  However, by adapting the procedure described in
+Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
+for $\GWL$ is in PSPACE.
+
+
+We have implemented both the proof search procedure and the
+countermodel extraction in the JTabWb
+framework~\cite{FerrariFF:17a}. The prover, named
+\texttt{gwcref}~\cite{gwcrefProver}, performs a standard backward
+depth-first proof search, leveraging the JTabWb engine complemented
+with the Java implementation of the $\Calcw$ rules and of a plain
+proof-search strategy. The consistency of atomic constraints is
+checked using the Choco-solver Java library~\cite{ChocoSolver:2025}.
+To our knowledge, the only other prover available for modal fuzzy
+logic is mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for
+continuous t-norm-based logics, including G\"odel-Dummett
+Logic. However, mNiBLoS does not support the logic $\GWCL$.
+
+% Our prover, called \texttt{gwcref}
+% (see~\cite{JtabwbProvers}), utilizes the Choco-solver Java
+% library~\cite{ChocoSolver:2025} to verify the consistency of atomic
+% constraints.  Additionally, it provides functionality for generating
+% \LaTeX~representations of both derivations and countermodels.  To our
+% knowledge, the only other prover available for modal fuzzy logic is
+% mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for continuous
+% t-norm-based logics, including G\"odel-Dummett Logic. However, mNiBLoS
+% does not support the logic $\GWCL$.
+
+
+  
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 
