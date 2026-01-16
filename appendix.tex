@@ -325,7 +325,7 @@ The case where $\rho$ is  rule $\Diam\gt$ is similar.
 \end{lemma}
 
 \begin{proof}
-We only consider two significant cases.
+We only discuss two significant cases.
 Let us consider the following application of rule $\to < $:
 \[
   \begin{array}{l}
@@ -335,35 +335,36 @@ Let us consider the following application of rule $\to < $:
     \UIC{$\underbrace{w: \a\to \b < t,\,\D_w,\,\Theta}_\G$}
     \DP
   \\[2ex]
-\mbox{$\Delta_w$ only contains constraints having label $w$}
- \\[1ex]
-\mbox{$\Theta$ does not contain constraints having label $w$}
+\mbox{all the constraints in $\Delta_w$ have label $w$, no constraint in $\Theta$ has label $w$}
+\\[1ex]
+ \G[w] =\{w:\a\to \b < t\} \cup \D_w 
+\hspace{3em}
+ \G'[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
   \end{array}
 \]
 We have ($\cup$ denotes the multiset union):
 \[
-  \begin{array}{lcll}
-    \sizem{\G} &\;=\;& \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta} 
-&  \G[w] =\{w:\a\to \b < t\} \cup \D_w 
-    \\[1ex]
-    \sizem{\G'} &\;=\;&
+  \sizem{\G} \,=\, \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta}
+  \hspace{3em}
+    \sizem{\G'} \;=\;
   \{\, \wg{\G'[w]} \,\}    \cup \sizem{\Theta}    
-& \G'[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
-  \end{array}
-\]  
-We have:
+\]
+We prove that $\sizem{\G'}\precm \sizem{\G}$. The following holds:
 \[
-  \begin{array}{lcl}
-\wg{\G[w]}&\;=\; &\wg{w:\a\to \b < t} + \wg{\G_w} \;=\; \wg{\a} +  \wg{\b} + 1 +  \wg{\G_w} 
+\begin{array}{rcl}
+\wg{\G[w]}&\,=\, &\wg{w:\a\to \b < t} + \wg{\D_w} \;=\; \wg{\a} +  \wg{\b} + 1 +  \wg{\D_w} 
 \\[1ex]
-    \wg{\G[w']}&\;=\; & \wg{w :\a > w : q} +\wg{w :\b \leq w :q} + \wg{w : q  < t } + \wg{\G_w}
+    \wg{\G[w']}&\,=\, & \wg{w :\a > w : q} +\wg{w :\b \leq w :q} + \wg{w : q  < t } + \wg{\D_w}
 \\
-               &\;=\;&  \wg{\a} +  \wg{\b} + 0 +  \wg{\G_w} 
+               &\,=\,&  \wg{\a} +  \wg{\b} + 0 +  \wg{\D_w} 
   \end{array}
 \]
-Since $\wg{\G[w']} <  \wg{\G[w]}$, we get $\sizem{\G'} < \sizem{\G}$.
+Since $\wg{\G[w']} <  \wg{\G[w]}$, we get
+$\sizem{\G'}\precm \sizem{\G}$, hence
+$\G'\precc \G$.
 
-
+%-------------------------------------------------------------------------
+\smallskip
 Let us consider an application of $\Box\lt_1$ having conclusion $\G$ and let
 $\G'$ be the right premise. Then, we can represent the application as follows:
 \[
@@ -375,26 +376,25 @@ $\G'$ be the right premise. Then, we can represent the application as follows:
      \RightLabel{$\Box\lt_1$}
      \BIC{$\underbrace{w:\Box\a \lt t,\,\Delta_w,\,\Theta}_\G$}    
     \DP
-\\[8ex]
-\mbox{$\Delta_w$ only contains constraints  having label $w$}
- \\[1ex]
-\mbox{$\Theta$ does not contain constraints  having label $w$}
+\qquad \D_{w_1}\;=\;\{\,  R(w,w_1)\to w_1:\a \lt t\,\}\cup \Phibd{\Delta_w,w,w_1}
+ \\[8ex]
+\mbox{all the constraints in $\Delta_w$ have label $w$, no constraint in $\Theta$ has label $w$}
 \\[1ex]
-\D_{w_1}\;=\;\{\,  R(w,w_1)\to w_1:\a \lt t\,\}\cup \Phibd{\Delta_w,w,w_1}
+    \G[w] =\{w:\Box\a \lt t\} \cup \D_w
+    \hspace{4em}
+    \G'[w] =\D_w
+    \hspace{4em}
+     \G'[w_1]=\D_{w_1}
   \end{array}
 \]
-We have ($\cup$ denotes the multiset union):
+We have:
 \[
-  \begin{array}{lcll}
-    \sizem{\G} &\;=\;& \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta} 
-&  \G[w] =\{w:\Box\a \lt t\} \cup \D_w 
-    \\[1ex]
-    \sizem{\G'} &\;=\;&
+    \sizem{\G} \;=\; \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta} 
+  \hspace{4em}
+    \sizem{\G'} \;=\;
   \{\, \wg{\G'[w]},\,   \wg{\G'[w_1]} \,\}    \cup \sizem{\Theta}    
-& \G'[w] =\D_w,\; \G'[w_1]=\D_{w_1}
-  \end{array}
 \]  
-To prove that $\G'\precc \G$, we show that:
+We prove that $\sizem{\G'}\precm   \sizem{\G}$. To this aim,  we show that:
 
 \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
  \item\label{lemma:rulesDec:box1}
@@ -403,25 +403,25 @@ $\wg{\G'[w]} < \wg{\G[w]}$.
  \item\label{lemma:rulesDec:box2}
 $\wg{\G'[w_1]} < \wg{\G[w]}$.
 \end{enumerate}
-The proof of point~\ref{lemma:rulesDec:box1} is immediate since $\G'[w]$ is obtained
-from  $\G[w]$ by deleting the constraint $w:\Box\a \lt t$.
+The proof of point~\ref{lemma:rulesDec:box1} is immediate since $\G[w] =  \{w:\Box\a \lt t\}\cup\G'[w]$.
 We prove~\ref{lemma:rulesDec:box2}. We have:
 \[
   \begin{array}{l}
+\wg{\G[w]}\;=\; \wg{w:\Box\a \lt t } + \wg{\Delta_w} \;=\; \wg{\a} + 2 +  \wg{\Delta_w}
+\\[1ex]
     \wg{\G'[w_1]}\;=\; 
    \wg{ R(w,w_1)\to w_1:\a } + \wg{ \Phibd{\Delta_w,w,w_1} }
    \;=\;  \wg{\a} + 1 + \wg{ \Phibd{\Delta_w,w,w_1}}
-\\[1ex]
-\wg{\G[w]}\;=\; \wg{w:\Box\a \lt t } + \wg{\Delta_w} \;=\; \wg{\a} + 2 +  \wg{\Delta_w}
 \end{array}
     \]
-    To conclude the proof of~\ref{lemma:rulesDec:box2},  we show that:
+To conclude the proof of~\ref{lemma:rulesDec:box2},
+we show that:
 
 \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*,start=3]    
  \item\label{lemma:rulesDec:box3}
 $\wg{ \Phibd{\Delta_w,w,w_1}} <  \wg{\Delta_w}$.
 \end{enumerate}
-Let $\chi_1\in   \Phibd{\Delta_w,w,w_1}$; then there exists $\chi\in \Delta_w$ such that one of the two
+Let $\chi_1\in   \Phibd{\Delta_w,w,w_1}$. There exists $\chi\in \Delta_w$ such that one of the two
 following conditions holds:
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]    
  \item\label{lemma:rulesDec:box3a}
@@ -432,7 +432,10 @@ $\chi = w:\Diam \b \lt t'$ and $\chi_1 = R(w,w_1)\land w_1 : \b \lt t'$.
 \end{enumerate}
 In both cases, it holds that $\wg{\chi_1}= \wg{\b} +1$ and   $\wg{\chi}= \wg{\b} +2$,
 hence $\wg{\chi_1} < \wg{\chi}$;  this proves~\ref{lemma:rulesDec:box3}.
-   \end{proof}
+From~\ref{lemma:rulesDec:box1} and~\ref{lemma:rulesDec:box2}
+it follows that $\sizem{\G'}\precm   \sizem{\G}$, hence
+$\G'\precc \G$.
+\end{proof}
 
 
 
