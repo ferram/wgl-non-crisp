@@ -318,14 +318,16 @@ The case where $\rho$ is  rule $\Diam\gt$ is similar.
 \end{proof}
 
   
-\begin{lemma}\label{lemma:rulesDec}
+\begin{lemmaref}{\ref{lemma:rulesDec}}
   Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
   $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
   Then,  $\G'\precc \G$.
-\end{lemma}
+\end{lemmaref}
+
+
 
 \begin{proof}
-We only discuss two significant cases.
+We only discuss two representative cases.
 Let us consider the following application of rule $\to < $:
 \[
   \begin{array}{l}
@@ -365,16 +367,13 @@ $\G'\precc \G$.
 
 %-------------------------------------------------------------------------
 \smallskip
-Let us consider an application of $\Box\lt_1$ having conclusion $\G$ and let
-$\G'$ be the right premise. Then, we can represent the application as follows:
+Let us consider the following  application of $\Box\lt$:
 \[
   \begin{array}{l}
-  % \AXC{$1 \lt t,\,\Phizo{\G,w}$}
-  \AXC{\dots}
-     \AXC{$\overbrace{R(w,w_1) > 0,\,  \D_{w_1}, \,\D_w,\,\Theta}^{\G'}$}
+     \AXC{$\overbrace{\D_{w_1}, \;\D_w,\;\Theta}^{\G'}$}
      % -----------------------------------------
-     \RightLabel{$\Box\lt_1$}
-     \BIC{$\underbrace{w:\Box\a \lt t,\,\Delta_w,\,\Theta}_\G$}    
+     \RightLabel{$\Box\lt$}
+     \UIC{$\underbrace{w:\Box\a \lt t,\;\Delta_w,\;\Theta}_\G$}    
     \DP
 \qquad \D_{w_1}\;=\;\{\,  R(w,w_1)\to w_1:\a \lt t\,\}\cup \Phibd{\Delta_w,w,w_1}
  \\[8ex]
