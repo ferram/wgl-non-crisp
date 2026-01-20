@@ -13,18 +13,6 @@
     \UIC{$\G$}    
     \DP
     \quad\mbox{if $\Atmp{\G}$ is not consistent}
-    %% \hspace{3em}
-    %% %% AX0 
-    %% \AXC{}
-    %% \RightLabel{\small$\ruleAxz$}
-    %% \UIC{$w:\a <0,\G$}    
-    %% \DP
-    %% \hspace{3em}
-    %% %% AX1 
-    %% \AXC{}
-    %% \RightLabel{\small$\ruleAxo$}
-    %% \UIC{$w:\a >1,\G$}    
-    %%\DP
     \\[4ex]
     %% AND GT 
     \AXC{$w: \a \gt t,\, w: \b\gt t,\,  \G$}    
@@ -132,34 +120,18 @@
   \[%\large
   \centering
   \begin{array}{c}
-%% BOX LT  1      
-     \AXC{$1 \lt t,\,\Phizo{\G,w}$}
-     \AXC{$R(w,w_1) > 0,\,R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G$}
+    %% BOX LT        
+     \AXC{$R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,R(w,w') > 0,\,\G$}
      % -----------------------------------------
-     \RightLabel{$\Box\lt_1$}
-     \BIC{$w:\Box\a \lt t,\,\G$}    
+     \RightLabel{$\Box\lt$}
+     \UIC{$w:\Box\a \lt t,\, \G$}    
      \DP
      \\[4ex]
-    %% BOX LT  2      
-     \AXC{$R(w,w_1) > 0,\,R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,R(w,w') > 0,\,\G$}
-     % -----------------------------------------
-     \RightLabel{$\Box\lt_2$}
-     \UIC{$w:\Box\a \lt t,\,R(w,w') > 0,\, \G$}    
-     \DP
-     \\[4ex]
-%% DIAM GT L  1    
-     \AXC{$0 \gt t,\,\Phizo{\G,w}$}
-     \AXC{$R(w,w_1)>0,\,R(w,w_1)\land w_1:\a \gt t,\,\Phibd{\G,w,w_1},\,\G$}
+     %% DIAM GT L     
+     \AXC{$R(w,w_1)\land w_1:\a \gt t,\,\Phibd{\G,w,w_1},\, R(w,w') > 0,\, \G$}
      % ------------------------------------------
-     \RightLabel{$\Diam\gt_1$}
-     \BIC{$w:\Diam\a \gt t,\,\G$}    
-    \DP
- \\[4ex]
-     %% DIAM GT L  2   
-     \AXC{$R(w,w_1)>0,\,R(w,w_1)\land w_1:\a \gt t,\,\Phibd{\G,w,w_1},\, R(w,w') > 0,\, \G$}
-     % ------------------------------------------
-     \RightLabel{$\Diam\gt_2$}
-     \UIC{$w:\Diam\a \gt t,\,R(w,w') > 0,\,\G$}    
+     \RightLabel{$\Diam\gt$}
+     \UIC{$w:\Diam\a \gt t,\,\G$}    
     \DP
      %%% WHERE ....
      \\[3ex]
