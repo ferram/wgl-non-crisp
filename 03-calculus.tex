@@ -753,30 +753,28 @@ We proceed by a case analysis on the structure of $\chi$.
 
   %%%%%%%%%%%%%%%%
   Let $\chi= w:\a\land \b\gt t$. 
-  Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get $w:\a\gt t\in \G_{k+1}$
+  Since  $\app{\chi}{\G_k}{\G_{k+1}}$,
+the applied rule is $\land\gt$, hence 
+  $w:\a\gt t\in \G_{k+1}$
   and $w:\b \gt t\in \G_{k+1}$. 
   By the induction hypothesis   $\M\models_\Ical w:\a\gt t$ and $\M\models_\Ical w:\b \gt t $, and 
 this implies  $\M\models_\Ical w:\a\land \b\gt t$.
-The cases
-$\chi = R(w,w')\land w':\a \gt t$ and
-$\chi= w:\a\lor \b\lt t$ 
-are similar.
+The case $\chi= w:\a\lor \b\lt t$  is similar.
 
 %%%%%%%%%%%%%%%%
 Let $\chi= w:\a\land \b\lt t$.
-Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$, the applied rule is $\land\lt$, hence
 $w:\a\lt t \in \G_{k+1}$ or $w:\b\lt t  \in \G_{k+1}$.
 By the induction hypothesis $\M\models_\Ical  w:\a\lt t $ or $\M\models_\Ical w:\b\lt t $, hence
  $\M\models_\Ical  w:\a\land \b\lt t$.
- The cases
- $\chi = R(w,w')\land w':\a \lt t$ and
- $\chi= w:\a\lor \b\gt t$ are similar.
+ The case  $\chi= w:\a\lor \b\gt t$ is similar.
  
  
  %%%%%%%%%%%%%%%% 
 Let $\chi= w:\a\to \b < t$; 
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
-Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get:
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$,
+the applied rule is $\to<$, hence:
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*]
 % (A)
  \item\label{lemma:count:impless:1}
@@ -795,7 +793,9 @@ which implies $\M\models_\Ical  w:\a\to \b < t  $.
 %%%%%%%%%%%%%%%%
 Let $\chi= w:\a\to \b \leq t$; 
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
-Since   $\app{\chi}{\G_k}{\G_{k+1}}$,   one of the followings two subcases holds:
+Since   $\app{\chi}{\G_k}{\G_{k+1}}$,
+the applied rule is $\to\leq$,
+hence one of the followings two subcases holds:
 
  \begin{enumerate}[label=(B\arabic*), ref=(B\arabic*),leftmargin=*]
 % (B1)
@@ -825,6 +825,7 @@ which implies $\M\models_\Ical  w:\a\to \b \leq t$.
 Let $\chi= w:\a\to \b \gt t$;
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
 Since   $\app{\chi}{\G_k}{\G_{k+1}}$,
+the applied rule is $\to\gt$, hence
 one of the followings two subcases holds:
 
  \begin{enumerate}[label=(C\arabic*), ref=(C\arabic*),leftmargin=*]
@@ -858,62 +859,69 @@ The cases concerning $R$-constrains can be proved as the corresponding propositi
 %%%%%%%%%%%%%%%%
 
 Let $\chi= w:\Box\a\lt t$.
-Since  $\app{\chi}{\G_k}{\G_{k+1}}$, we get:
+Since  $\app{\chi}{\G_k}{\G_{k+1}}$, the applied rule is $\Box\lt$, hence:
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=4]
    
  % (D)
  \item\label{lemma:count:boxlt}
-$R(w,w_1)\to w_1:\a\lt t\in \G_{k+1}$.
+$\chi_1\in \G_{k+1}$, where $\chi_1\,=\,R(w,w_1)\to w_1:\a\lt t$.
 \end{enumerate}
+Let $r_1$ be the value of $R(w,w_1)\to e(w_1:\a)$.
 By the induction hypothesis,
-  $\M\models_\Ical R(w,w_1)\to w_1:\a\lt t$, hence:
- \[
- e(w_1,\, R(w,w_1)\to w_1:\a)\,\lt\, \Ical(t)
-\]
-Since $e(w,\Box \a) \leq  e(w_1,\, R(w,w_1)\to w_1:\a)$, we get $\M\models_\Ical  w:\Box\a\lt t$.
+  $\M\models_\Ical \chi_1$, hence $r_1\lt\ \Ical(t)$.
+Since  $e(w,\Box\a)\leq r_1$, we get
+  $e(w,\Box\a) \lt \Ical(t)$, and this implies
+  $\M\models_\Ical  w:\Box\a\lt t$.
 The case  $\chi= w:\Diam\a\gt t$ is similar.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%% 
 
-It remains to consider the cases where $\wg{\chi}>0$ and   $\chi\in \G_n$,
-namely  $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$;
-we only discuss the former one.
-
-Let $\chi= w:\Box\a\gt t$. If $w$ has no $R$-successors, then
- $e(w,\Box\a)=1$, hence we have to show that $\M\models_\Ical 1 \gt t$.
-%namely $1 \gt \Ical(t)$.
-The case where $\gt$ is $\geq$ is immediate. 
-Let $\gt$ be  $>$.
-Since  $\chi\in\G_n$, we get $1 >t\in\Atmp{\G_n}$,
-thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
+Finally, let us assume  $\wg{\chi}>0$ and   $\chi\in \G_n$;
+then  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
 
 
-Let us assume that $w$ has at least one  $R$-successor
-and let $w'$ be any of the   $R$-successors of $w$.
-We show that:
+Let $\chi= w:\Box\a\gt t$; 
+we show that:
 
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=5]
 % (E)
  \item\label{lemma:count:boxgt}
-$\M\models_\Ical R(w,w') \to w':\a\gt t$.
+$\M\models_\Ical R(w,w') \to w':\a\gt t$, for every $w'\in W$.
   \end{enumerate}
-Note that the label $w'$ does not occur in $\G_0$, thus
-there exists  $k \geq 0$  such that $w'$ is introduced in the set $\G_{k+1}$, namely:
- $w'$ occurs in  $\G_{k+1}$
-and, for every  $0\leq i \leq k$, $w'$ does not occur in $\G_i$.
-Accordingly, $\G_{k+1}$ is the  premise of an application of a  modal rule $\rho$
-having conclusion $\G_{k}$.
+  Let us assume that $w'$ occurs in $\G_0$. Then, $\G_n$ does not contain
+ any atomic term of the form $R(w,w')$ since, in such a case, $w'$ should be a new label.
+ As a consequence, the substitution $\s$ is not defined on $R(w,w')$,
+ thus the value of $R(w,w')$ is 0.
+To prove~\ref{lemma:count:boxgt}, we have to show  that $\M\models_\Ical 1 \gt t$.
+The case where $\gt$ is $\geq$ is immediate. 
+Let $\gt$ be  $>$.
+Since  $\chi\in\G_n$, we get $1 >t\in\Atmp{\G_n}$,
+thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
+Let us assume that  $w'$ does not occur in $\G_0$ and
+let  $k > 0$  such that $w'$ is introduced in the set $\G_{k}$, namely:
+ $w'$ occurs in  $\G_{k}$
+and, for every  $0\leq i < k$, $w'$ does not occur in $\G_i$.
+Accordingly, $\G_{k}$ is the  premise of an application of a  modal rule $\rho$
+having conclusion $\G_{k-1}$.
 Since the application of $\rho$ is plain,
-no rule applied in the sub-branch $\stru{\G_{k+1},\dots,\G_n}$
-can introduce in the premise a constraint  $u\abstractorder '$ such that
+no rule applied in the sub-branch $\stru{\G_{k},\dots,\G_n}$
+can introduce in the premise a constraint  $u\abstractorder t'$ such that
 $u$ has label $w$;
-this implies  that   $\chi\in \G_{k}$.
-Since $\Phibd{\G,w,w'}\subseteq \G_{k+1}$, we get
-$R(w,w') \to w':\a\gt t \in\G_{k+1}$,
+this implies  that   $\chi\in \G_{k-1}$.
+Since $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, we get
+$R(w,w') \to w':\a\gt t \in\G_{k}$,
 hence~\ref{lemma:count:boxgt} holds by the induction hypothesis.
-By~\ref{lemma:count:boxgt}, we conclude  $\M\models_\Ical w:\Box\a\gt t$.
+This concludes the proof of~\ref{lemma:count:boxgt}.
+
+Let $e(w,\Box\a)=r$.
+By definition, there exists $w^\star\in W$ such that
+ $R(w,w^\star) \to e(w^\star,\a)= r$.
+By~\ref{lemma:count:boxgt}, $r\gt \Ical(t)$, 
+namely  $e(w,\Box\a)\gt \Ical(t)$;
+ we conclude  $\M\models_\Ical w:\Box\a\gt t$.
 \end{proof}
+
 
 
 \begin{proposition}\label{prop:satBranch}
@@ -926,11 +934,6 @@ By~\ref{lemma:count:boxgt}, we conclude  $\M\models_\Ical w:\Box\a\gt t$.
     If $\G_0=\{ w : \varphi < 1\}$, then $\varphi\not\in\GWL$.
   \end{enumerate}
 \end{proposition}
-
-
-
-
-
 
 
 
