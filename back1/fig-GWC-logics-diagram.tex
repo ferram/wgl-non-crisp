@@ -1,0 +1,63 @@
+
+
+\begin{minipage}{\linewidth}
+  \begin{center}
+  \begin{tikzpicture}[
+    level 1/.style={sibling distance=10em},
+    % level 2/.style={sibling distance=4em},
+    ]
+    \node[fill=green!25] (GWc) {$\GWCL$}
+    child{ 
+      node[fill=green!25] (Gc) {$\GCL$}
+      child[missing]{}
+      child{
+        node (GK)[fill=green!25]  {$\GKL$}
+        edge from parent
+        %node[right=.5ex] {$\subset$}
+      } 
+      edge from parent
+      %node[right=.5ex] {$\subset$}
+    }
+    child{ 
+      node[fill=green!25] (GW) {$\GWL$}
+      edge from parent
+      %node[left=.5ex] {$\subset$}
+    } 
+    ;
+
+    
+
+    %\draw (GW) -- node[left=.5ex] {$\subset$} (GK) ;    
+    \draw (GW) -- (GK) ;    
+    
+
+    \node[right=1ex of GWc] {\begin{minipage}{16ex}
+      \small (1), (2) valid\end{minipage}};
+    \node[right=2ex of GW] {\begin{minipage}{16ex}
+      \small (1) valid\par (2) NOT valid\end{minipage}};
+    \node[left=-2ex of Gc] {\begin{minipage}{16ex}
+      \small (1) NOT valid\par (2)  valid\end{minipage}};
+    \node[right=1ex of GK] {\begin{minipage}{20ex}
+      \small (1), (2) NOT valid\end{minipage}};
+
+  \end{tikzpicture}
+  \begin{minipage}{60ex}
+    \begin{tabular}{p{30ex}p{50ex}}
+      \begin{enumerate}[label=(\arabic*)]
+      \item $\Box \neg\neg \a \to \neg\neg\Box \a$
+      \item $\Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)$
+      \end{enumerate}
+      &
+      \begin{itemize}
+      \item $\GCL = \GKL + (2)$ (see \cite{RodriguezV:21})
+      \item $\GKL\subset\GCL\subset\GWCL$,   $\GKL\subset\GWL\subset\GWCL$
+      \end{itemize}
+    \end{tabular}
+  \end{minipage}
+\end{center}
+\end{minipage}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 

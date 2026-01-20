@@ -1,0 +1,483 @@
+%\documentclass[envcountsame,runningheads]{llncs} 
+%\documentclass[submission,copyright,creativecommons]{eptcs}
+%\providecommand{\event}{AiML 2026} 
+%%
+%%
+%%%%%%%%%%% >>>>>>>>>>>>>>>>>>> AiML style config
+\documentclass[submission,copyright,creativecommons]{eptcs}
+\providecommand{\event}{AiML 2026} 
+
+% AiML macros (for writing theorems)
+\usepackage{aiml26}
+
+\usepackage{iftex}
+
+\ifpdf
+  \usepackage{underscore}         % Only needed if you use pdflatex.
+  \usepackage[T1]{fontenc}        % Recommended with pdflatex
+\else
+  \usepackage{breakurl}           % Not needed if you use pdflatex only.
+\fi
+
+%%%%%%%%%%% <<<<<<<<<<<<<<<< AiML style config
+
+\usepackage[T1]{fontenc}
+\usepackage[misc,geometry]{ifsym}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage{mathtools}
+\usepackage{bussproofs}\EnableBpAbbreviations     
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows,arrows.meta}
+\usepackage{float}
+\usepackage{pifont}
+
+
+
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.15} 
+
+\usepackage{xifthen}%
+\usepackage{url}
+\usepackage[inline]{enumitem}
+\setlist{topsep=.3em,left=0pt}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{mathdots} 
+
+
+% %% todonotes
+\usepackage[color=green!20,linecolor=red]{todonotes}
+\newcommand{\inlinetodo}[1]{\todo[inline,size=\small]{#1}}
+\newcommand{\tm}[1]{{\color{magenta} #1}} 
+
+
+%% LOGICS
+\newcommand{\GL}{\mathbf{G}}
+\newcommand{\GKL}{\mathbf{GK}}
+\newcommand{\GWCL}{\mathbf{GW}^\mathrm{c}}
+\newcommand{\GWL}{\mathbf{GW}}
+\newcommand{\GCL}{\mathbf{G}^\mathrm{c}}
+\newcommand{\GWCM}{\mbox{$\mathrm{GW}^\mathrm{c}$}}
+\newcommand{\GCM}{\mbox{$\mathrm{G}^\mathrm{c}$}}
+\newcommand{\GM}{\mbox{$\mathrm{G}$}}
+\newcommand{\GWM}{\mbox{$\mathrm{GW}$}}
+
+\newcommand{\Calcc}{\Ccal_{\mathrm{GW}^\mathrm{c}}}
+\newcommand{\Calcw}{\Ccal_{\mathrm{GW}}}
+\newcommand{\KL}{\mathbf{K}}
+\newcommand{\IKL}{\mathbf{K}_\Box}
+\newcommand{\IPL}{\mathbf{IPL}\xspace}
+\newcommand{\CPL}{\mathbf{CPL}\xspace}
+
+\newcommand{\LBM}{\mathbf{Lbm}}%%{\Logof{\K_{\GWCM}}}
+
+
+
+\newcommand{\KGL}{\mathbf{KG}^2_\mathrm{fb}}
+\newcommand{\TKGL}{\Tcal(\KGL)}
+
+
+
+%% CALCULI
+% \newcommand{\GT}{\mathbf{G3i}\xspace}
+% \newcommand{\GTI}{\mathsf{G3i}\xspace}
+% \newcommand{\GT}{\mathsf{G3iSL}^+_{\Box}\xspace}
+% \newcommand{\GTT}{\mathsf{G3}\xspace}
+% \newcommand{\GTGiessena}{\mathsf{G3iSL}^{a}_{\Box}\xspace}
+% \newcommand{\GTGiessen}{\mathsf{G3iSL}_{\Box}\xspace}
+% \newcommand{\GFGiessen}{\mathsf{G4iSL}_{\Box}\xspace}
+% \newcommand{\GFI}{\mathsf{G4i}\xspace}
+% \newcommand{\GF}{\mathsf{G4}\xspace}
+% \newcommand{\GFGore}{\mathsf{G4iSLt}}
+% \newcommand{\Gbu}{\mathsf{GbuSL}_{\Box}\xspace}
+% \newcommand{\RJ}{\mathsf{RbuSL}_{\Box}\xspace}
+
+%% Connectives
+\newcommand{\IFF}{\Longleftrightarrow}
+\newcommand{\tto}{\leftrightarrow}
+\newcommand{\Diam}{\lozenge}
+
+\newcommand{\Phibd}[1]{\Phi^{\Box,\Diam}(#1)}
+\newcommand{\Phizo}[1]{\Phi^{0,1}(#1)}
+
+\newcommand{\LC}{\Lcal_c}
+
+
+\newcommand{\Qrange}{[0,1]_{\mathrm{Q}}}
+
+\newcommand{\precm}{\prec_{\mathrm{m}}} 
+\newcommand{\precc}{\prec_{\mathrm{c}}}
+
+
+
+\newcommand{\PV}{\Vcal}
+\newcommand{\Sf}[1]{\mathrm{Sf}(#1)}
+\newcommand{\Sfm}[1]{\mathrm{Sf}^-(#1)}
+\newcommand{\Gat}{\G_\mathrm{at}}
+\newcommand{\Gstar}{\G^\ast}
+\newcommand{\lab}[1]{\mathrm{label}(#1)}
+
+\newcommand{\reass}[3]{#1[#2 \coloneqq #3]}
+\newcommand{\xmax}{x_{\mathrm{max}}}
+\newcommand{\xmin}{x_{\mathrm{min}}}
+\newcommand{\Logof}[1]{\mathrm{L}(#1)}
+
+
+% new arrow tip
+\newdimen\arrowsize 
+\pgfarrowsdeclare{arcs'}{arcs'}{...} 
+{ 
+  \arrowsize=0.5pt 
+  \advance\arrowsize by .5\pgflinewidth 
+  \pgfsetdash{}{0pt} % do not dash 
+  \pgfsetroundjoin   % fix join 
+  \pgfsetroundcap    % fix cap 
+  \pgfpathmoveto{\pgfpoint{-4\arrowsize}{4\arrowsize}} 
+  \pgfpatharc{180}{270}{4\arrowsize} 
+  \pgfpatharc{90}{180}{4\arrowsize} 
+  \pgfusepathqstroke 
+}
+
+
+
+%
+\makeatletter
+\newbox\xrat@below
+\newbox\xrat@above
+\newcommand{\coimparrow}[2][]{%
+  \setbox\xrat@below=\hbox{\ensuremath{\scriptstyle #1}}%
+  \setbox\xrat@above=\hbox{\ensuremath{\scriptstyle #2}}%
+  \pgfmathsetlengthmacro{\xrat@len}{max(\wd\xrat@below,\wd\xrat@above)+.65em}%
+  \mathrel{\tikz [>-,>=arcs',baseline=-.5ex,line width=.6pt]
+                 \draw (0,0) -- node[below=-2pt] {\box\xrat@below}
+                                node[above=-2pt] {\box\xrat@above}
+                       (\xrat@len,0) ;}}
+\makeatother
+\newcommand{\coimpl}{\mathrel{\;\coimparrow[\phantom{\text{}}]{}}}
+\newcommand{\invcoimpl}{\mathrel{\reflectbox{$\;\coimparrow[\phantom{\text{}}]{}$}}}
+
+
+
+
+
+%\newcommand{\gt}{\succsim}
+%\newcommand{\lt}{\precsim}
+\newcommand{\gt}{\rhd}
+\newcommand{\lt}{\lhd}
+
+
+%% Math
+\newcommand{\stru}[1]{\langle #1 \rangle} % structure
+\newcommand{\abstractorder}{\blacktriangledown}%{\bigtriangledown}
+
+
+%% Relations
+\newcommand{\proves}[3]{{#2}\,\vdash_{#1}\, #3}
+\newcommand{\nproves}[3]{{#2}\,\nvdash_{#1}\, #3}
+\newcommand{\provesc}[1]{\vdash_{\mathrm{GW}^\mathrm{c}} #1}
+\newcommand{\nprovesc}[1]{\nvdash_{\mathrm{GW}^\mathrm{c}} #1}
+\newcommand{\provesw}[1]{\vdash_{\mathrm{GW}} #1}
+\newcommand{\nprovesw}[1]{\nvdash_{\mathrm{GW}} #1}
+\newcommand{\forcing}{\Vdash}
+\newcommand{\nforcing}{\nVdash}
+
+
+% %% FUNCTIONS
+\newcommand{\size}[1]{|#1|}
+\newcommand{\sizem}[1]{||#1||}
+\newcommand{\depth}[1]{\mathrm{d}(#1)}
+\newcommand{\wgname}{\mathrm{wg}}
+\newcommand{\wg}[1]{\mathrm{wg}(#1)}
+\newcommand{\Lab}[1]{\mathrm{Lab}(#1)}
+\newcommand{\Rel}[1]{\mathrm{Rel}(#1)}
+\newcommand{\Atm}[1]{\mathrm{At}(#1)}
+\newcommand{\Atmp}[1]{\mathrm{At}^{+}\!(#1)}
+\newcommand{\Int}[1]{\mathrm{I}(#1)}
+\newcommand{\length}[1]{\mathrm{length}(#1)}
+\newcommand{\Rn}{\mathrm{Rn}}
+\newcommand{\Rnof}[1]{\Rn(#1)}
+\newcommand{\Bs}{\mbox{\textsc{Bs}}}
+\newcommand{\Bsof}[1]{\Bs(#1)}
+ 
+
+ 
+ \newcommand{\Modname}{\mathrm{Mod}}
+ \newcommand{\Mod}[1]{\Modname(#1)}
+\newcommand{\app}[3]{#2\mapsto_#1 #3}
+
+
+%% Kripke models
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Val}{V}{%\vartheta}
+\newcommand{\Valof}[1]{\Val(#1)}
+\newcommand{\M}{\mathfrak{M}}
+
+%% Regular sequents
+% \newcommand{\seq}[2]{
+%   \ifthenelse{\isempty{#1}}{}{#1}\, \Rightarrow
+%   \ifthenelse{\isempty{#2}}{}{#2}
+% }
+
+
+%% Rule names 
+\newcommand{\ruleAxat}{\mathrm{Ax}\xspace}
+%% \newcommand{\ruleAxz}{\mathrm{Ax}_0\xspace}
+%% \newcommand{\ruleAxo}{\mathrm{Ax}_1\xspace}
+
+
+%% GREEKS
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\g}{\gamma}
+\renewcommand{\d}{\delta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\s}{\sigma}
+\newcommand{\D}{\Delta}
+\newcommand{\G}{\Gamma}
+
+
+%% CALLIGRAPHICS
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Bcal}{\mathcal{B}}
+\newcommand{\Ccal}{\mathcal{C}}
+\newcommand{\Dcal}{\mathcal{D}}
+\newcommand{\Ecal}{\mathcal{E}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Gcal}{\mathcal{G}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Kcal}{\mathcal{K}}
+\newcommand{\Ical}{\mathcal{I}}
+\newcommand{\Jcal}{\mathcal{J}}
+\newcommand{\Lcal}{\mathcal{L}}
+%\newcommand{\Mcal}{\mathcal{M}}
+\newcommand{\Ncal}{\mathcal{N}}
+\newcommand{\Pcal}{\mathcal{P}}
+\newcommand{\Qcal}{\mathcal{Q}}
+\newcommand{\Rcal}{\mathcal{R}}
+\newcommand{\Scal}{\mathcal{S}}
+\newcommand{\Tcal}{\mathcal{T}}
+\newcommand{\Vcal}{\mathcal{V}}
+\newcommand{\Wcal}{\mathcal{W}}
+\newcommand{\Xcal}{\mathcal{X}}
+\newcommand{\Ycal}{\mathcal{Y}}
+\newcommand{\Zcal}{\mathcal{Z}}
+
+
+%% VARI
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\refp}[1]{(\ref{#1})}
+\newcommand{\EndEx}{\mbox{}~\hfill$\Diamond$}
+\newcommand{\squareforqed}{\hbox{$\blacksquare$}} % redefine box for QED
+\newcommand{\diamondforendexmp}{\hbox{$\blacklozenge$}} % define diamond for EndExmp
+\newcommand{\smallfont}{\fontsize{7pt}{9pt}\selectfont}
+\newcommand{\medfont}{\fontsize{9pt}{10pt}\selectfont}
+
+\newcommand{\MODIFICA}[1]{\colorbox{yellow}{#1}\normalcolor}
+
+\RequirePackage{tcolorbox}
+\definecolor{tcbx_Yellow_Bright}{RGB}{250, 250, 142}
+\definecolor{tcbx_Yellow_Dark}{RGB}{230, 230, 0}%208, 242, 39}
+%\newenvironment{MODIFICA}{\begin{minipage}}{}
+\newtcolorbox{tcyellowbox}[2][]{
+  beforeafter skip=1\baselineskip,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Yellow_Dark,
+  %toptitle=0.1cm,
+  %bottomtitle=0.2cm,
+  top=0.2cm,
+  bottom=0.2cm,
+  left=0cm,
+  %boxsep=5mm,
+  %leftupper=18cm,
+  colframe=tcbx_Yellow_Dark, 
+  colback=tcbx_Yellow_Bright,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\upshape,
+  fontlower=\upshape,
+  coltitle=black,
+  %center title,
+  title={#2},
+  #1
+}
+
+
+
+% % Manual theorems for Appendix (parameter is inner text i.e. number, description)
+% \newtheorem{theoremrefinner}{Theorem}
+% \newenvironment{theoremref}[1]{%
+%   \renewcommand\thetheoremrefinner{#1.}%
+%   \theoremrefinner
+% }{\endtheoremrefinner}
+
+\newtheorem{lemmarefinner}{Lemma}
+\newenvironment{lemmaref}[1]{%
+  \renewcommand\thelemmarefinner{#1.}%
+  \lemmarefinner
+}{\endlemmarefinner}
+
+
+\newtheorem{proprefinner}{Proposition}
+ \newenvironment{propref}[1]{%
+   \renewcommand\theproprefinner{#1.}%
+   \proprefinner
+}{\endproprefinner}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% algorithm2e
+% \usepackage[linesnumbered,commentsnumbered,figure]{algorithm2e}
+% \let\oldnl\nl% Store \nl in \oldnl
+% \newcommand{\nonl}{\renewcommand{\nl}{\let\nl\oldnl}}% Remove line number for one line
+% \newcommand{\ass}{\;\leftarrow\;}
+% \SetKwProg{Proc}{procedure}{}{end}  % define a procedure 
+% \SetKwProg{uProc}{procedure}{}{}  % define a procedure 
+% \SetKwFunction{Searchbu}{SearchBU}
+% \SetKwData{Refs}{Refs}
+% \SetKwInOut{Precond}{precondition}
+% \SetKwInOut{Output}{output}
+% \SetKwInOut{Input}{input}
+% \SetAlFnt{\small}
+% \SetAlCapFnt{\small}
+% \SetAlCapNameFnt{\small}
+% \SetAlCapHSkip{0pt}
+% \IncMargin{-\parindent}
+% \SetKwInOut{Input}{input}
+% \SetKwInOut{Output}{output}
+% \SetKwInOut{Assumption}{assumption}
+% \SetKwBlock{Loop}{loop}{end}
+% \SetKwFor{uFor}{for}{do}{} % For without end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{A G\"odel Modal Logic Over Witnessed Models}
+%\authorrunning{M. Ferrari et al.}
+\author{
+  Mauro Ferrari$^{*}$%%\orcidID{0000-0002-7904-1125}
+  \institute{Dep.~of Theoretical and Applied Sciences\\
+    Universit\`a degli Studi dell'Insubria\\
+    Varese, Italy.}
+  \email{mauro.ferrari@uninsubria.it}
+  \and
+  Camillo Fiorentini%%\orcidID{0000-0003-2152-7488}
+  \institute{
+    Dep.~of Computer Science\\
+    Universit\`a degli Studi di Milano\\
+    Milano, Italy}
+  \email{fiorentini@di.unimi.it}
+  \and
+  Paolo Giardini
+  \institute{Dep.~of Theoretical and Applied Sciences\\
+    Universit\`a degli Studi dell'Insubria\\
+    Varese, Italy.}
+  \email{pcgiardini@uninsubria.it}
+  \and
+  Ricardo Oscar Rodriguez%%\inst{3}\orcidID{0000-0001-7551-2877}}
+  \institute{
+    UBA-FCEyN, Dep.~De Computación\\
+    Buenos Aires, Argentina}
+  \email{ricardo@dc.uba.ar}
+}
+
+
+\newcommand{\titlerunning}{A G\"odel Modal Logic Over Witnessed  Models}
+\newcommand{\authorrunning}{M. Ferrari, C. Fiorentini, P. Giardini \& R.O. Rodriguez}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  
+
+  \begin{itemize}
+\item
+  AIML \url{https://events.illc.uva.nl/aiml2026/}, 29 June – 3 July 2026, Amsterdam
+
+  \item 
+    {\bf Abstract long papers submission: 20 February 2026}
+
+    \item
+  {\bf Full papers submission: 27 February 2026}
+
+  
+
+  \item
+At most 12 pages (references excluded), with an optional technical appendix of up to 5 pages, together with a plain-text abstract of 100-200 words
+  \end{itemize}
+
+
+\smallskip
+  {\bf **OLD ABSTRACT**}
+
+  This paper considers the bi-modal logic with both $\Box$ and
+  $\Diamond$ arising from Kripke models with crisp accessibility whose
+  propositions are valued over the standard G\"odel algebra
+  $[0,1]$. Since this logic lacks the finite model property, we study
+  the logic $\GWCL$ relying on \emph{witnessed} Kripke models where,
+  for each modal formula, there is an assignment where the formula
+  without the modality takes the same value as the modal one. We
+  provide a cut-free sequent calculus and we exploit it to prove that
+  $\GWCL$ is decidable and meets the finite model property.
+  Finally, we explore a connection between the witnessed models and
+  the well-known bi-relational Kripke semantics.
+  % This paper considers the bi-modal logic with both $\Box$ and
+  % $\Diamond$ arising from Kripke models with crisp accessibility whose
+  % propositions are infinitely valued over the standard G\"odel algebra
+  % $[0,1]$. Because this bi-modal logic arising from the mentioned
+  % semantics does not satisfy the finite model property, we study the
+  % bi-modal logic relying on witnessed Kripke modals (those in which,
+  % for each modal formula, there is an assignment in the model where
+  % the formula without the modality takes the same value as the modal
+  % one). For the last bi-modal logic, we provide a cut-free sequent
+  % calculus which will be sound and complete. On its basis, we
+  % also prove their decidability for the considered bi-modal logic.
+  % Finally, we explore a novel and simple connection between the
+  % witnessed models and the well-known bi-relational Kripke semantics.
+\end{abstract}
+
+
+\input{01-intro.tex}
+\input{02-basic.tex}
+\input{03-calculus.tex}
+%\input{04-kripkesem.tex}
+%\input{05-future.tex}
+
+
+
+% \subsubsection*{Acknowledgments}
+% \begin{credits}
+%   % We thank the reviewers for their valuable and constructive comments.
+%   This project has received funding from the European Union's Horizon
+%   2020 research and innovation programme under the
+%   Marie Sk{\l}odowska-Curie grant agreement No 101007627.
+%   Camillo Fiorentini is member of the Gruppo Nazionale Calcolo Scientifico-Istituto
+%   Nazionale di Alta Matematica (GNCS-INdAM).
+% \end{credits}
+
+
+%\bibliographystyle{splncs04}
+\bibliographystyle{eptcs}
+\bibliography{goedelModalLogicWitnessNonCrisp}
+
+\newpage
+\appendix
+\input{appendix}
+
+ 
+\end{document}
+
+
