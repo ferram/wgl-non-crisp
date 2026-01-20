@@ -57,43 +57,37 @@ Note that:
  \end{cases}
 \]
 \noindent
-A world $w'$ is an $R$-successor of $w$
-iff  $R(w, w')>0$.
-Let us  assume that  $w$ has no $R$-successors; since  $R(w,w')=0$ for every $w'\in W$, 
-  $e(w,\Box \a) = 1$ and $r(w,\Diam \a) = 0$.
 A \GM-model $\stru{W,R,e}$ is
 \emph{witnessed} iff every world $w$ having at least one $R$-successor
 satisfies the following properties:
 \begin{itemize}
-\item if $e(w,\Box \a)=r$, then 
-   there is $w'$   s.t.~ $R(w,w')>0$ and $R(w,w') \to e(w',\a) = r$;
+\item  $e(w,\Box \a)=r$ iff 
+   there is $w'\in W$   such that  $R(w,w') \to e(w',\a) = r$;
 
-\item if $e(w,\Diam \a)=r$, then
-   there is $w'$  s.t.~$R(w,w')>0$ and $R(w,w')\land e(w'\a) = r$.
+\item if $e(w,\Diam \a)=r$ iff
+   there is $w'\in W$  such that $R(w,w')\land e(w'\a) = r$.
   
 \end{itemize}
-Thus, the values   $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by the $R$-successor $w'$.
+Thus, the values   $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by  $w'$.
 As a consequence, in the definitions of $e(w,\Box \a)$ and  $e(w,\Diam \a)$,
 the infimum and the superior are just the minimum and the maximum.
 Note that  every finite \GM-model is witnessed.
-We stress that, if $w$ has no $R$-successors, then
-$e(w,\Box\varphi)=1$ and $e(w,\Diam\varphi)=0$, even if such
-values are not witnessed. 
-% (these peculiar cases are not considered in~\cite{BilkovaFK:22}).
+A world $w'$ is an $R$-successor of $w$
+iff  $R(w, w')>0$. If  $w_0$ has no $R$-successors,
+then $e(w_0,\Box\varphi)=1$ and $e(w_0,\Diam\varphi)=0$;
+indeed,   for every $w'\in W$,
+$R(w_0,w')=0$,
+hence $R(w_0,w') \to e(w',\varphi) = 1$ and $R(w_0,w')\land e(w'\varphi) = 0$.
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
 valid in $\M$, we say that $\M$ is a \emph{countermodel} for
 $\varphi$; thus, $\M$ contains a world $w$ such that $e(w,\varphi) <
 1$.
-% In the sequel, by \GWM-model, we mean a witnessed \GM-model;
-% by  \GWCM-model we mean a witnessed crisp model.
 A model $\M=\stru{W,R,e}$ is \emph{discrete} if $W$ is
-finite and the image of $e$ is a finite subset of $\Qrange$, the set
+finite and the images of $R$ and  $e$ are finite subsets of $\Qrange$, the set
 of rational numbers in the range $[0,1]$.
 
 
-
-%We introduce the following logics:
 
 
 Let  $\GL$ be the G\"odel-Dummett Logic, obtained by by extending
@@ -138,17 +132,18 @@ it is proved that   $\psi\in\GWCL$ and $\psi\not\in\GCL$.
 We show that $\psi\in\GWL$.
 Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
 If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,\psi)=1$. Otherwise,
-it holds that $e(w, \neg\neg \Box \a)=0$, and this implies $e(w, \Box \a)=0$.
-Note that $w$ must have at least one $R$-successor, otherwise we would get  $e(w, \Box \a)=1$.
-Hence, there exists a witnessing $w'\in W$ such that $R(w,w') >0$ and
-$R(w,w') \to e(w',\a) = 0$. It follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
-We get $e(w,  \Box\neg \neg  \a)=0$,
+it holds that $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
+Accordingly,  there exists a witnessing $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
+it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
+This implies  $e(w,  \Box\neg \neg  \a)=0$,
 hence $e(w, \psi) = 1$. Having proved that $e(w, \psi) = 1$, we conclude  $\psi\in \GWL$.
+
 
 Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$;
 we show that $\varphi\not\in\GWL$
 by providing a  countermodel for $\varphi$.
-Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}. 
+Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW};
+in the figure we only display the values of $R$ and $e$ different from zero.
 Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
 $\varphi\not\in\GWL$.
 
@@ -156,7 +151,7 @@ $\varphi\not\in\GWL$.
 We point out that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
 interdefinable.
 This is proved for  $\GCL$ in~\cite{RodriguezV:21};
-in App.~\ref{app:noninterdBD} the proof is extended to all the other considered modal logics.
+in App.~\ref{app:noninterdBD} the proof is extended to all the other  modal logics mentioned above.
 
 
 
@@ -216,15 +211,17 @@ in App.~\ref{app:noninterdBD} the proof is extended to all the other considered 
   \end{minipage} 
 \\[10ex]
     \begin{array}{rcl}
-     e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_1)\to e(w_1,p\lor q)\,\}\,=\, 0.6 \to 0.5 \lor 0.6 \,=\,1
+      e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
+\inf\{\, 0\to 0,\, 0.6\to 0.6 \,\}\,=\,1
     \\[1ex]
-    e(w_0,\Box p) &=&
-    \inf\{\, R(w_0,w_1)\to e(w_1,p)\,\} \,=\,  0.6 \to 0.5   \,=\, 0.5
+    e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+
+              \inf\{\, 0\to 0,\  0.6\to 0.5\,\}    \,=\, 0.5
 \\[1ex]
-    e(w_0,\Diam q)&=&
-    \sup\{\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\, 0.6 \land 0.6 \,=\, 0.6
+    e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+\sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
 \\[1ex]
-    e(w_0,\, \varphi) &=& 1\to (0.5\lor 0.6) \,=\, 0.6
+      e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to (e(w_0, \Box p) \lor e(w_0,\Diam q)) \,=\, 1\to  (0.5 \lor 0.6) \,=\, 0.6
 \end{array}
     \end{array}
   \]
