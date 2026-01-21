@@ -760,7 +760,7 @@ we assume $\M=\stru{W,R,e}$.
 We proceed by a case analysis on the structure of $\chi$.
 
 
-  %%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%% AND GT
   Let $\chi= w:\a\land \b\gt t$. 
   Since  $\app{\chi}{\G_k}{\G_{k+1}}$,
 the applied rule is $\land\gt$, hence 
@@ -770,7 +770,7 @@ the applied rule is $\land\gt$, hence
 this implies  $\M\models_\Ical w:\a\land \b\gt t$.
 The case $\chi= w:\a\lor \b\lt t$  is similar.
 
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%  AND LT
 Let $\chi= w:\a\land \b\lt t$.
 Since  $\app{\chi}{\G_k}{\G_{k+1}}$, the applied rule is $\land\lt$, hence
 $w:\a\lt t \in \G_{k+1}$ or $w:\b\lt t  \in \G_{k+1}$.
@@ -779,7 +779,7 @@ By the induction hypothesis $\M\models_\Ical  w:\a\lt t $ or $\M\models_\Ical w:
  The case  $\chi= w:\a\lor \b\gt t$ is similar.
  
  
- %%%%%%%%%%%%%%%% 
+ %%%%%%%%%%%%%%%%  IMP LTS  
 Let $\chi= w:\a\to \b < t$; 
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
 Since  $\app{\chi}{\G_k}{\G_{k+1}}$,
@@ -799,7 +799,7 @@ Since $e(w,\a) > e(w,\b)$, we get  $e(w,\a\to \b) = e(w,\b)$, hence  $e(w,\a\to 
 which implies $\M\models_\Ical  w:\a\to \b < t  $.
 
 
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% IMP LTE
 Let $\chi= w:\a\to \b \leq t$; 
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
 Since   $\app{\chi}{\G_k}{\G_{k+1}}$,
@@ -830,7 +830,7 @@ we get  $e(w,\a\to \b) = e(w,\b)$, hence  $e(w,\a\to \b) \leq \Ical(t)$,
 which implies $\M\models_\Ical  w:\a\to \b \leq t$.
 
 
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% IMP GT
 Let $\chi= w:\a\to \b \gt t$;
 we only consider the case  $\b\not\in\PV\cup\{\bot\}$.
 Since   $\app{\chi}{\G_k}{\G_{k+1}}$,
@@ -865,7 +865,7 @@ $\M\models_\Ical   w:\a\to \b \gt t$.
 The cases concerning $R$-constrains can be proved as the corresponding propositional cases.
 
 
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% BOX LT
 
 Let $\chi= w:\Box\a\lt t$.
 Since  $\app{\chi}{\G_k}{\G_{k+1}}$, the applied rule is $\Box\lt$, hence:
@@ -885,42 +885,40 @@ Since  $e(w,\Box\a)\leq r_1$, we get
 The case  $\chi= w:\Diam\a\gt t$ is similar.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%  BOX GT 
 
 It remains to consider the cases where  $\wg{\chi}>0$ and   $\chi\in \G_n$;
 in such cases,  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
-Let $\chi= w:\Box\a\gt t$; 
+Let $\chi= w:\Box\a\gt t$ and  $w'\in W$;
 we show that:
 
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=5]
 % (E)
  \item\label{lemma:count:boxgt}
-$\M\models_\Ical R(w,w') \to w':\a\gt t$, for every $w'\in W$.
-  \end{enumerate}
-  Let us assume that $w'$ occurs in $\G_0$. Note that
- $R(w,w')$ does not occur in $\G_n$,
- otherwise  $w'$ should be a new label,
-  against the assumption that $w'$ occurs in $\G_0$.
- As a consequence,  the value of $R(w,w')$ is 0.
-To prove~\ref{lemma:count:boxgt}, we have to show  that $\M\models_\Ical 1 \gt t$.
+$\M\models_\Ical R(w,w') \to w':\a\gt t$.
+\end{enumerate}
+Let us assume that  $R(w,w')$ does not occur in $\G_n$.
+By definition of $\M$, the value of $R(w,w')$ is 0, thus
+ we have to show  that $\M\models_\Ical 1 \gt t$.
 The case where $\gt$ is $\geq$ is immediate. 
 Let $\gt$ be  $>$.
 Since  $\chi\in\G_n$, we get $1 >t\in\Atmp{\G_n}$,
 thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
-Let us assume that  $w'$ does not occur in $\G_0$ and
-let  $k > 0$  be such that $w'$ is introduced in  $\G_{k}$, namely:
- $w'$ occurs in  $\G_{k}$
-and, for every  $0\leq i < k$, $w'$ does not occur in $\G_i$.
-Accordingly, $\G_{k}$ is the  premise of an application of a  modal rule $\rho$
-having conclusion $\G_{k-1}$.
+Let us assume that  $R(w,w')$  occurs in $\G_n$.
+Then, there exists $k > 0$  be such that $R(w,w')$ is introduced in  $\G_{k}$ by an application of a modal rule $\rho$, namely:
+\begin{itemize}
+\item $\app{\chi'}{\G_{k-1}}{\G_k}$, where $\chi' = w :\Box \varphi \lt t'$ or  $\chi' = w :\Diam\varphi \gt t'$,
+  and the new label inotroduced by $\rho$ is  $w'$.
+\end{itemize}
 Since $\Bcal$ is saturated,   $\G_{k-1}$ is plain,
 hence the non-atomic constraints in   $\G_{k-1}$ are modal.
 As a consequence, 
 no rule applied in the sub-branch $\stru{\G_{k-1},\dots,\G_n}$
-can introduce in the premise a new constraint  $u\abstractorder t'$ such that
+can introduce in the premise  new constraints  $u\abstractorder t'$ such that
 $u$ has label $w$;
 this implies  that   $\chi\in \G_{k-1}$.
-It follows that $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, hence
+By definition of $\rho$,
+we get $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, hence
 $R(w,w') \to w':\a\gt t \in\G_{k}$ and~\ref{lemma:count:boxgt} holds by the induction hypothesis.
 This concludes the proof of~\ref{lemma:count:boxgt}.
 Let $e(w,\Box\a)=r$.
@@ -936,9 +934,11 @@ The case $\chi= w:\Diam\a\lt t$ is similar.
 
 \begin{proposition}\label{prop:satBranch}
   Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch.
+
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
   \item\label{prop:satBranch:1}
-    There exists a  \GWM-model $\M$ such that $\M\models\G_0$.
+Let $\M=\Mod{\Atmp{\G_n},\s}$, with  $\s$  a solution to
+  $\Atmp{\G_n}$. Then, $\M\models \G_0$.
     
   \item\label{prop:satBranch:2}
     If $\G_0=\{ w : \varphi < 1\}$, then $\varphi\not\in\GWL$.
