@@ -57,9 +57,9 @@ Note that:
  \end{cases}
 \]
 \noindent
-A \GM-model $\stru{W,R,e}$ is
-\emph{witnessed} iff every world $w$ having at least one $R$-successor
-satisfies the following properties:
+A \GM-model $\M=\stru{W,R,e}$ is
+\emph{witnessed} if the values of $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by  some world $w'$ in $\M$,
+namely:
 \begin{itemize}
 \item  $e(w,\Box \a)=r$ iff 
    there is $w'\in W$   such that  $R(w,w') \to e(w',\a) = r$;
@@ -68,7 +68,6 @@ satisfies the following properties:
    there is $w'\in W$  such that $R(w,w')\land e(w'\a) = r$.
   
 \end{itemize}
-Thus, the values   $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by  $w'$.
 As a consequence, in the definitions of $e(w,\Box \a)$ and  $e(w,\Diam \a)$,
 the infimum and the superior are just the minimum and the maximum.
 Note that  every finite \GM-model is witnessed.
@@ -125,15 +124,16 @@ and discussed below.
 The logic $\GCL$ is obtained by adding the axiom $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$
 to  $\GKL$ (see~\cite{RodriguezV:21}).
  The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
-All the inclusions between the logics shown in Fig.~\ref{fig:diagram}  are strict.
+ We show that  $\GWCL$ is a proper extension of both $\GCL$ and   $\GWL$ which, in turn, are proper
+ extensions of $\GKL$.
 Let $\psi=\Box \neg\neg \a\to \neg\neg \Box \a$. 
 In~\cite{FerFioRod:2025},
 it is proved that   $\psi\in\GWCL$ and $\psi\not\in\GCL$.
 We show that $\psi\in\GWL$.
-Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
+Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$; we prove that $e(w, \psi) = 1$.
 If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,\psi)=1$. Otherwise,
 it holds that $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
-Accordingly,  there exists a witnessing $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
+Accordingly,  there exists  $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
 it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
 This implies  $e(w,  \Box\neg \neg  \a)=0$,
 hence $e(w, \psi) = 1$. Having proved that $e(w, \psi) = 1$, we conclude  $\psi\in \GWL$.
@@ -143,12 +143,12 @@ Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$;
 we show that $\varphi\not\in\GWL$
 by providing a  countermodel for $\varphi$.
 Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW};
-in the figure we only display the values of $R$ and $e$ different from zero.
+in the definition of $R$ and $e$ we only display the non-zero values.
 Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
 $\varphi\not\in\GWL$.
 
 
-We point out that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
+Finally, we point out that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
 interdefinable.
 This is proved for  $\GCL$ in~\cite{RodriguezV:21};
 in App.~\ref{app:noninterdBD} the proof is extended to all the other  modal logics mentioned above.
@@ -212,16 +212,16 @@ in App.~\ref{app:noninterdBD} the proof is extended to all the other  modal logi
 \\[10ex]
     \begin{array}{rcl}
       e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-\inf\{\, 0\to 0,\, 0.6\to 0.6 \,\}\,=\,1
-    \\[1ex]
-    e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+\inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
+    \\[0.5ex]
+    e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
 
-              \inf\{\, 0\to 0,\  0.6\to 0.5\,\}    \,=\, 0.5
-\\[1ex]
+              \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
+\\[0.5ex]
     e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-\sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
+\sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
 \\[1ex]
-      e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to (e(w_0, \Box p) \lor e(w_0,\Diam q)) \,=\, 1\to  (0.5 \lor 0.6) \,=\, 0.6
+      e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
 \end{array}
     \end{array}
   \]
