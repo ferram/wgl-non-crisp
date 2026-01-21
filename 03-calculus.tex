@@ -239,7 +239,6 @@ follow~\cite{BilkovaFK:22,FerFioRod:2025}.
 % $\KGL$-models are witnessed.
 The constraint language $\LC$ is defined over a countable set of 
 labels, each representing a world of a \GWM-model. 
-%Constraints are built using the order relations $<$, $\leq$, $>$, $\geq$.
 In the following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
 formula,  $p\in \PV$,  $r\in\Qrange$,   $R$ is a designated relation symbol  and
 $\abstractorder\in \{<,\leq,>,\geq\,\}$.  
@@ -271,10 +270,9 @@ We extend $\Ical$ to c-terms as follows:
 \item $\Ical(r) = r$, for every $r\in \Qrange$;
 \item $\Ical( w:\varphi) = e(\Ical(w), \varphi)$;
 \item $\Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)$;
-\item $\Ical\left(R(w,w') \odot w':\varphi\right) = \Ical\left(R(w,w')\right) \odot   \Ical(w': \varphi)$,
+\item $\Ical\left(R(w,w') \odot w':\varphi\right) = R\left(\Ical(w),\Ical(w')\right) \,\odot\,   e\left(\Ical(w'), \varphi\right)$,
   where $\odot\in\{\land, \to\}$.
  \end{itemize}
-%% ???? It is easy to check that, for every c-term $u$, $\Ical(u)$ belongs to $\Qrange$.
 Note that, for every c-term $u$, $\Ical(u)$ belongs to $[0,1]$.
  We introduce the relations
 $\models_\Ical$ and $\models$, where $\M$ is a \GWM-model, $\Ical$ an
@@ -319,20 +317,25 @@ $\Calcw$ are displayed in Fig.~\ref{fig:calc1} (propositional rules),  Fig.~\ref
 % and rules for the propositional connectives,  the modal rules
 % $\Box\lt$ and $\Diam\gt$ and rules to handle $R$-constraints.
 The \emph{main constraint} of a rule application is the constraint displayed in the conclusion.
-Rules for implication, having a main constraint of the form
-$w:\a\to \b\abstractorder t$, are defined according to the form of $\b$.
+Rules for implication, having a main constraint of the kind
+$w:\a\to \b\abstractorder t$, are defined according to the structure of $\b$.
 Let us consider the rule $\to <$, having main
 constraint $w:\a\to \b < t$.
 If $\b=p$, with $p\in \PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$ and $w:p < t$.
-Let $\b\not\in\PV\cup\{\bot\}$;
-since the constraint $w:\a > w:\b$ is not allowed,
-we introduce a new propositional variable $q$ behaving in $w$  as $\b$;
-thus,  $w:\a > w:\b$ is replaced by $w:\a > w: q$,
-moreover we need the constraint $w:\b\leq w:q$,
+This corresponds to the fact that, given a model $\M$, a world $w$ in $\M$ and an  $\M$-interpretation
+$\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$, then $e(\Ical(w),\a) > e(\Ical(w),p)$
+and  $e(\Ical(w),p) <  \Ical(t)$ (indeed,  $e(\Ical(w), \a\to p) =  e(\Ical(w),p)$).
+This schema cannot be generalized to any $\b$ since
+the constraint  $w:\a > w:\b$ is not allowed if  $\b\not\in\PV\cup\{\bot\}$.
+In the latter case,
+we introduce a new propositional variable $q$, behaving in $w$  as $\b$, and
+$w:\a > w:\b$ is replaced by $w:\a > w: q$.
+The correspondence between $\b$ and $q$ is set by the
+ constraint $w:\b\leq w:q$,
 while the converse constraint $w:\b\geq w:q$ can be omitted.
 There are two modal rules (see Fig.~\ref{fig:calc2}), the former   having  main constraint  $w:\Box\a \lt t$
 and the latter $w:\Diam\a \gt t$;
-both rules introduce the new label $w_1$.
+both rules introduce a new label $w_1$.
  $R$-rules (see Fig.~\ref{fig:calc3})
 are similar to the corresponding propositional rules.
 The definitions of $\Calcw$-tree and
@@ -481,8 +484,8 @@ following:
   : \Box \a > t \in \G$, then $e(\Ical(w), \Box \a) > \Ical(t)$, hence
   $1 > \Ical(t)$, which implies $\M\models_\Ical 1 > t$.  Similarly,
   if $ w : \Diam \a < t \in \G$, then $\M\models_\Ical 0 < t$.  This
-  proves that $\M\models_\Ical \Atmp{\G}$.  By exploiting $e$ and
-  $\Ical$, one can define a solution to $\Atmp{\G}$\footnote{Note that irrational values $e(w,p)$ and $R(w,w')$
+  proves that $\M\models_\Ical \Atmp{\G}$.  By exploiting $R$ and  $e$, 
+ one can define a solution to $\Atmp{\G}$\footnote{Note that irrational values of $R$ and $e$ 
     must be approximated with rationals.};
   accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
   conclude that $\M$ does not exist. %
@@ -576,7 +579,7 @@ we set:% \\[.5ex]
 \]  
 The relation $\precm$ is a multiset order, hence $\precm$ is
 well-founded (see~\cite{BaaderN:98}, Th.~2.5.5 and Lemma 2.5.6).
-We introduce the following relation $\precc$ between finite multisets
+We introduce the following well-founded relation $\precc$ between finite multisets
 of constraints:
 \[
 \G_1 \precc \G_2 \quad\mbox{iff}\quad \sizem{\G_1} \precm\sizem{\G_2}. 
@@ -584,7 +587,7 @@ of constraints:
 
 
 \begin{lemma}\label{lemma:rulesDec}
-  Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
+  Let $\rho$ be an application of a rule of the calculus $\Calcw$, let
   $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
   Then,  $\G'\precc \G$.
 \end{lemma}
@@ -604,20 +607,26 @@ for a multiset of constraints $\G$ fails, a \GWM-model $\M$ such that
 $\M\models \G$ can be built; we call $\M$ a countermodel for $\G$,
 since $\M$ ascertains that $\G$ is not provable in $\Calcw$ (by
 its soundness).
+Let $\G$ be a multiset of constraints:
 
-Let $\G$ be a multiset of constraints;
-$\G$ is \emph{reduced}  if no rule of $\Calcw$ can be backward applied to $\G$.
-An application  of a modal rule   with conclusion $\G$
-is  \emph{plain} iff the following conditions hold:
 \begin{itemize}
-\item no propositional rule of $\Calcw$ can  be backward applied to~$\G$.
-   \end{itemize}
-To represent a branch $\Bcal$ of a $\Calcw$-tree, we use the notation
-$\stru{\G_0,\dots,\G_n}$ where, for every $0 \leq k < n$, $\G_k$ is
-the conclusion of an application  of a rule $\rho$ of $\Calcw$ and
-$\G_{k+1}$ is one of the premises of $\rho$;
-the notation $\app{\chi}{\G_k}{\G_{k+1}}$ means that $\rho$ has been applied
-with  main constraint $\chi$.
+\item $\G$ is \emph{reduced} iff
+ no rule of $\Calcw$ can be backward applied to $\G$;
+ thus,  every non-atomic constraint in $\G$ has the form
+  $w:\Box \a \gt t$ or  $w:\Diam \a \lt t$.
+
+\item $\G$ is \emph{plain} iff 
+  only a modal rule can  backward applied to $\G$;
+  thus,  every non-atomic constraint in $\G$ has the form
+   $w:\Box \a \abstractorder t$ or  $w:\Diam \a \abstractorder t$.
+ \end{itemize}
+ An application of a modal rule is plain iff the conclusion is plain.
+By $\app{\chi}{\G_k}{\G_{k+1}}$ we mean that $\G_{k+1}$ is a premise
+of an application of a rule $\rho$ of   of $\Calcw$ having conclusion
+$\G_k$ and main constraint $\chi$ (note that $\rho$ is determined by $\chi$).
+A  branch $\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0 \leq k < n$,
+there is $\chi_k$ such that $\app{\chi_k}{\G_k}{\G_{k+1}}$; thus,
+$\Bcal$ represents a branch of a $\Calcw$-tree.
 A branch $\Bcal=\stru{\G_0,\dots,\G_n}$ is \emph{saturated}
 iff the following holds:
   
@@ -657,14 +666,14 @@ is \emph{canonical} iff
 $I(w)=w$ for every label $w$ occurring in $\Gat$.
 Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch, let  $\s$ be a solution to
 $\Atmp{\G_n}$ and  $\M=\Mod{\Atmp{\G_n},\s}$;
-in the next lemma we show that
+in Lemma~\ref{lemma:count} we show that
  $\M\models_\Ical \G_0$, where $\Ical$ is any canonical interpretation.
 
 
 
 
 \begin{example}\label{ex:satBrancj}
-  Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor q)$.
+  Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor \Diam q)$.
   We show a saturated branch $\Bcal$ having root $\G_0=\{w_0:\varphi < 1\}$.
 When the applied rule has
   two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
@@ -851,7 +860,7 @@ Since $e(w,\a)\leq  e(w,\b)$, we get $e(w,\a\to \b)=1$, hence  $e(w,\a\to \b)\gt
 which implies $\M\models_\Ical\chi$.
 In case~\ref{lemma:count:implgt:2}, by the induction hypothesis we get $\M\models_\Ical w:\b\gt t$,
 namely $e(w,\b)\gt\Ical(t)$.
-Since $e(w,\a\to\b)\geq e(w,\b)$, we get
+Since $e(w,\a\to\b)\geq e(w,\b)$, we get $e(w,\a\to\b)\gt\Ical(t)$, hence
 $\M\models_\Ical   w:\a\to \b \gt t$.
 The cases concerning $R$-constrains can be proved as the corresponding propositional cases.
 
@@ -864,11 +873,12 @@ Since  $\app{\chi}{\G_k}{\G_{k+1}}$, the applied rule is $\Box\lt$, hence:
    
  % (D)
  \item\label{lemma:count:boxlt}
-$\chi_1\in \G_{k+1}$, where $\chi_1\,=\,R(w,w_1)\to w_1:\a\lt t$.
-\end{enumerate}
+%$\chi_1\in \G_{k+1}$, where $\chi_1\,=\,R(w,w_1)\to w_1:\a\lt t$.
+$R(w,w_1)\to w_1:\a\lt t \, \in \G_{k+1}$.
+ \end{enumerate}
 Let $r_1$ be the value of $R(w,w_1)\to e(w_1:\a)$.
-By the induction hypothesis,
-  $\M\models_\Ical \chi_1$, hence $r_1\lt\ \Ical(t)$.
+By the induction hypothesis
+  $\M\models_\Ical R(w,w_1)\to w_1:\a\lt t $, hence $r_1\lt\ \Ical(t)$.
 Since  $e(w,\Box\a)\leq r_1$, we get
   $e(w,\Box\a) \lt \Ical(t)$, and this implies
   $\M\models_\Ical  w:\Box\a\lt t$.
@@ -877,10 +887,8 @@ The case  $\chi= w:\Diam\a\gt t$ is similar.
 
 %%%%%%%%%%%%%%%%%%%%%%%%% 
 
-Finally, let us assume  $\wg{\chi}>0$ and   $\chi\in \G_n$;
-then  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
-
-
+It remains to consider the cases where  $\wg{\chi}>0$ and   $\chi\in \G_n$;
+in such cases,  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
 Let $\chi= w:\Box\a\gt t$; 
 we show that:
 
@@ -889,37 +897,39 @@ we show that:
  \item\label{lemma:count:boxgt}
 $\M\models_\Ical R(w,w') \to w':\a\gt t$, for every $w'\in W$.
   \end{enumerate}
-  Let us assume that $w'$ occurs in $\G_0$. Then, $\G_n$ does not contain
- any atomic term of the form $R(w,w')$ since, in such a case, $w'$ should be a new label.
- As a consequence, the substitution $\s$ is not defined on $R(w,w')$,
- thus the value of $R(w,w')$ is 0.
+  Let us assume that $w'$ occurs in $\G_0$. Note that
+ $R(w,w')$ does not occur in $\G_n$,
+ otherwise  $w'$ should be a new label,
+  against the assumption that $w'$ occurs in $\G_0$.
+ As a consequence,  the value of $R(w,w')$ is 0.
 To prove~\ref{lemma:count:boxgt}, we have to show  that $\M\models_\Ical 1 \gt t$.
 The case where $\gt$ is $\geq$ is immediate. 
 Let $\gt$ be  $>$.
 Since  $\chi\in\G_n$, we get $1 >t\in\Atmp{\G_n}$,
 thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
 Let us assume that  $w'$ does not occur in $\G_0$ and
-let  $k > 0$  such that $w'$ is introduced in the set $\G_{k}$, namely:
+let  $k > 0$  be such that $w'$ is introduced in  $\G_{k}$, namely:
  $w'$ occurs in  $\G_{k}$
 and, for every  $0\leq i < k$, $w'$ does not occur in $\G_i$.
 Accordingly, $\G_{k}$ is the  premise of an application of a  modal rule $\rho$
 having conclusion $\G_{k-1}$.
-Since the application of $\rho$ is plain,
-no rule applied in the sub-branch $\stru{\G_{k},\dots,\G_n}$
-can introduce in the premise a constraint  $u\abstractorder t'$ such that
+Since $\Bcal$ is saturated,   $\G_{k-1}$ is plain,
+hence the non-atomic constraints in   $\G_{k-1}$ are modal.
+As a consequence, 
+no rule applied in the sub-branch $\stru{\G_{k-1},\dots,\G_n}$
+can introduce in the premise a new constraint  $u\abstractorder t'$ such that
 $u$ has label $w$;
 this implies  that   $\chi\in \G_{k-1}$.
-Since $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, we get
-$R(w,w') \to w':\a\gt t \in\G_{k}$,
-hence~\ref{lemma:count:boxgt} holds by the induction hypothesis.
+It follows that $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, hence
+$R(w,w') \to w':\a\gt t \in\G_{k}$ and~\ref{lemma:count:boxgt} holds by the induction hypothesis.
 This concludes the proof of~\ref{lemma:count:boxgt}.
-
 Let $e(w,\Box\a)=r$.
 By definition, there exists $w^\star\in W$ such that
- $R(w,w^\star) \to e(w^\star,\a)= r$.
+the value of  $R(w,w^\star) \to e(w^\star,\a)$ is $r$.
 By~\ref{lemma:count:boxgt}, $r\gt \Ical(t)$, 
 namely  $e(w,\Box\a)\gt \Ical(t)$;
  we conclude  $\M\models_\Ical w:\Box\a\gt t$.
+The case $\chi= w:\Diam\a\lt t$ is similar.
 \end{proof}
 
 
