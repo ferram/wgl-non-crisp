@@ -585,6 +585,7 @@ of constraints:
 \G_1 \precc \G_2 \quad\mbox{iff}\quad \sizem{\G_1} \precm\sizem{\G_2}. 
 \]  
 
+We can prove (see App.~\ref{app:proofs}):
 
 \begin{lemma}\label{lemma:rulesDec}
   Let $\rho$ be an application of a rule of the calculus $\Calcw$, let
@@ -889,16 +890,18 @@ The case  $\chi= w:\Diam\a\gt t$ is similar.
 
 It remains to consider the cases where  $\wg{\chi}>0$ and   $\chi\in \G_n$;
 in such cases,  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
-Let $\chi= w:\Box\a\gt t$ and  $w'\in W$;
+Let $\chi= w:\Box\a\gt t$;
 we show that:
 
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=5]
 % (E)
  \item\label{lemma:count:boxgt}
-$\M\models_\Ical R(w,w') \to w':\a\gt t$.
+$\M\models_\Ical R(w,w') \to w':\a\gt t$, for every  $w'\in W$.
 \end{enumerate}
+Let $w'\in W$ 
+we show that  $\M\models_\Ical R(w,w') \to w':\a\gt t$.
 Let us assume that  $R(w,w')$ does not occur in $\G_n$.
-By definition of $\M$, the value of $R(w,w')$ is 0, thus
+By definition of $\M$, the value of $R(w,w')$ is 0; 
  we have to show  that $\M\models_\Ical 1 \gt t$.
 The case where $\gt$ is $\geq$ is immediate. 
 Let $\gt$ be  $>$.
@@ -919,8 +922,9 @@ $u$ has label $w$;
 this implies  that   $\chi\in \G_{k-1}$.
 By definition of $\rho$,
 we get $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, hence
-$R(w,w') \to w':\a\gt t \in\G_{k}$ and~\ref{lemma:count:boxgt} holds by the induction hypothesis.
-This concludes the proof of~\ref{lemma:count:boxgt}.
+$R(w,w') \to w':\a\gt t \in\G_{k}$. By the induction hypothesis,
+we get  $\M\models_\Ical R(w,w') \to w':\a\gt t$, and
+this concludes the proof of~\ref{lemma:count:boxgt}.
 Let $e(w,\Box\a)=r$.
 By definition, there exists $w^\star\in W$ such that
 the value of  $R(w,w^\star) \to e(w^\star,\a)$ is $r$.
