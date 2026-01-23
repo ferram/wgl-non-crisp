@@ -201,10 +201,8 @@ to  $\GKL$ (see~\cite{RodriguezV:21}).
 The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
 By definition,  $\GKL\subseteq\GCL\subseteq\GWCL$ and $\GKL\subseteq\GWL\subseteq\GWCL$;
 we show that all the inclusions are strict. 
-Let us consider the instance $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$  of $Cr$;
-we show that $\varphi\not\in\GWL$
-by providing a  countermodel for $\varphi$.
-Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}.
+Let   $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$  
+and let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}.
 Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
 $\varphi\not\in\GWL$; accordingly, $Cr$ is not valid in $\GWL$.
 Let  $Wt$ be the formula  $\Box \neg\neg \a\to \neg\neg \Box \a$;
@@ -217,12 +215,12 @@ it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
 This implies  $e(w,  \Box\neg \neg  \a)=0$,
 hence $e(w, Wt) = 1$. This proves  that
   $Wt$ is valid in $\GWL$.
-Since  any finite model  is witnessed, 
-  $Wt$ is valid in every finite $\GM$-model,
-  thus a  a countermodel for  $Wt$ must be infinite.
-One can check that   the instance  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ of   $Wt$
+Since  every finite model  is witnessed, 
+   a countermodel for  $Wt$ must be infinite.
+One can check that   the formula  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ 
 is not valid in the infinite $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn}, since  $e(w_0,\varphi) = 0$ (see, e.g.,~\cite{FerFioRod:2025}).
-We point out that  $\M$  is crisp, accordingly $Wt$ is not valid in $\GCL$.
+We point out that  $\M$  is crisp, accordingly $Wt$ is not valid in $\GCL$;
+this also ascertains that  $\GCL$ has not the finite model property.
 
 Finally, we stress  that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
 interdefinable.

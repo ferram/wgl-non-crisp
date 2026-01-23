@@ -126,7 +126,7 @@
      \RightLabel{$\Box\lt$}
      \UIC{$w:\Box\a \lt t,\, \G$}    
      \DP
-     \\[4ex]
+     \hspace{3em}
      %% DIAM GT L     
      \AXC{$R(w,w_1)\land w_1:\a \gt t,\;\Phibd{\G,w,w_1},\;  \G$}
      % ------------------------------------------
@@ -134,7 +134,7 @@
      \UIC{$w:\Diam\a \gt t,\,\G$}    
     \DP
      %%% WHERE ....
-     \\[3ex]
+     \\[2ex]
      \begin{minipage}{1.0\linewidth}
        \[
        \begin{array}{l}
@@ -240,7 +240,8 @@ follow~\cite{BilkovaFK:22,FerFioRod:2025}.
 The constraint language $\LC$ is defined over a countable set of 
 labels, each representing a world of a \GWM-model. 
 In the following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
-formula,  $p\in \PV$,  $r\in\Qrange$,   $R$ is a designated relation symbol  and
+formula,  $p\in \PV$,  $r\in\Qrange$,   $R$ is a designated relation symbol,
+representing the accessibility relation, and
 $\abstractorder\in \{<,\leq,>,\geq\,\}$.  
 \[
 \begin{array}{rcl}
@@ -322,10 +323,11 @@ $w:\a\to \b\abstractorder t$, are defined according to the structure of $\b$.
 Let us consider the rule $\to <$, having main
 constraint $w:\a\to \b < t$.
 If $\b=p$, with $p\in \PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$ and $w:p < t$.
-This corresponds to the fact that, given a model $\M$, a world $w$ in $\M$ and an  $\M$-interpretation
-$\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$, then $e(\Ical(w),\a) > e(\Ical(w),p)$
-and  $e(\Ical(w),p) <  \Ical(t)$ (indeed,  $e(\Ical(w), \a\to p) =  e(\Ical(w),p)$).
-This schema cannot be generalized to any $\b$ since
+This reflects the fact that, given a model $\M$, a world $w$ in $\M$ and an  $\M$-interpretation
+$\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$, then $e(\Ical(w),\a) > e(\Ical(w),p)$,
+ $e(\Ical(w), \a\to p) =  e(\Ical(w),p)$
+and  $e(\Ical(w),p) <  \Ical(t)$.
+This  reasoning cannot be generalized to any $\b$ since
 the constraint  $w:\a > w:\b$ is not allowed if  $\b\not\in\PV\cup\{\bot\}$.
 In the latter case,
 we introduce a new propositional variable $q$, behaving in $w$  as $\b$, and
@@ -624,11 +626,11 @@ Let $\G$ be a multiset of constraints:
  An application of a modal rule is plain iff the conclusion is plain.
 By $\app{\chi}{\G_k}{\G_{k+1}}$ we mean that $\G_{k+1}$ is a premise
 of an application of a rule $\rho$ of   of $\Calcw$ having conclusion
-$\G_k$ and main constraint $\chi$ (note that $\rho$ is determined by $\chi$).
+$\G_k$ and main constraint $\chi$, with $\chi\in\G_k$. % (note that $\rho$ is determined by $\chi$).
 A  branch $\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0 \leq k < n$,
 there is $\chi_k$ such that $\app{\chi_k}{\G_k}{\G_{k+1}}$; thus,
 $\Bcal$ represents a branch of a $\Calcw$-tree.
-A branch $\Bcal=\stru{\G_0,\dots,\G_n}$ is \emph{saturated}
+The branch $\Bcal$ is \emph{saturated}
 iff the following holds:
   
 \begin{itemize}[leftmargin=*]
@@ -642,7 +644,7 @@ iff the following holds:
 \noindent
 We show that, by exploiting  $\G_n$, we can build a countermodel for $\G_0$.
 Let $\Gat$ be  a finite consistent set of atomic constraints and let $\s$ be a solution to $\Gat$.
-By  $\Mod{\Gat,\sigma}$ we denote the $\GWM$-model  $\M=\stru{W,R,e}$
+By  $\Mod{\Gat,\sigma}$ we denote the $\GM$-model  $\M=\stru{W,R,e}$
 such that $W$ is the set of labels occurring in $\Gat$ and:
 \[\small
   \begin{array}{l}
@@ -661,48 +663,57 @@ R(w,w') \;=\;
 \end{cases}
   \end{array}
   \]
-Note that  $\M$ is a discrete $\GWM$-model.
+We remark that  $\M$ is a discrete $\GWM$-model.
 An interpretation  $\Ical$ of $\Mod{\Gat,\sigma}$ 
 is \emph{canonical} iff
-$I(w)=w$ for every label $w$ occurring in $\Gat$.
-Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch, let  $\s$ be a solution to
-$\Atmp{\G_n}$ and  $\M=\Mod{\Atmp{\G_n},\s}$;
-in Lemma~\ref{lemma:count} we show that
- $\M\models_\Ical \G_0$, where $\Ical$ is any canonical interpretation.
+$\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
+% Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch, let  $\s$ be a solution to
+% $\Atmp{\G_n}$ and  $\M=\Mod{\Atmp{\G_n},\s}$;
+% in Lemma~\ref{lemma:count} we show that
+%  $\M\models_\Ical \G_0$, where $\Ical$ is any canonical interpretation.
 
 
 
 
 \begin{example}\label{ex:satBrancj}
   Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor \Diam q)$.
-  We show a saturated branch $\Bcal$ having root $\G_0=\{w_0:\varphi < 1\}$.
+  The $\Calcw$-tree displayed below corresponds to  a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$, 
+  where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ the top multiset.
 When the applied rule has
   two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
   the selected one; in every rule application,
   the main constraint is underlined.
 \[\small
   \begin{array}{l}
-\AXC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
+% Gamma_7
+    \AXC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
 % ----------------------------------------------
- \RightLabel{$R\land\lt(l)$}
+% Gamma_6
+    \RightLabel{$R\land\lt(l)$}
     \UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\; \underline{R(w_0,w_1)\land w_1 : q \leq c},\;\;\D$}
 % ----------------------------------------------
-\RightLabel{$\lor\gt(r)$}
+% Gamma_5
+    \RightLabel{$\lor\gt(r)$}
  \UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  \underline{w_1 :p\lor q \geq R(w_0,w_1)},\;\; 1> c,\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$}
 % -------------------------------------------------------------
- \RightLabel{$R\to\gt(l)$}
+% Gamma_4
+    \RightLabel{$R\to\gt(l)$}
 \UIC{$R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  \underline{R(w_0,w_1)\to w_1 :p\lor q > c},\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$} 
 % ----------------------------------------------
- \RightLabel{$R\to\leq(r)$}
+% Gamma_3
+    \RightLabel{$R\to\leq(r)$}
     \UIC{$\underline{R(w_0,w_1)\to w_1 :p \leq c},\;\;  R(w_0,w_1)\to w_1 :p\lor q > c,\;\; R(w_0,w_1)\land w_1 : q \leq c,\;\;\D$} 
   % ----------------------------------------------
-\RightLabel{$\Box\lt$}
+%Gamma_2
+    \RightLabel{$\Box\lt$}
  \UIC{$w_0:  \Box(p\lor q) > c,\;\; \underline{w_0 : \Box p \leq  c},\;\; w_0: \Diam q  \leq  c,\;\;  c   < 1$} 
 %----------------------------------------------
-\RightLabel{$\lor\lt$}
+% Gamma_1
+    \RightLabel{$\lor\lt$}
 \UIC{$w_0:  \Box(p\lor q) > c,\;\;\underline{w_0 : (\Box p\lor \Diam q) \leq c},\;\; c  < 1$}
 %----------------------------------------------
-\RightLabel{$\to <$}
+% Gamma_0
+    \RightLabel{$\to <$}
 \UIC{\underline{$w_0:  \Box(p\lor q) \to (\Box p\lor \Diam q)  < 1$}}
     \DP
 \\[15ex]
@@ -710,22 +721,22 @@ When the applied rule has
 c = w_0:q_0\qquad\D\;=\;\{\,     w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
   \end{array}
     \]  
-    Let $\G$ be the top sequent; the set $\Atmp{\G}$ consists of the following atomic constraints:
+ The set $\Atmp{\G_7}$ consists of the following atomic constraints:
     \[\small
   R(w_0,w_1)> w_1:p,\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\; c < 1  
     \]
-The set   $\Atmp{\G}$ is consistent; a solution to $\Atmp{\G}$ is any substitution $\s$ over  $\Atmp{\G}$ such that
+The set   $\Atmp{\G_7}$ is consistent; a solution to $\Atmp{\G_7}$ is any substitution $\s$ over  $\Atmp{\G_7}$ such that
     \[
       \sigma(w_1:p)\, < \,\sigma\left(R(w_0,w_1)\right)\,\leq\, \sigma(c) \,< 1
       \qquad
       \sigma\left(R(w_0,w_1)\right)\,\leq \, \sigma(w_1: q) %\,\leq\, 1
 \]
-For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_n},\s}$ satisfies
+For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_7},\s}$ satisfies
 $\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is a canonical interpretation,
 hence $\M$ is a countermodel for $\varphi$, witnessing that $\varphi\not\in\GWL$.
 A  solution $\s^\star$ is  obtained by setting $\sigma^\star(w_1:p) = 0.5$ and
 $\sigma^\star(R(w_0,w_1))= \sigma^\star(c) =  \sigma^\star(w_1:q) = 0.6$.
-The model $\Mod{\Atmp{\G_n},\s^\star}$  is essentially the same as the one displayed in Fig.~\ref{fig:countGW},
+The model $\Mod{\Atmp{\G_7},\s^\star}$  is essentially the same as the one displayed in Fig.~\ref{fig:countGW},
 the only   difference is in the evaluation of $q_0$ in $w_0$.
 \EndEx
 \end{example}
@@ -888,8 +899,8 @@ The case  $\chi= w:\Diam\a\gt t$ is similar.
 
 %%%%%%%%%%%%%%%%%%%%%%%  BOX GT 
 
-It remains to consider the cases where  $\wg{\chi}>0$ and   $\chi\in \G_n$;
-in such cases,  either $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
+It remains to consider the case where  $\wg{\chi}>0$ and   $\chi\in \G_n$,
+thus $\chi= w:\Box\a\gt t$ or  $\chi= w:\Diam\a\lt t$.
 Let $\chi= w:\Box\a\gt t$;
 we show that:
 
@@ -898,10 +909,10 @@ we show that:
  \item\label{lemma:count:boxgt}
 $\M\models_\Ical R(w,w') \to w':\a\gt t$, for every  $w'\in W$.
 \end{enumerate}
-Let $w'\in W$ 
+Let $w'\in W$; 
 we show that  $\M\models_\Ical R(w,w') \to w':\a\gt t$.
 Let us assume that  $R(w,w')$ does not occur in $\G_n$.
-By definition of $\M$, the value of $R(w,w')$ is 0; 
+By definition of $\M$, the value of $R(w,w')$ is 0, hence 
  we have to show  that $\M\models_\Ical 1 \gt t$.
 The case where $\gt$ is $\geq$ is immediate. 
 Let $\gt$ be  $>$.
@@ -910,7 +921,7 @@ thus $\M\models_\Ical1 >  t$ by~\ref{lemma:count:atmp}.
 Let us assume that  $R(w,w')$  occurs in $\G_n$.
 Then, there exists $k > 0$  be such that $R(w,w')$ is introduced in  $\G_{k}$ by an application of a modal rule $\rho$, namely:
 \begin{itemize}
-\item $\app{\chi'}{\G_{k-1}}{\G_k}$, where $\chi' = w :\Box \varphi \lt t'$ or  $\chi' = w :\Diam\varphi \gt t'$,
+\item $\app{\chi'}{\G_{k-1}}{\G_k}$, with $\chi' = w :\Box \varphi \lt t'$ or  $\chi' = w :\Diam\varphi \gt t'$,
   and the new label introduced by $\rho$ is  $w'$.
 \end{itemize}
 Since $\Bcal$ is saturated,   $\G_{k-1}$ is plain,
