@@ -25,7 +25,8 @@ a\to b =
 \noindent
  A \emph{\GM-model} (\emph{G\"odel  model}) $\M$ is a structure
  $\stru{W,R,e}$ where $W$ is a nonempty set (the set of worlds),
-$R$ is a map $W\times W\to [0,1]$ and  $e : W \times \PV\to [0,1]$.
+ $R$ is a map $W\times W\to [0,1]$ (the accessibility relation) and  $e : W \times \PV\to [0,1]$
+ (the evaluation function).
 If $R : W\times W\to \{0,1\}$, we say that $\M$ is \emph{crisp};
 in this case,  $R \subseteq W\times W$. 
 %We write $w_1 R w_2$ to mean that $(w_1,w_2)\in R$;
@@ -40,7 +41,6 @@ The map $e$ is extended to arbitrary formulas as follows:
 
 \noindent
 Note that:
-%$e(w,\neg\a)\in \{0,1\}$, and $e(w,\neg\a)=1$ iff $e(w,\a)=0$. 
 \[
  e(w,\neg\a) =
  \begin{cases}
@@ -59,11 +59,10 @@ Note that:
 \noindent
 A world $w'$ is an $R$-successor of $w$
 iff  $R(w, w')>0$. If  $w_0$ has no $R$-successors,
-then $e(w_0,\Box\varphi)=1$ and $e(w_0,\Diam\varphi)=0$;
-indeed,   for every $w'\in W$, it holds that
-$R(w_0,w')=0$,
-hence $R(w_0,w') \to e(w',\varphi) = 1$ and $R(w_0,w')\land e(w'\varphi) = 0$.
-A \GM-model $\M=\stru{W,R,e}$ is
+then $e(w_0,\Box\a)=1$ and $e(w_0,\Diam\a)=0$, since
+ $R(w_0,w') \to e(w',\a) = 1$ and $R(w_0,w')\land e(w',\a) = 0$
+ for every $w'\in W$.
+ A \GM-model $\M=\stru{W,R,e}$ is
 \emph{witnessed} if the values of $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by  some world $w'$ in $\M$,
 namely:
 \begin{itemize}
@@ -76,9 +75,9 @@ namely:
 \end{itemize}
 As a consequence, in the definitions of $e(w,\Box \a)$ and  $e(w,\Diam \a)$,
 the infimum and the superior are just the minimum and the maximum.
-The \GM-model $\M=\stru{W,R,e}$ in  Fig.~\ref{fig:nonWitn} is not witnessed
-(in the definition of $R$ and $e$ only the  non-zero values are displayed);
-indeed, $e(w_0,\Box p)=0$, but there is no $w_j\in W$ such that
+An example of  non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
+in the definition of $R$ and $e$ only the  non-zero values are displayed.
+It holds that   $e(w_0,\Box p)=0$,  but there is no $w_j\in W$ such that
 $R(w_0,w_j) \to e(w_j,p)=0$.
 Note that  every finite \GM-model is witnessed. 
 
@@ -184,8 +183,10 @@ provability in $\GKL$):
   $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$                                                   
 \end{tabular}
 \]
+In~\cite{CaiRod2015} it is proved that  $\GKL$ is the set of formulas valid
+in every  \GM-model.
 We introduce some logics extending   $\GKL$, by providing a semantic characterization
-(see Fig.~\ref{fig:diagram}):
+(see Fig.~\ref{fig:diagram} for an overview):
 
 \begin{itemize}
 \item $\GCL$ is the set of formulas valid in every crisp \GM-model (see~\cite{RodriguezV:21});
@@ -195,26 +196,27 @@ We introduce some logics extending   $\GKL$, by providing a semantic characteriz
 
 
 \noindent
-The logic $\GCL$ is obtained by adding the axiom $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$
+The logic $\GCL$ is obtained by adding the axiom $(Cr)=\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$
 to  $\GKL$ (see~\cite{RodriguezV:21}).
 The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
 By definition,  $\GKL\subseteq\GCL\subseteq\GWCL$ and $\GKL\subseteq\GWL\subseteq\GWCL$;
 we show that all the inclusions are strict. 
-Let $\psi=\Box \neg\neg \a\to \neg\neg \Box \a$;
-we prove that  $\psi\in\GWL$.
+Let $K_\infty$ be the formula $\Box \neg\neg \a\to \neg\neg \Box \a$.
+We remark that a countermodel for  $K_\infty$ must contain infinitely many worlds.
+One can check that   the instance  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ of   $K_\infty$
+is not valid in the model $\M$ in Fig.~\ref{fig:nonWitn}, since  $e(w_0,\varphi) = 0$ (see, e.g.,~\cite{FerFioRod:2025});
+being  $\M$   crisp, we conclude that the axiom schema $(K_\infty)$ is not valid in $\GCL$.
+We prove that  $(K_\infty)$ is valid in $\GWL$.
 Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
-If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,\psi)=1$. Otherwise,
-it holds that $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
+If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w, K_\infty)=1$. Otherwise,
+ $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
 Since $\M$ is witnessed,  there exists  $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
 it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
 This implies  $e(w,  \Box\neg \neg  \a)=0$,
-hence $e(w, \psi) = 1$. Having proved that $e(w, \psi) = 1$, we conclude  $\psi\in \GWL$.
-On the other hand,   $\psi\not\in\GCL$.
-Indeed, let us consider the instance  $\psi'= \Box \neg\neg p\to \neg\neg \Box p$ of $\psi$
-and the  model $\M$ in Fig.~\ref{fig:nonWitn} 
-One can check that $e(w_0,\psi') = 0$ (see~\cite{FerFioRod:2025});
-since  $\M$ is crisp, we conclude that $\psi\not\in\GCL$.
-Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$;
+hence $e(w, K_\infty) = 1$. This proves  that
+  $(K_\infty)$ is valid in $\GWL$.
+
+Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$ be an instance of $Cr$;
 we show that $\varphi\not\in\GWL$
 by providing a  countermodel for $\varphi$.
 Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}.
