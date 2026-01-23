@@ -1,5 +1,7 @@
 %%% LOGICS DIAGRAM
 
+
+
 \begin{minipage}{\linewidth}
   \begin{center}
   \begin{tikzpicture}[
@@ -32,20 +34,20 @@
     
 
     \node[right=1ex of GWc] {\begin{minipage}{16ex}
-      \small $(K_\infty)$, $(Cr)$ valid\end{minipage}};
+      \small $(Cr)$, $(Wt)$  valid\end{minipage}};
     \node[right=2ex of GW] {\begin{minipage}{16ex}
-      \small $(K_\infty)$ valid\par $(Cr)$ NOT valid\end{minipage}};
+      \small $(Cr)$ NOT valid \par$ (Wt)$ valid  \end{minipage}};
     \node[left=-2ex of Gc] {\begin{minipage}{16ex}
-      \small $(K_\infty)$ NOT valid\par $(Cr)$  valid\end{minipage}};
+      \small   $(Cr)$  valid \par  $(Wt)$ NOT valid\end{minipage}};
     \node[right=1ex of GK] {\begin{minipage}{20ex}
-      \small $(K_\infty)$, $(Cr)$ NOT valid\end{minipage}};
+      \small $(Cr)$, $(Wt)$   NOT valid\end{minipage}};
 
   \end{tikzpicture}
   \begin{minipage}{60ex}
     \begin{tabular}{p{30ex}p{50ex}}
       \begin{itemize}
-      \item $(K_\infty) =\Box \neg\neg \a \to \neg\neg\Box \a$
-      \item $(Cr) = \Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)$
+      \item $(Cr)\quad \Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)$
+      \item $(Wt)\quad\Box \neg\neg \a \to \neg\neg\Box \a$
       \end{itemize}
       &
       \begin{itemize}

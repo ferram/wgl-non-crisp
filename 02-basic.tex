@@ -196,35 +196,35 @@ We introduce some logics extending   $\GKL$, by providing a semantic characteriz
 
 
 \noindent
-The logic $\GCL$ is obtained by adding the axiom $(Cr)=\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$
+The logic $\GCL$ is obtained by adding the axiom $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $Cr$, 
 to  $\GKL$ (see~\cite{RodriguezV:21}).
 The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
 By definition,  $\GKL\subseteq\GCL\subseteq\GWCL$ and $\GKL\subseteq\GWL\subseteq\GWCL$;
 we show that all the inclusions are strict. 
-Let $K_\infty$ be the formula $\Box \neg\neg \a\to \neg\neg \Box \a$.
-We remark that a countermodel for  $K_\infty$ must contain infinitely many worlds.
-One can check that   the instance  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ of   $K_\infty$
-is not valid in the model $\M$ in Fig.~\ref{fig:nonWitn}, since  $e(w_0,\varphi) = 0$ (see, e.g.,~\cite{FerFioRod:2025});
-being  $\M$   crisp, we conclude that the axiom schema $(K_\infty)$ is not valid in $\GCL$.
-We prove that  $(K_\infty)$ is valid in $\GWL$.
-Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
-If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w, K_\infty)=1$. Otherwise,
- $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
-Since $\M$ is witnessed,  there exists  $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
-it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
-This implies  $e(w,  \Box\neg \neg  \a)=0$,
-hence $e(w, K_\infty) = 1$. This proves  that
-  $(K_\infty)$ is valid in $\GWL$.
-
-Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$ be an instance of $Cr$;
+Let us consider the instance $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$  of $Cr$;
 we show that $\varphi\not\in\GWL$
 by providing a  countermodel for $\varphi$.
 Let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}.
 Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
-$\varphi\not\in\GWL$.
+$\varphi\not\in\GWL$; accordingly, $Cr$ is not valid in $\GWL$.
+Let  $Wt$ be the formula  $\Box \neg\neg \a\to \neg\neg \Box \a$;
+we show that  $Wt$ is valid in  $\GWL$.
+Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
+If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w, Wt)=1$. Otherwise,
+ $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
+Since $\M$ is witnessed,  there exists  $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
+it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
+This implies  $e(w,  \Box\neg \neg  \a)=0$,
+hence $e(w, Wt) = 1$. This proves  that
+  $Wt$ is valid in $\GWL$.
+Since  any finite model  is witnessed, 
+  $Wt$ is valid in every finite $\GM$-model,
+  thus a  a countermodel for  $Wt$ must be infinite.
+One can check that   the instance  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ of   $Wt$
+is not valid in the infinite $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn}, since  $e(w_0,\varphi) = 0$ (see, e.g.,~\cite{FerFioRod:2025}).
+We point out that  $\M$  is crisp, accordingly $Wt$ is not valid in $\GCL$.
 
-
-Finally, we point out that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
+Finally, we stress  that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
 interdefinable.
 This is proved for  $\GCL$ in~\cite{RodriguezV:21};
 in App.~\ref{app:noninterdBD} the proof is extended to all the other  modal logics mentioned above.
