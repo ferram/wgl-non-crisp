@@ -308,44 +308,41 @@ $\Calcw$ are displayed in Fig.~\ref{fig:calc1} (propositional rules),  Fig.~\ref
 % It consists of propositional rules, i.e., the axiom rule $\ruleAxat$
 % and rules for the propositional connectives,  the modal rules
 % $\Box\lt$ and $\Diam\gt$ and rules to handle $R$-constraints.
-The \emph{main constraint} of a rule application is the constraint displayed in the conclusion.
-Rules for implication, having a main constraint of the kind
-$w:\a\to \b\abstractorder t$, are defined according to the structure of $\b$.
-Let us consider the rule $\to <$, having main
-constraint $w:\a\to \b < t$.
-If $\b=p$, with $p\in \PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$ and $w:p < t$.
-This reflects the fact that, given a model $\M$, a world $w$ in $\M$ and an  $\M$-interpretation
-$\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$, then $e(\Ical(w),\a) > e(\Ical(w),p)$,
- $e(\Ical(w), \a\to p) =  e(\Ical(w),p)$
-and  $e(\Ical(w),p) <  \Ical(t)$.
-This  reasoning cannot be generalized to any $\b$ since
-the constraint  $w:\a > w:\b$ is not allowed if  $\b\not\in\PV\cup\{\bot\}$.
-In the latter case,
-we introduce a new propositional variable $q$, behaving in $w$  as $\b$, and
-$w:\a > w:\b$ is replaced by $w:\a > w: q$.
-The correspondence between $\b$ and $q$ is set by the
- constraint $w:\b\leq w:q$,
-while the converse constraint $w:\b\geq w:q$ can be omitted.
-There are two modal rules (see Fig.~\ref{fig:calc2}), the former   having  main constraint  $w:\Box\a \lt t$
-and the latter $w:\Diam\a \gt t$;
-both rules introduce a new label $w_1$.
- $R$-rules (see Fig.~\ref{fig:calc3})
-are similar to the corresponding propositional rules.
-The definitions of \emph{tree} and
-\emph{derivation} of $\Calcw$ are the usual ones (see, e.g.,~\cite{TroSch:00}).
+The \emph{main constraint} of a rule application is the constraint
+displayed in the conclusion.  Rules for implication, having a main
+constraint of the kind $w:\a\to \b\abstractorder t$, are defined
+according to the structure of $\b$.  Let us consider the rule $\to <$,
+having main constraint $w:\a\to \b < t$.  If $\b=p$, with $p\in
+\PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$
+and $w:p < t$.  This reflects the fact that, given a model $\M$, a
+world $w$ in $\M$ and an $\M$-interpretation $\Ical$, if $e(\Ical(w),
+\a\to p) < \Ical(t)$, then $e(\Ical(w),\a) > e(\Ical(w),p)$,
+$e(\Ical(w), \a\to p) = e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.
+This reasoning cannot be generalized to any $\b$ since the constraint
+$w:\a > w:\b$ is not allowed if $\b\not\in\PV\cup\{\bot\}$.  In the
+latter case, we introduce a new propositional variable $q$, behaving
+in $w$ as $\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
+correspondence between $\b$ and $q$ is set by the constraint $w:\b\leq
+w:q$, while the converse constraint $w:\b\geq w:q$ can be omitted.
+There are two modal rules (see Fig.~\ref{fig:calc2}), the former
+having main constraint $w:\Box\a \lt t$ and the latter $w:\Diam\a \gt
+t$; both rules introduce a new label $w_1$.  $R$-rules (see
+Fig.~\ref{fig:calc3}) are similar to the corresponding propositional
+rules.  The definitions of \emph{tree} and \emph{derivation} of
+$\Calcw$ are the usual ones (see, e.g.,~\cite{TroSch:00}).
 
 \inlinetodo{ We remark that $\Calcw$ has the \emph{subformula
-    property}, namely: if $\Tcal$ is a $\Calcw$-tree having $\G_0$ as
+    property}, namely: if $\Tcal$ is a tree having $\G_0$ as
   root, every formula occurring in $\Tcal$ inside a constraint (e.g.,
   the formula $\varphi$ in the constraint $R(w,w')\to w':\varphi$) is
   a subformula of a formula in $\G_0$ or a new propositional variable.
 } 
 
 \noindent
-By $\provesw{\Gamma}$ we mean that there exists a
-$\Calcw$-derivation of $\Gamma$.  In the rest of this section we show
-that $\Calcw$ is a sound and complete refutation calculus for $\GWL$,
-where soundness and completeness are formalized as follows:
+By $\provesw{\Gamma}$ we mean that there exists a derivation of
+$\Gamma$.  In the rest of this section we show that $\Calcw$ is a
+sound and complete refutation calculus for $\GWL$, where soundness and
+completeness are formalized as follows:
 
 \begin{itemize}
 \item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for every  \GWM-model $\M$;
@@ -381,7 +378,7 @@ since $\Atmp{\G}$ is not consistent,  $\G$ is proved by $\ruleAxat$.
 
 \bigskip 
 \inlinetodo{**TO DO**
-An example of $\Calcw$-derivation is shown in Fig.~\ref{fig:der}.  
+An example of derivation is shown in Fig.~\ref{fig:der}.  
 In representing derivations, we underline the main constraint of a rule
 application; moreover, we omit redundant constraints (e.g.,
 constraints of the kind $t \leq t$ and multiple copies of the same
@@ -459,7 +456,7 @@ following:
   %   \G_6 =  w_1 : p > w_1 :\bot,\, w_1 :\bot\leq c_2 ,\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D
   % \end{array}   
   % \]
-  \caption{$\Calcw$-derivation of $w:...$.}
+  \caption{A derivation of $w:...$.}
   \label{fig:der}
 \end{figure}
 
@@ -499,7 +496,7 @@ following:
 
 \begin{proof} 
   Point~\ref{prop:sound:1} can be  proved by induction on the
-  depth of a $\Calcw$-derivation of $\G$, by exploiting
+  depth of a derivation of $\G$, by exploiting
   Lemma~\ref{lemma:soundRule}.  Let
   us  assume  $\varphi\not\in\GWL$.  Then, there exists a \GWM-model
   $\M=\stru{W,R,e}$ and a world $ w^\star\in W$ such that
@@ -524,51 +521,81 @@ rules of $\Calcw$ upwards, proof search eventually halts, no matter
 which strategy is used.
 
 
-The size of a formula $\varphi$, denoted by  $\size{\varphi}$, is defined as follows
-\[
-\size{\varphi} \;=\;
+The weigth $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a set
+of constraints $\G$, and the size $\size{\varphi}$ of a formula
+$\varphi$ are defined as follows:
+\begin{center}
+  \begin{tabular}{p{40ex}p{40ex}}\small
+    \[
+    \begin{array}{l}
+      \wg{u} \;=\;
+      \begin{cases}
+        0 & \mbox{if $u$ is an atomic c-term}
+        \\
+        \size{\varphi}& \mbox{if $u = w:\varphi$}
+        \\
+        \size{\varphi} + 1&\begin{minipage}[t]{20ex}
+          if $u = R(w,w')\star w':\varphi$\par~~~with $\star\in \{\land,\to\}$
+        \end{minipage}
+      \end{cases}
+      \\[7ex]
+      \wg{u\abstractorder t}\,=\,\wg{u}
+      \hspace{3em}
+      \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
+    \end{array}    
+    \]
+    &\small
+    \[
+    \size{\varphi} \;=\;
     \begin{cases}
       0 & \mbox{if $\varphi\in\PV\cup\{\bot\}$}
-          \\
-\size{\a} + \size{\b} + 1  & \mbox{if $\varphi=\a\land\b$ or $\varphi=\a\lor\b$ or $\varphi=\a\to\b$}
-  \\
-\size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
+      \\
+      \size{\a} + \size{\b} + 1 &\begin{minipage}[t]{20ex}
+        if $\varphi=\a\star\b$\par~~~with $\star\in \{\land,\lor,\to\}}$
+    \end{minipage}
+    \\[2ex]
+    \size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
     \end{cases}
-\]
-We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
-\[\small
-  \begin{array}{l}
-   \wg{u} \;=\;
-    \begin{cases}
-      0 & \mbox{if $u$ is an atomic c-term}
-          \\
-      \size{\varphi} &     \mbox{if $u = w:\varphi$}
-\\
- \size{\varphi} + 1  &\mbox{if $u = R(w,w')\land w':\varphi$ or $u = R(w,w')\to w':\varphi$ }
-      \end{cases}
-\\[6ex]
-  \wg{u \abstractorder t}  \,=\, \wg{u}
-  \hspace{5em}
-    \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
-\end{array}    
-\]
-The multisets  $\G[w]$ (a multiset of constraints) and   $\sizem{\G}$ (a multiset of natural numbers) are defined as follows:
+    \]
+  \end{tabular}
+\end{center}
+% We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
+% \[\small
+% \begin{array}{l}
+%   \wg{u} \;=\;
+%   \begin{cases}
+%     0 & \mbox{if $u$ is an atomic c-term}
+%     \\
+%     \size{\varphi} &     \mbox{if $u = w:\varphi$}
+%     \\
+%     \size{\varphi} + 1  &\mbox{if $u = R(w,w')\land w':\varphi$ or $u = R(w,w')\to w':\varphi$ }
+%   \end{cases}
+%   \\[6ex]
+%   \wg{u \abstractorder t}  \,=\, \wg{u}
+%   \hspace{5em}
+%   \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
+% \end{array}    
+% \]
+
+\noindent
+The multisets $\G[w]$ (a multiset of constraints) and $\sizem{\G}$ (a
+multiset of natural numbers) are defined as follows:
 \[
-  \G[w] \,=\,\{\,
+\G[w] \,=\,\{\,
 u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
-  \,\}
+\,\}
 \qquad
 \sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
-    \]
+\]
 Let $\Theta_1$ and $\Theta_2$ be finite multisets of natural numbers;
 we set:% \\[.5ex]
 \[
-  \Theta_1 \precm \Theta_2
-%\qquad\IFF\qquad
+\Theta_1 \precm \Theta_2
+% \qquad\IFF\qquad
 \quad\mbox{iff}\quad
-  \Theta_1\neq
- \Theta_2 \;\land\; \left(\; \forall k_1 \in \Theta_1\setminus
-   \Theta_2.\ \exists k_2\in \Theta_2 \setminus \Theta_1.\ k_1 < k_2
+\Theta_1\neq
+\Theta_2 \;\land\; \left(\; \forall k_1 \in \Theta_1\setminus
+  \Theta_2.\ \exists k_2\in \Theta_2 \setminus \Theta_1.\ k_1 < k_2
   \;\right).
 \]  
 The relation $\precm$ is a multiset order, hence $\precm$ is
@@ -622,7 +649,7 @@ of an application of a rule $\rho$ of   of $\Calcw$ having conclusion
 $\G_k$ and main constraint $\chi$, with $\chi\in\G_k$. % (note that $\rho$ is determined by $\chi$).
 A  branch $\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0 \leq k < n$,
 there is $\chi_k$ such that $\app{\chi_k}{\G_k}{\G_{k+1}}$; thus,
-$\Bcal$ represents a branch of a $\Calcw$-tree.
+$\Bcal$ represents a branch of a tree.
 The branch $\Bcal$ is \emph{saturated}
 iff the following holds:
   
@@ -670,12 +697,12 @@ R(w,w') \;=\;
 
 \begin{example}\label{ex:satBrancj}
   Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor \Diam
-  q)$.  The $\Calcw$-tree shown below corresponds to a saturated
-  branch $\Bcal=\stru{\G_0,\dots,\G_7}$, where $\G_0=\{w_0:\varphi <
-  1\}$ is the root and $\G_7$ is the top multiset.  When the applied rule
-  has two premises, the annotation $(l)$ (left) or $(r)$ (right)
-  specifies the selected one; in every rule application, the main
-  constraint is underlined.
+  q)$.  The tree shown below corresponds to a saturated branch
+  $\Bcal=\stru{\G_0,\dots,\G_7}$, where $\G_0=\{w_0:\varphi < 1\}$ is
+  the root and $\G_7$ is the top multiset.  When the applied rule has
+  two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
+  the selected one; in every rule application, the main constraint is
+  underlined.
 \[\small
   \begin{array}{l}
 % Gamma_7
