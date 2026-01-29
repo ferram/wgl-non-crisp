@@ -227,30 +227,21 @@
 
 
 
-We introduce the calculus $\Calcw$ for $\GWL$;
-we call  \GWM-model  a witnessed \GM-model.
-We mainly
-follow~\cite{BilkovaFK:22,FerFioRod:2025}.
-% We mainly
-% follow~\cite{BilkovaFK:22}, where the calculus $\TKGL$ for $\KGL$ is
-% presented.  The logic $\KGL$ is an extension of $\GWCL$ over a more
-% expressive language, including an involutive negation and a
-% co-implication. Note that $\KGL$ has the finite model property, hence
-% $\KGL$-models are witnessed.
-The constraint language $\LC$ is defined over a countable set of 
-labels, each representing a world of a \GWM-model. 
-In the following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
-formula,  $p\in \PV$,  $r\in\Qrange$,   $R$ is a designated relation symbol,
-representing the accessibility relation, and
-$\abstractorder\in \{<,\leq,>,\geq\,\}$.  
+Following~\cite{BilkovaFK:22,FerFioRod:2025}, we introduce the
+\todo{SPIEGARE}refutation calculus $\Calcw$ for $\GWL$.  The constraint language $\LC$ is
+defined over a countable set of labels, each representing a world of a
+\GWM-model.  In the following definitions $w$, $w'$ are labels of
+$\LC$, $\varphi$ is a formula, $p\in \PV$, $R$ is a
+designated relation symbol, representing the accessibility relation,
+and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
 \[
 \begin{array}{rcl}
   \mbox{labelled formula} & \;\coloneqq&\; w :\varphi                            
                              \\
-  \mbox{atomic c-term $t$}  &\; \coloneqq&\; r~|~w :p~|~w :\bot~|~R(w,w')
+  \mbox{atomic c-term $t$}  &\; \coloneqq&\; 0~|~1~|~w :p~|~w :\bot~|~R(w,w')
   \\[.5ex]
   \mbox{c-term $u$}  & \;\coloneqq&\; t~|~w : \varphi~|~R(w,w')\land w':\varphi~|~R(w,w')\to w':\varphi
- \\[.5ex]
+  \\[.5ex]
   \mbox{constraint $\chi$}   &\; \coloneqq&\; u \abstractorder t
 \end{array}
 \]
@@ -268,7 +259,7 @@ Let $\M=\stru{W,R,e}$ be a \GWM-model. An $\M$-interpretation of
 $\LC$ is a function $\Ical$ mapping labels of $\LC$ to $W$.
 We extend $\Ical$ to c-terms as follows:
 \begin{itemize}
-\item $\Ical(r) = r$, for every $r\in \Qrange$;
+\item $\Ical(k) = k$, for $k\in\{0,1\}$;
 \item $\Ical( w:\varphi) = e(\Ical(w), \varphi)$;
 \item $\Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)$;
 \item $\Ical\left(R(w,w') \odot w':\varphi\right) = R\left(\Ical(w),\Ical(w')\right) \,\odot\,   e\left(\Ical(w'), \varphi\right)$,
@@ -287,15 +278,15 @@ $\M$-interpretation, $\Gamma$ a multiset of constraints.
 \item $\M\models \Gamma$ iff $\M\models_\Ical \Gamma$ for some
   $\M$-interpretation $\Ical$.
 \end{itemize}
-A \emph{substitution} $\s$ is a function mapping each atomic c-term of the
-form  $w : p$  or $R(w,w')$ to a rational number in $\Qrange$; $\s$
-is extended to all the atomic c-terms by setting $\s(r)=r$, for $r\in
-\Qrange$, and $\s(w:\bot)=0$.  Let $\Gat$ be a set of atomic
+A \emph{substitution} $\s$ is a function mapping each atomic c-term of
+the form $w : p$ or $R(w,w')$ to a rational number in $\Qrange$; $\s$
+is extended to all the atomic c-terms by setting $\s(k)=k$, for
+$k\in\{0,1\}$, and $\s(w:\bot)=0$.  Let $\Gat$ be a set of atomic
 constraints.  By $\s(\Gat)$ we denote the set of constraints obtained
 by replacing every atomic c-term $t$ occurring in $\Gat$ with $\s(t)$;
 note that $\s(\Gat)$ is a set of rational constraints of the form $r_1
-\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$.
-Consistency of a set of atomic constraints is defined as follows:
+\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$.  Consistency
+of a set of atomic constraints is defined as follows:
 \begin{itemize}[leftmargin=*]
 \item $\Gat$ is \emph{consistent} iff there exists a substitution $\s$
   such that all the constraints in $\s(\Gat)$ hold; we call $\s$ a
@@ -340,20 +331,21 @@ and the latter $w:\Diam\a \gt t$;
 both rules introduce a new label $w_1$.
  $R$-rules (see Fig.~\ref{fig:calc3})
 are similar to the corresponding propositional rules.
-The definitions of $\Calcw$-tree and
-$\Calcw$-derivation are the usual ones (see, e.g.,~\cite{TroSch:00}).
+The definitions of \emph{tree} and
+\emph{derivation} of $\Calcw$ are the usual ones (see, e.g.,~\cite{TroSch:00}).
 
-\inlinetodo{
-We remark that $\Calcw$ has the \emph{subformula property}, namely: if
-$\Tcal$ is a $\Calcw$-tree having $\G_0$ as root, every formula
-occurring in $\Tcal$ inside a constraint  (e.g., the formula $\varphi$
-in the constraint $R(w,w')\to w':\varphi$) is a subformula of a formula in $\G_0$
-or a new propositional variable.
-}
+\inlinetodo{ We remark that $\Calcw$ has the \emph{subformula
+    property}, namely: if $\Tcal$ is a $\Calcw$-tree having $\G_0$ as
+  root, every formula occurring in $\Tcal$ inside a constraint (e.g.,
+  the formula $\varphi$ in the constraint $R(w,w')\to w':\varphi$) is
+  a subformula of a formula in $\G_0$ or a new propositional variable.
+} 
+
+\noident
 By $\provesw{\Gamma}$ we mean that there exists a
 $\Calcw$-derivation of $\Gamma$.  In the rest of this section we show
-that $\Calcw$ is a sound and complete calculus for $\GWL$, where
-soundness and completeness are formalized as follows:
+that $\Calcw$ is a sound and complete refutation calculus for $\GWL$,
+where soundness and completeness are formalized as follows:
 
 \begin{itemize}
 \item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for every  \GWM-model $\M$;
@@ -560,7 +552,7 @@ We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
     \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
 \end{array}    
 \]
-The multisets  $\G[w]$ (multiset of constraints) and   $\sizem{\G}$ (multiset of natural numbers) are defined as follows:
+The multisets  $\G[w]$ (a multiset of constraints) and   $\sizem{\G}$ (a multiset of natural numbers) are defined as follows:
 \[
   \G[w] \,=\,\{\,
 u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
@@ -595,7 +587,8 @@ We can prove (see App.~\ref{app:proofs}):
   Then,  $\G'\precc \G$.
 \end{lemma}
 
-Since $\precc$ is well-founded, from Lemma~\ref{lemma:rulesDec}  the strong termination of $\Calcw$ follows:
+Since $\precc$ is well-founded, strong termination of $\Calcw$ follows
+from Lemma~\ref{lemma:rulesDec}:
 
 \begin{proposition}\label{prop:term}
     The calculus $\Calcw$ is strongly terminating.
@@ -642,10 +635,11 @@ iff the following holds:
 \end{itemize}
 
 \noindent
-We show that, by exploiting  $\G_n$, we can build a countermodel for $\G_0$.
-Let $\Gat$ be  a finite consistent set of atomic constraints and let $\s$ be a solution to $\Gat$.
-By  $\Mod{\Gat,\sigma}$ we denote the $\GM$-model  $\M=\stru{W,R,e}$
-such that $W$ is the set of labels occurring in $\Gat$ and:
+We show how to construct a countermodel for $\G_0$ from $\G_n$.  Let
+$\Gat$ be a finite consistent set of atomic constraints and let $\s$
+be a solution to $\Gat$.  By $\Mod{\Gat,\sigma}$ we denote the
+$\GM$-model $\M=\stru{W,R,e}$ such that $W$ is the set of labels
+occurring in $\Gat$ and:
 \[\small
   \begin{array}{l}
 R(w,w') \;=\;
@@ -663,10 +657,9 @@ R(w,w') \;=\;
 \end{cases}
   \end{array}
   \]
-We remark that  $\M$ is a discrete $\GWM$-model.
-An interpretation  $\Ical$ of $\Mod{\Gat,\sigma}$ 
-is \emph{canonical} iff
-$\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
+  We remark that $\M$ is a discrete $\GWM$-model.  An interpretation
+  $\Ical$ of $\Mod{\Gat,\sigma}$ is \emph{canonical} iff $\Ical(w)=w$
+  for every label $w$ occurring in $\Gat$.
 % Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch, let  $\s$ be a solution to
 % $\Atmp{\G_n}$ and  $\M=\Mod{\Atmp{\G_n},\s}$;
 % in Lemma~\ref{lemma:count} we show that
@@ -676,13 +669,13 @@ $\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
 
 
 \begin{example}\label{ex:satBrancj}
-  Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor \Diam q)$.
-  The $\Calcw$-tree displayed below corresponds to  a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$, 
-  where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ the top multiset.
-When the applied rule has
-  two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
-  the selected one; in every rule application,
-  the main constraint is underlined.
+  Let $\varphi$ be the formula $\Box(p\lor q) \to (\Box p\lor \Diam
+  q)$.  The $\Calcw$-tree shown below corresponds to a saturated
+  branch $\Bcal=\stru{\G_0,\dots,\G_7}$, where $\G_0=\{w_0:\varphi <
+  1\}$ is the root and $\G_7$ is the top multiset.  When the applied rule
+  has two premises, the annotation $(l)$ (left) or $(r)$ (right)
+  specifies the selected one; in every rule application, the main
+  constraint is underlined.
 \[\small
   \begin{array}{l}
 % Gamma_7
@@ -977,12 +970,11 @@ $\Bs$ are plain.
 
 
 \begin{proof}
-  Assume that   $\Bs$ fails.
-  By tracking the computation, we can build an open branch
-  $\Bcal$  having root $\G_0$. 
-  Since $\Bs$ is plain, the branch $\Bcal$ is saturated,
-  hence from $\Bcal $ a discrete countermodel for $\G_0$ can be extracted
- (see Prop~\ref{prop:satBranch}\ref{prop:satBranch:1}).
+  Assume that $\Bs$ fails.  By tracking the computation, we can build
+  an open branch $\Bcal$ with $\G_0$ as root.  Since $\Bs$ is plain,
+  the branch $\Bcal$ is saturated, hence a discrete
+  countermodel for $\G_0$ can be extracted from $\Bcal$ (see
+  Prop~\ref{prop:satBranch}\ref{prop:satBranch:1}).
 \end{proof}
 
 \noindent

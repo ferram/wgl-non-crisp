@@ -57,29 +57,29 @@ Note that:
  \end{cases}
 \]
 \noindent
-A world $w'$ is an $R$-successor of $w$
-iff  $R(w, w')>0$. If  $w_0$ has no $R$-successors,
-then $e(w_0,\Box\a)=1$ and $e(w_0,\Diam\a)=0$, since
- $R(w_0,w') \to e(w',\a) = 1$ and $R(w_0,w')\land e(w',\a) = 0$
- for every $w'\in W$.
- A \GM-model $\M=\stru{W,R,e}$ is
-\emph{witnessed} if the values of $e(w,\Box\a)$  and $e(w,\Diam\a)$  are witnessed by  some world $w'$ in $\M$,
-namely:
+A world $w'$ is an $R$-successor of $w$ iff $R(w, w')>0$. If $w$ has
+no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$, since
+$R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land e(w',\a) = 0$ for every
+$w'\in W$.  A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and we
+call it we call \emph{\GWM-model}, if the values of $e(w,\Box\a)$ and
+$e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
 \begin{itemize}
 \item  $e(w,\Box \a)=r$ iff 
    there is $w'\in W$   such that  $R(w,w') \to e(w',\a) = r$;
 
-\item if $e(w,\Diam \a)=r$ iff
-   there is $w'\in W$  such that $R(w,w')\land e(w'\a) = r$.
+ \item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
+   $R(w,w')\land e(w'\a) = r$.
   
 \end{itemize}
-As a consequence, in the definitions of $e(w,\Box \a)$ and  $e(w,\Diam \a)$,
-the infimum and the superior are just the minimum and the maximum.
-An example of  non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
-in the definition of $R$ and $e$ only the  non-zero values are displayed.
-It holds that   $e(w_0,\Box p)=0$,  but there is no $w_j\in W$ such that
-$R(w_0,w_j) \to e(w_j,p)=0$.
-Note that  every finite \GM-model is witnessed. 
+As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
+\a)$, the infimum and the superior are just the minimum and the
+maximum. Note that every finite \GM-model is witnessed.  
+
+A non-witnessed model is shown in Fig.~\ref{fig:nonWitn}; in the
+definition of $R$ and $e$ only the non-zero values are displayed.  It
+holds that $e(w_0,\Box p)=0$, but there is no $w_j\in W$ such that
+$R(w_0,w_j) \to e(w_j,p)=0$.  Note that every finite \GM-model is
+witnessed.
 
 
 
@@ -196,36 +196,37 @@ We introduce some logics extending   $\GKL$, by providing a semantic characteriz
 
 
 \noindent
-The logic $\GCL$ is obtained by adding the axiom $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $Cr$, 
-to  $\GKL$ (see~\cite{RodriguezV:21}).
-The logic $\GWCL$ has been introduced in~\cite{FerFioRod:2025} and no axiomatization is known.
-By definition,  $\GKL\subseteq\GCL\subseteq\GWCL$ and $\GKL\subseteq\GWL\subseteq\GWCL$;
-we show that all the inclusions are strict. 
-Let   $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$  
-and let $\M=\stru{W,R,e}$ be the  witnessed  $\GM$-model in Fig.~\ref{fig:countGW}.
-Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$, and this certifies that
-$\varphi\not\in\GWL$; accordingly, $Cr$ is not valid in $\GWL$.
-Let  $Wt$ be the formula  $\Box \neg\neg \a\to \neg\neg \Box \a$;
-we show that  $Wt$ is valid in  $\GWL$.
-Let $\M=\stru{W,R,e}$ be a witnessed $\GM$-model and $w\in W$.
-If $e(w, \neg\neg \Box \a)=1$, we immediately get $e(w, Wt)=1$. Otherwise,
- $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.
-Since $\M$ is witnessed,  there exists  $w'\in W$ such that $R(w,w') \to e(w',\a) = 0$;
-it follows that   $e(w',\a)=0$, hence  $e(w',\neg \neg \a)=0$.
-This implies  $e(w,  \Box\neg \neg  \a)=0$,
-hence $e(w, Wt) = 1$. This proves  that
-  $Wt$ is valid in $\GWL$.
-Since  every finite model  is witnessed, 
-   a countermodel for  $Wt$ must be infinite.
-One can check that   the formula  $\varphi=\Box \neg\neg p\to \neg\neg \Box p$ 
-is not valid in the infinite $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn}, since  $e(w_0,\varphi) = 0$ (see, e.g.,~\cite{FerFioRod:2025}).
-We point out that  $\M$  is crisp, accordingly $Wt$ is not valid in $\GCL$;
-this also ascertains that  $\GCL$  and $\GKL$ do not  have the finite model property.
+The logic $\GCL$ is obtained by adding the Crisp axiom $\Box(\a\lor\b)\to
+(\Box \a \lor \Diam \b)$, we call $(Cr)$, to $\GKL$
+(see~\cite{RodriguezV:21}).  The logic $\GWCL$ has been introduced
+in~\cite{FerFioRod:2025} and no axiomatization is known.  By
+definition, $\GKL\subseteq\GCL\subseteq\GWCL$ and
+$\GKL\subseteq\GWL\subseteq\GWCL$; we show that all the inclusions are
+strict.  Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$ and
+let $\M=\stru{W,R,e}$ be the witnessed $\GM$-model in
+Fig.~\ref{fig:countGW}.  Since $e(w_0,\varphi) = 0.6$, $\M$ is a
+countermodel for $\varphi$, and this certifies that
+$\varphi\not\in\GWL$; accordingly, $Cr$ is not valid in $\GWL$.  Let
+$(Wt)$ be the formula schema $\Box \neg\neg \a\to \neg\neg \Box \a$; we show
+that $(Wt)$ is valid in $\GWL$.  Let $\M=\stru{W,R,e}$ be a witnessed
+$\GM$-model and $w\in W$.  If $e(w, \neg\neg \Box \a)=1$, we
+immediately get $e(w, Wt)=1$. Otherwise, $e(w, \neg\neg \Box \a)=0$,
+hence $e(w, \Box \a)=0$.  Since $\M$ is witnessed, there exists $w'\in
+W$ such that $R(w,w') \to e(w',\a) = 0$; it follows that $e(w',\a)=0$,
+hence $e(w',\neg \neg \a)=0$.  This implies $e(w, \Box\neg \neg
+\a)=0$, hence $e(w, Wt) = 1$. This proves that $Wt$ is valid in
+$\GWL$.  Since every finite model is witnessed, a countermodel for
+$Wt$ must be infinite.  One can check that the formula $\varphi=\Box
+\neg\neg p\to \neg\neg \Box p$ is not valid in the infinite
+$\GM$-model $\M$ in Fig.~\ref{fig:nonWitn}, since $e(w_0,\varphi) = 0$
+(see, e.g.,~\cite{FerFioRod:2025}).  We point out that $\M$ is crisp,
+accordingly $Wt$ is not valid in $\GCL$; this also ascertains that
+$\GCL$ and $\GKL$ do not have the finite model property.
 
-Finally, we stress  that, in all the mentioned modal logics, $\Box$ and $\Diam$ are not
-interdefinable.
-This is proved for  $\GCL$ in~\cite{RodriguezV:21};
-in App.~\ref{app:noninterdBD} the proof is extended to all the other  modal logics mentioned above.
+Finally, we stress that, in all the mentioned modal logics, $\Box$ and
+$\Diam$ are not interdefinable.  This is proved for $\GCL$
+in~\cite{RodriguezV:21}; in App.~\ref{app:noninterdBD} the proof is
+extended to all the other modal logics mentioned above.
 
 
 
