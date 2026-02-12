@@ -1,4 +1,127 @@
-\section{Introduction ** OLD **}\label{sec:intro}
+\section{Introduction}\label{sec:intro}
+
+
+% \bibitem{BDP2014} S. Borgwardt, F. Distel, and R. Peñaloza Decidable
+%   Gödel Description Logics without the Finitely-Valued Model
+%   Property.  Proceedings of the Fourteenth International Conference
+%   On Principles of Knowledge Representation and Reasoning (2014).
+
+
+% \bibitem{CR10} X.~Caicedo and R.O. Rodriguez.  \newblock Standard
+%   {G}{\"o}del modal logics.  \newblock {\em Studia Logica},
+%   94(2):189--214, 2010.
+
+% \bibitem{CR15} X.~Caicedo and R.O. Rodriguez.  \newblock Bi-modal
+%   {G}{\"o}del logic over [0,1]-valued {K}ripke frames.  \newblock
+%   Journal of Logic and Computation, 25(1):37–55, 2015.
+
+% \bibitem{HC2006} P. Hájek and P. Cintula.  \newblock On Theories and
+%   Models in Fuzzy Predicate Logics.  \newblock The Journal of
+%   Symbolic Logic, Vol. 71, No. 3 (Sep., 2006), pp. 863-880
+
+% \bibitem{HajekS5} P. Hájek. On fuzzy modal logics S5(C), Fuzzy Sets
+%   and Systems (2009), doi: 10.1016/j.fss.2009.11.011
+
+% \bibitem{RV21} R.O. Rodriguez and A. Vidal. Axiomatization of Crisp
+%   Gödel Modal Logic. Studia Logica, 109(2):367-395, 2021.
+
+% \bibitem{RV26} R.O. Rodriguez and A. Vida. Axiomatising Logics of
+%   Finite Gödel–Kripke Models. Personal comunication. 2026.
+
+
+G\"odel modal logics, $\GKL$s, provide a natural framework for
+reasoning about graded notions of incompleteness, uncertainty, and
+vagueness by means of necessity and possibility operators evaluated
+over truth degrees. When interpreted over the real unit interval,
+G\"odel logic captures a well-behaved notion of implication based on
+residuation, which makes it particularly suitable for applications in
+knowledge representation, as well as in multi-agent and distributed
+systems.
+
+
+In general, the semantics of $\GKL$ is based on G\"odel Kripke models
+(\emph{\GM-models}), a natural generalization of classical Kripke
+semantics in which both the valuation of propositions at each world
+and the accessibility relation take values in the standard G\"odel
+algebra $[0,1]$, i.e.\ the algebraic semantics of the intermediate
+G\"odel--Dummett logic. The minimal logics over {\GM-models} were
+thoroughly investigated by Caicedo and Rodr\'iguez in
+\cite{CaiRod2010,CaiRod2015}. In this setting, the interpretation of
+the modal operators is defined by means of infima and suprema computed
+over (possibly infinite) sets of accessible worlds. However, these
+bounds need not be attained: the infimum may be strictly smaller than
+every truth value in the set, and dually for the
+supremum. Consequently, the truth value of a modal formula may depend
+on limit constructions rather than on concrete worlds of the model.
+
+This phenomenon has important logical consequences. For instance,
+\cite{CaiRod2010} shows that the formula
+\[
+\Box \neg \neg \varphi \to \neg \neg \Box \varphi
+\]
+is valid in all finite G\"odel Kripke models but fails in a suitable
+infinite model. Hence, the underlying logic does not enjoy the finite
+model property, and semantic arguments may require genuinely
+infinitary behavior.
+
+Witnessed models provide a principled way to overcome these
+difficulties. By requiring that the relevant infima and suprema are
+realized by actual accessible worlds, witnessed semantics ensures that
+existential and universal behavior is supported by explicit
+witnesses. In this way, the evaluation of modal operators more closely
+mirrors the behavior of guarded quantification in first-order logic
+and restores a constructive reading of the semantics. Each modal
+statement is justified by concrete worlds rather than by purely
+asymptotic approximations.
+
+The notion of witnessed models has appeared in several related
+contexts. For example, in \cite{HC2006} an axiomatization is given for
+witnessed semantics in fuzzy predicate logics. Since quantified
+statements can often be translated into modal ones, this connection is
+conceptually robust. Along these lines, H\'ajek considers in
+\cite{HajekS5} the axioms
+\begin{itemize}
+\item $\Diamond(\varphi \to \Box \varphi)$,
+\item $\Diamond(\Diamond \varphi \to \varphi)$,
+\end{itemize}
+and proves that the resulting logic $S5(G)^w$ is strongly complete
+with respect to witnessed universal Kripke models.
+
+Witnessed semantics has also proved fruitful in applied settings. In
+the context of Fuzzy Description Logics, \cite{BDP2014} studies a
+system based on witnessed G\"odel semantics and shows that it enjoys
+the finite model property and a decidable satisfiability problem with
+exponential-time complexity. More recently, \cite{RV26} provides an
+axiomatization for modal G\"odel logic interpreted over witnessed
+Kripke models.
+
+In general, witnessed models tend to guarantee compactness-like
+properties and frequently yield finite model properties and
+decidability results. These features are crucial for automated
+reasoning, verification, and implementation, since they allow one to
+replace infinitary semantic arguments with finite combinatorial
+ones. For these reasons, studying G\"odel modal logics over witnessed
+models not only clarifies their semantic foundations but also
+strengthens their connections with well-behaved first-order fragments
+that play a central role in computer science, thereby enhancing both
+their theoretical robustness and their applicability.
+
+From a proof-theoretic perspective, witnessed semantics aligns more
+closely with syntactic calculi. By eliminating pathological behaviors
+caused by unattained infima and suprema, it avoids limit-based
+counterexamples and yields a more constructive semantics. This tight
+correspondence between semantic witnesses and syntactic derivations
+naturally suggests the development of a complete proof system. In
+particular, the existence of witnesses enables canonical model
+constructions that are finite or finitely generated, supports
+filtration techniques, and allows completeness proofs to proceed by
+standard algebraic or canonical methods. Therefore, establishing a
+sound and complete calculus for G\"odel modal logics over witnessed
+models is not only feasible but also conceptually justified, providing
+a proof-theoretic counterpart to their improved semantic behavior and
+paving the way for effective automated reasoning procedures.
+
+
 
 % \inlinetodo{ {\bf Stress in the introduction}.  Additionally, we are
 %   confident that the relationship between Gödel-Kripke models and
@@ -21,90 +144,90 @@
 %   can capture uncertainty and vagueness in agent systems.
 % }
 
-One of the most important challenges in Knowledge Representation and
-Reasoning is to set up a homogeneous framework to represent and
-combine the notions of incompleteness, uncertainty and vagueness. In
-this sense, different many-valued modal logics have become a lingua
-franca for, among others, the specification and analysis of knowledge
-and communication in multi-agent and distributed systems. Notably,
-G\"odel Modal Logic $\GKL$ has provided an adequate logical foundation
-for these tasks, so it has been widely studied in the last decade.
+% One of the most important challenges in Knowledge Representation and
+% Reasoning is to set up a homogeneous framework to represent and
+% combine the notions of incompleteness, uncertainty and vagueness. In
+% this sense, different many-valued modal logics have become a lingua
+% franca for, among others, the specification and analysis of knowledge
+% and communication in multi-agent and distributed systems. Notably,
+% G\"odel Modal Logic $\GKL$ has provided an adequate logical foundation
+% for these tasks, so it has been widely studied in the last decade.
 
-In general, $\GKL$ semantics rests on G{\"o}del Kripke models
-(\emph{\GM-models}), the generalization of the classical Kripke
-semantics for modal logics, where both propositions at each world and
-the accessibility relation are valued in the standard G{\"o}del
-algebra $[0,1]$, namely the algebraic semantics of the well-known
-intermediate G\"odel-Dummett Logic. The minimal logics over
-{\GM-models} have been deeply investigated by Caicedo and Rodriguez in
-\cite{CaiRod2010,CaiRod2015}.  A peculiar subclass of this kind of
-models is obtained by restricting to crisp models
-(\emph{\GCM-models}), where the accessibility relation only takes
-classical values, i.e., it is valued in $\{0,1\}$.
-%%A peculiar subclass of this kind of
-%%models is obtained by restricting to crisp models
-%%(\emph{\GCM-models}), where the accessibility relation only takes
-%%classical values, i.e., it is valued in $\{0,1\}$.
-The logic $\GCL$ arising from \GCM-models has been characterized in
-\cite{RodriguezV:21}. More general approaches, focusing mainly on
-finite residuated lattices, have been developed by
-Fitting~\cite{Fi92a,Fi92b}, Priest~\cite{Pr08b}, and Bou et
-al.~\cite{BoEsGoRo11}, and for other relevant fuzzy logics
-in~\cite{HaTe13,ViEsGo16}.
+% In general, $\GKL$ semantics rests on G{\"o}del Kripke models
+% (\emph{\GM-models}), the generalization of the classical Kripke
+% semantics for modal logics, where both propositions at each world and
+% the accessibility relation are valued in the standard G{\"o}del
+% algebra $[0,1]$, namely the algebraic semantics of the well-known
+% intermediate G\"odel-Dummett Logic. The minimal logics over
+% {\GM-models} have been deeply investigated by Caicedo and Rodriguez in
+% \cite{CaiRod2010,CaiRod2015}.  A peculiar subclass of this kind of
+% models is obtained by restricting to crisp models
+% (\emph{\GCM-models}), where the accessibility relation only takes
+% classical values, i.e., it is valued in $\{0,1\}$.
+% %%A peculiar subclass of this kind of
+% %%models is obtained by restricting to crisp models
+% %%(\emph{\GCM-models}), where the accessibility relation only takes
+% %%classical values, i.e., it is valued in $\{0,1\}$.
+% The logic $\GCL$ arising from \GCM-models has been characterized in
+% \cite{RodriguezV:21}. More general approaches, focusing mainly on
+% finite residuated lattices, have been developed by
+% Fitting~\cite{Fi92a,Fi92b}, Priest~\cite{Pr08b}, and Bou et
+% al.~\cite{BoEsGoRo11}, and for other relevant fuzzy logics
+% in~\cite{HaTe13,ViEsGo16}.
 
-In this line of research, we introduce a logic called $\GWCL$, which
-is semantically characterized by \emph{witnessed} G\"odel crisp Kripke
-models (\GWCM-models); in \GWCM-models, the value of a modal formula
-$\Box \a$ or $\Diamond \a$ in a world $w$ coincides with (thus, is
-witnessed by) the value of $\a$ in a world accessible from $w$. A
-crucial point is that $\GWCL$ has the finite model property (if
-$\varphi\not\in\GWCL$, than there exists a finite \GWCM-model falsifying
-$\varphi$), while such a property fails for the bi-modal logics
-arising from {\GM-models} and from {\GCM-models}.
+% In this line of research, we introduce a logic called $\GWCL$, which
+% is semantically characterized by \emph{witnessed} G\"odel crisp Kripke
+% models (\GWCM-models); in \GWCM-models, the value of a modal formula
+% $\Box \a$ or $\Diamond \a$ in a world $w$ coincides with (thus, is
+% witnessed by) the value of $\a$ in a world accessible from $w$. A
+% crucial point is that $\GWCL$ has the finite model property (if
+% $\varphi\not\in\GWCL$, than there exists a finite \GWCM-model falsifying
+% $\varphi$), while such a property fails for the bi-modal logics
+% arising from {\GM-models} and from {\GCM-models}.
 
-Another important aspect to consider is that the semantical approach
-to modal many-valued logics considered here differs from the
-alternative significant framework for modal substructural logics
-studied, for instance, in~\cite{Kam02,O93,Re93b}.  This latter
-framework is based on a syntactic definition of the logics, obtained
-by extending substructural logics with modalities governed by some of
-the usual axioms and rules for the modalities of classical modal
-logics. The resulting logics are complete with respect to a
-bi-relational Kripke semantics, where the evaluation function typical
-of \GM-models is replaced by additional relations, similar to the
-semantics used in intuitionistic modal logics.  A prominent
-contribution of this paper is to establish a simple connection between
-the semantics of $\GWCL$ and a bi-relational semantics, showing that
-$\GWCL$ can be naturally embedded within the well-established semantic
-tradition of intuitionistic modal logics. This connection provides a
-means to compare a calculus defined under one semantics with that
-defined under the other.
+% Another important aspect to consider is that the semantical approach
+% to modal many-valued logics considered here differs from the
+% alternative significant framework for modal substructural logics
+% studied, for instance, in~\cite{Kam02,O93,Re93b}.  This latter
+% framework is based on a syntactic definition of the logics, obtained
+% by extending substructural logics with modalities governed by some of
+% the usual axioms and rules for the modalities of classical modal
+% logics. The resulting logics are complete with respect to a
+% bi-relational Kripke semantics, where the evaluation function typical
+% of \GM-models is replaced by additional relations, similar to the
+% semantics used in intuitionistic modal logics.  A prominent
+% contribution of this paper is to establish a simple connection between
+% the semantics of $\GWCL$ and a bi-relational semantics, showing that
+% $\GWCL$ can be naturally embedded within the well-established semantic
+% tradition of intuitionistic modal logics. This connection provides a
+% means to compare a calculus defined under one semantics with that
+% defined under the other.
 
-As for practical reasoning in AI, research has primarily focused on
-developing efficient calculi for the aforementioned many-valued
-logics.  Metcalfe and Olivetti in \cite{MetOli1,MetOli2} have provided
-variants of a hypersequent structure called \emph{sequent of relations
-  calculus} (firstly introduced by Baaz and Ferm\"uller in
-\cite{BaazF99}) for several fragments of $\GKL$. Galmiche and Salhi
-use a similar approach in \cite{GalSal2010} for studying a family of
-G\"odel hybrid logics.  Burns in~\cite{BURNS2020} surveys the
-approaches based on hypersequents; in particular, it is maintained
-that relational hypersequents provide a unified proof theory for many
-modal logics with cut-free complete treatments.  Here we propose for
-$\GWCL$ a different approach inspired by the tableau calculus
-presented in~\cite{BilkovaFK:22}, but overcoming some flaws in it.
+% As for practical reasoning in AI, research has primarily focused on
+% developing efficient calculi for the aforementioned many-valued
+% logics.  Metcalfe and Olivetti in \cite{MetOli1,MetOli2} have provided
+% variants of a hypersequent structure called \emph{sequent of relations
+%   calculus} (firstly introduced by Baaz and Ferm\"uller in
+% \cite{BaazF99}) for several fragments of $\GKL$. Galmiche and Salhi
+% use a similar approach in \cite{GalSal2010} for studying a family of
+% G\"odel hybrid logics.  Burns in~\cite{BURNS2020} surveys the
+% approaches based on hypersequents; in particular, it is maintained
+% that relational hypersequents provide a unified proof theory for many
+% modal logics with cut-free complete treatments.  Here we propose for
+% $\GWCL$ a different approach inspired by the tableau calculus
+% presented in~\cite{BilkovaFK:22}, but overcoming some flaws in it.
 
-To sum up, the main result of this paper is the definition of a new
-calculus $\Calcc$ which is sound and complete for the logic $\GWCL$.
-We design a terminating decision procedure for $\Calcc$ with
-countermodel generation, consisting in a standard backward proof
-search strategy for which we provide an implementation, called
-\texttt{gwcref} (accessible at~\cite{gwcrefProver}).
-%%, in the Java framework JTabWb~\cite{FerrariFF:17a}. 
-Finally we explore a novel and simple connection between the
-$\GWCM$-models and the bi-relational Kripke semantics. For the omitted
-proofs, we refer the reader to the appendix available online at the
-URL referenced in~\cite{gwcrefProver}.
+% To sum up, the main result of this paper is the definition of a new
+% calculus $\Calcc$ which is sound and complete for the logic $\GWCL$.
+% We design a terminating decision procedure for $\Calcc$ with
+% countermodel generation, consisting in a standard backward proof
+% search strategy for which we provide an implementation, called
+% \texttt{gwcref} (accessible at~\cite{gwcrefProver}).
+% %%, in the Java framework JTabWb~\cite{FerrariFF:17a}. 
+% Finally we explore a novel and simple connection between the
+% $\GWCM$-models and the bi-relational Kripke semantics. For the omitted
+% proofs, we refer the reader to the appendix available online at the
+% URL referenced in~\cite{gwcrefProver}.
 
 %%% Local Variables: 
 %%% mode: latex
