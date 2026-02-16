@@ -187,14 +187,7 @@ The proof for  $\Diam$ is similar.
 \end{lemmaref}
 
 \begin{proof}
-\inlinetodo{** OLD PROOF **}
-
-  Let $\Ical$ be an $\M$-interpretation, let $w$ be a label of $\LC$ and
-$w^\star$ a world of $\M$.  By $\reass{\Ical}{w}{w^\star}$ we denote
-the $\M$-interpretation $\Ical'$ such that $\Ical'(w) = w^\star$ and
-$\Ical'(x)= \Ical(x)$ for every $x\neq w$ (where $x$ is either a label
-or a constant).  The definition of $\reass{\Ical}{c}{r}$, where $c$ is
-a constant of $\LC$ and $r\in [0,1]_Q$, is similar.
+\inlinetodo{** OLD PROOF **} 
 
 \smallskip
 Let $\G$ be the conclusion of rule $\rho$ of $\Calcw$ and let us assume
@@ -211,32 +204,29 @@ $\lor\gt$, the assertion easily follows.
 Let us consider the application
 \[
 %% IMP LTS 
-\AXC{$\overbrace{w :\b \leq b,\, w :\a > b,\,  b  < t,\,  \G_0}^{\G_1}$}    
-% ------------------------------------------    
-\RightLabel{$\to < $}
-\UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
-\DP
+    \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G_0}^{\G_1}$}    
+    % ------------------------------------------    
+    \RightLabel{$\to < \;(\dag)$}
+    \UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
+    \DP
 \]
 By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
 and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
 \b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
 $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b <
-t$.  If $\b\in\PV\cup\{\bot\}$, then $b$ stands for $w:\b$, hence
-$\M\models_\Ical \G_1$.  Let us assume $\b\not\in\PV\cup\{\bot\}$; in
-this case $b$ is a fresh constant.  Let $r = e(\Ical(w),\b)$
-($r\in[0,1]_Q$) and $\Ical'=\reass{\Ical}{b}{r}$.  We remark that, for
-every constraint $\chi$ not containing $b$, $\M\models_\Ical \chi$ iff
+t$. Let us remark that $\b\not\in \Vcal\cup{\bot}$ and that $q$ is a fresh propositional variable.  Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and let, for
+every constraint $\chi$ not containing $q$, $\M\models_\Ical \chi$ iff
 $\M\models_{\Ical'} \chi$.  Since $\M\models_{\Ical} \G_0$ and $b$
 does not occur in $\G_0$, we get $\M\models_{\Ical'} \G_0$.  It is
-easy to check that $\M\models_{\Ical'} w :\b \leq b$ and
-$\M\models_{\Ical'} w :\a > b$ and $\M\models_{\Ical'} b < t$, hence
+easy to check that $\M\models_{\Ical'} w :\b \leq w:q$ and
+$\M\models_{\Ical'} w :\a > w:q$ and $\M\models_{\Ical'} w:q < t$, hence
 $\M\models_{\Ical'} \G_1$.
 
 Let us consider the application
 \[
 %% IMP LTE 
 \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
-\AXC{$\overbrace{w :\b \leq b,\,  w :\a > b,\,  b \leq  t,\,\G_0}^{\G_2}$}    
+\AXC{$\overbrace{w :\b \leq w:q,\,  w :\a > w:q,\,  w:q \leq  t,\,\G_0}^{\G_2}$}    
 % ------------------------------------------    
 \RightLabel{$\to\leq$}
 \BIC{$\underbrace{w: \a\to \b \leq t,\,\G_0}_{\G}$}
@@ -249,21 +239,21 @@ $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
 $\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
 $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
 e(\Ical(w),\b)$.  We have $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
-hence $\M\models_\Ical w:\b \leq t$.  If $\b\in\PV\cup\{\bot\}$, then
-$b= w:\b$ and we get $\M\models_\Ical \G_2$.  Assume
-$\b\not\in\PV\cup\{\bot\}$ (thus $b$ is a fresh constant), let $r =
-e(\Ical(w),\b)$ ($r\in[0,1]_Q$) and $\Ical'=\reass{\Ical}{b}{r}$.
-Since $\M\models_{\Ical} \G_0$ and $b$ does not occur in $\G_0$, we
+hence $\M\models_\Ical w:\b \leq t$.  We remark that
+$\b\not\in\PV\cup\{\bot\}$ and that $q$ is a fresh propositional variable. Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and let, for
+every constraint $\chi$ not containing $q$, $\M\models_\Ical \chi$ iff
+$\M\models_{\Ical'} \chi$.
+Since $\M\models_{\Ical} \G_0$ and $q$ does not occur in $\G_0$, we
 get $\M\models_{\Ical'} \G_0$.  Moreover, one can easily check that
-$\M\models_{\Ical'} w :\b \leq b$ and $\M\models_{\Ical'} w :\a > b$
-and $\M\models_{\Ical'} b \leq t$; we conclude $\M\models_{\Ical'}
+$\M\models_{\Ical'} w :\b \leq w:q$ and $\M\models_{\Ical'} w :\a > w:q$
+and $\M\models_{\Ical'} w:q \leq t$; we conclude $\M\models_{\Ical'}
 \G_2$.
 
 
 Let us consider the application
 \[
 %% IMP GT 
-\AXC{$\overbrace{w :\a \leq a,\,  w :\b \geq a,\,1\gt t,\, \G_0}^{\G_1}$}    
+\AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \G_0}^{\G_1}$}    
 \AXC{$\overbrace{w:\b \gt t,\, \G_0}^{\G_2}$}
 % ------------------------------------------       
 \RightLabel{$\to\gt$}
@@ -277,35 +267,31 @@ $e(\Ical(w),\a) > e(\Ical(w),\b)$, then $e(\Ical(w),\a\to \b) =
 e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
 $e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case $e(\Ical(w),\a\to
 \b) = 1$, which implies $1 \gt \Ical(t)$.  We can prove that
-$\M\models_{\Ical'} \G_1$, where $\Ical'=\Ical$ if
-$\a\in\PV\cup\{\bot\}$, $\Ical'= \reass{\Ical}{a}{e(\Ical(w), \a)}$
-otherwise.
+$\M\models_{\Ical'} \G_1$, where $e(\Ical(w), \a)\leq e(\Ical'(w),q)$.
 
 Let us consider the application
 \[
-\AXC{$\overbrace{1 \lt t,\,\Phizo{\G_0}}^{\G_1}$}
-\AXC{$\overbrace{w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_2}$}
+\AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_1}$}
 % -----------------------------------------
 \RightLabel{$\Box\lt$}
-\BIC{$\underbrace{w:\Box\a \lt t,\,\G_0}_{\G}$}    
+\UIC{$\underbrace{w:\Box\a \lt t,\,\G_0}_{\G}$}    
 \DP
 \]
 By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
 $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt \Ical(t)$.
-Let us assume that the world $\Ical(w)$ of $\M$ has no $R$-successors.
-For every formula $\varphi$, $e(\Ical(w),\Box\varphi) = 1$ and
-$e(\Ical(w),\Diam\varphi) = 0$, and this implies that $\M\models_\Ical
-\G_1$.  Let us assume that $\Ical(w)$ has at least one
-$R$-successor. Since $\M$ is a $\GWCM$-model, there exists a world
-$w^\star$ of $\M$ such that $\Ical(w) R w^\star$ and $e(\Ical(w),\Box
-\a) = e(w^\star, \a)$.  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We
+Let us assume that the world $\Ical(w)$ of $\M$ has no $R$-successors, then $\Ical(R(w,w')=0$ and thus $\Ical(R(w,w_1)\to w_1:\a)=1$. Hence we get $1\lt t$ and $\M\models_{\Ical} \G_1$.
+Let us assume that $\Ical(w)$ has at least one $R$-successor. 
+Since $\M$ is a $\GWM$-model, there exists a world
+$w^\star$ of $\M$ such that $R(\Ical(w),w^\star)\to e(w^\star,\a)=e(\Ical(w),\Box\a)$.  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We
 remark that, for every constraint $\chi$ not containing $w_1$,
-$\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$.  Since
+$\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$. Since
 $\M\models_{\Ical}\G_0$ and $w_1$ does not occur in $\G_0$, we get
-$\M\models_{\Ical'}\G_0$.  By the fact that $e(\Ical(w),\Box \a)\lt
-\Ical(t)$ and $e(\Ical(w),\Box \a) = e(w^\star, \a)$, we have $e(w^\star, \a)\lt
-\Ical(t)$, and this implies $\M\models_{\Ical'} w_1:\a \lt t$. Let
-$\chi\in\Phibd{\G,w,w_1}$ and assume that $\chi=w_1 : \b \gt t'$.  We
+$\M\models_{\Ical'}\G_0$. By the fact that $e(\Ical(w),\Box \a)\lt
+\Ical(t)$ and $e(\Ical(w),\Box \a) = R(\Ical(w),w^\star)\to e(w^\star,\a)$, we have $R(\Ical(w),w^\star)\to e(w^\star,\a)\lt
+\Ical(t)$, and this implies $\M\models_{\Ical'} R(w,w')\to w':\a\lt t$. Let
+$\chi\in\Phibd{\G,w,w_1}$ and assume that $\chi=R(w,w')\to w_1 : \b \gt t$. 
+
+We
 have $w : \Box \b \gt t'\in \G_0$, hence $e(\Ical(w),\Box \b) \gt
 \Ical(t')$.  Since $\Ical(w) R w^\star$, it follows that $e(w^\star,
 \b) \gt \Ical(t')$, and this implies $\M\models_{\Ical'} \chi$.
