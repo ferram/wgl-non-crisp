@@ -63,6 +63,17 @@ Note that:
    0 &   \mbox{if $e(w,\a)= 0$} 
  \end{cases}
 \]
+
+
+
+\begin{figure}[t]
+  \centering
+  \input{fig-non-witnessed-box-and-diamond.tex}
+  \caption{A non-witnessed \GM-model $\M=\stru{W,R,e}$.}  
+  \label{fig:nonWitn}
+\end{figure}
+
+
 \noindent
 A world $w'$ is an $R$-successor of $w$ iff $R(w, w')>0$. If $w$ has
 no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$ since,
@@ -77,9 +88,9 @@ $e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
  \item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
    $R(w,w')\land e(w'\a) = r$.
  \end{itemize}
-As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
-\a)$, the infimum and the supremum are just the minimum and the
-maximum. Note that every finite \GM-model is witnessed.  
+ As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
+ \a)$, the infimum and the supremum are just the minimum and the
+ maximum. Note that every finite \GM-model is witnessed.  
 A non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
 whenever the value $r$ of  $R(w,w')$ or $e(w,p)$ is not displayed, it is understood that $r$ is 0
 (e.~g., $R(w_i,w_j)=0$, for every $i\geq 1$ and $j\neq i$).  It
@@ -87,16 +98,7 @@ holds that $e(w_0,\Box p)=0$, but the witnessing condition fails since there is 
 $R(w_0,w_j) \to e(w_j,p)=0$.  Similarly, $e(w_0,\Diamond q)=1$ but there is no witness.
 % there is no $w_j\in W$ such that $R(w_0,w_j)\land e(w_j,q)=1$.
 We stress that that every finite \GM-model is witnessed.
-%
-%
-\begin{figure}[t]
-  \centering
-  \input{fig-non-witnessed-box-and-diamond.tex}
-  \caption{A non-witnessed \GM-model $\M=\stru{W,R,e}$.}  
-  \label{fig:nonWitn}
-\end{figure}
-%
-%
+
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
 valid in $\M$, we say that $\M$ is a \emph{countermodel} for
@@ -132,6 +134,15 @@ In~\cite{CaiRod2015} it is proved that $\GKL$ is the set of formulas
 valid in every \GM-model.  We introduce some logics extending $\GKL$,
 by providing a semantic characterization (see Fig.~\ref{fig:diagram}
 for an overview):
+
+\begin{figure}[t]
+  \centering
+  \input{fig-GWC-logics-diagram.tex}
+   \caption{Logics overview.}
+  \label{fig:diagram}
+\end{figure}
+
+
 
 \begin{itemize}
 \item $\GCL$ is the set of formulas valid in every crisp \GM-model
@@ -178,74 +189,67 @@ extended to all the other modal logics mentioned in Fig.~\ref{fig:diagram}.
 
 
 
-\begin{figure}[t]
-  \centering
-  \input{fig-GWC-logics-diagram.tex}
-   \caption{Logics overview.}
-  \label{fig:diagram}
-\end{figure}
-
 
 \begin{figure}[t]
   \centering
-\[\small
+  \[\small
   \begin{array}{c}
     \begin{minipage}{10em}
-    \begin{tikzpicture}[scale=0.8]
-      % WORLDS  
-      % w0
-      \draw[fill] (0,0) circle (3pt)
-      +(0,-0)   node (w0)  {}  % used to label the circle 
-      +(0,-0.3) node  {$w_0$}
-      ;
-      
-      % w1 
-      \draw[fill]  (0,1.5) circle (3pt)
-      +(0,0)   node (w1)  {}  % used to label the circle 
-      +(-0.6,0)  node  {$w_1$} 
-      +(1.2,0.2) node  {$p=0.5$}
-      +(1.2,-0.2) node  {$q=0.6$}
-      ;
-      
-
-      % ARROWS
-      \draw[->] (w0) -- (w1) node[above left=-1.4] {0.6} ;
-    \end{tikzpicture}
-  \end{minipage}
-  \begin{minipage}{20em}
-    \[\small
-    \begin{array}{l}
-      % -----------------------------------------      
-      \fcolorbox{black}{gray!10}{
-        \begin{minipage}{15em}\small
-          $W=\{\,w_0,\,\,w_1\,\}$
-          \\[.5ex]
-          $R(w_0,w_0)=0, \;R(w_0,w_1) = 0.6$
-          \\[.5ex]
-         $e(w_0,p) = e(w_0,q)=0$  
- \\[.5ex]
-          $e(w_1,p) = 0.5,\; e(w_1,q)=0.6$
-        \end{minipage}
-      } % end box    
-      % -----------------------------------------  
-    \end{array}
-\]
-  \end{minipage} 
-\\[10ex]
+      \begin{tikzpicture}[scale=0.8]
+        % WORLDS  
+        % w0
+        \draw[fill] (0,0) circle (3pt)
+        +(0,-0)   node (w0)  {}  % used to label the circle 
+        +(0,-0.3) node  {$w_0$}
+        ;
+        
+        % w1 
+        \draw[fill]  (0,1.5) circle (3pt)
+        +(0,0)   node (w1)  {}  % used to label the circle 
+        +(-0.6,0)  node  {$w_1$} 
+        +(1.2,0.2) node  {$p=0.5$}
+        +(1.2,-0.2) node  {$q=0.6$}
+        ;
+        
+        
+        % ARROWS
+        \draw[->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
+      \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{20em}
+      \[\small
+      \begin{array}{l}
+        % -----------------------------------------      
+        \fcolorbox{black}{gray!10}{
+          \begin{minipage}{15em}\small
+            $W=\{\,w_0,\,\,w_1\,\}$
+            \\[.5ex]
+            $R(w_0,w_0)=0, \;R(w_0,w_1) = 0.6$
+            \\[.5ex]
+            $e(w_0,p) = e(w_0,q)=0$  
+            \\[.5ex]
+            $e(w_1,p) = 0.5,\; e(w_1,q)=0.6$
+          \end{minipage}
+        } % end box    
+        % -----------------------------------------  
+      \end{array}
+      \]
+    \end{minipage} 
+    \\[10ex]
     \begin{array}{rcl}
       e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-\inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
-    \\[0.5ex]
-    e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
-
-              \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
-\\[0.5ex]
-    e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-\sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
-\\[2ex]
+      \inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
+      \\[0.5ex]
+      e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+      
+      \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
+      \\[0.5ex]
+      e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+      \sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
+      \\[2ex]
       e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
-\end{array}
     \end{array}
+  \end{array}
   \]
   
   \caption{A countermodel for the formula $\varphi=\Box (p\lor q)\to

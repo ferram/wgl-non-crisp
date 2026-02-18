@@ -105,9 +105,10 @@
         (\dag)\quad p\in\PV\cup\{\bot\},\;  \b\not\in\PV\cup\{\bot\},\;\mbox{$q$ is a new propositional variable}
         \end{array}
        \]
-    \end{minipage}   
+     \end{minipage}   
   \end{array}
   \]
+  \vspace{-2ex}
  \caption{The calculus $\Calcw$, propositional rules ($\Gamma$ is a multiset of constraints).}
   \label{fig:calc1}
 \end{figure}
@@ -146,7 +147,7 @@
        \end{array}
        \]
      \end{minipage}
-     \\[8ex]
+     \\[6ex]
     %% R AND GT 
     \AXC{$R(w,w') \gt t,\, w': \a\gt t,\,  \G$}    
     % ------------------------------------------    
@@ -205,6 +206,7 @@
     %% (\dag)\quad p\in\PV\cup\{\bot\},\;  \a\not\in\PV\cup\{\bot\},\;\mbox{$q$ is a new propositional variable}
   \end{array}
   \]
+  \vspace{-2ex}
   \caption{The calculus $\Calcw$: modal rules and $R$-rules ($\Gamma$ is a multiset of constraints).}
   \label{fig:calc2}
 \end{figure}
@@ -699,16 +701,9 @@ $\Bcal=\stru{\G_0,\dots,\G_n}$ is saturated and $\s$ be a solution to
 $\Atmp{\G_n}$, then $\Mod{\Atmp{\G_n},\s}$ is a countermodel for
 $\G_0$.
 
-
-\begin{example}\label{ex:satBrancj}
-  Let $\varphi=\Box(p\lor q) \to (\Box p\lor \Diam q)$ be an instance
-  of $(Cr)$.  The tree shown below corresponds to a saturated branch
-  $\Bcal=\stru{\G_0,\dots,\G_7}$, where $\G_0=\{w_0:\varphi < 1\}$ is
-  the root and $\G_7$ is the top multiset.  When the applied rule has
-  two premises, the annotation $(l)$ (left) or $(r)$ (right) specifies
-  the selected one; in every rule application, the main constraint is
-  underlined.
-  \[\small
+\begin{figure}[t]
+  \centering
+    \[\small
   \begin{array}{l}
     % Gamma_7
     \AXC{$w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
@@ -746,6 +741,21 @@ $\G_0$.
     c = w_0:q_0\qquad\D\;=\;\{\,     w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
   \end{array}
   \]  
+  \vspace{-2ex}
+  \caption{A saturated branch.}
+  \label{fig:saturatedbranch}
+\end{figure}
+
+
+\begin{example}\label{ex:satBrancj}
+  Let $\varphi=\Box(p\lor q) \to (\Box p\lor \Diam q)$ be an instance
+  of $(Cr)$.  The tree shown in Fig.\ref{fig:saturatedbranch}
+  corresponds to a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$,
+  where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ is the top
+  multiset.  When the applied rule has two premises, the annotation
+  $(l)$ (left) or $(r)$ (right) specifies the selected one; in every
+  rule application, the main constraint is underlined.
+
   The set $\Atmp{\G_7}$ consists of the following atomic constraints:
   \[\small
   w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\; w_1 : q \geq R(w_0,w_1),\;

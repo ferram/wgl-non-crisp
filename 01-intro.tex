@@ -1,19 +1,4 @@
-\begin{abstract}
-  We introduce $\GWL$, a G\"odel modal logic based on Kripke models in
-  which the value of a modal formula is witnessed by an accessible
-  world. This witnessed semantics eliminates the limit-based phenomena
-  that preclude the finite model property in the usual Kripke
-  semantics for G\"odel modal logics, thereby yielding a more
-  constructive semantic framework. We present a sound and complete
-  refutation calculus $\Calcw$ for $\GWL$ and design a terminating
-  backward proof-search procedure with countermodel generation. As a
-  direct consequence of this procedure, $\GWL$ enjoys the finite model
-  property.
-\end{abstract}
 
-
-
-\newcommand{\tr}[1]{{\color{red} #1}}
 \section{Introduction}\label{sec:intro}
 
 G\"odel modal logics, $\GKL$s, provide a natural framework for reasoning
@@ -105,22 +90,22 @@ paving the way for effective automated reasoning procedures.
 
 According to the above considerations, in this paper we introduce the
 logic $\GWL$, which is semantically characterized by \emph{witnessed}
-G"odel Kripke models, a restriction of $\GM$-models in which the value
-of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$ coincides
-with (and is thus witnessed by) the value of $\a$ at some world
-accessible from $w$.
-
-We then introduce a refutation calculus $\Calcw$ for $\GWL$ and
-establish its soundness and completeness with respect to witnessed
-models. On the basis of $\Calcw$, we design a terminating decision
-procedure with countermodel generation, based on a standard backward
-proof-search strategy. As a direct consequence of this decision
-procedure, $\GWL$ enjoys the finite model property, since every
-non-provable formula admits a finite countermodel effectively
-extracted from a failed derivation.
-
-Finally, we provide an implementation of the procedure, called
-\texttt{gwref} (available at~\cite{gwrefProver}).
+G\"odel Kripke models, a restriction of $\GM$-models in which the
+value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
+coincides with (and is thus witnessed by) the value of $\a$ at some
+world accessible from $w$.  We then introduce a refutation calculus
+$\Calcw$ for $\GWL$ and establish its soundness and completeness with
+respect to witnessed models. On the basis of $\Calcw$, we design a
+terminating decision procedure with countermodel generation, based on
+a standard backward proof-search strategy. As a direct consequence of
+this decision procedure, $\GWL$ enjoys the finite model property,
+since every non-provable formula admits a finite countermodel
+effectively extracted from a failed derivation.  Finally, we provide
+an implementation of the procedure, called \texttt{gwref} (available
+at~\cite{gwrefProver}). We reamrk that our calculus is inspired to the
+one presented in \cite{FerFioRod:2025} for $\GWCL$, the crisp variant
+of $\GWL$, which, in turn, is inspired by the tableau calculus
+presented in~\cite{BilkovaFK:22} for a logics extending $\GWCL$.
 
 %%, in the Java framework JTabWb~\cite{FerrariFF:17a}. 
 %%For the omitted proofs, we refer the reader to the appendix available
