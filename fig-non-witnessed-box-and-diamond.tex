@@ -11,10 +11,11 @@
       \draw[fill]  (-5,1) circle (3pt)
       +(0,0)   node (w1)  {}  % used to label the circle 
       +(-0.6,0)  node  {\medfont $w_1$} 
-      +(0,0.9) node  {
+      +(0,1.2) node  {
         $\begin{array}{l}
           p=\frac{1}{2}\\[.5ex]
-          q=\frac{1}{2}
+          q=\frac{1}{2}\\[.5ex]
+          \neg \neg p =1
         \end{array}$
       }
       ;
@@ -23,10 +24,11 @@
       \draw[fill] (-2,1) circle (3pt)
       +(0,0)   node (w2)  {}  % used to label the circle 
       +(-0.6,0) node{$w_2$}
-      +(0,0.9) node{
+      +(0,1.2) node{
         $\begin{array}{l}
           p=\frac{1}{3}\\[.5ex]
-          q=\frac{2}{3}
+          q=\frac{2}{3}\\[.5ex]
+          \neg \neg p =1
         \end{array}$
       }
       ;
@@ -35,10 +37,11 @@
       \draw[fill] (1,1) circle (3pt)
       +(0,0)   node (w3)  {}  % used to label the circle 
       +(-0.6,0) node{$w_3$}
-      +(0,0.9) node{
+      +(0,1.2) node{
         $\begin{array}{l}
           p=\frac{1}{4}\\[.5ex]
-          q=\frac{3}{4}
+          q=\frac{3}{4}\\[.5ex]
+          \neg \neg p =1
         \end{array}$
       }
       ;
@@ -72,13 +75,17 @@
   $\small e(w_0,\Box p) \;=\; \inf_{j\geq 0}\{\, R(w_0,w_j)\to
   e(w_j,p) \,\} \;=\; \inf\{\; \overbrace{0\to 0}^1,\;\overbrace{1 \to
     (1/2)}^{1/2}, \; \overbrace{1 \to (1/3)}^{1/3}, \; \overbrace{1
-    \to (1/4)}^{1/4}, \,\dots \;\}\;=\;0 $\\[1ex]
+    \to (1/4)}^{1/4}, \,\dots \;\}\;=\;0 $
+  \\[1ex]
   %%%%%%%%%
   $\small e(w_0,\Diamond q) \;=\; \sup_{j\geq 0}\{\, R(w_0,w_j)\land
   e(w_j,q) \,\} \;=\; \sup\{\; \overbrace{0\land 0}^0,\;\overbrace{1 \land
     (1/2)}^{1/2}, \; \overbrace{1 \land (2/3)}^{2/3}, \; \overbrace{1
-    \land (3/4)}^{3/4}, \,\dots \;\}\;=\;1 $\\[1ex]
-
+    \land (3/4)}^{3/4}, \,\dots \;\}\;=\;1 $
+  \\[1.5ex]
+  %%%%%%%%%
+  $e(w_j,\neg \neg p) = 1,\; \forall j\geq 1\quad e(w_0,\Box\neg\neg p) =1  \quad e(w_0,\neg\neg \Box p) =0 \quad
+e(w_0,\ \Box\neg\neg p\to  \neg\neg \Box p) =0 $
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "goedelModalLogicWitnessNonCrisp"
