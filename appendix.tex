@@ -175,8 +175,24 @@ The proof for  $\Diam$ is similar.
 \end{figure}
   
 
+
+
+
 \subsection{Proofs}\label{app:proofs}
 
+To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
+\begin{itemize}
+\item Let $\M=\stru{W,R,e}$ be a $\GWM$-model, $w\in W$, $p\in\PV$ and
+  $r\in[0,1]$, we denote with $e[(w,p):=r]$ the evaluation function
+  $e'$ such that: $e'(w,p)=r$ and $e'(x,q)=e(x,q)$ for every pair
+  $(x,q)\in W\times\PV$ such that $(x,q)\neq(w,p)$.
+
+\item  Let $\Ical$ be an $\M$-interpretation, let $w$ be a label of $\LC$
+  and $w^\star$ a world of $\M$.  By $\reass{\Ical}{w}{w^\star}$ we
+  denote the $\M$-interpretation $\Ical'$ such that $\Ical'(w) =
+  w^\star$ and $\Ical'(x)= \Ical(x)$ for every $x\in \LC$ such that $x
+  \neq w$.
+\end{itemize}
 
 
 \begin{lemmaref}{\ref{lemma:soundRule}}
@@ -187,44 +203,50 @@ The proof for  $\Diam$ is similar.
 \end{lemmaref}
 
 \begin{proof}
-\inlinetodo{** OLD PROOF **} 
+  \todo{SISTEMARE}
+  Let $\G$ be the conclusion of rule $\rho$ of $\Calcw$ and let us
+  assume $\M\models_\Ical\G$, where $\M=\stru{W,R,e}$; we show that
+  there exist a premise $\G'$ of $\rho$, a $\GWM$-model
+  $\M'=\stru{W',R',e'}$ and an $\M'$-interpretation $\Ical'$ such that
+  $\M'\models_{\Ical'}\G'$.
 
-\smallskip
-Let $\G$ be the conclusion of rule $\rho$ of $\Calcw$ and let us assume
-$\M\models_\Ical\G$, where $\M=\stru{W,R,e}$; we show that there
-exists a premise $\G'$ of $\rho$ and an $\M$-interpretation $\Ical'$
-such that $\M\models_{\Ical'}\G'$.
+  %%We denote $e[(w,p):=r]$, the assignment where $w\in\W'$, $p$ is a propositional variable
+  %%and $r\in[0,1]_Q$
+  
+  The case $\rho=\ruleAxat$ has already been discussed in the paper.
+  If $\rho$ is one of the rules $\land\lt$, $\land\gt$, $\lor\lt$,
+  $\lor\gt$, the assertion easily follows.
+  
+  Let $\rho$ be application of $\to <\;(\dag)$, where $\b\not\in \Vcal\cup{\bot}$:
+  \[\small
+  %% IMP LTS 
+  \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G_0}^{\G_1}$}    
+  % ------------------------------------------    
+  \RightLabel{$\to <$}
+  \UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
+  \DP
+  \]
+  By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
+  and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
+  \b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
+  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b
+  < t$. Note that $q$ is a fresh propositional variable.
+  
+  Now let $\M'=\stru{W,R,e'}$ be the model where  
+  
 
-%If $\rho$ is an axiom rule, the assertion trivially holds since there
-%is no $\M$-interpretation $\Ical$ such that $\M\models_\Ical\G$.  
-The case $\rho=\ruleAxat$ has already been discussed in the paper.
-If $\rho$ is one of the rules $\land\lt$, $\land\gt$, $\lor\lt$,
-$\lor\gt$, the assertion easily follows.
-
-Let us consider the application
-\[
-%% IMP LTS 
-    \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G_0}^{\G_1}$}    
-    % ------------------------------------------    
-    \RightLabel{$\to < \;(\dag)$}
-    \UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
-    \DP
-\]
-By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
-and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
-\b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
-$e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b <
-t$. Let us remark that $\b\not\in \Vcal\cup{\bot}$ and that $q$ is a fresh propositional variable.  Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and let, for
-every constraint $\chi$ not containing $q$, $\M\models_\Ical \chi$ iff
-$\M\models_{\Ical'} \chi$.  Since $\M\models_{\Ical} \G_0$ and $b$
-does not occur in $\G_0$, we get $\M\models_{\Ical'} \G_0$.  It is
-easy to check that $\M\models_{\Ical'} w :\b \leq w:q$ and
-$\M\models_{\Ical'} w :\a > w:q$ and $\M\models_{\Ical'} w:q < t$, hence
-$\M\models_{\Ical'} \G_1$.
-
-Let us consider the application
-\[
-%% IMP LTE 
+  Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and
+  let, for every constraint $\chi$ not containing $q$,
+  $\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$.  Since
+  $\M\models_{\Ical} \G_0$ and $b$ does not occur in $\G_0$, we get
+  $\M\models_{\Ical'} \G_0$.  It is easy to check that
+  $\M\models_{\Ical'} w :\b \leq w:q$ and $\M\models_{\Ical'} w :\a >
+  w:q$ and $\M\models_{\Ical'} w:q < t$, hence $\M\models_{\Ical'}
+  \G_1$.
+  
+  Let us consider the application
+  \[
+  %% IMP LTE 
 \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
 \AXC{$\overbrace{w :\b \leq w:q,\,  w :\a > w:q,\,  w:q \leq  t,\,\G_0}^{\G_2}$}    
 % ------------------------------------------    
