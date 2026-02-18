@@ -1,4 +1,5 @@
 .DS_Store
+*.pag
 *.log
 *.aux
 *.blg
