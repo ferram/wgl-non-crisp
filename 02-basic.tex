@@ -31,14 +31,21 @@ If $R : W\times W\to \{0,1\}$, we say that $\M$ is \emph{crisp};
 in this case,  $R \subseteq W\times W$. 
 %We write $w_1 R w_2$ to mean that $(w_1,w_2)\in R$;
 The map $e$ is extended to arbitrary formulas as follows:
-\begin{itemize}
-\item $e(w,\bot) = 0$;
-\item $e(w,\a \star \b) = e(w,\a) \star e(w,\b)$, for $\star\in \{\,\land,\,\lor,\,\to\,\}$;
-\item $e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}$;
-\item $e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}$.
-\end{itemize}
-
-
+\[
+  \begin{array}{ll}
+e(w,\bot) = 0 & e(w,\a \star \b) = e(w,\a) \star e(w,\b),\;\star\in \{\,\land,\,\lor,\,\to\,\}
+\\[1ex]
+ e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}   \qquad
+ &
+ e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}.               
+  \end{array}
+\]  
+% \begin{itemize}
+% \item $e(w,\bot) = 0$;
+% \item $e(w,\a \star \b) = e(w,\a) \star e(w,\b)$, for $\star\in \{\,\land,\,\lor,\,\to\,\}$;
+% \item $e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}$;
+% \item $e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}$.
+% \end{itemize}
 \noindent
 Note that:
 \[
@@ -58,9 +65,9 @@ Note that:
 \]
 \noindent
 A world $w'$ is an $R$-successor of $w$ iff $R(w, w')>0$. If $w$ has
-no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$, since
-$R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land e(w',\a) = 0$ for every
-$w'\in W$.  A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and is
+no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$ since,
+ for every $w'\in W$, $R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land e(w',\a) = 0$.
+A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and is
 called a \emph{\GWM-model}, if the values of $e(w,\Box\a)$ and
 $e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
 \begin{itemize}
@@ -69,30 +76,27 @@ $e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
 
  \item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
    $R(w,w')\land e(w'\a) = r$.
-  
-\end{itemize}
+ \end{itemize}
 As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
-\a)$, the infimum and the superior are just the minimum and the
+\a)$, the infimum and the supremum are just the minimum and the
 maximum. Note that every finite \GM-model is witnessed.  
-
-A non-witnessed model is shown in Fig.~\ref{fig:nonWitn}; in the
-definition of $R$ and $e$ only the non-zero values are displayed.  It
-holds that $e(w_0,\Box p)=0$, but there is no $w_j\in W$ such that
-$R(w_0,w_j) \to e(w_j,p)=0$.  Similarly, $e(w_0,\Diamond q)=1$ but
-there is no $w_j\in W$ such that $R(w_0,w_j)\land e(w_j,q)=1$. Note
-that every finite \GM-model is witnessed.
-
-
-
+A non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
+whenever the value $r$ of  $R(w,w')$ or $e(w,p)$ is not displayed, it is understood that $r$ is 0
+(e.~g., $R(w_i,w_j)=0$, for every $i\geq 1$ and $j\neq i$).  It
+holds that $e(w_0,\Box p)=0$, but the witnessing condition fails since there is no $w_j\in W$ such that
+$R(w_0,w_j) \to e(w_j,p)=0$.  Similarly, $e(w_0,\Diamond q)=1$ but there is no witness.
+% there is no $w_j\in W$ such that $R(w_0,w_j)\land e(w_j,q)=1$.
+We stress that that every finite \GM-model is witnessed.
+%
+%
 \begin{figure}[t]
   \centering
   \input{fig-non-witnessed-box-and-diamond.tex}
   \caption{A non-witnessed \GM-model $\M=\stru{W,R,e}$.}  
   \label{fig:nonWitn}
 \end{figure}
-
-
-
+%
+%
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
 valid in $\M$, we say that $\M$ is a \emph{countermodel} for
@@ -108,7 +112,6 @@ of rational numbers in the range $[0,1]$.
 Let $\GL$ be the G\"odel-Dummett Logic, obtained by extending
 Intuitionistic Propositional Logic $\IPL$ with the linearity axiom
 $(\a\to\b)\lor (\b\to \a)$.
-%We recall the axiomatization of $\GCL$ given in~\cite{RodriguezV:21}.
 G\"odel Modal Logic $\GKL$ is obtained by
 adding to $\GL$ the following axioms and rules ($\vdash$ refers to
 provability in $\GKL$):
@@ -146,8 +149,8 @@ $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $(Cr)$, to $\GKL$
 in~\cite{FerFioRod:2025} and no axiomatization is known.  By
 definition, $\GKL\subseteq\GCL\subseteq\GWCL$ and
 $\GKL\subseteq\GWL\subseteq\GWCL$; we show that all the inclusions are
-strict.  Let $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$ and
-let $\M=\stru{W,R,e}$ be the $\GWM$-model in Fig.~\ref{fig:countGW}.
+strict.  Let us consider the instance $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$
+of $(Cr)$ and let $\M=\stru{W,R,e}$ be the $\GWM$-model in Fig.~\ref{fig:countGW}.
 Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$,
 and this certifies that $\varphi\not\in\GWL$; accordingly, axiom
 $(Cr)$ is not valid in $\GWL$.  Let $(Wt)$ be the formula schema $\Box
@@ -160,17 +163,18 @@ $R(w,w') \to e(w',\a) = 0$; it follows that $e(w',\a)=0$, hence
 $e(w',\neg \neg \a)=0$.  This implies $e(w, \Box\neg \neg \a)=0$,
 hence $e(w, (Wt)) = 1$. This proves that $(Wt)$ is valid in $\GWL$.  Since
 every finite model is witnessed, a countermodel for $(Wt)$ must be
-infinite.  One can check that the formula $\varphi=\Box \neg\neg p\to
-\neg\neg \Box p$ is not valid in the infinite $\GM$-model $\M$ in
-Fig.~\ref{fig:nonWitn}, since $e(w_0,\varphi) = 0$ (see,
-e.g.,~\cite{FerFioRod:2025}).  We point out that $\M$ is crisp,
-accordingly $(Wt)$ is not valid in $\GCL$; this also ascertains that
+infinite. 
+The instance $\psi=\Box \neg\neg p\to \neg\neg \Box p$
+of $(Wt)$ is not valid in  the infinite $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn}; indeed,
+ $e(w_0,\Box\neg\neg p) = 1$ and $e(w_0,\neg\neg \Box p) = 0$, hence   $e(w_0,\psi) = 0$
+ (see, e.g.,~\cite{FerFioRod:2025}). 
+Since the countermodel $\M$ is crisp,  $(Wt)$ is not valid in $\GCL$; this also ascertains that
 $\GCL$ and $\GKL$ do not have the finite model property.
 
-Finally, we stress that, in all the mentioned modal logics, $\Box$ and
+Finally, we remark that, in all the mentioned modal logics, $\Box$ and
 $\Diam$ are not interdefinable.  This is proved for $\GCL$
 in~\cite{RodriguezV:21}; in App.~\ref{app:noninterdBD} the proof is
-extended to all the other modal logics mentioned above.
+extended to all the other modal logics mentioned in Fig.~\ref{fig:diagram}.
 
 
 
