@@ -1,0 +1,123 @@
+\documentclass[10pt]{article}
+\usepackage{amssymb}
+\usepackage{xifthen}
+
+%% Change  the parameter of \pdfpagewidth  to enlarge page width  (e.g., \pdfpagewidth 200in )
+\pdfpagewidth 200in
+\pdfpageheight 20in
+
+\pagestyle{empty}
+\usepackage{proof}
+\newcommand{\gt}{\rhd}
+\newcommand{\lt}{\lhd}
+
+\par
+
+
+\begin{document}
+\thispagestyle{empty}
+\[
+\infer[\to<]{
+w_0: \Box  \neg  \neg p \to  \neg  \neg  \Box p  < 1\mbox{$_{(0)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_0: \neg  \neg  \Box p \leq w_0:q_{0}\mbox{$_{(1)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(2)}$}}{
+}
+&
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_0: \neg  \Box p > w_0:\bot\mbox{$_{(3)}$}}{
+\infer[\Box\lt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0: \Box p \leq w_0:q_{1}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(4)}$}}{
+\infer[R\to \leq]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0: \Box  \neg  \neg p > w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:p \leq w_0:q_{1}, R(w_{0} ,w_{1})\to w_1: \neg  \neg p > w_0:q_{0}\mbox{$_{(5)}$}}{
+\infer[R\to \gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}, R(w_{0} ,w_{1})\to w_1: \neg  \neg p > w_0:q_{0}\mbox{$_{(6)}$}}{
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, 1 > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg  \neg p \geq R(w_{0} ,w_{1})\mbox{$_{(7)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{2}, 1 \geq R(w_{0} ,w_{1}), w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg p \leq w_1:q_{2}\mbox{$_{(8)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{2}, 1 \geq R(w_{0} ,w_{1}), w_1:q_{2} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(9)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{2}, 1 \geq R(w_{0} ,w_{1}), w_1:p > w_1:\bot, w_1:\bot \leq w_1:q_{2}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(10)}$}}{
+}
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, 1 > w_0:q_{0}, w_1:\bot \geq R(w_{0} ,w_{1}), w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(11)}$}}{
+}
+}
+&
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg  \neg p > w_0:q_{0}\mbox{$_{(12)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_1:\bot \geq w_1:q_{3}, 1 > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg p \leq w_1:q_{3}\mbox{$_{(13)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_1:\bot \geq w_1:q_{3}, 1 > w_0:q_{0}, w_1:q_{3} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(14)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_1:\bot \geq w_1:q_{3}, 1 > w_0:q_{0}, w_1:p > w_1:\bot, w_1:\bot \leq w_1:q_{3}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(15)}$}}{
+}
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_0:q_{1} \geq 1, w_1:\bot > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(16)}$}}{
+}
+}
+}
+&
+\infer[R\to \gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_0: \Box  \neg  \neg p > w_0:q_{0}, R(w_{0} ,w_{1})\to w_1: \neg  \neg p > w_0:q_{0}\mbox{$_{(17)}$}}{
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, 1 > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg  \neg p \geq R(w_{0} ,w_{1})\mbox{$_{(18)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{4}, 1 \geq R(w_{0} ,w_{1}), w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg p \leq w_1:q_{4}\mbox{$_{(19)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{4}, 1 \geq R(w_{0} ,w_{1}), w_1:q_{4} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(20)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, 1 > w_0:q_{0}, w_1:\bot \geq w_1:q_{4}, 1 \geq R(w_{0} ,w_{1}), w_1:p > w_1:\bot, w_1:\bot \leq w_1:q_{4}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(21)}$}}{
+}
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, 1 > w_0:q_{0}, w_1:\bot \geq R(w_{0} ,w_{1}), w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(22)}$}}{
+}
+}
+&
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg  \neg p > w_0:q_{0}\mbox{$_{(23)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_1:\bot \geq w_1:q_{5}, 1 > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}, w_1: \neg p \leq w_1:q_{5}\mbox{$_{(24)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_1:\bot \geq w_1:q_{5}, 1 > w_0:q_{0}, w_1:q_{5} \geq 1, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(25)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_1:\bot \geq w_1:q_{5}, 1 > w_0:q_{0}, w_1:p > w_1:\bot, w_1:\bot \leq w_1:q_{5}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(26)}$}}{
+}
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot \geq w_0:q_{1}, 1 > w_0:\bot, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{1}, w_1:\bot > w_0:q_{0}, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(27)}$}}{
+}
+}
+}
+}
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0:\bot > w_0:\bot, w_0: \Box  \neg  \neg p > w_0:q_{0}\mbox{$_{(28)}$}}{
+}
+}
+}
+}
+\]
+\vspace{4ex}
+
+\end{document}
