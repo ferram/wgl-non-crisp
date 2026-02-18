@@ -1,0 +1,111 @@
+\documentclass[10pt]{article}
+\usepackage{amssymb}
+\usepackage{xifthen}
+
+%% Change  the parameter of \pdfpagewidth  to enlarge page width  (e.g., \pdfpagewidth 200in )
+\pdfpagewidth 200in
+\pdfpageheight 20in
+
+\pagestyle{empty}
+\usepackage{proof}
+\newcommand{\gt}{\rhd}
+\newcommand{\lt}{\lhd}
+
+\par
+
+
+\begin{document}
+\thispagestyle{empty}
+\[
+\infer[\to<]{
+w_0: \Box (p \lor q ) \to ( \Box p \lor  \Diamond q )  < 1\mbox{$_{(0)}$}}{
+\infer[\lor\lt]{
+w_0:q_{0} < 1, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Box p \lor  \Diamond q  \leq w_0:q_{0}\mbox{$_{(1)}$}}{
+\infer[\Box\lt]{
+w_0:q_{0} < 1, w_0: \Box p \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(2)}$}}{
+\infer[R\to \leq]{
+w_0:q_{0} < 1, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:p \leq w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:p \lor q  > w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(3)}$}}{
+\infer[R\to \gt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:p \lor q  > w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(4)}$}}{
+\infer[\lor\gt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, w_1:p \lor q  \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(5)}$}}{
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(6)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(7)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), w_1:q \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(8)}$}}{
+}
+}
+&
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(9)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(10)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), w_1:q \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(11)}$}}{
+}
+}
+}
+&
+\infer[\lor\gt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, w_1:p \lor q  > w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(12)}$}}{
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:p > w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(13)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:p > w_0:q_{0}, R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(14)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:p > w_0:q_{0}, w_1:q \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(15)}$}}{
+}
+}
+&
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:q > w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(16)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:q > w_0:q_{0}, R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(17)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_1:q > w_0:q_{0}, w_1:q \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(18)}$}}{
+}
+}
+}
+}
+&
+\infer[R\to \gt]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:p \lor q  > w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(19)}$}}{
+\infer[\lor\gt]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, w_1:p \lor q  \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(20)}$}}{
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(21)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(22)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:p \geq R(w_{0} ,w_{1}), w_1:q \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(23)}$}}{
+}
+}
+&
+\infer[R\land \lt]{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}, R(w_{0} ,w_{1})\land w_1:q \leq w_0:q_{0}\mbox{$_{(24)}$}}{
+w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\mbox{$_{(25)}$}}
+}
+}
+}
+}
+}
+}
+\]
+\vspace{4ex}$\sigma_{25}=$\[w_0:q_{0} < 1, w_1:p < R(w_{0} ,w_{1}), w_1:p \leq w_0:q_{0}, 1 > w_0:q_{0}, w_1:q \geq R(w_{0} ,w_{1}), R(w_{0} ,w_{1}) \leq w_0:q_{0}, w_0: \Box (p \lor q ) > w_0:q_{0}, w_0: \Diamond q \leq w_0:q_{0}\]
+\begin{verbatim}
+UPPER_BOUND=1,@w0:$q0=1/2,@w1:p=0,R(w0,w1)=1/2,@w1:q=1/2\end{verbatim}
+
+
+\end{document}
