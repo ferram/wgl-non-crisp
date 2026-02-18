@@ -215,12 +215,15 @@
 
 
 Following~\cite{BilkovaFK:22,FerFioRod:2025}, we introduce the
-refutation calculus $\Calcw$ for $\GWL$.  The constraint language $\LC$ is
+refutation calculus $\Calcw$ for $\GWL$,
+namely, a calculus to certify that a formula is not valid in any
+$\GWM$-model.
+The constraint language $\LC$ is
 defined over a countable set of labels, each representing a world of a
 \GWM-model.  In the following definitions $w$, $w'$ are labels of
 $\LC$, $\varphi$ is a formula, $p\in \PV$, $R$ is a
-designated relation symbol, representing the accessibility relation,
-and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
+designated relation symbol, representing the accessibility relation.
+%and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
 \[
 \begin{array}{rcl}
   \mbox{labelled formula} & \;\coloneqq&\; w :\varphi                            
@@ -229,7 +232,7 @@ and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
   \\[.5ex]
   \mbox{c-term $u$}  & \;\coloneqq&\; t~|~w : \varphi~|~R(w,w')\land w':\varphi~|~R(w,w')\to w':\varphi
   \\[.5ex]
-  \mbox{constraint $\chi$}   &\; \coloneqq&\; u \abstractorder t
+  \mbox{constraint $\chi$}   &\; \coloneqq&\; u \abstractorder t \qquad \abstractorder\in \{\,<,\,\leq,\,>,\,\geq\,\}
 \end{array}
 \]
 If  $w:\varphi$ occurs in   a c-term $u$, we say  that $u$ has label $w$.
@@ -245,14 +248,26 @@ $\Atm{\G}$ we denote the set of atomic constraints in $\G$.
 Let $\M=\stru{W,R,e}$ be a \GWM-model. An $\M$-interpretation of
 $\LC$ is a function $\Ical$ mapping labels of $\LC$ to $W$.
 We extend $\Ical$ to c-terms as follows:
-\begin{itemize}
-\item $\Ical(k) = k$, for $k\in\{0,1\}$;
-\item $\Ical( w:\varphi) = e(\Ical(w), \varphi)$;
-\item $\Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)$;
-\item $\Ical\left(R(w,w') \star w':\varphi\right) =
-  R\left(\Ical(w),\Ical(w')\right) \,\star\, e\left(\Ical(w'),
-    \varphi\right)$, where $\star\in\{\land, \to\}$.
- \end{itemize}
+\[
+  \begin{array}{l}
+    \Ical(k) = k,\;k\in\{0,1\}
+    \qquad
+    \Ical( w:\varphi) = e(\Ical(w), \varphi)
+    \qquad
+    \Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)
+    \\[1ex]
+    \Ical\left(R(w,w') \star w':\varphi\right) =
+   R\left(\Ical(w),\Ical(w')\right) \,\star\, e\left(\Ical(w'),\varphi\right),\;\star\in\{\land, \to\}
+  \end{array}
+\]  
+ % \begin{itemize}
+ % \item $\Ical(k) = k$, for $k\in\{0,1\}$;
+ % \item $\Ical( w:\varphi) = e(\Ical(w), \varphi)$;
+ % \item $\Ical\left(R(w,w')\right) =  R\left(\Ical(w),\Ical(w')\right)$;
+ % \item $\Ical\left(R(w,w') \star w':\varphi\right) =
+ %   R\left(\Ical(w),\Ical(w')\right) \,\star\, e\left(\Ical(w'),
+ %     \varphi\right)$, where $\star\in\{\land, \to\}$.
+ %  \end{itemize}
 Note that, for every c-term $u$, $\Ical(u)$ belongs to $[0,1]$.
  We introduce the relations
 $\models_\Ical$ and $\models$, where $\M$ is a \GWM-model, $\Ical$ an
@@ -271,15 +286,17 @@ the form $w : p$ or $R(w,w')$ to a rational number in $\Qrange$; $\s$
 is extended to all the atomic c-terms by setting $\s(k)=k$, for
 $k\in\{0,1\}$, and $\s(w:\bot)=0$.  Let $\Gat$ be a set of atomic
 constraints.  By $\s(\Gat)$ we denote the set of constraints obtained
-by replacing every atomic c-term $t$ occurring in $\Gat$ with $\s(t)$;
-note that $\s(\Gat)$ is a set of rational constraints of the form $r_1
-\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$.  Consistency
-of a set of atomic constraints is defined as follows:
-\begin{itemize}[leftmargin=*]
-\item $\Gat$ is \emph{consistent} iff there exists a substitution $\s$
-  such that all the constraints in $\s(\Gat)$ hold; we call $\s$ a
-  \emph{solution} to $\Gat$.
-\end{itemize}
+by replacing every atomic c-term $t$ occurring in $\Gat$ with $\s(t)$.
+Note that $\s(\Gat)$ is a set of rational constraints of the form $r_1
+\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$;
+if all the constraint in $\s(\Gat)$ hold, 
+$\s$ is a  \emph{solution} to $\Gat$.
+The set $\Gat$ is \emph{consistent} iff it admits at least a solution.
+% \begin{itemize}[leftmargin=*]
+% \item $\Gat$ is \emph{consistent} iff there exists a substitution $\s$
+%   such that all the constraints in $\s(\Gat)$ hold; we call $\s$ a
+%   \emph{solution} to $\Gat$.
+% \end{itemize}
 We remark that consistency of $\Gat$ can be checked by a Constraint
 Solver over $Q$: one has to abstract  the c-terms $w : p$ and $R(w,w')$ occurring in $\Gat$
 by introducing new variables ranging over
@@ -320,16 +337,11 @@ $w_1$.  $R$-rules (see Fig.~\ref{fig:calc2}) are similar to the
 corresponding propositional rules.  The definitions of \emph{tree} and
 \emph{derivation} of $\Calcw$ are the usual ones (see,
 e.g.,~\cite{TroSch:00}).
-
-
-\inlinetodo{ We remark that $\Calcw$ has the \emph{subformula
-    property}, namely: if $\Tcal$ is a tree having $\G_0$ as
+We remark that $\Calcw$ has the \emph{subformula
+    property}, namely: if $\Tcal$ is a tree of $\Calcw$ having $\G_0$ as
   root, every formula occurring in $\Tcal$ inside a constraint (e.g.,
   the formula $\varphi$ in the constraint $R(w,w')\to w':\varphi$) is
   a subformula of a formula in $\G_0$ or a new propositional variable.
-} 
-
-\noindent
 By $\provesw{\Gamma}$ we mean that there exists a derivation of
 $\Gamma$.  In the rest of this section we show that $\Calcw$ is a
 sound and complete refutation calculus for $\GWL$, where soundness and
@@ -339,16 +351,18 @@ completeness are formalized as follows:
 \item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for every  \GWM-model $\M$;
 \item (Completeness) if $\M\not\models\G$, for every \GWM-model  $\M$, then $\provesw{\Gamma}$.
 \end{itemize}
-We stress that in rule $\ruleAxat$ it is not enough to check the
-consistency of $\Atm{\G}$.
-Indeed, let us consider the set of constraints $\G=\{w : \Box p > w:p,\,w:p\leq 1,\,w:p\geq 1\}$.
+We stress that, if   rule $\ruleAxat$   checked the
+consistency of $\Atm{\G}$ instead of  $\Atmp{\G}$, the calculus $\Calcw$ would  not be complete.
+Indeed, let  $\G=\{w : \Box p > w:p,\,w:p\leq 1,\,w:p\geq 1\}$.
 Clearly, there is no  \GWM-model   $\M$  such that
 $\M\models \G$ hence,  by completeness,  $\G$ must  be  provable in $\Calcw$.
-The only possible way to prove $\G$ is by an application of rule $\ruleAxat$.
-If $\ruleAxat$  checked the consistency of  $\Atm{\G}$, 
- $\G$ would not be  proved, since  $\Atm{\G}=\{w:p\leq 1,\,w:p\geq 1 \}$  is  consistent.
-Instead,  $\ruleAxat$ evaluates  $\Atmp{\G} =\Atm{\G}\cup \{1 > w:p\}$;
-since $\Atmp{\G}$ is not consistent,  $\G$ is proved by $\ruleAxat$.
+To build a derivation of $\G$,  one can only exploit  rule $\ruleAxat$.
+Note that $\Atm{\G}=\{w:p\leq 1,\,w:p\geq 1 \}$
+is  consistent (any substitution $\s$ such that $\s(w:p)=1$ is a solution);
+thus, if $\ruleAxat$  checked the consistency of  $\Atm{\G}$,
+   $\G$ could not be proved.
+Instead, $\G$ is proved  since $\ruleAxat$   evaluates
+the set $\Atmp{\G} =\Atm{\G}\cup \{1 > w:p\}$, which  is not consistent.
 % However, there is no  \GWM-model   $\M=\stru{W,R,e}$  and $\Ical$ such
 % that $\M\models_\Ical \G$, since $e(\Ical(w), \Box \a) \leq 1$.
 % In $\Calcw$,  $\G$ is provable in $\Calcw$ since rule
@@ -368,7 +382,7 @@ since $\Atmp{\G}$ is not consistent,  $\G$ is proved by $\ruleAxat$.
 
 
 \bigskip 
-\inlinetodo{**TO DO**
+\inlinetodo{**TO DO???**
 An example of derivation is shown in Fig.~\ref{fig:der}.  
 In representing derivations, we underline the main constraint of a rule
 application; moreover, we omit redundant constraints (e.g.,
@@ -512,7 +526,7 @@ rules of $\Calcw$ upwards, proof search eventually halts, no matter
 which strategy is used.
 
 
-The weigth $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
+The weight $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
 of constraints $\G$, and the size $\size{\varphi}$ of a formula
 $\varphi$ are defined as follows:
 \begin{center}
@@ -569,17 +583,16 @@ $\varphi$ are defined as follows:
 % \]
 
 \noindent
-The multisets $\G[w]$ (a multiset of constraints) and $\sizem{\G}$ (a
-multiset of natural numbers) are defined as follows:
+Let $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers) be defined as follows:
 \[
 \G[w] \,=\,\{\,
 u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
-\,\}
+\,\} 
 \qquad
 \sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
 \]
-Let $\Theta_1$ and $\Theta_2$ be finite multisets of natural numbers;
-we set:% \\[.5ex]
+Given the finite multisets of natural numbers
+$\Theta_1$ and $\Theta_2$,  we set:% \\[.5ex]
 \[
 \Theta_1 \precm \Theta_2
 % \qquad\IFF\qquad
@@ -591,34 +604,39 @@ we set:% \\[.5ex]
 \]  
 The relation $\precm$ is a multiset order, hence $\precm$ is
 well-founded (see~\cite{BaaderN:98}, Th.~2.5.5 and Lemma 2.5.6).
-We introduce the following well-founded relation $\precc$ between finite multisets
-of constraints:
-\[
-\G_1 \precc \G_2 \quad\mbox{iff}\quad \sizem{\G_1} \precm\sizem{\G_2}. 
-\]  
+Given the multisets of constraints $\G_1$ and $\G_2$,
+we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$. 
+% We introduce the following well-founded relation $\precc$ between finite multisets
+% of constraints:
+% \[
+% \G_1 \precc \G_2 \quad\mbox{iff}\quad \sizem{\G_1} \precm\sizem{\G_2}. 
+% \]  
+% We can prove (see App.~\ref{app:proofs}):
 
-We can prove (see App.~\ref{app:proofs}):
+% \begin{lemma}\label{lemma:rulesDec}
+%   Let $\rho$ be an application of a rule of the calculus $\Calcw$, let
+%   $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
+%   Then,  $\G'\precc \G$.
+% \end{lemma}
 
-\begin{lemma}\label{lemma:rulesDec}
-  Let $\rho$ be an application of a rule of the calculus $\Calcw$, let
-  $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
-  Then,  $\G'\precc \G$.
-\end{lemma}
 
-Since $\precc$ is well-founded, strong termination of $\Calcw$ follows
-from Lemma~\ref{lemma:rulesDec}:
+
 
 \begin{proposition}\label{prop:term}
     The calculus $\Calcw$ is strongly terminating.
 \end{proposition}
-
+\begin{proof}
+The relation $\precm$ is well-founded and can be used to instantiate  $\prec$
+in the definition of strong termination
+(see Lemma~\ref{lemma:rulesDec} in the Appendix). 
+\end{proof}
 
 Accordingly, any backward proof search
 strategy for $\Calcw$ terminates.
 Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus on strategies
 where failure is certified by countermodels, i.e.: if proof search
 for a multiset of constraints $\G$ fails, a \GWM-model $\M$ such that
-$\M\models \G$ can be built; we call $\M$ a countermodel for $\G$,
+$\M\models \G$ can be built; we call $\M$ a \emph{countermodel} for $\G$,
 since $\M$ ascertains that $\G$ is not provable in $\Calcw$ (by
 its soundness).
 Let $\G$ be a multiset of constraints:
@@ -678,7 +696,7 @@ $\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
 
 In Lemma~\ref{lemma:count} we show that if
 $\Bcal=\stru{\G_0,\dots,\G_n}$ is saturated and $\s$ be a solution to
-$\Atmp{\G_n}$, then $\M=\Mod{\Atmp{\G_n},\s}$ is a countermodel for
+$\Atmp{\G_n}$, then $\Mod{\Atmp{\G_n},\s}$ is a countermodel for
 $\G_0$.
 
 
@@ -743,7 +761,10 @@ $\G_0$.
   For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_7},\s}$
   satisfies $\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is a
   canonical $\M$-interpretation, hence $\M$ is a countermodel for
-  $\varphi$, witnessing that $\varphi\not\in\GWL$.  A solution
+  $\varphi$, witnessing that $\varphi\not\in\GWL$.
+  Note that the worlds of $\M$ are $w_0$ and $w_1$ and,
+  as expected, $\M$ is not crisp, since $0 < \sigma(R(w_0,w_1)) < 1$.
+    A solution
   $\s^\star$ is obtained by setting $\sigma^\star(w_1:p) = 0.5$ and
   $\sigma^\star(R(w_0,w_1))= \sigma^\star(c) = \sigma^\star(w_1:q) =
   0.6$.  The model $\Mod{\Atmp{\G_7},\s^\star}$ is essentially the
@@ -757,7 +778,7 @@ $\G_0$.
 \begin{lemma}\label{lemma:count}
   Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch and $\s$ a
   solution to $\Atmp{\G_n}$.  Let $\M=\Mod{\Atmp{\G_n},\s}$, $\Ical$ a
-  canonical $\M$-interpretation of $\M$ and $\chi\in
+  canonical $\M$-interpretation  and $\chi\in
   \bigcup_{k\in\{0,\dots,n\}}\G_k$.  Then, $\M\models_\Ical \chi$.
 \end{lemma}
 
@@ -808,7 +829,7 @@ $\G_0$.
    $\{\,w:\a > w : q,\, w:\b \leq w : q,\,w: q < t\,\} \subseteq \G_{k+1}$. 
  \end{enumerate}
  By the induction hypothesis,
- for every constraint $\chi'$  in~\ref{lemma:count:impless:1},
+ for every constraint $\chi'$  displayed in~\ref{lemma:count:impless:1},
  $\M\models_\Ical \chi'$, hence:
  \[
  e(w,\a) > e(w,q) \qquad e(w,\b) \leq e(w,q) \qquad e(w,q) < \Ical(t)
@@ -896,7 +917,7 @@ $\G_0$.
  case $\chi= w:\Diam\a\gt t$ is similar.
 
  %%%%%%%%%%%%%%%%%%%%%%% BOX GT 
- It remains to consider the case where $\wg{\chi}>0$ and $\chi\in
+ It remains to consider the cases where $\wg{\chi}>0$ and $\chi\in
  \G_n$, thus $\chi= w:\Box\a\gt t$ or $\chi= w:\Diam\a\lt t$.  Let
  $\chi= w:\Box\a\gt t$; we show that:
 
@@ -927,8 +948,8 @@ $\G_0$.
  $\rho$, we get $\Phibd{\G_{k-1},w,w'}\subseteq \G_{k}$, hence
  $R(w,w') \to w':\a\gt t \in\G_{k}$. By the induction hypothesis, we
  get $\M\models_\Ical R(w,w') \to w':\a\gt t$, and this concludes the
- proof of~\ref{lemma:count:boxgt}.  Let $e(w,\Box\a)=r$.  By
- definition, there exists $w^\star\in W$ such that the value of
+ proof of~\ref{lemma:count:boxgt}.  Let $e(w,\Box\a)=r$.  By the witnessing condition,
+  there exists $w^\star\in W$ such that the value of
  $R(w,w^\star) \to e(w^\star,\a)$ is $r$.  By~\ref{lemma:count:boxgt},
  $r\gt \Ical(t)$, namely $e(w,\Box\a)\gt \Ical(t)$; we conclude
  $\M\models_\Ical w:\Box\a\gt t$.  The case $\chi= w:\Diam\a\lt t$ is
@@ -942,9 +963,10 @@ As a consequence, we get:
   Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch.
 
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
-  \item\label{prop:satBranch:1} Let $\M=\Mod{\Atmp{\G_n},\s}$, with
-    $\s$ a solution to $\Atmp{\G_n}$. Then, $\M\models \G_0$.
-    
+  \item\label{prop:satBranch:1}
+Let $\s$ be a solution to $\Atmp{\G_n}$. Then, 
+$\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\s_0$.
+      
   \item\label{prop:satBranch:2} If $\G_0=\{ w : \varphi < 1\}$, then
     $\varphi\not\in\GWL$.
   \end{enumerate}
@@ -975,6 +997,7 @@ performed by $\Bs$ are plain.
 We remark that $\Bs$ does not need to implement backtracking.
 
 \begin{proposition}[Completeness]\label{prop:compl}
+\mbox{}
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
   \item\label{prop:compl:1} If $\nprovesw{w: \varphi < 1}$, then there exists a
     discrete countermodel for $\varphi$.
