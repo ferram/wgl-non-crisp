@@ -230,21 +230,16 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
   \b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
   $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b
-  < t$. Note that $q$ is a fresh propositional variable.
-  
-  Now let $\M'=\stru{W,R,e'}$ be the model where  
-  
-
-  Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and
-  let, for every constraint $\chi$ not containing $q$,
-  $\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$.  Since
+  < t$. Note that $q$ is a fresh propositional variable. Now let $r=e(\Ical(w),\b)$ and $\M'=\stru{W,R,e'}$ be the model where $e'=e[\Ical(w),q:=r]$.
+  We remark taht, for every constraint $\chi$ not containing $q$,
+  $\M\models_\Ical \chi$ iff $\M'\models_{\Ical} \chi$.  Since
   $\M\models_{\Ical} \G_0$ and $b$ does not occur in $\G_0$, we get
-  $\M\models_{\Ical'} \G_0$.  It is easy to check that
-  $\M\models_{\Ical'} w :\b \leq w:q$ and $\M\models_{\Ical'} w :\a >
-  w:q$ and $\M\models_{\Ical'} w:q < t$, hence $\M\models_{\Ical'}
+  $\M'\models_{\Ical} \G_0$.  It is easy to check that
+  $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
+  w:q$ and $\M'\models_{\Ical} w:q < t$, hence $\M'\models_{\Ical}
   \G_1$.
   
-  Let us consider the application
+  Let $\rho$ be application of $\to \leq$, where $\b\not\in \Vcal\cup{\bot}$:
   \[
   %% IMP LTE 
 \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
@@ -261,18 +256,16 @@ $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
 $\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
 $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
 e(\Ical(w),\b)$.  We have $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
-hence $\M\models_\Ical w:\b \leq t$.  We remark that
-$\b\not\in\PV\cup\{\bot\}$ and that $q$ is a fresh propositional variable. Let $e(\Ical(w),\b)\leq e(\Ical'(w),q)$ and let, for
-every constraint $\chi$ not containing $q$, $\M\models_\Ical \chi$ iff
-$\M\models_{\Ical'} \chi$.
+hence $\M\models_\Ical w:\b \leq t$.  Note that $q$ is a fresh propositional variable.
+Now let $r=e(\Ical(w),\b)$ and $\M'=\stru{W,R,e'}$ be the model where $e'=e[\Ical(w),q:=r]$.
 Since $\M\models_{\Ical} \G_0$ and $q$ does not occur in $\G_0$, we
-get $\M\models_{\Ical'} \G_0$.  Moreover, one can easily check that
-$\M\models_{\Ical'} w :\b \leq w:q$ and $\M\models_{\Ical'} w :\a > w:q$
-and $\M\models_{\Ical'} w:q \leq t$; we conclude $\M\models_{\Ical'}
+get $\M'\models_{\Ical} \G_0$.  Moreover, one can easily check that
+$\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a > w:q$
+and $\M'\models_{\Ical} w:q \leq t$; we conclude $\M'\models_{\Ical}
 \G_2$.
 
 
-Let us consider the application
+Let $\rho$ be application of $\to \gt$, where $\b\not\in \Vcal\cup{\bot}$:
 \[
 %% IMP GT 
 \AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \G_0}^{\G_1}$}    
@@ -288,10 +281,11 @@ can reason as in the cases concerning rules $\to<$ and $\to\leq$.  If
 $e(\Ical(w),\a) > e(\Ical(w),\b)$, then $e(\Ical(w),\a\to \b) =
 e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
 $e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case $e(\Ical(w),\a\to
-\b) = 1$, which implies $1 \gt \Ical(t)$.  We can prove that
-$\M\models_{\Ical'} \G_1$, where $e(\Ical(w), \a)\leq e(\Ical'(w),q)$.
+\b) = 1$, which implies $1 \gt \Ical(t)$. 
+Now let $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,e'}$ be the model where $e'=e[\Ical(w),q:=r]$. 
+We can prove that $\M'\models_{\Ical} \G_1$.
 
-Let us consider the application
+Let $\rho$ be application of $\Box\lt$:
 \[
 \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_1}$}
 % -----------------------------------------
@@ -301,9 +295,8 @@ Let us consider the application
 \]
 By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
 $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt \Ical(t)$.
-Let us assume that the world $\Ical(w)$ of $\M$ has no $R$-successors, then $\Ical(R(w,w_1)=0$ and thus $\Ical(R(w,w_1)\to w_1:\a)=1$. Hence we get $1\lt t$ and $\M\models_{\Ical} \G_1$.
-Let us assume that $\Ical(w)$ has at least one $R$-successor. 
-Since $\M$ is a $\GWM$-model, there exists a world
+Let us assume that the world $\Ical(w)$ of $\M$ has no $R$-successors, then $e(\Ical(w),\Box\a)=1$ and $t\gt 1$. Furthermore $\Ical(R(w,w_1)=0$ and thus every formula of the form $\Ical(R(w,w_1)\to w_1:\d)=1$ and every formula of the form $\Ical(R(w,w_1)\wedge w_1:\d)=0$. Hence we get that $\M\models_{\Ical} \G_1$.
+Otherwise if $\Ical(w)$ has at least one $R$-successor, since $\M$ is a $\GWM$-model, there exists a world
 $w^\star$ of $\M$ such that $R(\Ical(w),w^\star)\to e(w^\star,\a)=e(\Ical(w),\Box\a)$.  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We
 remark that, for every constraint $\chi$ not containing $w_1$,
 $\M\models_\Ical \chi$ iff $\M\models_{\Ical'} \chi$. Since
