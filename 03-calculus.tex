@@ -317,15 +317,16 @@ The \emph{main constraint} of a rule application is the constraint
 displayed in the conclusion.  Rules for implication, having a main
 constraint of the kind $w:\a\to \b\abstractorder t$, are defined
 according to the structure of $\b$.  Let us consider the rule
-$\ruleToLTAt$, having main constraint $w:\a\to p < t$. The premise
+$\ruleToLTAt$, having main constraint $w:\a\to p < t$ ($p\in\PV\cup\{\bot\}$). The premise
 contains the constraints $w:\a > w:p$ and $w:p < t$.  This reflects
 the fact that, given a $\GWM$-model $\M$, a world $w$ in $\M$ and an
 $\M$-interpretation $\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$,
-then $e(\Ical(w),\a) > e(\Ical(w),p)$, $e(\Ical(w), \a\to p) =
+it holds that $e(\Ical(w),\a) > e(\Ical(w),p)$, $e(\Ical(w), \a\to p) =
 e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.  This reasoning cannot
-be generalized to any $\b$ since the constraint $w:\a > w:\b$ is not
-allowed if $\b\not\in\PV\cup\{\bot\}$.  In the latter case, rule
-$\ruleToLT$ introduce a new propositional variable $q$, behaving in
+be generalized   to any constraint of the form  $w:\a\to \b < t$;
+indeed, if $\b\not\in\PV\cup\{\bot\}$, the constraint $w:\a > w:\b$ is not allowed.
+This case is covered by rule $\ruleToLT$,
+which  introduces a new propositional variable $q$ behaving in
 $w$ as $\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
 correspondence between $\b$ and $q$ is set by the constraint $w:\b\leq
 w:q$, while the converse constraint $w:\b\geq w:q$ can be omitted.
@@ -525,7 +526,7 @@ Equivalently, given a finite multiset $\G$ and repeatedly applying the
 rules of $\Calcw$ upwards, proof search eventually halts, no matter
 which strategy is used.
 
-
+To prove strong termination of $\Calcw$, we introduce the relation $\precc$ between multisets of constraints. 
 The weight $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
 of constraints $\G$, and the size $\size{\varphi}$ of a formula
 $\varphi$ are defined as follows:
@@ -771,7 +772,7 @@ $\G_0$.
   \]
   For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_7},\s}$
   satisfies $\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is a
-  canonical $\M$-interpretation, hence $\M$ is a countermodel for
+  canonical $\M$-interpretation; as a consequence, $\M$ is a countermodel for
   $\varphi$, witnessing that $\varphi\not\in\GWL$.
   Note that the worlds of $\M$ are $w_0$ and $w_1$ and,
   as expected, $\M$ is not crisp, since $0 < \sigma(R(w_0,w_1)) < 1$.
@@ -973,8 +974,8 @@ As a consequence, we get:
 \begin{proposition}\label{prop:satBranch}
   Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch.
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
-  \item\label{prop:satBranch:1} Let $\s$ be a solution to
-    $\Atmp{\G_n}$. Then, $\Mod{\Atmp{\G_n},\s}$ is a discrete
+  \item\label{prop:satBranch:1} For every solution  $\s$  to
+    $\Atmp{\G_n}$, $\Mod{\Atmp{\G_n},\s}$ is a discrete
     countermodel for $\G_0$.
       
   \item\label{prop:satBranch:2} If $\G_0=\{ w : \varphi < 1\}$, then
@@ -996,17 +997,19 @@ performed by $\Bs$ are plain.
 \end{lemma}
 
 \begin{proof}
-  Assume that $\Bs$ fails.  By tracking the computation, we can build
+  Assume that $\Bs$ fails.  By tracing the computation, we can build
   an open branch $\Bcal=\stru{\G_0,\dots,\G_n}$.  Since $\Bs$ is
-  plain, the branch $\Bcal$ is saturated. By
-  Prop.\ref{prop:satBranch}, given a solution $\s$ to $\Atmp{\G_n}$,
+  plain, the branch $\Bcal$ is saturated.
+Let $\s$ be  a solution to $\Atmp{\G_n}$;
+by Prop.~\ref{prop:satBranch}, 
   $\Mod{\Atmp{\G_n},\s}$ is a discrete countermodel for $\G_0$.
 \end{proof}
 
 \noindent
-We remark that $\Bs$ does not need to implement backtracking.
+%%We remark that $\Bs$ does not need to implement backtracking.
+As a corollary, we get the completeness of $\Calcw$:
 
-As an immediate consequence of the above lemma we get:
+
 
 \begin{proposition}[Completeness]\label{prop:compl}
   Let $\G$ be a finite multiset of constraints of the form
@@ -1030,8 +1033,8 @@ As an immediate consequence of the above lemma we get:
 % \end{proof}
 
 
-\noindent
-Accordingly, if $\provesw{w : \varphi < 1}$ then $\varphi\in\GWL$.
+% \noindent
+% Accordingly, if $\provesw{w : \varphi < 1}$ then $\varphi\in\GWL$.
 
 By Prop.~\ref{prop:compl}, $\GWL$ has the finite model property. Let
 $\varphi\not\in\GWL$ and let $\M$ be the discrete countermodel

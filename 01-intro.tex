@@ -16,12 +16,12 @@ semantics in which both the valuation of propositions at each world
 and the accessibility relation take values in the standard G\"odel
 algebra $[0,1]$, i.e.\ the algebraic semantics of the intermediate
 G\"odel--Dummett logic. The minimal logics over {\GM-models} were
-thoroughly investigated by Caicedo and Rodr\'iguez in
-\cite{CaiRod2010,CaiRod2015}.  In this setting, the interpretation of
-the modal operators is defined by means of infima and suprema computed
-over (possibly infinite) sets of accessible worlds. However, these
-bounds need not be attained: the infimum may be strictly smaller than
-every truth value in the set, and dually for the
+thoroughly investigated by Caicedo and Rodr\'iguez
+in~\cite{CaiRod2010,CaiRod2015}.  In this setting, the interpretation
+of the modal operators is defined by means of infima and suprema
+computed over (possibly infinite) sets of accessible worlds. However,
+these bounds need not be attained: the infimum may be strictly smaller
+than every truth value in the set, and dually for the
 supremum. Consequently, the truth value of a modal formula may depend
 on limit constructions rather than on concrete worlds of the model.
 
@@ -92,37 +92,30 @@ counterpart to their improved semantic behavior and paving the way for
 effective automated reasoning procedures.
 
 
-According to the above considerations, in \cite{FerFioRod:2025} we
-presented the logic $\GWCL$ characterized by crisp witnessed G\"odel
-Kripke models, where crisp means that the accessibility relation takes
-values in $\{0,1\}$. 
+In line with the above considerations, in~\cite{FerFioRod:2025} we
+introduced the logic $\GWCL$ characterized by  witnessed crisp G\"odel
+Kripke models, where ``crisp'' means that the accessibility relation takes
+values in the set $\{0,1\}$. 
 %% witnesed: in which the
 %%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
 %%coincides with (and is thus witnessed by) the value of $\a$ at some
 %%world accessible from $w$.
-In \cite{FerFioRod:2025} we have presented a refutation calculus based
-on constraints for $\GWCL$, inspired to the tableau calculus presented
-in~\cite{BilkovaFK:22}. 
-
-In this paper this paper we introduce the fuzzy (non crisp) logic
-$\GWL$, which is semantically characterized by witnessed
-G\"odel Kripke models
-%%, a restriction of $\GM$-models in which the
-%%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
-%%coincides with (and is thus witnessed by) the value of $\a$ at some
-%%world accessible from $w$.  
-We then introduce a refutation calculus $\Calcw$ for $\GWL$ and
-establish its soundness and completeness with respect to witnessed
-models. On the basis of $\Calcw$, we design a terminating decision
-procedure with countermodel generation, based on a standard backward
-proof-search strategy. As a direct consequence of this decision
-procedure, $\GWL$ enjoys the finite model property, since every
-non-provable formula admits a finite countermodel effectively
-extracted from a failed derivation.  Finally, we provide an
-implementation of the procedure, called \texttt{gwref} (available
+For this logic, we developed a constraint-based refutation calculus
+inspired by the tableau system of~\cite{BilkovaFK:22}, together with a
+terminating proof-search procedure that yields finite countermodels
+whenever proof search fails. As a consequence, we established that 
+ $\GWCL$ enjoys the finite model property.
+ In the present work, we extend these results to the logic $\GWL$,
+ characterized by witnessed G\"odel–Kripke models without the crispness
+ restriction. Our development closely follows the strategy adopted in~\cite{FerFioRod:2025}.
+ We introduce a constraint-based refutation calculus for $\GWL$, we call  $\Calcw$, 
+  and prove its soundness and completeness with respect to
+ witnessed models. Moreover, we design a terminating proof-search
+ procedure for  $\Calcw$ based on a standard backward search strategy.
+ Notably, when proof search fails, the computation can be traced to construct a finite countermodel for the given formula.
+ This  proves the finite model property for  $\GWL$. 
+Finally, we provide an implementation of the procedure, called \texttt{gwref} (available
 at~\cite{gwrefProver}). 
-
-
 
 
 
