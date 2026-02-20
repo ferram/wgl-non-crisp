@@ -49,14 +49,14 @@
     %% IMP LTS prop
     \AXC{$w :\a >w : p,\, w : p  < t,\,  \G$}    
     % ------------------------------------------    
-    \RightLabel{$\to < \;(\dag)$}
+    \RightLabel{$\ruleToLTAt\;(\dag)$}
     \UIC{$w: \a\to p < t,\,\G$}
     \DP
     \hspace{1em}
     %% IMP LTS 
     \AXC{$w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G$}    
     % ------------------------------------------    
-    \RightLabel{$\to < \;(\dag)$}
+    \RightLabel{$\ruleToLT\;(\dag)$}
     \UIC{$w: \a\to \b < t,\,\G$}
     \DP
     \\[4ex]
@@ -65,7 +65,7 @@
     \AXC{$w :\a >w : p,\,w : p \leq  t,\,\G$}    
     % ------------------------------------------    
    % \insertBetweenHyps{\hskip -0.01em}
-    \RightLabel{$\to\leq\,(\dag)$}
+    \RightLabel{$\ruleToLEQAt\,(\dag)$}
     \BIC{$w: \a\to p \leq t,\,\G$}
     \DP
 \\[4ex]    
@@ -73,7 +73,7 @@
     \AXC{$t \geq 1,\, \G$}    
     \AXC{$  w :\a > w : q,\,    w :\b \leq w : q,\,   w : q \leq  t,\,\G$}    
     % ------------------------------------------    
-    \RightLabel{$\to\leq\,(\dag)$}
+    \RightLabel{$\ruleToLEQ\,(\dag)$}
     \BIC{$w: \a\to \b \leq t,\,\G$}
     \DP
     \\[4ex]   
@@ -81,7 +81,7 @@
     \AXC{$w :\a \leq w : p,\,1\gt t,\, \G$}    
     \AXC{$w:p \gt t,\, \G$}
     % ------------------------------------------       
-    \RightLabel{$\to\gt\,(\dag)$}
+    \RightLabel{$\ruleToGAt\,(\dag)$}
     \BIC{$w: \a\to p \gt t,\,\G$}
     \DP
     \\[4ex]
@@ -89,11 +89,11 @@
     \AXC{$w :\a\ \leq w : q,\, w : \b \geq w :q ,\, 1\gt t,\, \G$}    
     \AXC{$w:\b \gt t,\, \G$}
     % ------------------------------------------       
-    \RightLabel{$\to\gt\,(\dag)$}
+    \RightLabel{$\ruleToG\,(\dag)$}
     \BIC{$w: \a\to \b \gt t,\,\G$}
     \DP
     %%% WHERE ....
-    \\[2ex]
+    \\[4ex]
     \begin{minipage}{1.0\linewidth}
       \[
       \begin{array}{l}
@@ -214,17 +214,14 @@
 
 
 
-
-
 Following~\cite{BilkovaFK:22,FerFioRod:2025}, we introduce the
-refutation calculus $\Calcw$ for $\GWL$,
-namely, a calculus to certify that a formula is not valid in any
-$\GWM$-model.
-The constraint language $\LC$ is
-defined over a countable set of labels, each representing a world of a
-\GWM-model.  In the following definitions $w$, $w'$ are labels of
-$\LC$, $\varphi$ is a formula, $p\in \PV$, $R$ is a
-designated relation symbol, representing the accessibility relation.
+refutation calculus $\Calcw$ for $\GWL$, namely, a calculus to certify
+that a formula is not valid in any $\GWM$-model.  The calculus
+exploits the constraint language $\LC$ defined over a countable set
+of labels, each representing a world of a \GWM-model.  In the
+following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
+formula, $p\in \PV$, $R$ is a designated relation symbol, representing
+the accessibility relation.
 %and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
 \[
 \begin{array}{rcl}
@@ -319,38 +316,39 @@ $R$-rules).
 The \emph{main constraint} of a rule application is the constraint
 displayed in the conclusion.  Rules for implication, having a main
 constraint of the kind $w:\a\to \b\abstractorder t$, are defined
-according to the structure of $\b$.  Let us consider the rule $\to <$,
-having main constraint $w:\a\to \b < t$.  If $\b=p$, with $p\in
-\PV\cup\{\bot\}$, the premise contains the constraints $w:\a > w:p$
-and $w:p < t$.  This reflects the fact that, given a $\GWM$-model
-$\M$, a world $w$ in $\M$ and an $\M$-interpretation $\Ical$, if
-$e(\Ical(w), \a\to p) < \Ical(t)$, then $e(\Ical(w),\a) >
-e(\Ical(w),p)$, $e(\Ical(w), \a\to p) = e(\Ical(w),p)$ and
-$e(\Ical(w),p) < \Ical(t)$.  This reasoning cannot be generalized to
-any $\b$ since the constraint $w:\a > w:\b$ is not allowed if
-$\b\not\in\PV\cup\{\bot\}$.  In the latter case, we introduce a new
-propositional variable $q$, behaving in $w$ as $\b$, and $w:\a > w:\b$
-is replaced by $w:\a > w: q$.  The correspondence between $\b$ and $q$
-is set by the constraint $w:\b\leq w:q$, while the converse constraint
-$w:\b\geq w:q$ can be omitted.  There are two modal rules (see
-Fig.~\ref{fig:calc2}), the former having main constraint $w:\Box\a \lt
-t$ and the latter $w:\Diam\a \gt t$; both rules introduce a new label
-$w_1$.  $R$-rules (see Fig.~\ref{fig:calc2}) are similar to the
-corresponding propositional rules.  The definitions of \emph{tree} and
-\emph{derivation} of $\Calcw$ are the usual ones (see,
-e.g.,~\cite{TroSch:00}).
-We remark that $\Calcw$ has the \emph{subformula
-    property}, namely: if $\Tcal$ is a tree of $\Calcw$ having $\G_0$ as
-  root, every formula occurring in $\Tcal$ inside a constraint (e.g.,
-  the formula $\varphi$ in the constraint $R(w,w')\to w':\varphi$) is
-  a subformula of a formula in $\G_0$ or a new propositional variable.
-By $\provesw{\Gamma}$ we mean that there exists a derivation of
-$\Gamma$.  In the rest of this section we show that $\Calcw$ is a
-sound and complete refutation calculus for $\GWL$, where soundness and
-completeness are formalized as follows:
+according to the structure of $\b$.  Let us consider the rule
+$\ruleToLTAt$, having main constraint $w:\a\to p < t$. The premise
+contains the constraints $w:\a > w:p$ and $w:p < t$.  This reflects
+the fact that, given a $\GWM$-model $\M$, a world $w$ in $\M$ and an
+$\M$-interpretation $\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$,
+then $e(\Ical(w),\a) > e(\Ical(w),p)$, $e(\Ical(w), \a\to p) =
+e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.  This reasoning cannot
+be generalized to any $\b$ since the constraint $w:\a > w:\b$ is not
+allowed if $\b\not\in\PV\cup\{\bot\}$.  In the latter case, rule
+$\ruleToLT$ introduce a new propositional variable $q$, behaving in
+$w$ as $\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
+correspondence between $\b$ and $q$ is set by the constraint $w:\b\leq
+w:q$, while the converse constraint $w:\b\geq w:q$ can be omitted.
+There are two modal rules (see Fig.~\ref{fig:calc2}), the former
+having main constraint $w:\Box\a \lt t$ and the latter $w:\Diam\a \gt
+t$; both rules introduce a new label $w_1$.  $R$-rules (see
+Fig.~\ref{fig:calc2}) are similar to the corresponding propositional
+rules.  The definitions of \emph{tree} and \emph{derivation} of
+$\Calcw$ are the usual ones (see, e.g.,~\cite{TroSch:00}).  We remark
+that $\Calcw$ has the \emph{subformula property}, namely: if $\Tcal$
+is a tree of $\Calcw$ having $\G_0$ as root, every formula occurring
+in $\Tcal$ inside a constraint (e.g., the formula $\varphi$ in the
+constraint $R(w,w')\to w':\varphi$) is a subformula of a formula in
+$\G_0$ or a new propositional variable.  By $\provesw{\Gamma}$ we mean
+that there exists a derivation of $\Gamma$.  In the rest of this
+section we show that $\Calcw$ is a sound and complete refutation
+calculus for $\GWL$. Formally, soundness and completeness are defined
+as follows, where $\G$ is a multiset of constraints of the form
+$w:\varphi\abstractorder t$:
 
 \begin{itemize}
-\item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for every  \GWM-model $\M$;
+\item (Soundness) if $\provesw{\Gamma}$, then $\M\not\models\G$, for
+  every \GWM-model $\M$;
 \item (Completeness) if $\M\not\models\G$, for every \GWM-model  $\M$, then $\provesw{\Gamma}$.
 \end{itemize}
 We stress that, if   rule $\ruleAxat$   checked the
@@ -628,20 +626,19 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
     The calculus $\Calcw$ is strongly terminating.
 \end{proposition}
 \begin{proof}
-The relation $\precm$ is well-founded and can be used to instantiate  $\prec$
-in the definition of strong termination
-(see Lemma~\ref{lemma:rulesDec} in the Appendix). 
+  The relation $\precc$ is well-founded and can be used to instantiate
+  $\prec$ in the definition of strong termination (see
+  Lemma~\ref{lemma:rulesDec} in the Appendix).
 \end{proof}
 
-Accordingly, any backward proof search
-strategy for $\Calcw$ terminates.
-Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus on strategies
-where failure is certified by countermodels, i.e.: if proof search
-for a multiset of constraints $\G$ fails, a \GWM-model $\M$ such that
-$\M\models \G$ can be built; we call $\M$ a \emph{countermodel} for $\G$,
-since $\M$ ascertains that $\G$ is not provable in $\Calcw$ (by
-its soundness).
-Let $\G$ be a multiset of constraints:
+Accordingly, any backward proof search strategy for $\Calcw$
+terminates.  Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus
+on strategies where failure is certified by countermodels, i.e.: if
+proof search for a multiset of constraints $\G$ fails, a \GWM-model
+$\M$ such that $\M\models \G$ can be built; we call $\M$ a
+\emph{countermodel} for $\G$, since $\M$ ascertains that $\G$ is not
+provable in $\Calcw$ (by its soundness).  Let $\G$ be a multiset of
+constraints:
 
 \begin{itemize}
 \item $\G$ is \emph{reduced} iff no rule of $\Calcw$ can be backward
@@ -659,14 +656,18 @@ $\G_k$ and main constraint $\chi$, with $\chi\in\G_k$.  A branch
 $\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0
 \leq k < n$, there is $\chi_k$ such that
 $\app{\chi_k}{\G_k}{\G_{k+1}}$; thus, $\Bcal$ represents a branch of a
-tree of $\Calcw$.  The branch $\Bcal$ is \emph{saturated} iff the following holds:
+tree of $\Calcw$.  The branch $\Bcal$ is \emph{saturated} iff the
+following holds:
   
 \begin{itemize}[leftmargin=*]
-\item $\G_0$ is a finite set of constraints of the form $w:\varphi\abstractorder t$;
+\item $\G_0$ is a finite set of constraints of the form
+  $w:\varphi\abstractorder t$;
 
 \item  $\G_n$ is reduced;
+
 \item every application of a modal rule in $\Bcal$ is plain.
-%  for every $k\geq 0$, if $\G_k$ is the conclusion of a modal rule, then $\G_k$ is p-reduced.
+  % for every $k\geq 0$, if $\G_k$ is the conclusion of a modal rule,
+  % then $\G_k$ is p-reduced.
 \end{itemize}
 
 \noindent
@@ -697,14 +698,14 @@ $\Mod{\Gat,\sigma}$-interpretation $\Ical$ is \emph{canonical} iff
 $\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
 
 In Lemma~\ref{lemma:count} we show that if
-$\Bcal=\stru{\G_0,\dots,\G_n}$ is saturated and $\s$ be a solution to
+$\Bcal=\stru{\G_0,\dots,\G_n}$ is saturated and $\s$ is a solution to
 $\Atmp{\G_n}$, then $\Mod{\Atmp{\G_n},\s}$ is a countermodel for
 $\G_0$.
 
 \begin{figure}[t]
   \centering
     \[\small
-  \begin{array}{l}
+  \begin{array}{c}
     % Gamma_7
     \AXC{$w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
     % ----------------------------------------------
@@ -736,7 +737,7 @@ $\G_0$.
     \RightLabel{$\to <$}
     \UIC{\underline{$w_0:  \Box(p\lor q) \to (\Box p\lor \Diam q)  < 1$}}
     \DP
-    \\[15ex]
+    \\[18ex]
     % ###############################################
     c = w_0:q_0\qquad\D\;=\;\{\,     w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
   \end{array}
@@ -894,9 +895,9 @@ $\G_0$.
  \end{enumerate}
  
  \noindent
- Let us assume that case~\ref{lemma:count:implgt:1} holds.  By the
- induction hypothesis, for every constraint $\chi'$
- in~\ref{lemma:count:implgt:1}, $\M\models_\Ical \chi'$, hence:
+ Assume~\ref{lemma:count:implgt:1}.  By the induction hypothesis, for
+ every constraint $\chi'$ in~\ref{lemma:count:implgt:1},
+ $\M\models_\Ical \chi'$, hence:
  \[
  e(w,\a) \leq  e(w,q) \qquad e(w,\b) \geq e(w,q) \qquad 1 \gt \Ical(t)
  \]  
@@ -971,11 +972,10 @@ $\G_0$.
 As a consequence, we get:
 \begin{proposition}\label{prop:satBranch}
   Let $\Bcal=\stru{\G_0,\dots,\G_n}$ be a saturated branch.
-
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
-  \item\label{prop:satBranch:1}
-Let $\s$ be a solution to $\Atmp{\G_n}$. Then, 
-$\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\s_0$.
+  \item\label{prop:satBranch:1} Let $\s$ be a solution to
+    $\Atmp{\G_n}$. Then, $\Mod{\Atmp{\G_n},\s}$ is a discrete
+    countermodel for $\G_0$.
       
   \item\label{prop:satBranch:2} If $\G_0=\{ w : \varphi < 1\}$, then
     $\varphi\not\in\GWL$.
@@ -1006,35 +1006,39 @@ performed by $\Bs$ are plain.
 \noindent
 We remark that $\Bs$ does not need to implement backtracking.
 
-\begin{proposition}[Completeness]\label{prop:compl}
-\mbox{}
-  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
-  \item\label{prop:compl:1} If $\nprovesw{w: \varphi < 1}$, then there exists a
-    discrete countermodel for $\varphi$.
-  \item\label{prop:compl:2}
-    If $\nprovesw{w : \varphi < 1}$, then  $\varphi\not\in\GWL$.
-  \item\label{prop:compl:3} If $\varphi\not\in\GWL$, then then there
-    exists a discrete countermodel for $\varphi$.
-  \end{enumerate}
-\end{proposition}
+As an immediate consequence of the above lemma we get:
 
-\begin{proof}
-  Point~\ref{prop:compl:1} follows from Lemma~\ref{lemma:search}.
-  Point~\ref{prop:compl:2} follows from~\ref{prop:compl:1},
-  since a countermodel for $w :\varphi < 1$ certifies that $\varphi\not\in\GWL$.
-  Point~\ref{prop:compl:3} follows from~\ref{prop:compl:1} since, by soundness of $\Calcw$,
-  $\varphi\not\in\GWL$ implies $\nprovesw{w : \varphi < 1}$.
-\end{proof}
+\begin{proposition}[Completeness]\label{prop:compl}
+  Let $\G$ be a finite multiset of constraints of the form
+  $w:\varphi\abstractorder t$.  If $\nprovesw{\G}$ then there exists a 
+  discrete countermodel for $\G$.
+  %%\begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+  %%\item\label{prop:compl:1} If  $\nprovesw{w: \varphi < 1}$, then there exists a
+  %%  discrete countermodel for $\varphi$.
+  %%\item\label{prop:compl:2}
+  %%  If $\nprovesw{w : \varphi < 1}$, then  $\varphi\not\in\GWL$.
+  %%\item\label{prop:compl:3} If $\varphi\not\in\GWL$, then then there
+  %%  exists a discrete countermodel for $\varphi$.
+  %%\end{enumerate}
+\end{proposition}
+% \begin{proof}
+%   Point~\ref{prop:compl:1} follows from Lemma~\ref{lemma:search}.
+%   Point~\ref{prop:compl:2} follows from~\ref{prop:compl:1},
+%   since a countermodel for $w :\varphi < 1$ certifies that $\varphi\not\in\GWL$.
+%   Point~\ref{prop:compl:3} follows from~\ref{prop:compl:1} since, by soundness of $\Calcw$,
+%   $\varphi\not\in\GWL$ implies $\nprovesw{w : \varphi < 1}$.
+% \end{proof}
+
 
 \noindent
-\inlinetodo{**OLD**}
+Accordingly, if $\provesw{w : \varphi < 1}$ then $\varphi\in\GWL$.
 
-By Prop.~\ref{prop:compl}\ref{prop:compl:3}, $\GWL$ has the finite
-model property. Let $\varphi\not\in\GWL$ and let $\M$ be the discrete
-countermodel extracted from an open branch having root
-$w_0:\varphi<1$.  One can easily prove that the depth of $\M$ is
-bounded by $\size{\varphi}$ and that every world of $\M$ has at most
-$\size{\varphi}$ R-successors; this implies that the size of $\M$ is
+By Prop.~\ref{prop:compl}, $\GWL$ has the finite model property. Let
+$\varphi\not\in\GWL$ and let $\M$ be the discrete countermodel
+extracted from an open branch having root $w_0:\varphi<1$.  One can
+easily prove that the depth of $\M$ is bounded by $\size{\varphi}$ and
+that every world of $\M$ has at most $\size{\varphi}$ R-successors;
+this implies that the size of $\M$ is
 $O(\size{\varphi}^{\size{\varphi}})$ (see
 Th.~4.1~\cite{BilkovaFK:22}).  Note that it is not possible to build
 $\M$ one branch at a time, since the constraints generated during the
@@ -1043,32 +1047,29 @@ the construction.  However, by adapting the procedure described in
 Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
 for $\GWL$ is in PSPACE.
 
-
 We have implemented both the proof search procedure and the
 countermodel extraction in the JTabWb
 framework~\cite{FerrariFF:17a}. The prover, named
-\texttt{gwcref}~\cite{gwcrefProver}, performs a standard backward
+\texttt{gwref}~\cite{gwrefProver}, performs a standard backward
 depth-first proof search, leveraging the JTabWb engine complemented
 with the Java implementation of the $\Calcw$ rules and of a plain
 proof-search strategy. The consistency of atomic constraints is
 checked using the Choco-solver Java library~\cite{ChocoSolver:2025}.
+
 To our knowledge, the only other prover available for modal fuzzy
 logic is mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for
 continuous t-norm-based logics, including G\"odel-Dummett
-Logic. However, mNiBLoS does not support the logic $\GWCL$.
-
-% Our prover, called \texttt{gwcref}
-% (see~\cite{JtabwbProvers}), utilizes the Choco-solver Java
-% library~\cite{ChocoSolver:2025} to verify the consistency of atomic
-% constraints.  Additionally, it provides functionality for generating
-% \LaTeX~representations of both derivations and countermodels.  To our
-% knowledge, the only other prover available for modal fuzzy logic is
-% mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for continuous
-% t-norm-based logics, including G\"odel-Dummett Logic. However, mNiBLoS
-% does not support the logic $\GWCL$.
+Logic. However, mNiBLoS does not support the logic $\GWL$.
 
 
-  
+We remark that, if in the above proof search procedure we impose to
+the solver to find solutions $\s$ such that $\s(R(w,w'))\in\{0,1\}$
+for every pair of labels $w,w'$ we get a calculus for $\GWCL$, the
+crisp extension of $\GWL$ \cite{FerFioRod:2025}. On the contrary, is
+not trivial to adapt our calculus to the non witnessed G\"odel modal
+logics.
+
+
 
 %%% Local Variables: 
 %%% mode: latex

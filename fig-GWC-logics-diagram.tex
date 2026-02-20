@@ -8,12 +8,12 @@
     level 1/.style={sibling distance=10em},
     % level 2/.style={sibling distance=4em},
     ]
-    \node[fill=green!25] (GWc) {$\GWCL$}
+    \node[fill=gray!10] (GWc) {$\GWCL$}
     child{ 
-      node[fill=green!25] (Gc) {$\GCL$}
+      node[fill=gray!10] (Gc) {$\GCL$}
       child[missing]{}
       child{
-        node (GK)[fill=green!25]  {$\GKL$}
+        node (GK)[fill=gray!10]  {$\GKL$}
         edge from parent
         %node[right=.5ex] {$\subset$}
       } 
@@ -26,12 +26,8 @@
       %node[left=.5ex] {$\subset$}
     } 
     ;
-
-    
-
     %\draw (GW) -- node[left=.5ex] {$\subset$} (GK) ;    
     \draw (GW) -- (GK) ;    
-    
 
     \node[right=1ex of GWc] {\begin{minipage}{16ex}
       \small $(Cr)$, $(Wt)$  valid\end{minipage}};
@@ -39,7 +35,7 @@
       \small $(Cr)$ NOT valid \par$ (Wt)$ valid  \end{minipage}};
     \node[left=-2ex of Gc] {\begin{minipage}{16ex}
       \small   $(Cr)$  valid \par  $(Wt)$ NOT valid\end{minipage}};
-    \node[right=1ex of GK] {\begin{minipage}{20ex}
+  \node[right=1ex of GK] {\begin{minipage}{20ex}
       \small $(Cr)$, $(Wt)$   NOT valid\end{minipage}};
 
   \end{tikzpicture}

@@ -77,39 +77,34 @@ Note that:
 \noindent
 A world $w'$ is an $R$-successor of $w$ iff $R(w, w')>0$. If $w$ has
 no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$ since,
- for every $w'\in W$, $R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land e(w',\a) = 0$.
-A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and is
-called a \emph{\GWM-model}, if the values of $e(w,\Box\a)$ and
+for every $w'\in W$, $R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land
+e(w',\a) = 0$.  A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and
+is called a \emph{\GWM-model}, if the values of $e(w,\Box\a)$ and
 $e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
 \begin{itemize}
-\item  $e(w,\Box \a)=r$ iff 
-   there is $w'\in W$   such that  $R(w,w') \to e(w',\a) = r$;
+\item $e(w,\Box \a)=r$ iff there is $w'\in W$ such that $R(w,w') \to
+  e(w',\a) = r$;
 
- \item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
-   $R(w,w')\land e(w'\a) = r$.
- \end{itemize}
- As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
- \a)$, the infimum and the supremum are just the minimum and the
- maximum. Note that every finite \GM-model is witnessed.  
-A non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
-whenever the value $r$ of  $R(w,w')$ or $e(w,p)$ is not displayed, it is understood that $r$ is 0
-(e.~g., $R(w_i,w_j)=0$, for every $i\geq 1$ and $j\neq i$).  It
-holds that $e(w_0,\Box p)=0$, but the witnessing condition fails since there is no $w_j\in W$ such that
-$R(w_0,w_j) \to e(w_j,p)=0$.  Similarly, $e(w_0,\Diamond q)=1$ but there is no witness.
-% there is no $w_j\in W$ such that $R(w_0,w_j)\land e(w_j,q)=1$.
-We stress that that every finite \GM-model is witnessed.
+\item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
+  $R(w,w')\land e(w'\a) = r$.
+\end{itemize}
+As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
+\a)$, the infimum and the supremum are just the minimum and the
+maximum. A non-witnessed model is shown in Fig.~\ref{fig:nonWitn};
+whenever the value $r$ of $R(w,w')$ or $e(w,p)$ is not displayed, it
+is understood that $r$ is 0 (e.g., $R(w_i,w_j)=0$, for every $i\geq 1$
+and $j\geq 0$).  It holds that $e(w_0,\Box p)=0$, but the witnessing
+condition fails since there is no $w_j\in W$ such that $R(w_0,w_j) \to
+e(w_j,p)=0$.  Similarly $e(w_0,\Diamond q)=1$, but there is no
+witness.  We stress that every finite \GM-model is witnessed.
 
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
 valid in $\M$, we say that $\M$ is a \emph{countermodel} for
 $\varphi$; thus, $\M$ contains a world $w$ such that $e(w,\varphi) <
-1$.
-A model $\M=\stru{W,R,e}$ is \emph{discrete} if $W$ is
-finite and the images of $R$ and  $e$ are finite subsets of $\Qrange$, the set
-of rational numbers in the range $[0,1]$.
-
-
-
+1$.  A model $\M=\stru{W,R,e}$ is \emph{discrete} if $W$ is finite and
+the images of $R$ and $e$ are finite subsets of $\Qrange$, the set of
+rational numbers in the range $[0,1]$.
 
 Let $\GL$ be the G\"odel-Dummett Logic, obtained by extending
 Intuitionistic Propositional Logic $\IPL$ with the linearity axiom
@@ -127,7 +122,7 @@ provability in $\GKL$):
   $(FS_2)$ & $(\Diam \a \to\Box \b)\to \Box(\a\to  \b)$
   \\
   $(N_\Box)$ & $\vdash \a$ implies $\vdash \Box\a$ &
-  $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$                                                   
+  $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$
 \end{tabular}
 \]
 In~\cite{CaiRod2015} it is proved that $\GKL$ is the set of formulas
@@ -141,7 +136,6 @@ for an overview):
    \caption{Logics overview.}
   \label{fig:diagram}
 \end{figure}
-
 
 
 \begin{itemize}
@@ -160,25 +154,26 @@ $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $(Cr)$, to $\GKL$
 in~\cite{FerFioRod:2025} and no axiomatization is known.  By
 definition, $\GKL\subseteq\GCL\subseteq\GWCL$ and
 $\GKL\subseteq\GWL\subseteq\GWCL$; we show that all the inclusions are
-strict.  Let us consider the instance $\varphi =\Box (p\lor q)\to (\Box p \lor \Diam q)$
-of $(Cr)$ and let $\M=\stru{W,R,e}$ be the $\GWM$-model in Fig.~\ref{fig:countGW}.
-Since $e(w_0,\varphi) = 0.6$, $\M$ is a countermodel for $\varphi$,
-and this certifies that $\varphi\not\in\GWL$; accordingly, axiom
-$(Cr)$ is not valid in $\GWL$.  Let $(Wt)$ be the formula schema $\Box
-\neg\neg \a\to \neg\neg \Box \a$; we show that $(Wt)$ is valid in
-$\GWL$.  Let $\M=\stru{W,R,e}$ be a $\GWM$-model and $w\in W$.  If
-$e(w, \neg\neg \Box \a)=1$, we immediately get $e(w,
-(Wt))=1$. Otherwise, $e(w, \neg\neg \Box \a)=0$, hence $e(w, \Box
-\a)=0$.  Since $\M$ is witnessed, there exists $w'\in W$ such that
-$R(w,w') \to e(w',\a) = 0$; it follows that $e(w',\a)=0$, hence
-$e(w',\neg \neg \a)=0$.  This implies $e(w, \Box\neg \neg \a)=0$,
-hence $e(w, (Wt)) = 1$. This proves that $(Wt)$ is valid in $\GWL$.  Since
-every finite model is witnessed, a countermodel for $(Wt)$ must be
-infinite. 
-The instance $\Box \neg\neg p\to \neg\neg \Box p$
-of $(Wt)$ is not valid in  the  crisp  $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see, e.g.,~\cite{FerFioRod:2025}), 
-thus  $(Wt)$ is not valid in $\GCL$; this also ascertains that
-neither $\GCL$ nor $\GKL$ enjoy the finite model property.
+strict.  Let us consider the instance $\varphi =\Box (p\lor q)\to
+(\Box p \lor \Diam q)$ of $(Cr)$ and let $\M=\stru{W,R,e}$ be the
+$\GWM$-model in Fig.~\ref{fig:countGW}.  Since $e(w_0,\varphi) = 0.6$,
+$\M$ is a countermodel for $\varphi$, and this certifies that
+$\varphi\not\in\GWL$; accordingly, axiom $(Cr)$ is not valid in
+$\GWL$.  Let $(Wt)$ be the formula schema $\Box \neg\neg \a\to
+\neg\neg \Box \a$; we show that $(Wt)$ is valid in $\GWL$.  Let
+$\M=\stru{W,R,e}$ be a $\GWM$-model and $w\in W$.  If $e(w, \neg\neg
+\Box \a)=1$, we immediately get $e(w, (Wt))=1$. Otherwise, $e(w,
+\neg\neg \Box \a)=0$, hence $e(w, \Box \a)=0$.  Since $\M$ is
+witnessed, there exists $w'\in W$ such that $R(w,w') \to e(w',\a) =
+0$; it follows that $e(w',\a)=0$, hence $e(w',\neg \neg \a)=0$.  This
+implies $e(w, \Box\neg \neg \a)=0$, hence $e(w, (Wt)) = 1$. This
+proves that $(Wt)$ is valid in $\GWL$.  Since every finite model is
+witnessed, a countermodel for $(Wt)$ must be infinite.  The instance
+$\Box \neg\neg p\to \neg\neg \Box p$ of $(Wt)$ is not valid in the
+crisp $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see,
+e.g.,~\cite{FerFioRod:2025}), thus $(Wt)$ is not valid in $\GCL$; this
+also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
+property.
 
 Finally, we remark that, in all the mentioned modal logics, $\Box$ and
 $\Diam$ are not interdefinable.  This is proved for $\GCL$

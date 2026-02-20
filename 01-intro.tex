@@ -29,9 +29,10 @@ on limit constructions rather than on concrete worlds of the model.
 This phenomenon has significant logical consequences. For instance,
 \cite{CaiRod2010} shows that the formula $\Box \neg \neg \varphi \to
 \neg \neg \Box \varphi$ is valid in all finite G\"odel Kripke models,
-but fails in a suitable infinite model. Hence, the underlying logic
-does not enjoy the finite model property, and semantic arguments may
-require genuinely infinitary behavior.
+but fails in a suitable infinite model (see
+Fig.\ref{fig:nonWitn}). Hence, the underlying logic does not enjoy the
+finite model property, and semantic arguments may require genuinely
+infinitary behavior.
 
 Witnessed models provide a principled way to overcome these
 difficulties. By requiring that the relevant infima and suprema be
@@ -72,44 +73,55 @@ strengthens their connections with well-behaved fragments of
 first-order logic that play a central role in computer science, thereby
 enhancing both their theoretical robustness and their applicability.
 
+%%By eliminating pathological behaviors arising from unattained infima 
+%% and suprema, it avoids limit-based counterexamples and yields a 
+%%more constructive semantics. 
+%%This tight correspondence between semantic witnesses and syntactic
+%%derivations naturally
 From a proof-theoretic perspective, witnessed semantics aligns more
-closely with syntactic calculi. By eliminating pathological behaviors
-arising from unattained infima and suprema, it avoids limit-based
-counterexamples and yields a more constructive semantics. This tight
-correspondence between semantic witnesses and syntactic derivations
-naturally suggests the development of a complete proof system. In
-particular, the existence of witnesses enables canonical model
-constructions that are finite or finitely generated, supports
-filtration techniques, and allows completeness proofs to proceed by
-standard algebraic or canonical methods. Therefore, establishing a
-sound and complete calculus for G\"odel modal logics over witnessed
-models is not only feasible but also conceptually justified, providing
-a proof-theoretic counterpart to their improved semantic behavior and
-paving the way for effective automated reasoning procedures.
+closely with syntactic calculi.
+%% and this suggests the development of a
+%% complete proof system. 
+The existence of witnesses enables canonical model constructions that
+are finite or finitely generated, supports filtration techniques, and
+allows completeness proofs to proceed by standard algebraic or
+canonical methods. Therefore, establishing a sound and complete
+calculus for G\"odel modal logics over witnessed models is not only
+feasible but also conceptually justified, providing a proof-theoretic
+counterpart to their improved semantic behavior and paving the way for
+effective automated reasoning procedures.
 
 
-According to the above considerations, in this paper we introduce the
-logic $\GWL$, which is semantically characterized by \emph{witnessed}
-G\"odel Kripke models, a restriction of $\GM$-models in which the
-value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
-coincides with (and is thus witnessed by) the value of $\a$ at some
-world accessible from $w$.  We then introduce a refutation calculus
-$\Calcw$ for $\GWL$ and establish its soundness and completeness with
-respect to witnessed models. On the basis of $\Calcw$, we design a
-terminating decision procedure with countermodel generation, based on
-a standard backward proof-search strategy. As a direct consequence of
-this decision procedure, $\GWL$ enjoys the finite model property,
-since every non-provable formula admits a finite countermodel
-effectively extracted from a failed derivation.  Finally, we provide
-an implementation of the procedure, called \texttt{gwref} (available
-at~\cite{gwrefProver}). We reamrk that our calculus is inspired to the
-one presented in \cite{FerFioRod:2025} for $\GWCL$, the crisp variant
-of $\GWL$, which, in turn, is inspired by the tableau calculus
-presented in~\cite{BilkovaFK:22} for a logics extending $\GWCL$.
+According to the above considerations, in \cite{FerFioRod:2025} we
+presented the logic $\GWCL$ characterized by crisp witnessed G\"odel
+Kriple models, where crisp means that the accessiblily relation takes
+values in $\{0,1\}$. 
+%% witnesed: in which the
+%%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
+%%coincides with (and is thus witnessed by) the value of $\a$ at some
+%%world accessible from $w$.
+In \cite{FerFioRod:2025} we have presented a refutation calculus based
+on constraints for $\GWCL$, inspired to the tableau calculus presented
+in~\cite{BilkovaFK:22}. 
 
-%%, in the Java framework JTabWb~\cite{FerrariFF:17a}. 
-%%For the omitted proofs, we refer the reader to the appendix available
-%%online at the URL referenced in~\cite{gwrefProver}.
+In this paper this paper we introduce the fuzzy (non crisp) logic
+$\GWL$, which is semantically characterized by witnessed
+G\"odel Kripke models
+%%, a restriction of $\GM$-models in which the
+%%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
+%%coincides with (and is thus witnessed by) the value of $\a$ at some
+%%world accessible from $w$.  
+We then introduce a refutation calculus $\Calcw$ for $\GWL$ and
+establish its soundness and completeness with respect to witnessed
+models. On the basis of $\Calcw$, we design a terminating decision
+procedure with countermodel generation, based on a standard backward
+proof-search strategy. As a direct consequence of this decision
+procedure, $\GWL$ enjoys the finite model property, since every
+non-provable formula admits a finite countermodel effectively
+extracted from a failed derivation.  Finally, we provide an
+implementation of the procedure, called \texttt{gwref} (available
+at~\cite{gwrefProver}). 
+
 
 
 
