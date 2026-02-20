@@ -219,7 +219,7 @@ refutation calculus $\Calcw$ for $\GWL$, namely, a calculus to certify
 that a formula is not valid in any $\GWM$-model.  The calculus
 exploits the constraint language $\LC$ defined over a countable set
 of labels, each representing a world of a \GWM-model.  In the
-following definitions $w$, $w'$ are labels of $\LC$, $\varphi$ is a
+ definitions  below $w$, $w'$ are labels, $\varphi$  is a
 formula, $p\in \PV$, $R$ is a designated relation symbol, representing
 the accessibility relation.
 %and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
@@ -322,9 +322,9 @@ contains the constraints $w:\a > w:p$ and $w:p < t$.  This reflects
 the fact that, given a $\GWM$-model $\M$, a world $w$ in $\M$ and an
 $\M$-interpretation $\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$,
 it holds that $e(\Ical(w),\a) > e(\Ical(w),p)$, $e(\Ical(w), \a\to p) =
-e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.  This reasoning cannot
-be generalized   to any constraint of the form  $w:\a\to \b < t$;
-indeed, if $\b\not\in\PV\cup\{\bot\}$, the constraint $w:\a > w:\b$ is not allowed.
+e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.  This rule  cannot
+be generalized   to any   $w:\a\to \b < t$ since
+the constraint $w:\a > w:\b$ is not allowed if if $\b\not\in\PV\cup\{\bot\}$.
 This case is covered by rule $\ruleToLT$,
 which  introduces a new propositional variable $q$ behaving in
 $w$ as $\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
@@ -526,10 +526,12 @@ Equivalently, given a finite multiset $\G$ and repeatedly applying the
 rules of $\Calcw$ upwards, proof search eventually halts, no matter
 which strategy is used.
 
-To prove strong termination of $\Calcw$, we introduce the relation $\precc$ between multisets of constraints. 
-The weight $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
-of constraints $\G$, and the size $\size{\varphi}$ of a formula
-$\varphi$ are defined as follows:
+To prove strong termination of $\Calcw$, we define the relation $\precc$ between multisets of constraints. 
+To this aim, we introduce a weight function $\wgname$ on constraints $u$  and multisets of constraints $\G$,
+together with the multisets  $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers). 
+% The weight $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
+% of constraints $\G$, and the size $\size{\varphi}$ of a formula
+% $\varphi$ are defined as follows:
 \begin{center}
   \begin{tabular}{p{40ex}p{40ex}}\small
     \[
@@ -548,6 +550,10 @@ $\varphi$ are defined as follows:
       \wg{u\abstractorder t}\,=\,\wg{u}
       \hspace{3em}
       \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
+\\[1.5ex]
+      \G[w] \,=\,\{\, u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}\,\}
+\qquad
+\sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
     \end{array}    
     \]
     &\small
@@ -562,7 +568,14 @@ $\varphi$ are defined as follows:
     \\[2ex]
     \size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
     \end{cases}
-    \]
+ %    \\[2ex]
+% \[
+%     \G[w] \,=\,\{\,
+% u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
+% \,\} 
+%  \]
+% % sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
+   \]
   \end{tabular}
 \end{center}
 % We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
@@ -582,16 +595,15 @@ $\varphi$ are defined as follows:
 %   \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
 % \end{array}    
 % \]
-
-\noindent
-Let $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers) be defined as follows:
-\[
-\G[w] \,=\,\{\,
-u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
-\,\} 
-\qquad
-\sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
-\]
+% \noindent
+% Let $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers) be defined as follows:
+% \[
+% \G[w] \,=\,\{\,
+% u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
+% \,\} 
+% \qquad
+% \sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
+% \]
 Given the finite multisets of natural numbers
 $\Theta_1$ and $\Theta_2$,  we set:% \\[.5ex]
 \[
@@ -1007,23 +1019,27 @@ by Prop.~\ref{prop:satBranch},
 
 \noindent
 %%We remark that $\Bs$ does not need to implement backtracking.
-As a corollary, we get the completeness of $\Calcw$:
+To sum up, we get the completeness of $\Calcw$ and the finite model property for $\GWL$.
 
 
 
 \begin{proposition}[Completeness]\label{prop:compl}
-  Let $\G$ be a finite multiset of constraints of the form
-  $w:\varphi\abstractorder t$.  If $\nprovesw{\G}$ then there exists a 
-  discrete countermodel for $\G$.
-  %%\begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
-  %%\item\label{prop:compl:1} If  $\nprovesw{w: \varphi < 1}$, then there exists a
-  %%  discrete countermodel for $\varphi$.
-  %%\item\label{prop:compl:2}
-  %%  If $\nprovesw{w : \varphi < 1}$, then  $\varphi\not\in\GWL$.
-  %%\item\label{prop:compl:3} If $\varphi\not\in\GWL$, then then there
-  %%  exists a discrete countermodel for $\varphi$.
-  %%\end{enumerate}
+  Let $\G$  be a finite multiset of constraints of the form $w:\varphi\abstractorder t$.
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
+ \item\label{prop:compl:1}
+ $\provesw{\Gamma}$ iff, for every \GWM-model  $\M$,  $\M\not\models\G$.
+
+     
+\item\label{prop:compl2}
+$\varphi\in\GWL$ iff  $\provesw w:\varphi < 1$; moreover, if
+$\varphi\not\in\GWL$, 
+there exists a discrete countermodel for $\varphi$.
+
+
+
+\end{enumerate}
 \end{proposition}
+
 % \begin{proof}
 %   Point~\ref{prop:compl:1} follows from Lemma~\ref{lemma:search}.
 %   Point~\ref{prop:compl:2} follows from~\ref{prop:compl:1},
@@ -1038,45 +1054,57 @@ As a corollary, we get the completeness of $\Calcw$:
 
 
 
-
-
-
-
-By Prop.~\ref{prop:compl}, $\GWL$ has the finite model property. Let
-$\varphi\not\in\GWL$ and let $\M$ be the discrete countermodel
-extracted from an open branch having root $w_0:\varphi<1$.  One can
-easily prove that the depth of $\M$ is bounded by $\size{\varphi}$ and
-that every world of $\M$ has at most $\size{\varphi}$ R-successors;
-this implies that the size of $\M$ is
-$O(\size{\varphi}^{\size{\varphi}})$ (see
-Th.~4.1~\cite{BilkovaFK:22}).  Note that it is not possible to build
-$\M$ one branch at a time, since the constraints generated during the
-expansion of a branch have global validity and must be kept throughout
-the construction.  However, by adapting the procedure described in
+%By Prop.~\ref{prop:compl}, $\GWL$ has the finite model property.
+Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
+extracted from an open branch with root $w_0:\varphi < 1$. One can
+easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
+that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
+Consequently, the size of $\M$ is
+$O(\size{\varphi}^{\size{\varphi}})$ (see Th.~4.1~\cite{BilkovaFK:22}).
+Note  that $\M$ cannot be constructed incrementally, one branch at a time,
+since the constraints generated during the expansion of a branch have
+global validity and must be preserved throughout the entire construction.
+Nevertheless, by adapting the procedure described in
 Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
-for $\GWL$ is in PSPACE.
+for $\GWL$ belongs to PSPACE.
 
-We have implemented both the proof search procedure and the
+We have implemented both the proof-search procedure and the
 countermodel extraction in the JTabWb
 framework~\cite{FerrariFF:17a}. The prover, named
 \texttt{gwref}~\cite{gwrefProver}, performs a standard backward
-depth-first proof search, leveraging the JTabWb engine complemented
-with the Java implementation of the $\Calcw$ rules and of a plain
+depth-first proof search, relying on the JTabWb engine extended with a
+Java implementation of the $\Calcw$ rules together with a basic
 proof-search strategy. The consistency of atomic constraints is
-checked using the Choco-solver Java library~\cite{ChocoSolver:2025}.
+verified using the Choco-solver Java library~\cite{ChocoSolver:2025}.
+We emphasize that the calculus $\Calcw$ and the associated proof-search
+strategy can be smoothly adapted to treat the logic
+$\GWCL$~\cite{FerFioRod:2025}, characterized by crisp $\GWM$-models, by
+refining the notion of consistency for a set of atomic constraints
+$\Gat$: a solution $\s$ to $\Gat$ must satisfy
+$\s(R(w,w')) \in \{0,1\}$ for every pair of labels $w$, $w'$.
+To the best of our knowledge, the only other prover available for modal
+fuzzy logics is mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed
+for continuous t-norm-based logics, including G\"odel--Dummett logic.
+However, neither $\GWL$ nor $\GWCL$ are supported by mNiBLoS.
 
-To our knowledge, the only other prover available for modal fuzzy
-logic is mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for
-continuous t-norm-based logics, including G\"odel-Dummett
-Logic. However, mNiBLoS does not support the logic $\GWL$.
+As future work, we plan to extend the procedure to other witnessed
+G\"odel modal logics obtained by imposing additional constraints on the
+accessibility relation (e.g., reflexivity, transitivity, seriality).
+In contrast, treating G\"odel modal logics with non-witnessed models
+appears to be considerably more challenging.
 
 
-We remark that, if in the above proof search procedure we impose to
-the solver to find solutions $\s$ such that $\s(R(w,w'))\in\{0,1\}$
-for every pair of labels $w,w'$ we get a calculus for $\GWCL$, the
-crisp extension of $\GWL$ \cite{FerFioRod:2025}. On the contrary, is
-not trivial to adapt our calculus to the non witnessed G\"odel modal
-logics.
+
+Both logics $\GWL$ and $\GWCL$ have been characterized semantically by means of G\"odel Kripke models;
+an interesting open problem is to develop a complete axiomatization for each of them.
+
+
+
+
+
+
+
+
 
 
 
