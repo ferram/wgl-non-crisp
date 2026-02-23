@@ -1,0 +1,69 @@
+\documentclass[10pt]{article}
+\usepackage{amssymb}
+\usepackage{xifthen}
+
+%% Change  the parameter of \pdfpagewidth  to enlarge page width  (e.g., \pdfpagewidth 200in )
+\pdfpagewidth 200in
+\pdfpageheight 20in
+
+\pagestyle{empty}
+\usepackage{proof}
+\newcommand{\gt}{\rhd}
+\newcommand{\lt}{\lhd}
+
+\par
+
+
+\begin{document}
+\thispagestyle{empty}
+\[
+\infer[\to<]{
+w_0: \Diamond a \to  \neg  \Box  \neg a  < 1\mbox{$_{(0)}$}}{
+\infer[\to\leq]{
+w_0:q_{0} < 1, w_0: \Diamond a > w_0:q_{0}, w_0: \neg  \Box  \neg a \leq w_0:q_{0}\mbox{$_{(1)}$}}{
+\infer[\Diamond\gt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Diamond a > w_0:q_{0}\mbox{$_{(2)}$}}{
+\infer[R\land \gt]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, R(w_{0} ,w_{1})\land w_1:a > w_0:q_{0}\mbox{$_{(3)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:q_{0} \geq 1, R(w_{0} ,w_{1}) > w_0:q_{0}, w_1:a > w_0:q_{0}\mbox{$_{(4)}$}}{
+}
+}
+}
+&
+\infer[\Diamond\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0: \Diamond a > w_0:q_{0}, w_0: \Box  \neg a > w_0:\bot\mbox{$_{(5)}$}}{
+\infer[R\land \gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, w_0: \Box  \neg a > w_0:\bot, R(w_{0} ,w_{2})\to w_2: \neg a > w_0:\bot, R(w_{0} ,w_{2})\land w_2:a > w_0:q_{0}\mbox{$_{(6)}$}}{
+\infer[R\to \gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, w_0: \Box  \neg a > w_0:\bot, R(w_{0} ,w_{2})\to w_2: \neg a > w_0:\bot\mbox{$_{(7)}$}}{
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, 1 > w_0:\bot, w_0: \Box  \neg a > w_0:\bot, w_2: \neg a \geq R(w_{0} ,w_{2})\mbox{$_{(8)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, 1 > w_0:\bot, w_2:a \leq w_2:\bot, 1 \geq R(w_{0} ,w_{2}), w_0: \Box  \neg a > w_0:\bot\mbox{$_{(9)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, 1 > w_0:\bot, w_2:\bot \geq R(w_{0} ,w_{2}), w_0: \Box  \neg a > w_0:\bot\mbox{$_{(10)}$}}{
+}
+}
+&
+\infer[\to\gt]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, w_0: \Box  \neg a > w_0:\bot, w_2: \neg a > w_0:\bot\mbox{$_{(11)}$}}{
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, w_2:a \leq w_2:\bot, 1 > w_0:\bot, w_0: \Box  \neg a > w_0:\bot\mbox{$_{(12)}$}}{
+}
+&
+\infer[\textrm{Ax}]{
+w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}, R(w_{0} ,w_{2}) > w_0:q_{0}, w_2:a > w_0:q_{0}, w_2:\bot > w_0:\bot, w_0: \Box  \neg a > w_0:\bot\mbox{$_{(13)}$}}{
+}
+}
+}
+}
+}
+}
+}
+\]
+\vspace{4ex}
+
+\end{document}
