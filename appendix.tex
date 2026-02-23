@@ -355,7 +355,7 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   Let us consider the following application of rule $\to < $:
   \[
   \begin{array}{l}
-    \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,\D_w,\,\Theta}^{\G'}$}    
+    \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,\D_w,\,\Theta}^{\G_1}$}    
     % ------------------------------------------    
     \RightLabel{$\to < $}
     \UIC{$\underbrace{w: \a\to \b < t,\,\D_w,\,\Theta}_\G$}
@@ -365,17 +365,17 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
     \\[1ex]
     \G[w] =\{w:\a\to \b < t\} \cup \D_w 
     \hspace{3em}
-    \G'[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
+    \G_1[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
   \end{array}
   \]
   We have ($\cup$ denotes the multiset union):
   \[
   \sizem{\G} \,=\, \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta}
   \hspace{3em}
-  \sizem{\G'} \;=\;
-  \{\, \wg{\G'[w]} \,\}    \cup \sizem{\Theta}    
+  \sizem{\G_1} \;=\;
+  \{\, \wg{\G_1[w]} \,\}    \cup \sizem{\Theta}    
   \]
-  We prove that $\sizem{\G'}\precm \sizem{\G}$. The following holds:
+  We prove that $\sizem{\G_1}\precm \sizem{\G}$. The following holds:
   \[
   \begin{array}{rcl}
     \wg{\G[w]}&\,=\, &\wg{w:\a\to \b < t} + \wg{\D_w} \;=\; \wg{\a} +  \wg{\b} + 1 +  \wg{\D_w} 
@@ -386,15 +386,15 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   \end{array}
   \]
   Since $\wg{\G[w']} <  \wg{\G[w]}$, we get
-  $\sizem{\G'}\precm \sizem{\G}$, hence
-  $\G'\precc \G$.
+  $\sizem{\G_1}\precm \sizem{\G}$, hence
+  $\G_1\precc \G$.
   
   % -------------------------------------------------------------------------
   \smallskip
   Let us consider the following  application of $\Box\lt$:
   \[
   \begin{array}{l}
-    \AXC{$\overbrace{\D_{w_1}, \;\D_w,\;\Theta}^{\G'}$}
+    \AXC{$\overbrace{\D_{w_1}, \;\D_w,\;\Theta}^{\G_1}$}
     % -----------------------------------------
     \RightLabel{$\Box\lt$}
     \UIC{$\underbrace{w:\Box\a \lt t,\;\Delta_w,\;\Theta}_\G$}    
@@ -405,34 +405,34 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
     \\[1ex]
     \G[w] =\{w:\Box\a \lt t\} \cup \D_w
     \hspace{4em}
-    \G'[w] =\D_w
+    \G_1[w] =\D_w
     \hspace{4em}
-    \G'[w_1]=\D_{w_1}
+    \G_1[w_1]=\D_{w_1}
   \end{array}
   \]
   We have:
   \[
   \sizem{\G} \;=\; \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta} 
   \hspace{4em}
-  \sizem{\G'} \;=\;
-  \{\, \wg{\G'[w]},\,   \wg{\G'[w_1]} \,\}    \cup \sizem{\Theta}    
+  \sizem{\G_1} \;=\;
+  \{\, \wg{\G_1[w]},\,   \wg{\G_1[w_1]} \,\}    \cup \sizem{\Theta}    
   \]  
-  We prove that $\sizem{\G'}\precm   \sizem{\G}$. To this aim,  we show that:
+  We prove that $\sizem{\G_1}\precm   \sizem{\G}$. To this aim,  we show that:
   
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
   \item\label{lemma:rulesDec:box1}
-    $\wg{\G'[w]} < \wg{\G[w]}$.
+    $\wg{\G_1[w]} < \wg{\G[w]}$.
     
   \item\label{lemma:rulesDec:box2}
-    $\wg{\G'[w_1]} < \wg{\G[w]}$.
+    $\wg{\G_1[w_1]} < \wg{\G[w]}$.
   \end{enumerate}
-  The proof of point~\ref{lemma:rulesDec:box1} is immediate since $\G[w] =  \{w:\Box\a \lt t\}\cup\G'[w]$.
+  The proof of point~\ref{lemma:rulesDec:box1} is immediate since $\G[w] =  \{w:\Box\a \lt t\}\cup\G_1[w]$.
   We prove~\ref{lemma:rulesDec:box2}. We have:
   \[
   \begin{array}{l}
     \wg{\G[w]}\;=\; \wg{w:\Box\a \lt t } + \wg{\Delta_w} \;=\; \wg{\a} + 2 +  \wg{\Delta_w}
     \\[1ex]
-    \wg{\G'[w_1]}\;=\; 
+    \wg{\G_1[w_1]}\;=\; 
     \wg{ R(w,w_1)\to w_1:\a } + \wg{ \Phibd{\Delta_w,w,w_1} }
     \;=\;  \wg{\a} + 1 + \wg{ \Phibd{\Delta_w,w,w_1}}
   \end{array}
@@ -456,13 +456,19 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   In both cases, it holds that $\wg{\chi_1}= \wg{\b} +1$ and
   $\wg{\chi}= \wg{\b} +2$, hence $\wg{\chi_1} < \wg{\chi}$; this
   proves~\ref{lemma:rulesDec:box3}.  From~\ref{lemma:rulesDec:box1}
-  and~\ref{lemma:rulesDec:box2} it follows that $\sizem{\G'}\precm
-  \sizem{\G}$, hence $\G'\precc \G$.
+  and~\ref{lemma:rulesDec:box2} it follows that $\sizem{\G_1}\precm
+  \sizem{\G}$, hence $\G_1\precc \G$.
 \end{proof}
 
 
 
 
+
+%\begin{figure}
+%  \centering
+  
+%  \includegraphics[angle=90, width=0.3\textwidth]{prova.png}
+%\end{figure}
 
 
 

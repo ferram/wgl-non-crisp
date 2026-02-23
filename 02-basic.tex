@@ -46,23 +46,26 @@ e(w,\bot) = 0 & e(w,\a \star \b) = e(w,\a) \star e(w,\b),\;\star\in \{\,\land,\,
 % \item $e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}$;
 % \item $e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}$.
 % \end{itemize}
-\noindent
-Note that:
-\[
- e(w,\neg\a) =
- \begin{cases}
-   1 & \mbox{if $e(w,\a)=0$}    
-   \\
-   0 &   \mbox{if $e(w,\a)> 0$} 
- \end{cases}
- \qquad
- e(w,\neg\neg\a) =
- \begin{cases}
-   1 & \mbox{if $e(w,\a) > 0$}    
-   \\
-   0 &   \mbox{if $e(w,\a)= 0$} 
- \end{cases}
-\]
+% \[
+% \begin{cases}
+%   1 & \mbox{if $e(w,\a)=0$}    
+%   \\
+%   0 &   \mbox{if $e(w,\a)> 0$} 
+%   \[
+%   e(w,\neg\a) =
+%   \begin{cases}
+%     1 & \mbox{if $e(w,\a)=0$}    
+%     \\
+%     0 &   \mbox{if $e(w,\a)> 0$} 
+%   \end{cases}
+%   \qquad
+%   e(w,\neg\neg\a) =
+%   \begin{cases}
+%     1 & \mbox{if $e(w,\a) > 0$}    
+%     \\
+%     0 &   \mbox{if $e(w,\a)= 0$} 
+%   \end{cases}
+%   \]
 
 
 
@@ -75,18 +78,20 @@ Note that:
 
 
 \noindent
-A world $w'$ is an $R$-successor of $w$ iff $R(w, w')>0$. If $w$ has
-no $R$-successors, then $e(w,\Box\a)=1$ and $e(w,\Diam\a)=0$ since,
-for every $w'\in W$, $R(w,w') \to e(w',\a) = 1$ and $R(w,w')\land
-e(w',\a) = 0$.  A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and
-is called a \emph{\GWM-model}, if the values of $e(w,\Box\a)$ and
-$e(w,\Diam\a)$ are witnessed by some world $w'$ in $\M$, namely:
+Note that $e(w,\neg\a)=1$ if $e(w,\a)=0$ and $e(w,\neg\a)=0$ if
+$e(w,\a)>0$.  A world $w'$ is an $R$-successor of $w$ iff $R(w,
+w')>0$. If $w$ has no $R$-successors, then $e(w,\Box\a)=1$ and
+$e(w,\Diam\a)=0$ since, for every $w'\in W$, $R(w,w') \to e(w',\a) =
+1$ and $R(w,w')\land e(w',\a) = 0$.  A \GM-model $\M=\stru{W,R,e}$ is
+\emph{witnessed}, and is called a \emph{\GWM-model}, if the values of
+$e(w,\Box\a)$ and $e(w,\Diam\a)$ are witnessed by some world $w'$ in
+$\M$, namely:
 \begin{itemize}
 \item $e(w,\Box \a)=r$ iff there is $w'\in W$ such that $R(w,w') \to
   e(w',\a) = r$;
 
 \item $e(w,\Diam \a)=r$ iff there is $w'\in W$ such that
-  $R(w,w')\land e(w'\a) = r$.
+  $R(w,w')\land e(w',\a) = r$.
 \end{itemize}
 As a consequence, in the definitions of $e(w,\Box \a)$ and $e(w,\Diam
 \a)$, the infimum and the supremum are just the minimum and the
@@ -151,8 +156,9 @@ for an overview):
 The logic $\GCL$ is obtained by adding the Crisp axiom
 $\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $(Cr)$, to $\GKL$
 (see~\cite{RodriguezV:21}).  The logic $\GWCL$ has been introduced
-in~\cite{FerFioRod:2025} and no axiomatization is known.  By
-definition, $\GKL\subseteq\GCL\subseteq\GWCL$ and
+in~\cite{FerFioRod:2025} and recently its axiomatization has been
+proposed in~\cite{RV26}.  By definition,
+$\GKL\subseteq\GCL\subseteq\GWCL$ and
 $\GKL\subseteq\GWL\subseteq\GWCL$; we show that all the inclusions are
 strict.  Let us consider the instance $\varphi =\Box (p\lor q)\to
 (\Box p \lor \Diam q)$ of $(Cr)$ and let $\M=\stru{W,R,e}$ be the
