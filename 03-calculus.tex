@@ -379,16 +379,11 @@ the set $\Atmp{\G} =\Atm{\G}\cup \{1 > w:p\}$, which  is not consistent.
 
 
 
-
-
-
-\bigskip 
-\inlinetodo{**TO DO???**
-An example of derivation is shown in Fig.~\ref{fig:der}.  
-In representing derivations, we underline the main constraint of a rule
+An example of derivation is shown in Fig.~\ref{fig:der}.  In
+representing derivations, we underline the main constraint of a rule
 application; moreover, we omit redundant constraints (e.g.,
 constraints of the kind $t \leq t$ and multiple copies of the same
-constraint).}
+constraint).
 
 
 To prove the soundness of $\Calcw$, we need the
@@ -397,73 +392,79 @@ following:
 %%######### EXAMPLE DERIVATION #########
 \begin{figure}[t]
   \centering\small
-  ** TO DO **
-  % \[
-  % \begin{array}{l}
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_1$}
-  %   % ////////////////////////////////////////////////////////////////////////////////////////
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_3$}
-  %   % //////////////////
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_5$}
-  %   % ////////
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_6$ }
-  %   % ==========================
-  %   \RightLabel{$\to \leq$}
-  %   \BIC{$\underline{w_1:\neg p \leq c_2},\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D$}
-  %   % /////
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_4$}
-  %   % ===================
-  %   \RightLabel{$\to \gt$}
-  %   \BIC{$w_1:p \leq c_1,\,\underline{w_1:\neg \neg p > c_0},\,\D$}
-  %   % //////////////////
-  %   \RightLabel{$\Box\lt$}
-  %   \BIC{$\underline{w: \Box p \leq c_1},\,\D$}
-  %   % /////////////////////////////////////
-  %   \AXC{}
-  %   \RightLabel{$\ruleAxat$}
-  %   \UIC{$\G_2$}
-  %   % ==================================
-  %   \insertBetweenHyps{\hskip -5em}
-  %   \RightLabel{$\to \gt$}
-  %   \BIC{$\underline{w:\neg  \Box p > w:\bot},\,w:\bot \leq c_0,\,w: \Box \neg \neg p > c_0,\,c_0 < 1$ }
-  %   % ==========================================================================================
-  %   \RightLabel{$\to \leq$}
-  %   \insertBetweenHyps{\hskip -7em}
-  %   \BIC{$\underline{w:\neg \neg  \Box p \leq c_0},\;w: \Box \neg \neg p > c_0,\;c_0 < 1$}
-  %   % -----------------------------------------------------
-  %   \RightLabel{$\to <$}
-  %   \UIC{$\underline{w: \Box \neg \neg p \to \neg \neg  \Box p < 1}$}
-  %   \DP
-  %   % #############################################    
-  %   \\[14ex]
-  %   \D = w:\bot \geq c_1,\,1 > w:\bot,\,w:\bot \leq c_0,\,
-  %   w: \Box \neg \neg p > c_0,\,c_0 < 1
-  %   \\[.5ex]    
-  %   \G_1=c_0 \geq 1,\,   w: \Box \neg \neg p > c_0,\,c_0 < 1
-  %   \\[.5ex]    
-  %   \G_2 = w:\bot > w:\bot,\,w:\bot \leq c_0,\, w: \Box \neg \neg p > c_0,\,c_0 < 1
-  %   \\[.5ex]    
-  %   \G_3 =1 \leq c_1,  w:\bot \geq c_1,\,1 > w:\bot,\,w:\bot \leq c_0,\, 1 > c_0,\,c_0 < 1
-  %   \\[.5ex]
-  %   \G_4 = w_1 : \bot >  c_0,\,w_1:p \leq c_1,\,\D
-  %   \\[.5ex]   
-  %   \G_5 = c_2\geq 1,\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D
-  %   \\[.5ex]    
-  %   \G_6 =  w_1 : p > w_1 :\bot,\, w_1 :\bot\leq c_2 ,\,w_1:\bot \geq c_2,\, 1 > c_0,\,  w_1:p \leq c_1,\,\D
-  % \end{array}   
-  % \]
-  \caption{A derivation of $w:...$.}
-  \label{fig:der}
+  \begin{tabular}{p{100ex}}
+  \[
+  \begin{array}{lcl}
+    \Delta_0&=& w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Box a > w_0:q_{0}\\
+    \Delta_1&=&  w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}\\
+    \Delta_2&=& \Delta_1, R(w_{0} ,w_{1}) > w_0:\bot, w_0: \Box a > w_0:q_{0}, w_1:a \leq w_1:\bot\\
+    \Delta_3&=& \Delta_1, R(w_{0} ,w_{1}) > w_0:\bot, w_0: \Box a > w_0:q_{0}, w_1:\bot > w_0:\bot\\
+  \end{array}
+  \]
+  \\
+  $\Dcal=\left\{
+    \begin{minipage}{100ex}\small
+      $
+      \infer[\to<]{
+        \underline{w_0: \Box a \to  \neg  \Diamond  \neg a  < 1}\mbox{$_{(0)}$}}{
+        \infer[\to\leq]{
+          w_0:q_{0} < 1, w_0: \Box a > w_0:q_{0}, 
+          \underline{w_0: \neg  \Diamond  \neg a \leq w_0:q_{0}}\mbox{$_{(1)}$}}{
+          \infer[\textrm{Ax}]{
+            \Delta_0\mbox{$_{(2)}$}}{
+          }
+          &
+          \infer[\Diamond\gt]{
+            \Delta_1, \underline{w_0: \Diamond  \neg a > w_0:\bot}, w_0: \Box a > w_0:q_{0}\mbox{$_{(3)}$}}{
+            \infer[R\land \gt]{
+              \Delta_1, w_0: \Box a > w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}, 
+              \underline{R(w_{0} ,w_{1})\land w_1: \neg a > w_0:\bot}\mbox{$_{(4)}$}}{
+              \infer[\to\gt]{
+                \Delta_2, \underline{w_1: \neg a > w_0:\bot}, R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}\mbox{$_{(5)}$}}{
+                \Dcal_1\hspace{15ex}
+                &
+                \hspace{15ex}\Dcal_2
+              }
+            }
+          }
+        }
+      }$\end{minipage}\right.$
+  \\[10ex]
+  $\Dcal_1=\left\{
+    \begin{minipage}{80ex}\small
+      \[
+      \infer[R\to \gt]{
+        \Delta_2, 1 > w_0:\bot,  \underline{R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}}\mbox{$_{(6)}$}}{
+        \infer[\textrm{Ax}]{
+          \Delta_2, 1 > w_0:\bot, w_1:a \geq R(w_{0} ,w_{1}), 1 > w_0:q_{0}\mbox{$_{(7)}$}}{
+        }
+        &
+        \infer[\textrm{Ax}]{
+          \Delta_2, 1 > w_0:\bot, w_1:a > w_0:q_{0}\mbox{$_{(8)}$}}{
+        }
+      }
+      \]
+    \end{minipage}
+  \right.$
+  \\[6ex]
+  $\Dcal_2=\left\{
+    \begin{minipage}{80ex}\small
+      \[
+      \infer[R\to \gt]{
+        \Delta_3, \underline{R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}}\mbox{$_{(9)}$}}{
+        \infer[\textrm{Ax}]{
+          \Delta_3, w_1:a \geq R(w_{0} ,w_{1}), 1 > w_0:q_{0},\mbox{$_{(10)}$}}{
+        }
+        &
+        \infer[\textrm{Ax}]{
+          \Delta_3, w_1:a > w_0:q_{0}\mbox{$_{(11)}$}}{
+        }
+      } %%
+      \]
+    \end{minipage}\right.$
+\end{tabular}
+\caption{A derivation of $w_0: \Box a \to  \neg  \Diamond  \neg a  < 1$.}
+\label{fig:der}
 \end{figure}
 
 \begin{lemma}\label{lemma:soundRule}
