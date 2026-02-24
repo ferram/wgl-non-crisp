@@ -227,7 +227,7 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   \[
   %% IMP LTE 
   \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
-  \AXC{$\overbrace{w :\b \leq w:q,\,  w :\a > w:q,\,  w:q \leq  t,\,\G_0}^{\G_2}$}    
+  \AXC{$\overbrace{w :\a > w:q,\, w :\b \leq w:q,\, w:q \leq  t,\,\G_0}^{\G_2}$}    
   % ------------------------------------------    
   \RightLabel{$\to\leq$}
   \BIC{$\underbrace{w: \a\to \b \leq t,\,\G_0}_{\G}$}
@@ -270,7 +270,7 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   $e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case
   $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$.  Now let
   $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,e'}$ be the model where
-  $e'=e[\Ical(w),q:=r]$.  We can prove that $\M'\models_{\Ical} \G_1$.
+  $e'=e[(\Ical(w),q):=r]$.  We can prove that $\M'\models_{\Ical} \G_1$.
 
   Let $\rho$ be an application of $\Box\lt$:
   \[
@@ -282,21 +282,22 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   \]
   By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
   $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt
-  \Ical(t)$. We have two cases.  If the world $\Ical(w)$ has no
-  $R$-successors, then $e(\Ical(w),\Box\a)=1$ and $t=1$ and
-  $\lt=\leq$. Since $\Ical(R(w,w_1))=0$ we have:
-  \begin{itemize}
-  \item $e(\Ical(w),R(w,w_1)\to w_1:\a)=1$;
-  \item $e(\Ical(w),\psi_1=R(w,w_1)\to w_1:\d)=1$ for every constraint of the
-    kind $\psi_1\geq t$ in $\Phibd{\G,w,w_1}$;
-  \item $e(\Ical(w),\psi_2=R(w,w_1)\wedge w_1:\d)=0$ for every
-    constraint of the kind $\psi_2\leq t$ in $\Phibd{\G,w,w_1}$.
-  \end{itemize}
-  Hence we get that $\M\models_{\Ical} \G_1$.  Otherwise if $\Ical(w)$
-  has at least one $R$-successor, since $\M$ is a $\GWM$-model, there
-  exists a world $w^\star$ of $\M$ such that $R(\Ical(w),w^\star)\to
-  e(w^\star,\a)=e(\Ical(w),\Box\a)$.  Let
-  $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We remark that, for every
+  \Ical(t)$. 
+  % We have two cases.  If the world $\Ical(w)$ has no
+  % $R$-successors, then $e(\Ical(w),\Box\a)=1$ and $t=1$ and
+  % $\lt=\leq$. Since $\Ical(R(w,w_1))=0$ we have:
+  % \begin{itemize}
+  % \item $e(\Ical(w),R(w,w_1)\to w_1:\a)=1$;
+  % \item $e(\Ical(w),\psi_1=R(w,w_1)\to w_1:\d)=1$ for every constraint of the
+  %   kind $\psi_1\geq t$ in $\Phibd{\G,w,w_1}$;
+  % \item $e(\Ical(w),\psi_2=R(w,w_1)\wedge w_1:\d)=0$ for every
+  %   constraint of the kind $\psi_2\leq t$ in $\Phibd{\G,w,w_1}$.
+  % \end{itemize}
+  % Hence we get that $\M\models_{\Ical} \G_1$.  Otherwise if $\Ical(w)$
+  % has at least one $R$-successor, 
+  Since $\M$ is a $\GWM$-model, there exists a world $w^\star$ of $\M$
+  such that $R(\Ical(w),w^\star)\to e(w^\star,\a)=e(\Ical(w),\Box\a)$.
+  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We remark that, for every
   constraint $\chi$ not containing $w_1$, $\M\models_\Ical \chi$ iff
   $\M\models_{\Ical'} \chi$. Since $w_1$ is a fresh world label, it
   does not occur in $\G_0$, and hence
@@ -309,14 +310,15 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
     
   \item for very $\chi=R(w,w_1)\to w_1 : \d \gt
     t'\in\Phibd{\G,w,w_1}$, we have $w : \Box \b \gt t'\in \G_0$,
-    hence $e(\Ical(w),\Box \b) \gt \Ical(t')$.  Since $\Ical(w) R
-    w^\star$, it follows that $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
+    hence $e(\Ical(w),\Box \b) \gt \Ical(t')$.  %%Since $\Ical(w) R w^\star$, 
+    It follows that $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
     \Ical(t')$, and this implies $\M\models_{\Ical'} \chi$;
 
   \item for every $\chi=R(w,w_1)\wedge w_1 : \b \lt
     t'\in\Phibd{\G,w,w_1}$, we have $w : \Diam \b \lt t'\in \G_0$,
-    hence $e(\Ical(w),\Diam \b) \lt \Ical(t')$. Since $\Ical(w) R
-    w^\star$, it follows that $R(\Ical(w),w^\star)\land
+    hence $e(\Ical(w),\Diam \b) \lt
+    \Ical(t')$. %% Since $\Ical(w) R w^\star$,
+    It follows that $R(\Ical(w),w^\star)\land
     e(w^\star,\b)\lt\Ical(t')$, and this implies $\M\models_{\Ical'}
     \chi$;
   \end{itemize}
