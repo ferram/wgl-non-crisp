@@ -395,75 +395,89 @@ following:
   \begin{tabular}{p{100ex}}
   \[
   \begin{array}{lcl}
-    \Delta_0&=& w_0:q_{0} < 1, w_0:q_{0} \geq 1, w_0: \Box a > w_0:q_{0}\\
-    \Delta_1&=&  w_0:q_{0} < 1, w_0:\bot \leq w_0:q_{0}\\
-    \Delta_2&=& \Delta_1, R(w_{0} ,w_{1}) > w_0:\bot, w_0: \Box a > w_0:q_{0}, w_1:a \leq w_1:\bot\\
-    \Delta_3&=& \Delta_1, R(w_{0} ,w_{1}) > w_0:\bot, w_0: \Box a > w_0:q_{0}, w_1:\bot > w_0:\bot\\
+    \Delta_0&=&\{\, w_0: \Box p > c,\; c \geq 1,\; c < 1\,\} \qquad\mbox{$c=w_0:q_0$}\\
+    \Delta_1&=&\{\,  w_0:\bot \leq c,\;c < 1\,\}\\
+    \Delta_2&=& \Delta_1\cup\{\, w_0: \Box p > c,\;  R(w_{0} ,w_{1}) > w_0:\bot\,\}\\
+    \Delta_3&=& \Delta_2\cup\{\,\;w_1: p\leq w_1:\bot,\; 1 > w_0:\bot   \,\}\\
+    \Delta_4&=& \Delta_2\cup\{\, R(w_{0} ,w_{1})\to w_1:p > c,\;w_1:\bot >  w_0:\bot   \,\}\\
   \end{array}
   \]
   \\
-  $\Dcal=\left\{
-    \begin{minipage}{100ex}\small
-      $
+  % $\Dcal=\left\{
+  %   \begin{minipage}{100ex}\small
+  %     $
       \infer[\to<]{
-        \underline{w_0: \Box a \to  \neg  \Diamond  \neg a  < 1}\mbox{$_{(0)}$}}{
-        \infer[\to\leq]{
-          w_0:q_{0} < 1, w_0: \Box a > w_0:q_{0}, 
-          \underline{w_0: \neg  \Diamond  \neg a \leq w_0:q_{0}}\mbox{$_{(1)}$}}{
+        \underline{w_0: \Box p \to  \neg  \Diamond  \neg p  < 1}\mbox{$_{(0)}$}}{
+        \infer[\ruleToLEQAt]{
+          w_0: \Box p > c,\;
+          \underline{w_0: \neg  \Diamond  \neg p \leq c},\;   c < 1\mbox{$_{(1)}$}}{
           \infer[\textrm{Ax}]{
             \Delta_0\mbox{$_{(2)}$}}{
           }
           &
           \infer[\Diamond\gt]{
-            \Delta_1, \underline{w_0: \Diamond  \neg a > w_0:\bot}, w_0: \Box a > w_0:q_{0}\mbox{$_{(3)}$}}{
+             w_0: \Box p > c,\;\underline{w_0: \Diamond  \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(3)}$}}{
             \infer[R\land \gt]{
-              \Delta_1, w_0: \Box a > w_0:q_{0}, R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}, 
-              \underline{R(w_{0} ,w_{1})\land w_1: \neg a > w_0:\bot}\mbox{$_{(4)}$}}{
-              \infer[\to\gt]{
-                \Delta_2, \underline{w_1: \neg a > w_0:\bot}, R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}\mbox{$_{(5)}$}}{
-                \Dcal_1\hspace{15ex}
+              w_0: \Box p > c,\; R(w_{0} ,w_{1})\to w_1:p > c,\; 
+              \underline{R(w_{0} ,w_{1})\land w_1: \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(4)}$}}{
+              \infer[\ruleToGAt]{
+                R(w_{0} ,w_{1})\to w_1:p > c,\;
+                \underline{w_1: \neg p > w_0:\bot},\; \Delta_2\mbox{$_{(5)}$}}{
+                % \Dcal_1\hspace{15ex}
+                 \infer[R\to \gt]{
+         \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+        \infer[\textrm{Ax}]{
+        w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+        }
+        &
+        \infer[\textrm{Ax}]{
+         w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
+        }
+      }
                 &
-                \hspace{15ex}\Dcal_2
+                % \hspace{15ex}\Dcal_2
+                \infer[\textrm{Ax}]{\Delta_4 \mbox{$_{(9)}$}  }{}
               }
             }
           }
         }
-      }$\end{minipage}\right.$
-  \\[10ex]
-  $\Dcal_1=\left\{
-    \begin{minipage}{80ex}\small
-      \[
-      \infer[R\to \gt]{
-        \Delta_2, 1 > w_0:\bot,  \underline{R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}}\mbox{$_{(6)}$}}{
-        \infer[\textrm{Ax}]{
-          \Delta_2, 1 > w_0:\bot, w_1:a \geq R(w_{0} ,w_{1}), 1 > w_0:q_{0}\mbox{$_{(7)}$}}{
-        }
-        &
-        \infer[\textrm{Ax}]{
-          \Delta_2, 1 > w_0:\bot, w_1:a > w_0:q_{0}\mbox{$_{(8)}$}}{
-        }
-      }
-      \]
-    \end{minipage}
-  \right.$
-  \\[6ex]
-  $\Dcal_2=\left\{
-    \begin{minipage}{80ex}\small
-      \[
-      \infer[R\to \gt]{
-        \Delta_3, \underline{R(w_{0} ,w_{1})\to w_1:a > w_0:q_{0}}\mbox{$_{(9)}$}}{
-        \infer[\textrm{Ax}]{
-          \Delta_3, w_1:a \geq R(w_{0} ,w_{1}), 1 > w_0:q_{0},\mbox{$_{(10)}$}}{
-        }
-        &
-        \infer[\textrm{Ax}]{
-          \Delta_3, w_1:a > w_0:q_{0}\mbox{$_{(11)}$}}{
-        }
-      } %%
-      \]
-    \end{minipage}\right.$
+                  }
+                  %$\end{minipage}\right.$
+  % \\[10ex]
+  % $\Dcal_1=\left\{
+  %   \begin{minipage}{80ex}\small
+  %     \[
+  %     \infer[R\to \gt]{
+  %        \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+  %       \infer[\textrm{Ax}]{
+  %       w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+  %       }
+  %       &
+  %       \infer[\textrm{Ax}]{
+  %        w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
+  %       }
+  %     }
+  %     \]
+  %   \end{minipage}
+  % \right.$
+  % % \\[6ex]
+  % $\Dcal_2=\left\{
+  %   \begin{minipage}{80ex}\small
+  %     \[
+  %     \infer[R\to \gt]{
+  %      \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_4\mbox{$_{(9)}$}}{
+  %       \infer[\textrm{Ax}]{
+  %         \Delta_4, w_1:p \geq R(w_{0} ,w_{1}), 1 > c,\mbox{$_{(10)}$}}{
+  %       }
+  %       &
+  %       \infer[\textrm{Ax}]{
+  %         \Delta_4, w_1:p > cX\mbox{$_{(11)}$}}{
+  %       }
+  %     } %%
+  %     \]
+  %   \end{minipage}\right.$
 \end{tabular}
-\caption{The derivation $\Dcal$ of $w_0: \Box a \to  \neg  \Diamond  \neg a  < 1$.}
+\caption{A derivation  of $w_0: \Box p \to  \neg  \Diamond  \neg p  < 1$.}
 \label{fig:der}
 \end{figure}
 
