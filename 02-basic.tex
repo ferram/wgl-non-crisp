@@ -23,22 +23,20 @@ a\to b =
 
 %% Gc-model
 \noindent
- A \emph{\GM-model} (\emph{G\"odel  model}) $\M$ is a structure
- $\stru{W,R,e}$ where $W$ is a nonempty set (the set of worlds),
- $R$ is a map $W\times W\to [0,1]$ (the accessibility relation) and  $e : W \times \PV\to [0,1]$
- (the evaluation function).
-If $R : W\times W\to \{0,1\}$, we say that $\M$ is \emph{crisp};
-in this case,  $R \subseteq W\times W$. 
-%We write $w_1 R w_2$ to mean that $(w_1,w_2)\in R$;
-The map $e$ is extended to arbitrary formulas as follows:
+A \emph{\GM-model} (\emph{G\"odel model}) $\M$ is a structure
+$\stru{W,R,e}$ where $W$ is a nonempty set (the set of worlds), $R$ is
+a map $W\times W\to [0,1]$ (the accessibility relation) and $e : W
+\times \PV\to [0,1]$ (the evaluation function).  If $R : W\times W\to
+\{0,1\}$, we say that $\M$ is \emph{crisp}; in this case, $R \subseteq
+W\times W$.  The map $e$ is extended to arbitrary formulas as follows:
 \[
-  \begin{array}{ll}
-e(w,\bot) = 0 & e(w,\a \star \b) = e(w,\a) \star e(w,\b),\;\star\in \{\,\land,\,\lor,\,\to\,\}
-\\[1ex]
- e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}   \qquad
- &
- e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}.               
-  \end{array}
+\begin{array}{ll}
+  e(w,\bot) = 0 & e(w,\a \star \b) = e(w,\a) \star e(w,\b),\;\star\in \{\,\land,\,\lor,\,\to\,\}
+  \\[1ex]
+  e(w,\Box \a) = \inf_{w'\in W}  \{\,R(w,w') \to e(w',\a)  \,\}   \qquad
+  &
+  e(w,\Diam \a) =  \sup_{w'\in W}  \{\,R(w,w') \land e(w',\a)  \,\}.               
+\end{array}
 \]  
 % \begin{itemize}
 % \item $e(w,\bot) = 0$;
@@ -82,10 +80,17 @@ Note that $e(w,\neg\a)=1$ if $e(w,\a)=0$ and $e(w,\neg\a)=0$ if
 $e(w,\a)>0$.  A world $w'$ is an $R$-successor of $w$ iff $R(w,
 w')>0$. If $w$ has no $R$-successors, then $e(w,\Box\a)=1$ and
 $e(w,\Diam\a)=0$ since, for every $w'\in W$, $R(w,w') \to e(w',\a) =
-1$ and $R(w,w')\land e(w',\a) = 0$.  A \GM-model $\M=\stru{W,R,e}$ is
-\emph{witnessed}, and is called a \emph{\GWM-model}, if the values of
-$e(w,\Box\a)$ and $e(w,\Diam\a)$ are witnessed by some world $w'$ in
-$\M$, namely:
+1$ and $R(w,w')\land e(w',\a) = 0$.  
+
+%% witnesed: in which the
+%%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
+%%coincides with (and is thus witnessed by) the value of $\a$ at some
+%%world accessible from $w$.
+
+
+A \GM-model $\M=\stru{W,R,e}$ is \emph{witnessed}, and is called a
+\emph{\GWM-model}, if the values of $e(w,\Box\a)$ and $e(w,\Diam\a)$
+are witnessed by some world $w'$ in $\M$, namely:
 \begin{itemize}
 \item $e(w,\Box \a)=r$ iff there is $w'\in W$ such that $R(w,w') \to
   e(w',\a) = r$;
@@ -101,7 +106,7 @@ is understood that $r$ is 0 (e.g., $R(w_i,w_j)=0$, for every $i\geq 1$
 and $j\geq 0$).  It holds that $e(w_0,\Box p)=0$, but the witnessing
 condition fails since there is no $w_j\in W$ such that $R(w_0,w_j) \to
 e(w_j,p)=0$.  Similarly $e(w_0,\Diamond q)=1$, but there is no
-witness.  We stress that every finite \GM-model is witnessed.
+witness.  
 
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
@@ -109,7 +114,8 @@ valid in $\M$, we say that $\M$ is a \emph{countermodel} for
 $\varphi$; thus, $\M$ contains a world $w$ such that $e(w,\varphi) <
 1$.  A model $\M=\stru{W,R,e}$ is \emph{discrete} if $W$ is finite and
 the images of $R$ and $e$ are finite subsets of $\Qrange$, the set of
-rational numbers in the range $[0,1]$.
+rational numbers in the range $[0,1]$. We stress that every finite
+\GM-model is witnessed.
 
 Let $\GL$ be the G\"odel-Dummett Logic, obtained by extending
 Intuitionistic Propositional Logic $\IPL$ with the linearity axiom
@@ -138,6 +144,7 @@ for an overview):
 \begin{figure}[t]
   \centering
   \input{fig-GWC-logics-diagram.tex}
+   \vspace{-2ex}
    \caption{Logics overview.}
   \label{fig:diagram}
 \end{figure}
@@ -185,10 +192,6 @@ Finally, we remark that, in all the mentioned modal logics, $\Box$ and
 $\Diam$ are not interdefinable.  This is proved for $\GCL$
 in~\cite{RodriguezV:21}; in App.~\ref{app:noninterdBD} the proof is
 extended to all the other modal logics mentioned in Fig.~\ref{fig:diagram}.
-
-
-
-
 
 
 \begin{figure}[t]
@@ -257,11 +260,6 @@ extended to all the other modal logics mentioned in Fig.~\ref{fig:diagram}.
     (\Box p \lor \Diam q) $ (instance of (Cr)).}
   \label{fig:countGW}
 \end{figure}
-
-
-\noindent
-
-
 
 
 
