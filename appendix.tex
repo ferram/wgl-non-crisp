@@ -528,18 +528,18 @@ such that $r_1 \land r'' \leq r'$
 is  selected
   and  $w_1:\b=r''$ is added to  $\Phi(w_1)$.
 \end{itemize}
-Note that  $\Phi(w_1)$ contains fewer modal operators than the input formula $\varphi$;
-accordingly, we can recursively apply the non-deterministic procedure
-to check whether a model having root $w_1$  satisfying all the constraints in  $\Phi(w_1)$ can be constructed.
-If the construction fails, we conclude that
-a countermodel for $\varphi$ cannot be built, hence $\varphi\in\GWL$.
-
-
-Otherwise, we proceed to the next modal constraint in $\Phi(w_0)$ and generate a new successor of $w_0$.
-At this stage, we can discard all information related to $w_1$, so the space usage remains polynomial in the size of $\varphi$.
-If, for every modal constraint in $\Phi(w_0)$, the corresponding construction succeeds, then a countermodel for $\varphi$
-exists (where  $e(w_0,\varphi) = r_0$),
-hence $\varphi \notin \GWL$.
+Note that $\Phi(w_1)$ contains fewer modal operators than the input
+formula $\varphi$; accordingly, we can recursively apply the
+non-deterministic procedure to check whether a model having root $w_1$
+satisfying all the constraints in $\Phi(w_1)$ can be constructed.  If
+the construction fails, we conclude that a countermodel for $\varphi$
+cannot be built, hence $\varphi\in\GWL$. Otherwise, we proceed to the
+next modal constraint in $\Phi(w_0)$ and generate a new successor of
+$w_0$.  At this stage, we can discard all information related to
+$w_1$, so the space usage remains polynomial in the size of $\varphi$.
+If, for every modal constraint in $\Phi(w_0)$, the corresponding
+construction succeeds, then a countermodel for $\varphi$ exists (where
+$e(w_0,\varphi) = r_0$), hence $\varphi \notin \GWL$.
 
 
 
