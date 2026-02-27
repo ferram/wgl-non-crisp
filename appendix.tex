@@ -466,7 +466,9 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
 \subsection{A PSPACE decision procedure for $\GWL$}\label{app:pspace}
 %
 
-We sketch a non-deterministic PSPACE decision procedure for $\GWL$.
+
+
+We sketch a non-deterministic PSPACE procedure to  check validity in  $\GWL$
 Let $\varphi$ be a formula. As discussed in Sec.~\ref{sec_calculus}, if $\varphi\not\in\GWL$,
 there exists a tree-like countermodel $\M=\stru{W,R,e}$ for $\varphi$ such that
 the number of worlds is $O(\size{\varphi}^{\size{\varphi}})$.
@@ -485,7 +487,7 @@ More precisely,
  for every world $w$,  $\Phi(w)$ is a set of constraints  of the form $w:\a =r$, where
  $\a$ is a subformula of $\varphi$ and $r\in \Qcal$,
 declaring that $e(w,\a) = r$.
-The procedure starts by  setting $\Phi(w_0)=\{w_0:\varphi= r_0\}$, where $w_0$ is set as the root of $\M$ and
+The procedure starts by  setting $\Phi(w_0)=\{w_0:\varphi= r_0\}$, where $w_0$ will become the root of $\M$ and
 $r_0$ is any value  non-deterministically chosen from $\Qcal\setminus\{1\}$.
  We then apply
 propositional saturation steps to $\Phi(w_0)$ as long as possible. In
@@ -513,7 +515,7 @@ For example,  suppose   $\psi=\Box\a$;
 we  generate a new world $w_1$  and we  select  a value $r_1$ for $R(w_0,w_1)$ and a value
 $r_2$ for $e(w_1,\a)$ such that $r_1\to r_2 = r$; thus, $w_1$ is the world  witnessing that  $e(w_0,\Box \a) = r$.
 We set $\Phi(w_1) =\{ w_1:\a= r_2\}$.
-Then we  add to  $\Phi(w_1)$ the constraints required to justify the modal constraints in $\Phi(w_0)$.
+We then add to  $\Phi(w_1)$ the constraints required to justify the modal constraints in $\Phi(w_0)$.
 More precisely:
 \begin{itemize}
 \item for every $w_0:\Box \b=r'$ in  $\Phi(w_0)$, with $\b\neq \a$,  a value $r''$
@@ -528,18 +530,17 @@ such that $r_1 \land r'' \leq r'$
 is  selected
   and  $w_1:\b=r''$ is added to  $\Phi(w_1)$.
 \end{itemize}
-Note that $\Phi(w_1)$ contains fewer modal operators than the input
-formula $\varphi$; accordingly, we can recursively apply the
-non-deterministic procedure to check whether a model having root $w_1$
-satisfying all the constraints in $\Phi(w_1)$ can be constructed.  If
-the construction fails, we conclude that a countermodel for $\varphi$
-cannot be built, hence $\varphi\in\GWL$. Otherwise, we proceed to the
-next modal constraint in $\Phi(w_0)$ and generate a new successor of
-$w_0$.  At this stage, we can discard all information related to
-$w_1$, so the space usage remains polynomial in the size of $\varphi$.
-If, for every modal constraint in $\Phi(w_0)$, the corresponding
-construction succeeds, then a countermodel for $\varphi$ exists (where
-$e(w_0,\varphi) = r_0$), hence $\varphi \notin \GWL$.
+Note that  $\Phi(w_1)$ contains fewer modal operators than the input formula $\varphi$;
+accordingly, we can recursively apply the nondeterministic procedure
+to check whether a model having root $w_1$  satisfying all the constraints in  $\Phi(w_1)$ can be constructed.
+If the construction fails, we conclude that
+a countermodel for $\varphi$ cannot be built, hence $\varphi\in\GWL$.
+Otherwise, we proceed to the next modal constraint in $\Phi(w_0)$ and generate a new successor of $w_0$.
+At this stage, we can discard all information related to $w_1$, so the space usage remains polynomial in the size of $\varphi$.
+If, for every modal constraint in $\Phi(w_0)$, the corresponding construction succeeds, then a countermodel for $\varphi$
+such that $e(w_0,\varphi) = r_0$ exists, and therefore $\varphi \notin \GWL$.
+
+
 
 
 
