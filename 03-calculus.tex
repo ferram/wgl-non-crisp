@@ -217,7 +217,7 @@ Following~\cite{BilkovaFK:22,FerFioRod:2025}, we introduce the
 refutation calculus $\Calcw$ for $\GWL$, namely, a calculus to certify
 that a formula is not valid in any $\GWM$-model.  The calculus
 exploits the constraint language $\LC$ defined over a countable set
-of labels, each representing a world of a \GWM-model.  In the
+of labels, used to represent the worlds of a \GWM-model.  In the
  definitions  below $w$, $w'$ are labels, $\varphi$  is a
 formula, $p\in \PV$, $R$ is a designated relation symbol, representing
 the accessibility relation.
@@ -307,14 +307,14 @@ The set $\Gat$ is \emph{consistent} iff it admits at least a solution.
 %   \emph{solution} to $\Gat$.
 % \end{itemize}
 We remark that consistency of $\Gat$ can be checked by a Constraint
-Solver over $Q$: one has to abstract  the c-terms $w : p$ and $R(w,w')$ occurring in $\Gat$
-by introducing new variables ranging over
+Solver over $Q$: one has to abstract the c-terms $w : p$ and $R(w,w')$
+occurring in $\Gat$ by introducing new variables ranging over
 $\Qrange$, and then check the consistency of the obtained constraints
 by exploiting the solver.
 
 
 
-Hereafter, in constraints $\lt$ and $\lt'$ are metasymbols ranging in
+Hereafter, in constraints $\lt$ and $\lt'$ are metasymbols ranging over
 $\{<,\leq\}$; similarly $\gt,\gt' \in \{>,\geq\}$. The rules of the calculus
 $\Calcw$ are displayed in Fig.~\ref{fig:calc1} (propositional rules)
 and Fig.~\ref{fig:calc2} (modal rules and $R$-rules).
@@ -418,75 +418,40 @@ following:
     %   \begin{minipage}{100ex}\small
     %     $
     \infer[\to<]{
-      \underline{w_0: \Box p \to  \neg  \Diamond  \neg p  < 1}\mbox{$_{(0)}$}}{
+      \underline{w_0: \Box p \to  \neg  \Diamond  \neg p  < 1}}{
       \infer[\ruleToLEQAt]{
         w_0: \Box p > c,\;
-        \underline{w_0: \neg  \Diamond  \neg p \leq c},\;   c < 1\mbox{$_{(1)}$}}{
+        \underline{w_0: \neg  \Diamond  \neg p \leq c},\;   c < 1}{
         \infer[\textrm{Ax}]{
-          \Delta_0\mbox{$_{(2)}$}}{
+          \Delta_0}{
         }
         &
         \infer[\Diamond\gt]{
-          w_0: \Box p > c,\;\underline{w_0: \Diamond  \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(3)}$}}{
+          w_0: \Box p > c,\;\underline{w_0: \Diamond  \neg p > w_0:\bot},\;\Delta_1}{
           \infer[R\land \gt]{
             w_0: \Box p > c,\; R(w_{0} ,w_{1})\to w_1:p > c,\; 
-            \underline{R(w_{0} ,w_{1})\land w_1: \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(4)}$}}{
+            \underline{R(w_{0} ,w_{1})\land w_1: \neg p > w_0:\bot},\;\Delta_1}{
             \infer[\ruleToGAt]{
               R(w_{0} ,w_{1})\to w_1:p > c,\;
-              \underline{w_1: \neg p > w_0:\bot},\; \Delta_2\mbox{$_{(5)}$}}{
+              \underline{w_1: \neg p > w_0:\bot},\; \Delta_2}{
               % \Dcal_1\hspace{15ex}
               \infer[R\to \gt]{
-                \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+                \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3}{
                 \infer[\textrm{Ax}]{
-                  w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+                  w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3}{
                 }
                 &
-                \infer[\textrm{Ax}]{
-                  w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
+                \infer[\textrm{Ax}]{w_1:p > c,\;\D_3}{
                 }
               }
               &
               % \hspace{15ex}\Dcal_2
-              \infer[\textrm{Ax}]{\Delta_4 \mbox{$_{(9)}$}  }{}
+              \infer[\textrm{Ax}]{\Delta_4}{}
             }
           }
         }
       }
     }
-    % $\end{minipage}\right.$
-    % \\[10ex]
-    % $\Dcal_1=\left\{
-    %   \begin{minipage}{80ex}\small
-    %     \[
-    %     \infer[R\to \gt]{
-    %     \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
-    %     \infer[\textrm{Ax}]{
-    %     w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
-    %   }
-    %     &
-    %     \infer[\textrm{Ax}]{
-    %     w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
-    %   }
-    %   }
-    %     \]
-    %   \end{minipage}
-    % \right.$
-    % % \\[6ex]
-    % $\Dcal_2=\left\{
-    %   \begin{minipage}{80ex}\small
-    %     \[
-    %     \infer[R\to \gt]{
-    %     \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_4\mbox{$_{(9)}$}}{
-    %     \infer[\textrm{Ax}]{
-    %     \Delta_4, w_1:p \geq R(w_{0} ,w_{1}), 1 > c,\mbox{$_{(10)}$}}{
-    %   }
-    %     &
-    %     \infer[\textrm{Ax}]{
-    %     \Delta_4, w_1:p > cX\mbox{$_{(11)}$}}{
-    %   }
-    %   } %%
-    %     \]
-    %   \end{minipage}\right.$
   \end{tabular}
   \vspace{-3ex}
   \caption{A derivation  of $w_0: \Box p \to  \neg  \Diamond  \neg p  < 1$.}
@@ -721,12 +686,10 @@ occurring in $\Gat$ and:
 \]
 We remark that $\M$ is a discrete $\GWM$-model.  A
 $\Mod{\Gat,\sigma}$-interpretation $\Ical$ is \emph{canonical} iff
-$\Ical(w)=w$ for every label $w$ occurring in $\Gat$.
-
-In Lemma~\ref{lemma:count} we show that if
-$\Bcal=\stru{\G_0,\dots,\G_n}$ is saturated and $\s$ is a solution to
-$\Atmp{\G_n}$, then $\Mod{\Atmp{\G_n},\s}$ is a countermodel for
-$\G_0$.
+$\Ical(w)=w$ for every label $w$ occurring in $\Gat$. In
+Lemma~\ref{lemma:count} we show that if $\Bcal=\stru{\G_0,\dots,\G_n}$
+is saturated and $\s$ is a solution to $\Atmp{\G_n}$, then
+$\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
 
 \begin{figure}[t]
   \centering
@@ -776,7 +739,7 @@ $\G_0$.
 
 \begin{example}\label{ex:satBrancj}
   Let $\varphi=\Box(p\lor q) \to (\Box p\lor \Diam q)$ be an instance
-  of $(Cr)$.  The tree shown in Fig.\ref{fig:saturatedbranch}
+  of $(Cr)$.  The tree shown in Fig.~\ref{fig:saturatedbranch}
   corresponds to a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$,
   where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ is the top
   multiset.  When the applied rule has two premises, the annotation
@@ -1066,7 +1029,7 @@ since the constraints generated during the expansion of a branch have
 global validity and must be preserved throughout the entire construction.
 Nevertheless, by adapting the procedure described in
 Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
-for $\GWL$ belongs to PSPACE.
+for $\GWL$ belongs to PSPACE (see, App.~\ref{app:pspace}).
 
 We have implemented both the proof-search procedure and the
 countermodel extraction in the JTabWb
