@@ -24,8 +24,7 @@ these bounds need not be attained: the infimum may be strictly smaller
 than every truth value in the set, and dually for the
 supremum. Consequently, the truth value of a modal formula may depend
 on limit constructions rather than on concrete worlds of the model.
-
-
+%%
 This phenomenon has significant logical consequences. For instance,
 \cite{CaiRod2010} shows that the formula $\Box \neg \neg \varphi \to
 \neg \neg \Box \varphi$ is valid in all finite G\"odel Kripke models,
@@ -62,16 +61,17 @@ exponential-time complexity. More recently, \cite{RV26} provides an
 axiomatization for modal G\"odel logic interpreted over witnessed
 Kripke models.
 
-In general, witnessed models tend to ensure compactness-like
-properties and frequently yield the finite model properties and
-decidability results. These features are crucial for automated
-reasoning, verification, and implementation, since they allow one to
-replace infinitary semantic arguments with finite combinatorial
-ones. For these reasons, studying G\"odel modal logics over witnessed
-models not only clarifies their semantic foundations but also
-strengthens their connections with well-behaved fragments of
-first-order logic that play a central role in computer science, thereby
-enhancing both their theoretical robustness and their applicability.
+In general, witnessed models tend to ensure compactness-like properties and
+often yield the finite model property and decidability
+results. These features are crucial for automated reasoning,
+%%verification, and implementation, 
+since they allow infinitary semantic arguments to be replaced by
+finite combinatorial ones. For these reasons, studying G\"odel modal
+logics over witnessed models not only clarifies their semantic
+foundations but also strengthens their connections with well-behaved
+fragments of first-order logic that play a central role in computer
+science, thereby enhancing both their theoretical robustness and their
+applicability.
 
 %%By eliminating pathological behaviors arising from unattained infima 
 %% and suprema, it avoids limit-based counterexamples and yields a 
@@ -93,29 +93,26 @@ effective automated reasoning procedures.
 
 
 In line with the above considerations, in~\cite{FerFioRod:2025} we
-introduced the logic $\GWCL$ characterized by  witnessed crisp G\"odel
-Kripke models, where ``crisp'' means that the accessibility relation takes
-values in the set $\{0,1\}$. 
-%% witnesed: in which the
-%%value of a modal formula $\Box \a$ or $\Diamond \a$ at a world $w$
-%%coincides with (and is thus witnessed by) the value of $\a$ at some
-%%world accessible from $w$.
-For this logic, we developed a constraint-based refutation calculus
-inspired by the tableau system of~\cite{BilkovaFK:22}, together with a
-terminating proof-search procedure that yields finite countermodels
-whenever proof search fails. As a consequence, we established that 
- $\GWCL$ enjoys the finite model property.
- In the present work, we extend these results to the logic $\GWL$,
- characterized by witnessed G\"odel–Kripke models without the crispness
- restriction. Our development closely follows the strategy adopted in~\cite{FerFioRod:2025}.
- We introduce a constraint-based refutation calculus for $\GWL$, we call  $\Calcw$, 
-  and prove its soundness and completeness with respect to
- witnessed models. Moreover, we design a terminating proof-search
- procedure for  $\Calcw$ based on a standard backward search strategy.
- Notably, when proof search fails, the computation can be traced to construct
- a finite countermodel for the given formula, and this  proves the finite model property for  $\GWL$. 
-Finally, we provide an implementation of the procedure, called \texttt{gwref} (available
-at~\cite{gwrefProver}). 
+introduced the logic $\GWCL$ characterized by witnessed crisp G\"odel
+Kripke models, where ``crisp'' means that the accessibility relation
+takes values in the set $\{0,1\}$.  For this logic, we developed a
+constraint-based refutation calculus inspired by the tableau system
+of~\cite{BilkovaFK:22}, together with a terminating proof-search
+procedure that yields finite countermodels whenever proof search
+fails. As a consequence, we established that $\GWCL$ enjoys the finite
+model property.  In the present work, we extend these results to the
+logic $\GWL$, characterized by witnessed G\"odel–Kripke models without
+the crispness restriction. Our development follows the
+strategy adopted in~\cite{FerFioRod:2025}.  We introduce a
+constraint-based refutation calculus for $\GWL$, we call $\Calcw$, and
+prove its soundness and completeness with respect to witnessed
+models. Moreover, we design a terminating proof-search procedure for
+$\Calcw$ based on a standard backward search strategy.  Notably, when
+proof search fails, the computation can be traced to construct a
+finite countermodel for the given formula, and this proves the finite
+model property for $\GWL$.  Finally, we provide an implementation of
+the procedure, called \texttt{gwref} (available
+at~\cite{gwrefProver}).
 
 
 

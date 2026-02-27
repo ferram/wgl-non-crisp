@@ -3,7 +3,7 @@
 
 %%#############################  CALCULUS - PROPOSITIONAL RULES  ################################
 \begin{figure}[t]
-  \[%\large
+  \[
   \centering
   \begin{array}{c}
     %% AXAT 
@@ -13,7 +13,7 @@
     \UIC{$\G$}    
     \DP
     \quad\mbox{if $\Atmp{\G}$ is not consistent}
-    \\[4ex]
+    \\[3ex]
     %% AND GT 
     \AXC{$w: \a \gt t,\, w: \b\gt t,\,  \G$}    
     % ------------------------------------------    
@@ -134,20 +134,7 @@
     \RightLabel{$\Diam\gt$}
     \UIC{$w:\Diam\a \gt t,\,\G$}    
     \DP
-    %%% WHERE ....
     \\[2ex]
-     \begin{minipage}{1.0\linewidth}
-       \[
-       \begin{array}{l}
-         \mbox{$w_1$ is a new label}
-         \\[1ex]
-         \Phibd{\G,w, w_1}\,=\,
-         \{\, R(w,w_1)\to w_1: \b \gt\!' t~|~w :\Box \b\gt\!' t \in\G  \,\}\,\cup\,
-         \{\, R(w,w_1)\land w_1: \b \lt\!' t~|~w :\Diam \b\lt\!' t \in\G  \,\}
-       \end{array}
-       \]
-     \end{minipage}
-     \\[6ex]
     %% R AND GT 
     \AXC{$R(w,w') \gt t,\, w': \a\gt t,\,  \G$}    
     % ------------------------------------------    
@@ -203,6 +190,18 @@
     \BIC{$R(w,w')\to w':\a \gt t,\,\G$}
     \DP
     %%% WHERE ....
+    \\[2ex]
+     \begin{minipage}{1.0\linewidth}
+       \[
+       \begin{array}{l}
+         \Phibd{\G,w, w_1}\,=\,
+         \{\, R(w,w_1)\to w_1: \b \gt\!' t~|~w :\Box \b\gt\!' t \in\G  \,\}\,\cup\,
+         \{\, R(w,w_1)\land w_1: \b \lt\!' t~|~w :\Diam \b\lt\!' t \in\G  \,\}\\[1ex]
+         \mbox{$w_1$ is a new label}, \lt,\lt'\in\{<,\leq\}~\text{and}~\gt,\gt'\in\{>,\geq\}.
+       \end{array}
+       \]
+     \end{minipage}
+    %%% WHERE ....
     %% (\dag)\quad p\in\PV\cup\{\bot\},\;  \a\not\in\PV\cup\{\bot\},\;\mbox{$q$ is a new propositional variable}
   \end{array}
   \]
@@ -222,11 +221,22 @@ of labels, each representing a world of a \GWM-model.  In the
  definitions  below $w$, $w'$ are labels, $\varphi$  is a
 formula, $p\in \PV$, $R$ is a designated relation symbol, representing
 the accessibility relation.
-%and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
+% \[
+% \begin{array}{lcl}
+%   \mbox{labelled formula}\;\coloneqq\;w :\varphi
+%   &&
+%   \mbox{atomic c-term $t$}\; \coloneqq \; 0~|~1~|~w :p~|~w :\bot~|~R(w,w')
+%   \\[.5ex]
+%   \mbox{c-term $u$}\;\coloneqq\; t~|~w : \varphi~|~R(w,w')\land w':\varphi~|~R(w,w')\to w':\varphi
+%   &&
+%   \mbox{constraint $\chi$}  \; \coloneqq\; u \abstractorder t \qquad \abstractorder\in \{\,<,\,\leq,\,>,\,\geq\,\}
+% \end{array}
+% \]
+% and $\abstractorder\in \{<,\leq,>,\geq\,\}$.
 \[
 \begin{array}{rcl}
   \mbox{labelled formula} & \;\coloneqq&\; w :\varphi                            
-                             \\
+  \\
   \mbox{atomic c-term $t$}  &\; \coloneqq&\; 0~|~1~|~w :p~|~w :\bot~|~R(w,w')
   \\[.5ex]
   \mbox{c-term $u$}  & \;\coloneqq&\; t~|~w : \varphi~|~R(w,w')\land w':\varphi~|~R(w,w')\to w':\varphi
@@ -304,10 +314,10 @@ by exploiting the solver.
 
 
 
-Hereafter, $\lt\in\{<,\leq\}$ and $\gt \in \{>,\geq\}$. The rules of
-the calculus $\Calcw$ are displayed in Fig.~\ref{fig:calc1}
-(propositional rules) and Fig.~\ref{fig:calc2} (modal rules and
-$R$-rules).
+Hereafter, in constraints $\lt$ and $\lt'$ are metasymbols ranging in
+$\{<,\leq\}$; similarly $\gt,\gt' \in \{>,\geq\}$. The rules of the calculus
+$\Calcw$ are displayed in Fig.~\ref{fig:calc1} (propositional rules)
+and Fig.~\ref{fig:calc2} (modal rules and $R$-rules).
 %%The axiom rules (namely, the rules without premises) are $\ruleAxat$,
 %%$\ruleAxz$ and $\ruleAxo$.  
 % It consists of propositional rules, i.e., the axiom rule $\ruleAxat$
@@ -393,93 +403,94 @@ following:
 %%######### EXAMPLE DERIVATION #########
 \begin{figure}[t]
   \centering\small
-  \begin{tabular}{p{100ex}}
-  \[
-  \begin{array}{lcl}
-    \Delta_0&=&\{\, w_0: \Box p > c,\; c \geq 1,\; c < 1\,\} \qquad\mbox{$c=w_0:q_0$}\\
-    \Delta_1&=&\{\,  w_0:\bot \leq c,\;c < 1\,\}\\
-    \Delta_2&=& \Delta_1\cup\{\, w_0: \Box p > c,\;  R(w_{0} ,w_{1}) > w_0:\bot\,\}\\
-    \Delta_3&=& \Delta_2\cup\{\,\;w_1: p\leq w_1:\bot,\; 1 > w_0:\bot   \,\}\\
-    \Delta_4&=& \Delta_2\cup\{\, R(w_{0} ,w_{1})\to w_1:p > c,\;w_1:\bot >  w_0:\bot   \,\}\\
-  \end{array}
-  \]
-  \\
-  % $\Dcal=\left\{
-  %   \begin{minipage}{100ex}\small
-  %     $
-      \infer[\to<]{
-        \underline{w_0: \Box p \to  \neg  \Diamond  \neg p  < 1}\mbox{$_{(0)}$}}{
-        \infer[\ruleToLEQAt]{
-          w_0: \Box p > c,\;
-          \underline{w_0: \neg  \Diamond  \neg p \leq c},\;   c < 1\mbox{$_{(1)}$}}{
-          \infer[\textrm{Ax}]{
-            \Delta_0\mbox{$_{(2)}$}}{
-          }
-          &
-          \infer[\Diamond\gt]{
-             w_0: \Box p > c,\;\underline{w_0: \Diamond  \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(3)}$}}{
-            \infer[R\land \gt]{
-              w_0: \Box p > c,\; R(w_{0} ,w_{1})\to w_1:p > c,\; 
-              \underline{R(w_{0} ,w_{1})\land w_1: \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(4)}$}}{
-              \infer[\ruleToGAt]{
-                R(w_{0} ,w_{1})\to w_1:p > c,\;
-                \underline{w_1: \neg p > w_0:\bot},\; \Delta_2\mbox{$_{(5)}$}}{
-                % \Dcal_1\hspace{15ex}
-                 \infer[R\to \gt]{
-         \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+  \begin{tabular}{p{\linewidth}}
+    \[
+    \begin{array}{ll}
+      c=w_0:q_0\quad\Delta_0=\{\, w_0: \Box p > c,\; c \geq 1,\; c < 1\,\}&
+      \Delta_1=\{\,  w_0:\bot \leq c,\;c < 1\,\}\\[.5ex]
+      \Delta_2= \Delta_1\cup\{\, w_0: \Box p > c,\;  R(w_{0} ,w_{1}) > w_0:\bot\,\}&
+      \Delta_3= \Delta_2\cup\{\,\;w_1: p\leq w_1:\bot,\; 1 > w_0:\bot   \,\}\\[.5ex]
+      \multicolumn{2}{l}{\Delta_4= \Delta_2\cup\{\, R(w_{0} ,w_{1})\to w_1:p > c,\;w_1:\bot > w_0:\bot \,\}}\\
+    \end{array}
+    \]
+    \\
+    % $\Dcal=\left\{
+    %   \begin{minipage}{100ex}\small
+    %     $
+    \infer[\to<]{
+      \underline{w_0: \Box p \to  \neg  \Diamond  \neg p  < 1}\mbox{$_{(0)}$}}{
+      \infer[\ruleToLEQAt]{
+        w_0: \Box p > c,\;
+        \underline{w_0: \neg  \Diamond  \neg p \leq c},\;   c < 1\mbox{$_{(1)}$}}{
         \infer[\textrm{Ax}]{
-        w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+          \Delta_0\mbox{$_{(2)}$}}{
         }
         &
-        \infer[\textrm{Ax}]{
-         w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
-        }
-      }
+        \infer[\Diamond\gt]{
+          w_0: \Box p > c,\;\underline{w_0: \Diamond  \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(3)}$}}{
+          \infer[R\land \gt]{
+            w_0: \Box p > c,\; R(w_{0} ,w_{1})\to w_1:p > c,\; 
+            \underline{R(w_{0} ,w_{1})\land w_1: \neg p > w_0:\bot},\;\Delta_1\mbox{$_{(4)}$}}{
+            \infer[\ruleToGAt]{
+              R(w_{0} ,w_{1})\to w_1:p > c,\;
+              \underline{w_1: \neg p > w_0:\bot},\; \Delta_2\mbox{$_{(5)}$}}{
+              % \Dcal_1\hspace{15ex}
+              \infer[R\to \gt]{
+                \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+                \infer[\textrm{Ax}]{
+                  w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+                }
                 &
-                % \hspace{15ex}\Dcal_2
-                \infer[\textrm{Ax}]{\Delta_4 \mbox{$_{(9)}$}  }{}
+                \infer[\textrm{Ax}]{
+                  w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
+                }
               }
+              &
+              % \hspace{15ex}\Dcal_2
+              \infer[\textrm{Ax}]{\Delta_4 \mbox{$_{(9)}$}  }{}
             }
           }
         }
-                  }
-                  %$\end{minipage}\right.$
-  % \\[10ex]
-  % $\Dcal_1=\left\{
-  %   \begin{minipage}{80ex}\small
-  %     \[
-  %     \infer[R\to \gt]{
-  %        \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
-  %       \infer[\textrm{Ax}]{
-  %       w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
-  %       }
-  %       &
-  %       \infer[\textrm{Ax}]{
-  %        w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
-  %       }
-  %     }
-  %     \]
-  %   \end{minipage}
-  % \right.$
-  % % \\[6ex]
-  % $\Dcal_2=\left\{
-  %   \begin{minipage}{80ex}\small
-  %     \[
-  %     \infer[R\to \gt]{
-  %      \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_4\mbox{$_{(9)}$}}{
-  %       \infer[\textrm{Ax}]{
-  %         \Delta_4, w_1:p \geq R(w_{0} ,w_{1}), 1 > c,\mbox{$_{(10)}$}}{
-  %       }
-  %       &
-  %       \infer[\textrm{Ax}]{
-  %         \Delta_4, w_1:p > cX\mbox{$_{(11)}$}}{
-  %       }
-  %     } %%
-  %     \]
-  %   \end{minipage}\right.$
-\end{tabular}
-\caption{A derivation  of $w_0: \Box p \to  \neg  \Diamond  \neg p  < 1$.}
-\label{fig:der}
+      }
+    }
+    % $\end{minipage}\right.$
+    % \\[10ex]
+    % $\Dcal_1=\left\{
+    %   \begin{minipage}{80ex}\small
+    %     \[
+    %     \infer[R\to \gt]{
+    %     \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_3\mbox{$_{(6)}$}}{
+    %     \infer[\textrm{Ax}]{
+    %     w_1:p \geq R(w_{0} ,w_{1}),\;  1 > c,\;\D_3\mbox{$_{(7)}$}}{
+    %   }
+    %     &
+    %     \infer[\textrm{Ax}]{
+    %     w_1:p > c,\;\D_3\mbox{$_{(8)}$}}{
+    %   }
+    %   }
+    %     \]
+    %   \end{minipage}
+    % \right.$
+    % % \\[6ex]
+    % $\Dcal_2=\left\{
+    %   \begin{minipage}{80ex}\small
+    %     \[
+    %     \infer[R\to \gt]{
+    %     \underline{R(w_{0} ,w_{1})\to w_1:p > c},\;\Delta_4\mbox{$_{(9)}$}}{
+    %     \infer[\textrm{Ax}]{
+    %     \Delta_4, w_1:p \geq R(w_{0} ,w_{1}), 1 > c,\mbox{$_{(10)}$}}{
+    %   }
+    %     &
+    %     \infer[\textrm{Ax}]{
+    %     \Delta_4, w_1:p > cX\mbox{$_{(11)}$}}{
+    %   }
+    %   } %%
+    %     \]
+    %   \end{minipage}\right.$
+  \end{tabular}
+  \vspace{-3ex}
+  \caption{A derivation  of $w_0: \Box p \to  \neg  \Diamond  \neg p  < 1$.}
+  \label{fig:der}
 \end{figure}
 
 \begin{lemma}\label{lemma:soundRule}
@@ -492,18 +503,18 @@ following:
 \begin{proof}
   Let $\rho$ be the rule $\ruleAxat$; since the rule has no premises,
   we have to show that there is no $\M$ such that $\M\models \G$.  Let
-  us assume, by contradiction, that there is a \GWM-model $\M=\stru{W,R,e}$ and an
-  $\M$-interpretation $\Ical$ such that $\M\models_\Ical \G$.  If $ w
-  : \Box \a > t \in \G$, then $e(\Ical(w), \Box \a) > \Ical(t)$, hence
-  $1 > \Ical(t)$, which implies $\M\models_\Ical 1 > t$.  Similarly,
-  if $ w : \Diam \a < t \in \G$, then $\M\models_\Ical 0 < t$.  This
-  proves that $\M\models_\Ical \Atmp{\G}$.  By exploiting $R$ and  $e$, 
- one can define a solution to $\Atmp{\G}$\footnote{Note that irrational values of $R$ and $e$ 
-    must be approximated with rationals.};
+  us assume, by contradiction, that there is a \GWM-model
+  $\M=\stru{W,R,e}$ and an $\M$-interpretation $\Ical$ such that
+  $\M\models_\Ical \G$.  If $ w : \Box \a > t \in \G$, then
+  $e(\Ical(w), \Box \a) > \Ical(t)$, hence $1 > \Ical(t)$, which
+  implies $\M\models_\Ical 1 > t$.  Similarly, if $ w : \Diam \a < t
+  \in \G$, then $\M\models_\Ical 0 < t$.  This proves that
+  $\M\models_\Ical \Atmp{\G}$.  By exploiting $R$ and $e$, one can
+  define a solution to $\Atmp{\G}$\footnote{Note that irrational
+    values of $R$ and $e$ must be approximated with rationals.};
   accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
   conclude that $\M$ does not exist. %
-  The cases concerning the other rules are detailed in the
-  Appendix~\ref{app:proofs}.
+  For the other cases see App.~\ref{app:proofs}.
 \end{proof}
 
 \begin{proposition}[Soundness]\label{prop:sound}
@@ -542,84 +553,19 @@ Equivalently, given a finite multiset $\G$ and repeatedly applying the
 rules of $\Calcw$ upwards, proof search eventually halts, no matter
 which strategy is used.
 
-To prove strong termination of $\Calcw$, we define the relation $\precc$ between multisets of constraints. 
-To this aim, we introduce a weight function $\wgname$ on constraints $u$  and multisets of constraints $\G$,
-together with the multisets  $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers). 
+To prove strong termination of $\Calcw$, we define the relation
+$\precc$ between multisets of constraints.  To this aim, in
+Fig.~\ref{fig:weight} we introduce a weight function $\wgname$ on
+constraints and multisets of constraints $\G$, together with the
+multisets $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset
+of natural numbers).
 % The weight $\wg{u}$ of a constraint $u$, the weight $\wg{\G}$ of a multiset
 % of constraints $\G$, and the size $\size{\varphi}$ of a formula
 % $\varphi$ are defined as follows:
-\begin{center}
-  \begin{tabular}{p{40ex}p{40ex}}\small
-    \[
-    \begin{array}{l}
-      \wg{u} \;=\;
-      \begin{cases}
-        0 & \mbox{if $u$ is an atomic c-term}
-        \\
-        \size{\varphi}& \mbox{if $u = w:\varphi$}
-        \\
-        \size{\varphi} + 1&\begin{minipage}[t]{20ex}
-          if $u = R(w,w')\star w':\varphi$\par~~~with $\star\in \{\land,\to\}$
-        \end{minipage}
-      \end{cases}
-      \\[7ex]
-      \wg{u\abstractorder t}\,=\,\wg{u}
-      \hspace{3em}
-      \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
-\\[1.5ex]
-      \G[w] \,=\,\{\, u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}\,\}
-\qquad
-\sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
-    \end{array}    
-    \]
-    &\small
-    \[
-    \size{\varphi} \;=\;
-    \begin{cases}
-      0 & \mbox{if $\varphi\in\PV\cup\{\bot\}$}
-      \\
-      \size{\a} + \size{\b} + 1 &\begin{minipage}[t]{20ex}
-        if $\varphi=\a\star\b$\par~~~with $\star\in \{\land,\lor,\to\}$
-    \end{minipage}
-    \\[2ex]
-    \size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
-    \end{cases}
- %    \\[2ex]
-% \[
-%     \G[w] \,=\,\{\,
-% u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
-% \,\} 
-%  \]
-% % sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
-   \]
-  \end{tabular}
-\end{center}
-% We extend $\wgname$ as follows ($\G$ is a  multiset of constraints):
-% \[\small
-% \begin{array}{l}
-%   \wg{u} \;=\;
-%   \begin{cases}
-%     0 & \mbox{if $u$ is an atomic c-term}
-%     \\
-%     \size{\varphi} &     \mbox{if $u = w:\varphi$}
-%     \\
-%     \size{\varphi} + 1  &\mbox{if $u = R(w,w')\land w':\varphi$ or $u = R(w,w')\to w':\varphi$ }
-%   \end{cases}
-%   \\[6ex]
-%   \wg{u \abstractorder t}  \,=\, \wg{u}
-%   \hspace{5em}
-%   \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
-% \end{array}    
-% \]
-% \noindent
-% Let $\G[w]$ (multiset of constraints) and $\sizem{\G}$ (multiset of natural numbers) be defined as follows:
-% \[
-% \G[w] \,=\,\{\,
-% u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
-% \,\} 
-% \qquad
-% \sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
-% \]
+
+
+
+
 Given the finite multisets of natural numbers
 $\Theta_1$ and $\Theta_2$,  we set:% \\[.5ex]
 \[
@@ -649,6 +595,57 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 % \end{lemma}
 
 
+\begin{figure}[t]
+  \centering
+  \begin{tabular}{p{40ex}p{40ex}}\small
+    \[
+    \begin{array}{l}
+      \wg{u} \;=\;
+      \begin{cases}
+        0 & \mbox{if $u$ is an atomic c-term}
+        \\
+        \size{\varphi}& \mbox{if $u = w:\varphi$}
+        \\
+        \size{\varphi} + 1&\begin{minipage}[t]{20ex}
+          if $u = R(w,w')\star w':\varphi$\par~~~with $\star\in \{\land,\to\}$
+        \end{minipage}
+      \end{cases}
+      \\[7ex]
+      \wg{u\abstractorder t}\,=\,\wg{u}
+      \hspace{3em}
+      \wg{\G}\,=\,\sum_{\chi\in\Gamma} \wg{\chi}
+      \\[1.5ex]
+      \G[w] \,=\,\{\, u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}\,\}
+      \qquad
+      \sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
+    \end{array}    
+    \]
+    &\small
+    \[
+    \size{\varphi} \;=\;
+    \begin{cases}
+      0 & \mbox{if $\varphi\in\PV\cup\{\bot\}$}
+      \\
+      \size{\a} + \size{\b} + 1 &\begin{minipage}[t]{20ex}
+        if $\varphi=\a\star\b$\par~~~with $\star\in \{\land,\lor,\to\}$
+      \end{minipage}
+      \\[2ex]
+      \size{\a} + 2 & \mbox{if $\varphi=\Box\a$ or $\varphi=\Diam\a$}
+    \end{cases}
+    % \\[2ex]
+    % \[
+    % \G[w] \,=\,\{\,
+    % u  \abstractorder t\in\G~|~\mbox{$\lab{u} = w$}
+    % \,\} 
+    % \]
+    % % sizem{\G} \,=\, \{\, \wg{\G[w]}~|~\mbox{$w$ occurs in $\G$}    \,\}
+    \]
+  \end{tabular}
+  \vspace{-2ex}
+\caption{Weight function $\wgname$ on constraints and associated multisets $\G[w]$ and $\sizem{\G}$.}
+\label{fig:weight}
+\end{figure}
+
 
 
 \begin{proposition}\label{prop:term}
@@ -657,7 +654,7 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 \begin{proof}
   The relation $\precc$ is well-founded and can be used to instantiate
   $\prec$ in the definition of strong termination (see
-  Lemma~\ref{lemma:rulesDec} in the Appendix).
+  Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}).
 \end{proof}
 
 Accordingly, any backward proof search strategy for $\Calcw$
@@ -735,6 +732,8 @@ $\G_0$.
   \centering
     \[\small
   \begin{array}{c}
+    c = w_0:q_0\qquad\D\;=\;\{\,     w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
+    \\[2ex]
     % Gamma_7
     \AXC{$w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\;  w_1 : q \geq R(w_0,w_1),\;\; 1> c,\;\;  R(w_0,w_1)\leq c,\;\;\D$}     
     % ----------------------------------------------
@@ -766,9 +765,7 @@ $\G_0$.
     \RightLabel{$\to <$}
     \UIC{\underline{$w_0:  \Box(p\lor q) \to (\Box p\lor \Diam q)  < 1$}}
     \DP
-    \\[18ex]
     % ###############################################
-    c = w_0:q_0\qquad\D\;=\;\{\,     w_0:  \Box(p\lor q) > c,\;\;  w_0: \Diam q  \leq  c,\;\;  c   < 1 \,\}    
   \end{array}
   \]  
   \vspace{-2ex}
@@ -977,7 +974,8 @@ $\G_0$.
  introduced in $\G_{k}$ by an application of a modal rule $\rho$,
  namely:
  \begin{itemize}
- \item $\app{\chi'}{\G_{k-1}}{\G_k}$, with $\chi' = w :\Box \varphi \lt t'$ or  $\chi' = w :\Diam\varphi \gt t'$,
+ \item $\app{\chi'}{\G_{k-1}}{\G_k}$, with $\chi' = w :\Box \varphi \lt' t'$ 
+   or  $\chi' = w :\Diam\varphi \gt' t'$,
    and the new label introduced by $\rho$ is  $w'$.
  \end{itemize}
  Since $\Bcal$ is saturated, $\G_{k-1}$ is plain, hence the non-atomic
@@ -1011,7 +1009,7 @@ As a consequence, we get:
   \end{enumerate}
 \end{proposition}
 
-
+\noindent
 Let $\Bs$ be a backward proof search strategy for $\Calcw$; we say
 that $\Bs$ is \emph{plain} iff all the modal rule applications
 performed by $\Bs$ are plain.
@@ -1056,21 +1054,7 @@ there exists a discrete countermodel for $\varphi$.
 \end{enumerate}
 \end{proposition}
 
-% \begin{proof}
-%   Point~\ref{prop:compl:1} follows from Lemma~\ref{lemma:search}.
-%   Point~\ref{prop:compl:2} follows from~\ref{prop:compl:1},
-%   since a countermodel for $w :\varphi < 1$ certifies that $\varphi\not\in\GWL$.
-%   Point~\ref{prop:compl:3} follows from~\ref{prop:compl:1} since, by soundness of $\Calcw$,
-%   $\varphi\not\in\GWL$ implies $\nprovesw{w : \varphi < 1}$.
-% \end{proof}
-
-
-% \noindent
-% Accordingly, if $\provesw{w : \varphi < 1}$ then $\varphi\in\GWL$.
-
-
-
-%By Prop.~\ref{prop:compl}, $\GWL$ has the finite model property.
+\noindent
 Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
 extracted from an open branch with root $w_0:\varphi < 1$. One can
 easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
