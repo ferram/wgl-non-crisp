@@ -463,15 +463,83 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
 \end{proof}
 
 
+\subsection{A PSPACE decision procedure for $\GWL$}\label{app:pspace}
+%
+
+We sketch a non-deterministic PSPACE decision procedure for $\GWL$.
+Let $\varphi$ be a formula. As discussed in Sec.~\ref{sec_calculus}, if $\varphi\not\in\GWL$,
+there exists a tree-like countermodel $\M=\stru{W,R,e}$ for $\varphi$ such that
+the number of worlds is $O(\size{\varphi}^{\size{\varphi}})$.
+We can also bound the number $N$ of values  needed to define $R$ and $e$:
+in the worst case, the values  $e(w,p)$ and $R(w,w')$ 
+must all be pairwise distinct,
+for every  world $w$, $w'$ and every propositional variable $p$ occurring in $\varphi$;
+accordingly,  $N$ is in  $O(\size{\varphi}^{\varphi})$.
+Let $\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$;
+note that we can define a   PSPACE   function to non-deterministically selects a value from $\Qcal$.
+By the above discussion, if $\varphi\not\in\GWL$  there exists a countermodel $\M$  such that
+the images of  $R$ and $e$ are contained in $\Qcal$.
+To verify that such  a  countermodel can be constructed, we introduce a map $\Phi$ 
+that specifies the intended values of the subformulas of $\varphi$  at each world.
+More precisely,
+ for every world $w$,  $\Phi(w)$ is a set of constraints  of the form $w:\a =r$, where
+ $\a$ is a subformula of $\varphi$ and $r\in \Qcal$,
+declaring that $e(w,\a) = r$.
+The procedure starts by  setting $\Phi(w_0)=\{w_0:\varphi= r_0\}$, where $w_0$ is set as the root of $\M$ and
+$r_0$ is any value  non-deterministically chosen from $\Qcal\setminus\{1\}$.
+ We then apply
+propositional saturation steps to $\Phi(w_0)$ as long as possible. In
+each step, a non-atomic constraint $w_0:\psi = r$ in $\Phi(w_0)$ is
+removed and replaced by the constraints required to justify the
+intended evaluation $e(w_0,\psi) = r$.
+For instance, let  $\psi=\a\to\b$.
+If $r=1$, we must have  $e(w_0,\a) \leq e(w_0,\b)$;
+we non-deterministically pick two values $r_1$ and $r_2$ from $\Qcal$
+such that $r_1\leq r_2$, and
+we replace $w_0:\a\to \b=r$
+with  $w_0:\a = r_1$ and  $w_0:\b = r_2$. 
+Similarly, if  $r<1$  we select a value $r_1$ from $\Qcal$ such
+that $r_1> r$, and we replace  $w_0:\a\to \b=r$ with $w_0:\a = r_1$
+and  $w_0:\b = r$.
+At the end of this saturation phase, the constraints
+in  $\Phi(w_0)$ are either atomic or modal.
+If $\Phi(w_0)$ contains two   constraints $w_0: \a=r_1$ and  $w_0:\a =r_2$  such that $r_1\neq r_2$,
+the construction  fails, and  we conclude that $\varphi\in\GWL$.
+If $\Phi(w_0)$  contains only atomic constraints, the construction succeeds,
+hence  $\varphi\not\in\GWL$.
+Otherwise, for every modal constraint  $w_0:\psi=r$ in   $\Phi(w_0)$ 
+we have to define an $R$-successor of $w_0$ and continue the construction. 
+For example,  suppose   $\psi=\Box\a$;
+we  generate a new world $w_1$  and we  select  a value $r_1$ for $R(w_0,w_1)$ and a value
+$r_2$ for $e(w_1,\a)$ such that $r_1\to r_2 = r$; thus, $w_1$ is the world  witnessing that  $e(w_0,\Box \a) = r$.
+We set $\Phi(w_1) =\{ w_1:\a= r_2\}$.
+Then we  add to  $\Phi(w_1)$ the constraints required to justify the modal constraints in $\Phi(w_0)$.
+More precisely:
+\begin{itemize}
+\item for every $w_0:\Box \b=r'$ in  $\Phi(w_0)$, with $\b\neq \a$,  a value $r''$
+such that $r_1 \to r'' \geq r'$
+is  selected
+  and  $w_1:\b=r''$ is added to  $\Phi(w_1)$;
 
 
+\item  for every $w_0:\Diam \b=r'$ in  $\Phi(w_0)$,
+ a value $r''$
+such that $r_1 \land r'' \leq r'$
+is  selected
+  and  $w_1:\b=r''$ is added to  $\Phi(w_1)$.
+\end{itemize}
+Note that  $\Phi(w_1)$ contains fewer modal operators than the input formula $\varphi$;
+accordingly, we can recursively apply the non-deterministic procedure
+to check whether a model having root $w_1$  satisfying all the constraints in  $\Phi(w_1)$ can be constructed.
+If the construction fails, we conclude that
+a countermodel for $\varphi$ cannot be built, hence $\varphi\in\GWL$.
 
-%\begin{figure}
-%  \centering
-  
-%  \includegraphics[angle=90, width=0.3\textwidth]{prova.png}
-%\end{figure}
 
+Otherwise, we proceed to the next modal constraint in $\Phi(w_0)$ and generate a new successor of $w_0$.
+At this stage, we can discard all information related to $w_1$, so the space usage remains polynomial in the size of $\varphi$.
+If, for every modal constraint in $\Phi(w_0)$, the corresponding construction succeeds, then a countermodel for $\varphi$
+exists (where  $e(w_0,\varphi) = r_0$),
+hence $\varphi \notin \GWL$.
 
 
 
