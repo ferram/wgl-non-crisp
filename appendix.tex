@@ -478,7 +478,7 @@ must all be pairwise distinct,
 for every  world $w$, $w'$ and every propositional variable $p$ occurring in $\varphi$;
 accordingly,  $N$ is in  $O(\size{\varphi}^{\varphi})$.
 Let $\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$;
-note that we can define a   PSPACE   function to non-deterministically selects a value from $\Qcal$.
+note that the elements of $\Qcal$ can be non-deterministically generated in  PSPACE.
 By the above discussion, if $\varphi\not\in\GWL$  there exists a countermodel $\M$  such that
 the images of  $R$ and $e$ are contained in $\Qcal$.
 To verify that such  a  countermodel can be constructed, we introduce a map $\Phi$ 
@@ -541,7 +541,7 @@ iteration, one can discard the information related to the current new
 world, so the space usage remains polynomial in the size of $\varphi$.
 If all the modal constraints in $\Phi(w_0)$ are checked, we conclude that
 a countermodel for $\varphi$ cannot be built, hence $\varphi\in\GWL$.
-If all the non-determistic attempts to build a countermode fail,
+If all the non-deterministic attempts to build a countermodel fail,
 we conclude $\varphi\in\GWL$.
 
 
