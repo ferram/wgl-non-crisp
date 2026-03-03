@@ -507,11 +507,12 @@ At the end of this saturation phase, the constraints
 in  $\Phi(w_0)$ are either atomic or modal.
 If $\Phi(w_0)$ contains two   constraints $w_0: \a=r_1$ and  $w_0:\a =r_2$  such that $r_1\neq r_2$,
 the construction  fails. 
-If $\Phi(w_0)$  contains only atomic constraints, the construction succeeds,
-hence  $\varphi\not\in\GWL$.
+If $\Phi(w_0)$  contains only atomic constraints, the construction succeeds.
+%hence  $\varphi\not\in\GWL$.
 Otherwise, for every modal constraint  $w_0:\psi=r$ in   $\Phi(w_0)$ 
 we have to define an $R$-successor of $w_0$ and continue the construction. 
-For example,  suppose   $\psi=\Box\a$;
+More in detail,
+assume that the current  modal constraint  is $w_0:\Box\a=r$ (the case  $w_0:\Diam\a=r$ is similar);
 we  generate a new world $w_1$  and we  select  a value $r_1$ for $R(w_0,w_1)$ and a value
 $r_2$ for $e(w_1,\a)$ such that $r_1\to r_2 = r$; thus, $w_1$ is the world  witnessing that  $e(w_0,\Box \a) = r$.
 We set $\Phi(w_1) =\{ w_1:\a= r_2\}$.
@@ -534,13 +535,12 @@ Note that $\Phi(w_1)$ contains fewer modal operators than the input
 formula $\varphi$; accordingly, we can recursively apply the
 nondeterministic procedure to check whether a model having root $w_1$
 satisfying all the constraints in $\Phi(w_1)$ can be constructed.  If
-the construction succeeds, we say that the constraint $\psi=\Box\a$ is
-checked, and we proceed by considering the next modal constraint in
-$\Phi(w_0)$, which in turns generates a new world.  Note that, at each
-iteration, one can discard the information related to the current new
-world, so the space usage remains polynomial in the size of $\varphi$.
+the construction succeeds, we say that the constraint $w_0:\Box\a=r$ is
+checked.
+Note that, at each iteration, the information needed to check a constraint
+can be discarded, so the space usage remains polynomial in the size of $\varphi$.
 If all the modal constraints in $\Phi(w_0)$ are checked, we conclude that
-a countermodel for $\varphi$ cannot be built, hence $\varphi\in\GWL$.
+a countermodel for $\varphi$ can  be built, hence $\varphi\not\in\GWL$.
 If all the non-deterministic attempts to build a countermodel fail,
 we conclude $\varphi\in\GWL$.
 
