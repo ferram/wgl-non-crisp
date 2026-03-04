@@ -92,7 +92,8 @@ $\stru{W,R,e}$, $R\subseteq W\times W$.
 
 
 \begin{proposition}\label{prop:defBD}
-  The modal operators $\Box$ and $\Diam$ are not interdefinable in any modal logic contained in $\GWCL$.
+  $\Box$ and $\Diam$ are not interdefinable in any modal logic
+  contained in $\GWCL$.
 \end{proposition}  
 
 \begin{proof}
@@ -325,23 +326,23 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
   We conclude $\M\models_{\Ical'} \G_1$. The case where $\rho$ is rule
   $\Diam\gt$ is similar.
 
-  \smallskip
+  % \smallskip
   
-  Let $\rho$ be an application of $R\to <$:
-  \[
-  \AXC{$\overbrace{w':\a<R(w,w'),\,  w':\a  < t,\,  \G_0}^{\G_1}$}    
-  % ------------------------------------------    
-  \RightLabel{$R\to <$}
-  \UIC{$\underbrace{R(w,w') \to w':\a < t,\,\G_0}_{\G}$}
-  \DP
-  \]
-  By the hypothesis, it holds that $\M\models_{\Ical} R(w,w')\to w':
-  \a < t$ and $\M\models_{\Ical} \G_0$.  This implies that
-  $\Ical(R(w,w')\to w':\a) < \Ical(t) \leq 1$, hence
-  $R(\Ical(w),\Ical(w')) > e(\Ical(w'),\a)$ and $\Ical(R(w,w')\to
-  w':\a)= e(\Ical(w'),\a)$, thus $\M\models_\Ical w':\a < t$ and
-  $\M\models_{\Ical} \G_1$.  The cases of the rules $R\land\gt$,
-  $R\land\lt$, $R\to\leq$ and $R\to\gt$ are similar.
+  % Let $\rho$ be an application of $R\to <$:
+  % \[
+  % \AXC{$\overbrace{w':\a<R(w,w'),\,  w':\a  < t,\,  \G_0}^{\G_1}$}    
+  % % ------------------------------------------    
+  % \RightLabel{$R\to <$}
+  % \UIC{$\underbrace{R(w,w') \to w':\a < t,\,\G_0}_{\G}$}
+  % \DP
+  % \]
+  % By the hypothesis, it holds that $\M\models_{\Ical} R(w,w')\to w':
+  % \a < t$ and $\M\models_{\Ical} \G_0$.  This implies that
+  % $\Ical(R(w,w')\to w':\a) < \Ical(t) \leq 1$, hence
+  % $R(\Ical(w),\Ical(w')) > e(\Ical(w'),\a)$ and $\Ical(R(w,w')\to
+  % w':\a)= e(\Ical(w'),\a)$, thus $\M\models_\Ical w':\a < t$ and
+  % $\M\models_{\Ical} \G_1$.  The cases of the rules $R\land\gt$,
+  % $R\land\lt$, $R\to\leq$ and $R\to\gt$ are similar.
 \end{proof}
   
   
@@ -464,85 +465,251 @@ To prove Lemma~\ref{lemma:soundRule} we need the following definitions:
 
 
 \subsection{A PSPACE decision procedure for $\GWL$}\label{app:pspace}
-%
+
+
+We sketch a non-deterministic PSPACE procedure to check validity in
+$\GWL$. Let $\varphi$ be a formula. As discussed in
+Sec.~\ref{sec_calculus}, if $\varphi\not\in\GWL$, there exists a
+tree-like countermodel $\M=\stru{W,R,e}$ for $\varphi$ such that the
+number of worlds is $O(\size{\varphi}^{\size{\varphi}})$.  
+
+We can also bound the number $N$ of values needed to define $R$ and
+$e$: in the worst case, the values $e(w,p)$ and $R(w,w')$ must all be
+pairwise distinct, for every world $w$, $w'$ and every propositional
+variable $p$ occurring in $\varphi$; accordingly, $N$ is in
+$O(\size{\varphi}^{\size{\varphi}})$.  Let
+$\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$; note that the elements of
+$\Qcal$ can be non-deterministically generated in PSPACE.  By the
+above discussion, if $\varphi\not\in\GWL$ there exists a countermodel
+$\M$ such that the images of $R$ and $e$ are contained in $\Qcal$.
+To verify whether such a countermodel can be constructed, we introduce
+a map $\Phi(w)$ that specifies the intended values of the subformulas
+of $\varphi$ at world $w$.  More precisely, we assume that $\Phi(w)$
+is data structure, representing a set of expressions of the form
+$e(w,\a)=r$, where $w$ is a world name, $\a$ is a subformula of
+$\varphi$, and $r\in\Qcal$.
+
+We now sketch a nondeterministic algorithm for checking if a
+countermodel for a formula $\varphi$ exists. During its execution, at
+several points the algorithm selects a value from $\Qcal$, we call
+such a selection a $\Wcal$-choice. Whenever it fails to find a
+countermodel, it \emph{reconsiders the most recent open
+  $\Qcal$-choice}, where \emph{open} means that not all
+possible values in $\Qcal$ satisfying the requirements specified at
+the point of the choice have yet been tried.
+
+When the algorithm reconsiders an open $\Qcal$-choice: a new value
+from $\Qcal$ satisfying the required conditions is selected; the data
+structure $\Phi(w)$ is restored to the value it had at the time of the
+previous non-deterministic choice at that point.
+
+Note that to perform these task we only need ti remember at any
+$\Qcal$-choice the next value to use (a rational value); for example
+we can at any $\Qcal$-choice to select the next $n$ such that
+$\frac{1}{n}\in\Qcal$ and $\frac{1}{n}$ satisfies the condition at the
+$\Qcal$-choice point and to store it for the next time. Moreover, we
+have to store the value of $\Phi(w)$ at the time of the
+$\Qcal$-choice. Since that, given the world $w$, we have at most an
+evaluation a $w$ for every subformula of $\varphi$, we have that every
+$\Phi(w)$ we need to store ha length $O(|\varphi|)$ at most. The
+algorithm cheks if a countermodel exists exploring the possible branches
+of a countermodel generating at most $\size{\varphi}$ worlds. Since we
+have at most a $\Qcal$-choice points for every possible subformula of
+$\varphi$ at every possible worlds, we have that the number of
+$\Qcal$-choices is bounden by $O(|\varphi|^2)$.  This means the maximum
+amount of space required by the algorithm is $O(|\varphi|^3)$.
+
+
+When, at some point of its execution, the algorithm fails and there is
+no open non-deterministic choice to reconsider, it halts and we
+conclude that the formula $\varphi$ has no countermodels, hence
+$\varphi\in\GWL$. 
+
+%Otherwise, the algorithm has generated during its
+%execution, a sequence of worlds $\Phi(w_0),\dots,\Phi(w_k)$ which implicitly
+%describe the evaluations if the  countermodel for $\varphi$.
+
+\begin{enumerate}[label*=(Step~\arabic*)]
+\item\label{step:1} The procedure considers the set
+  $\Phi(w_0)=e(w_0,\varphi)=r_0$, where $w_0$ is the candidate root for a
+  countermodel for $\varphi$ and $r_0$ is selected by a $\Qcal$-choice
+  so that $r_0<1$. Then the procedure continues at~\ref{step:2}
+  setting $\Phi(w)=\Phi(w_0)$.
+
+\item\label{step:2} We apply propositional saturation steps to
+  $\Phi(w)$ as long as possible. At each step, an expression of the
+  form $e(w,\a\star\b)=r$ in $\Phi(w)$ is removed and replaced by
+  evaluations of $\a$ and $\b$ that justify this value, where the
+  corresponding values are selected by a $\Qcal$-choice.
+
+  For instance, let $\psi=\a\to\b$.  
+  \begin{itemize}
+  \item If $r=1$, we must have $e(w,\a) \leq e(w,\b)$; we pick two
+    values $r_1$ and $r_2$ with a $\Qcal$-choice so that $r_1\leq
+    r_2$, and we replace $e(w,\a\to \b)=r$ in $\Phi(w)$ with $e(w,\a
+    )= r_1$ and $e(w,\b)=r_2$.
+  \item If $r<1$ we select a value $r_1$ with a $\Qcal$-choice so that
+    $r_1> r$, and we replace $e(w,\a\to \b)=r$ in $\Phi(w)$ with
+    $e(w,\a)= r_1$ and $e(w,\b) = r$.
+  \end{itemize}
+  At the end of this saturation phase, the formulas occurring $\Phi(w)$
+  are either atomic or modal.
+  
+  \begin{itemize}
+  \item If $\Phi(w)$ contains two evaluations $e(w,\a)=r_1$ and
+    $e(w,\a)=r_2$ such that $r_1\neq r_2$, the construction
+    \textsc{fails} and the algorithm must reconsider the most recent
+    open $\Qcal$-choice, if any. If no open $\Qcal$-choice remains,
+    the algorithm terminates and returns \textsc{fail}, meaning that
+    no countermodel for $\varphi$ exists.
+
+  \item If $\Phi(w)$ contains only atomic constraints, the
+    construction succeeds and the algorithm returns \textsc{success}
+    together with $\Phi(w)$.
+
+  \item Otherwise, if $\Phi(w)$ contains at least the evaluation of a
+    modal formula and we continue with~\ref{step:3}.
+  \end{itemize}  
+
+  % hence  $\varphi\not\in\GWL$.
+\item\label{step:3} Let $e(w,\star\a_1)=r_1,\dots,e(w,\star\a_n)=r_n$
+  the evaluations in $\Phi(w)$ involving modal formulas. 
+
+  Select the next $k\in\{1,\dots,n\}$ and define $\Phi(w_k)$ as
+  follows. Assume that $e(w,\star\a_k)=r_k$ is $e(w,\Box\a)=r$ (the
+  case $e(w,\Diam\a)=r$ is similar). We generate a new world $w_k$ and
+  select, by a $\Qcal$-choice, a value $r'_k$ for $R(w,w_k)$ and a
+  value $r_k$ for $e(w_k,\a)$ such that $r'_k\to r_k = r$. The world
+  $w_k$ is intended to represent the world witnessing that
+  $e(w,\Box\a)=r$.
+
+  We construct a new set $\Phi(w_k)$ by first adding the valuation
+  ${e(w,\a_k)=r_k}$ and then extending it with the valuations required
+  to justify the evaluations $e(w,\star'\b)=r'$ occurring in
+  $\Phi(w_k)$. More precisely:
+
+  We build up a new set $\Phi(w_k)$ and we add to $\Phi(w_k)$ the
+  valuation $\{e(w,\a_k)=r_k\}$.  We then add to $\Phi(w_k)$ the
+  valuations required to justify all the $e(w,\star'\b)=r'$ in
+  $\Phi(w_k)$.  More precisely:
+  \begin{itemize}
+  \item for every $e(w,\Box \b)=r'$ in $\Phi(w)$, with $\b\neq \a$, we
+    select with a $\Qcal$ choice a value $r''$ such that $r'_k \to r''
+    \geq r'$ and we add $e(w_k,\b)=r''$ to $\Phi(w_k)$;
+    
+
+  \item for every $e(w,\Diam \b)=r'$ in $\Phi$, we select with a
+    $\Qcal$-choice a value $r''$ such that $r'_k \land r'' \leq r'$ and
+    we add $e(w_k,\b)=r''$ to $\Phi(w_k)$.
+  \end{itemize}
+  
+  We now restart from~\ref{step:2} taking $\Phi(w)=\Phi(w_k)$. If the
+  execution of~\ref{step:2} for $\Phi(w_k)$ \textsc{succeeds}, the
+  algorithm proceeds to the next value of $k$, if any; if all values
+  of $k$ have been considered, \ref{step:3} termites with
+  \textsc{success}.
+
+  Otherwise, if the execution of~\ref{step:2} for $\Phi(w_k)$
+  \textsc{fails}, reconsider the most recent open $\Qcal$-choice, if
+  any. If no open $\Qcal$-choice remains, the algorithm terminates
+  with \textsc{fail}, meaning that no countermodel for $\varphi$
+  exists.
+
+  % Note that $\Phi(w_1)$ contains fewer modal operators than the input
+  % formula $\varphi$; accordingly, we can recursively apply the
+  % nondeterministic procedure to check whether a model having root
+  % $w_1$ satisfying all the constraints in $\Phi(w_1)$ can be
+  % constructed.  If the construction succeeds, we say that the
+  % constraint $w_0:\Box\a=r$ is checked.
+\end{enumerate}
+
+% Note that, at each iteration, the information needed to check a constraint
+% can be discarded, so the space usage remains polynomial in the size of $\varphi$.
+% If all the modal constraints in $\Phi(w_0)$ are checked, we conclude that
+% a countermodel for $\varphi$ can  be built, hence $\varphi\not\in\GWL$.
+% If all the non-deterministic attempts to build a countermodel fail,
+% we conclude $\varphi\in\GWL$.
 
 
 
-We sketch a non-deterministic PSPACE procedure to  check validity in  $\GWL$
-Let $\varphi$ be a formula. As discussed in Sec.~\ref{sec_calculus}, if $\varphi\not\in\GWL$,
-there exists a tree-like countermodel $\M=\stru{W,R,e}$ for $\varphi$ such that
-the number of worlds is $O(\size{\varphi}^{\size{\varphi}})$.
-We can also bound the number $N$ of values  needed to define $R$ and $e$:
-in the worst case, the values  $e(w,p)$ and $R(w,w')$ 
-must all be pairwise distinct,
-for every  world $w$, $w'$ and every propositional variable $p$ occurring in $\varphi$;
-accordingly,  $N$ is in  $O(\size{\varphi}^{\varphi})$.
-Let $\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$;
-note that the elements of $\Qcal$ can be non-deterministically generated in  PSPACE.
-By the above discussion, if $\varphi\not\in\GWL$  there exists a countermodel $\M$  such that
-the images of  $R$ and $e$ are contained in $\Qcal$.
-To verify that such  a  countermodel can be constructed, we introduce a map $\Phi$ 
-that specifies the intended values of the subformulas of $\varphi$  at each world.
-More precisely,
- for every world $w$,  $\Phi(w)$ is a set of constraints  of the form $w:\a =r$, where
- $\a$ is a subformula of $\varphi$ and $r\in \Qcal$,
-declaring that $e(w,\a) = r$.
-The procedure starts by  setting $\Phi(w_0)=\{w_0:\varphi= r_0\}$, where $w_0$ will become the root of $\M$ and
-$r_0$ is any value  non-deterministically chosen from $\Qcal\setminus\{1\}$.
- We then apply
-propositional saturation steps to $\Phi(w_0)$ as long as possible. In
-each step, a non-atomic constraint $w_0:\psi = r$ in $\Phi(w_0)$ is
-removed and replaced by the constraints required to justify the
-intended evaluation $e(w_0,\psi) = r$.
-For instance, let  $\psi=\a\to\b$.
-If $r=1$, we must have  $e(w_0,\a) \leq e(w_0,\b)$;
-we non-deterministically pick two values $r_1$ and $r_2$ from $\Qcal$
-such that $r_1\leq r_2$, and
-we replace $w_0:\a\to \b=r$
-with  $w_0:\a = r_1$ and  $w_0:\b = r_2$. 
-Similarly, if  $r<1$  we select a value $r_1$ from $\Qcal$ such
-that $r_1> r$, and we replace  $w_0:\a\to \b=r$ with $w_0:\a = r_1$
-and  $w_0:\b = r$.
-At the end of this saturation phase, the constraints
-in  $\Phi(w_0)$ are either atomic or modal.
-If $\Phi(w_0)$ contains two   constraints $w_0: \a=r_1$ and  $w_0:\a =r_2$  such that $r_1\neq r_2$,
-the construction  fails. 
-If $\Phi(w_0)$  contains only atomic constraints, the construction succeeds.
-%hence  $\varphi\not\in\GWL$.
-Otherwise, for every modal constraint  $w_0:\psi=r$ in   $\Phi(w_0)$ 
-we have to define an $R$-successor of $w_0$ and continue the construction. 
-More in detail,
-assume that the current  modal constraint  is $w_0:\Box\a=r$ (the case  $w_0:\Diam\a=r$ is similar);
-we  generate a new world $w_1$  and we  select  a value $r_1$ for $R(w_0,w_1)$ and a value
-$r_2$ for $e(w_1,\a)$ such that $r_1\to r_2 = r$; thus, $w_1$ is the world  witnessing that  $e(w_0,\Box \a) = r$.
-We set $\Phi(w_1) =\{ w_1:\a= r_2\}$.
-We then add to  $\Phi(w_1)$ the constraints required to justify the modal constraints in $\Phi(w_0)$.
-More precisely:
-\begin{itemize}
-\item for every $w_0:\Box \b=r'$ in  $\Phi(w_0)$, with $\b\neq \a$,  a value $r''$
-such that $r_1 \to r'' \geq r'$
-is  selected
-  and  $w_1:\b=r''$ is added to  $\Phi(w_1)$;
+
+% \newcommand{\ass}{\;\mapsfrom\;}
+
+% %%% FUNCTION SATURATE
+% \begin{function}[H]
+%   {\sf Saturate}\Big($\Psi(w)$,\,$\Lambda(w)$\Big)\;
+%   \tcp{param: $w:\a\star\b=r$ is a propositional constraint}
+%   \tcp{param: $\Lambda$ is a list of valuataion maps for $w$}
+%   $\Psi_0(w)\ass \Psi(w)$\;
+%   $i\ass 0$\;
+%   \While{($\Psi_i(w)$ contains a non atomic propositional constraint)}{ %%
+%     Select a propositional non atomic constraint $w:\a\star\b=r$ in $\Psi(w)$\; %%
+%     \eIf{($\exists r_1,r_2\in\Qcal$ new for $w:\a,w:\b$ 
+%       w.r.t. $\Lambda(w)$ such that $r_1\star r_1=r$)} {%% THEN
+%       $\Psi_{i+1}(w)\ass(\Psi_i(w)\setminus\{w:\a\star\b=r\})\cup\{w:\a = r_1,w:\b = r_2\}$\; %%
+%     } { %% ELSE
+%       \Return{FAIL}
+%     }
+%     $i\ass i+1$\;
+%   }
+%   \Return{$\Psi_i(w)$}
+%   \caption{Saturate($\Psi(w)$,$\Lambda$)}\label{fun:saturate}
+% \end{function}
+
+% % %%% ModExp
+% % \begin{function}[H]
+% %   {\sf ModExp}\Big($\g$,\Phi(w)$\Big)\;
+% %   %%\tcp{param: $w:\a\star\b=r$ is a propositional constraint}
+% %   %%\tcp{param: $\Lambda$ is a list of valuataion maps for $w$}
+% %   $\Psi_0(w)\ass \Psi(w)$\;
+% %   % $i\ass 0$\;
+% %   % \While{($\Psi_i(w)$ contains a non atomic propositional constraint)}{ %%
+% %   %   Select a propositional non atomic constraint $w:\a\star\b=r$ in $\Psi(w)$\; %%
+% %   %   \eIf{($\exists r_1,r_2\in\Qcal$ new for $w:\a,w:\b$ 
+% %   %     w.r.t. $\Lambda(w)$ such that $r_1\star r_1=r$)} {%% THEN
+% %   %     $\Psi_{i+1}(w)\ass(\Psi_i(w)\setminus\{w:\a\star\b=r\})\cup\{w:\a = r_1,w:\b = r_2\}$\; %%
+% %   %   } { %% ELSE
+% %   %     \Return{FAIL}
+% %   %   }
+% %   %   $i\ass i+1$\;
+% %   % }
+% %   % \Return{$\Psi_i(w)$}
+% %   \caption{Saturate($\Psi(w)$,$\Lambda$)}\label{fun:saturate}
+% % \end{function}
 
 
-\item  for every $w_0:\Diam \b=r'$ in  $\Phi(w_0)$,
- a value $r''$
-such that $r_1 \land r'' \leq r'$
-is  selected
-  and  $w_1:\b=r''$ is added to  $\Phi(w_1)$.
-\end{itemize}
-Note that $\Phi(w_1)$ contains fewer modal operators than the input
-formula $\varphi$; accordingly, we can recursively apply the
-nondeterministic procedure to check whether a model having root $w_1$
-satisfying all the constraints in $\Phi(w_1)$ can be constructed.  If
-the construction succeeds, we say that the constraint $w_0:\Box\a=r$ is
-checked.
-Note that, at each iteration, the information needed to check a constraint
-can be discarded, so the space usage remains polynomial in the size of $\varphi$.
-If all the modal constraints in $\Phi(w_0)$ are checked, we conclude that
-a countermodel for $\varphi$ can  be built, hence $\varphi\not\in\GWL$.
-If all the non-deterministic attempts to build a countermodel fail,
-we conclude $\varphi\in\GWL$.
+% %%FUNCTION MOD
+% \begin{function}[H]
+%   {\sf BuildMod}\Big($w:\varphi$,$\Psi(w)$\Big)\;
+%   %\tcp{param: }
+%   %\tcp{param: }
+%   $i\ass 0$\;
+%   $\Lambda_0(w)\ass []$\;
+%   \While{($\exists r\in\Qcal$ new for $w:\a$ in $\Lambda_i(w)$)}{ %%
+%     \eIf{($w:\varphi=r$ is a non atomic propositional constraint)}{ %% THEN
+%       $\Psi(w)\ass ${\sf Saturate}($\Psi(w),\Lambda$)\;
+%       \eIf{($\Psi(w)=FAIL$)}{%
+%         $\Lambda_{i+1}\ass\Lambda_{i}\cup\{w:\varphi=r\}$
+%       }{%
+%         \eIf{($\Psi(w)$ contains a modal constraint $\gamma$)}{ %%
+%           $\Psi(w)\ass BildMod(ModExp(\gamma,\Psi(w)))$
+%           } { %% ELSE
+%             \Return $\Psi(w)$
+%           }%%
+%         }
+%     } {%% ELSE
+%       $\Psi(w)\ass \{w:\varphi=r\}$\;
+%     }
+%   }
+%   \caption{BuildMod}
+% \end{function}
+
+
+% \begin{itemize}
+% \item A a pair of values $r_1,r_2$ in $\Qcal$ new w.r.t. $\Lambda(w)$,
+%   if for every evaluation $\Psi(w)\Lambda(w)$ either $w:\a\not= r_1$ or $w:\b\not=r_2$.
+% \end{itemize}
+
 
 
 
