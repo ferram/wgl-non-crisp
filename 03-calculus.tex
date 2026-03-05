@@ -561,6 +561,44 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 % \end{lemma}
 
 
+The relation $\precc$ is well-founded and can be used to instantiate
+$\prec$ in the definition of strong termination (see
+Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}).
+
+\begin{proposition}\label{prop:term}
+  The calculus $\Calcw$ is strongly terminating.
+\end{proposition}
+
+Accordingly, any backward proof search strategy for $\Calcw$
+terminates.  Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus
+on strategies where failure is certified by countermodels, i.e.: if
+proof search for a multiset of constraints $\G$ fails, a \GWM-model
+$\M$ such that $\M\models \G$ can be built; we call $\M$ a
+\emph{countermodel} for $\G$, since $\M$ ascertains that $\G$ is not
+provable in $\Calcw$ (by its soundness).  Let $\G$ be a multiset of
+constraints:
+
+\begin{itemize}
+\item $\G$ is \emph{reduced} iff no rule of $\Calcw$ can be backward
+  applied to $\G$; thus, every non-atomic constraint in $\G$ has the
+  form $w:\Box \a \gt t$ or $w:\Diam \a \lt t$.
+
+\item $\G$ is \emph{plain} iff only a modal rule can be backward
+  applied to $\G$; thus, every non-atomic constraint in $\G$ has the
+  form $w:\Box \a \abstractorder t$ or $w:\Diam \a \abstractorder t$.
+\end{itemize}
+An application of a modal rule is plain iff its conclusion is plain.
+By $\app{\chi}{\G_k}{\G_{k+1}}$ we mean that $\G_{k+1}$ is a premise
+of an application of a rule $\rho$ of $\Calcw$ having conclusion
+$\G_k$ and main constraint $\chi$, with $\chi\in\G_k$.  A branch
+$\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0
+\leq k < n$, there is $\chi_k$ such that
+$\app{\chi_k}{\G_k}{\G_{k+1}}$; thus, $\Bcal$ represents a branch of a
+tree of $\Calcw$.  The branch $\Bcal$ is \emph{saturated} iff the
+following holds:
+
+
+
 \begin{figure}[t]
   \centering
   \begin{tabular}{p{40ex}p{40ex}}\small
@@ -611,51 +649,10 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 \caption{Weight function $\wgname$ on constraints and associated multisets $\G[w]$ and $\sizem{\G}$.}
 \label{fig:weight}
 \end{figure}
-
-
-
-\begin{proposition}\label{prop:term}
-    The calculus $\Calcw$ is strongly terminating.
-\end{proposition}
-\begin{proof}
-  The relation $\precc$ is well-founded and can be used to instantiate
-  $\prec$ in the definition of strong termination (see
-  Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}).
-\end{proof}
-
-Accordingly, any backward proof search strategy for $\Calcw$
-terminates.  Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus
-on strategies where failure is certified by countermodels, i.e.: if
-proof search for a multiset of constraints $\G$ fails, a \GWM-model
-$\M$ such that $\M\models \G$ can be built; we call $\M$ a
-\emph{countermodel} for $\G$, since $\M$ ascertains that $\G$ is not
-provable in $\Calcw$ (by its soundness).  Let $\G$ be a multiset of
-constraints:
-
-\begin{itemize}
-\item $\G$ is \emph{reduced} iff no rule of $\Calcw$ can be backward
-  applied to $\G$; thus, every non-atomic constraint in $\G$ has the
-  form $w:\Box \a \gt t$ or $w:\Diam \a \lt t$.
-
-\item $\G$ is \emph{plain} iff only a modal rule can be backward
-  applied to $\G$; thus, every non-atomic constraint in $\G$ has the
-  form $w:\Box \a \abstractorder t$ or $w:\Diam \a \abstractorder t$.
-\end{itemize}
-An application of a modal rule is plain iff its conclusion is plain.
-By $\app{\chi}{\G_k}{\G_{k+1}}$ we mean that $\G_{k+1}$ is a premise
-of an application of a rule $\rho$ of $\Calcw$ having conclusion
-$\G_k$ and main constraint $\chi$, with $\chi\in\G_k$.  A branch
-$\Bcal$ is a sequence $\stru{\G_0,\dots,\G_n}$ such that, for every $0
-\leq k < n$, there is $\chi_k$ such that
-$\app{\chi_k}{\G_k}{\G_{k+1}}$; thus, $\Bcal$ represents a branch of a
-tree of $\Calcw$.  The branch $\Bcal$ is \emph{saturated} iff the
-following holds:
   
 \begin{itemize}[leftmargin=*]
 \item $\G_0$ is a finite set of constraints of the form
-  $w:\varphi\abstractorder t$;
-
-\item  $\G_n$ is reduced;
+  $w:\varphi\abstractorder t$ and  $\G_n$ is reduced;
 
 \item every application of a modal rule in $\Bcal$ is plain.
   % for every $k\geq 0$, if $\G_k$ is the conclusion of a modal rule,
@@ -691,6 +688,46 @@ $\Ical(w)=w$ for every label $w$ occurring in $\Gat$. In
 Lemma~\ref{lemma:count} we show that if $\Bcal=\stru{\G_0,\dots,\G_n}$
 is saturated and $\s$ is a solution to $\Atmp{\G_n}$, then
 $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
+
+
+\begin{example}\label{ex:satBrancj}
+  Let $\varphi=\Box(p\lor q) \to (\Box p\lor \Diam q)$ be an instance
+  of $(Cr)$.  The tree shown in Fig.~\ref{fig:saturatedbranch}
+  corresponds to a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$,
+  where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ is the top
+  multiset.  When the applied rule has two premises, the annotation
+  $(l)$ (left) or $(r)$ (right) specifies the selected one; in every
+  rule application, the main constraint is underlined.
+
+  The set $\Atmp{\G_7}$ consists of the following atomic constraints:
+  \[\small
+  w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\; w_1 : q \geq R(w_0,w_1),\;
+  1> c,\;\; R(w_0,w_1)\leq c,\;\; c < 1
+  \]
+  The set $\Atmp{\G_7}$ is consistent; a solution to $\Atmp{\G_7}$ is
+  any substitution $\s$ over $\Atmp{\G_7}$ such that
+  \[
+  \sigma(w_1:p)\, < \,\sigma\left(R(w_0,w_1)\right)\,\leq\, \sigma(c) \,< 1
+  \qquad
+  \sigma\left(R(w_0,w_1)\right)\,\leq \, \sigma(w_1: q) %\,\leq\, 1
+  \]
+  For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_7},\s}$
+  satisfies $\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is a
+  canonical $\M$-interpretation; as a consequence, $\M$ is a countermodel for
+  $\varphi$, witnessing that $\varphi\not\in\GWL$.
+  Note that the worlds of $\M$ are $w_0$ and $w_1$ and,
+  as expected, $\M$ is not crisp, since $0 < \sigma(R(w_0,w_1)) < 1$.
+    A solution
+  $\s^\star$ is obtained by setting $\sigma^\star(w_1:p) = 0.5$ and
+  $\sigma^\star(R(w_0,w_1))= \sigma^\star(c) = \sigma^\star(w_1:q) =
+  0.6$.  The model $\Mod{\Atmp{\G_7},\s^\star}$ is essentially the
+  same as the one displayed in Fig.~\ref{fig:countGW}.
+  %%, the only
+  %%difference is in the evaluation of $q_0$ in $w_0$.
+  \EndEx
+\end{example}
+
+
 
 \begin{figure}[t]
   \centering
@@ -736,44 +773,6 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
   \caption{A saturated branch.}
   \label{fig:saturatedbranch}
 \end{figure}
-
-
-\begin{example}\label{ex:satBrancj}
-  Let $\varphi=\Box(p\lor q) \to (\Box p\lor \Diam q)$ be an instance
-  of $(Cr)$.  The tree shown in Fig.~\ref{fig:saturatedbranch}
-  corresponds to a saturated branch $\Bcal=\stru{\G_0,\dots,\G_7}$,
-  where $\G_0=\{w_0:\varphi < 1\}$ is the root and $\G_7$ is the top
-  multiset.  When the applied rule has two premises, the annotation
-  $(l)$ (left) or $(r)$ (right) specifies the selected one; in every
-  rule application, the main constraint is underlined.
-
-  The set $\Atmp{\G_7}$ consists of the following atomic constraints:
-  \[\small
-  w_1:p<R(w_0,w_1),\;\; w_1:p\leq c, \;\; w_1 : q \geq R(w_0,w_1),\;
-  1> c,\;\; R(w_0,w_1)\leq c,\;\; c < 1
-  \]
-  The set $\Atmp{\G_7}$ is consistent; a solution to $\Atmp{\G_7}$ is
-  any substitution $\s$ over $\Atmp{\G_7}$ such that
-  \[
-  \sigma(w_1:p)\, < \,\sigma\left(R(w_0,w_1)\right)\,\leq\, \sigma(c) \,< 1
-  \qquad
-  \sigma\left(R(w_0,w_1)\right)\,\leq \, \sigma(w_1: q) %\,\leq\, 1
-  \]
-  For every solution $\s$, the \GWM-model $\M=\Mod{\Atmp{\G_7},\s}$
-  satisfies $\M \models_\Ical w_0 :\varphi < 1$, where $\Ical$ is a
-  canonical $\M$-interpretation; as a consequence, $\M$ is a countermodel for
-  $\varphi$, witnessing that $\varphi\not\in\GWL$.
-  Note that the worlds of $\M$ are $w_0$ and $w_1$ and,
-  as expected, $\M$ is not crisp, since $0 < \sigma(R(w_0,w_1)) < 1$.
-    A solution
-  $\s^\star$ is obtained by setting $\sigma^\star(w_1:p) = 0.5$ and
-  $\sigma^\star(R(w_0,w_1))= \sigma^\star(c) = \sigma^\star(w_1:q) =
-  0.6$.  The model $\Mod{\Atmp{\G_7},\s^\star}$ is essentially the
-  same as the one displayed in Fig.~\ref{fig:countGW}, the only
-  difference is in the evaluation of $q_0$ in $w_0$.
-  \EndEx
-\end{example}
-
 
 
 \begin{lemma}\label{lemma:count}
@@ -1025,80 +1024,83 @@ easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
 that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
 Consequently, the size of $\M$ is
 $O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
-Note  that $\M$ cannot be constructed incrementally, one branch at a time,
-since the constraints generated during the expansion of a branch have
-global validity and must be preserved throughout the entire construction.
-Nevertheless, using the above bounds, we can define an algorithm to
-check if such a countermodel exists without effectively constructing
-it. The  key observation is that we can bound the number of values $N$ needed
-to define the maps $R$ and $e$ of the countermodel.
-In particular, if $\varphi\not\in\GWL$,
-there is a countermodel where $R$ and $e$
- take values in
+Note that $\M$ cannot be constructed incrementally, one branch at a
+time, since the constraints generated during the expansion of a branch
+have global validity and must be preserved throughout the entire
+construction.  Nevertheless, using the above bounds, we can define an
+algorithm to check if such a countermodel exists without effectively
+constructing it. The key observation is that, if $\varphi\not\in\GWL$,
+there is a countermodel where $R$ and $e$ take values in
 $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$ where $N\in
-O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can 
-assign pairwise distinct  values to $e(w,p)$ and $R(w,w')$, for every
-possible pair of worlds $w$, $w'$ and every propositional variable $p$
-occurring in $\varphi$. The algorithm iteratively tries to check if a
-model such that $e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
+O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can
+assign pairwise distinct values to $e(w,p)$ and $R(w,w')$, for every
+possible pair of worlds $w$, $w'$ and every propositional variable
+occurring in $\varphi$.
+%The key observation is that we can bound the number of values $N$
+%needed to define the maps $R$ and $e$ of the countermodel.  In
+%particular, if $\varphi\not\in\GWL$, there is a countermodel where $R$
+%and $e$ take values in $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$
+%where $N\in O(\size{\varphi}^{\size{\varphi}})$. Indeed, using
+%$\Qcal$, we can assign pairwise distinct values to $e(w,p)$ and
+%$R(w,w')$, for every possible pair of worlds $w$, $w'$ and every
+%propositional variable $p$ occurring in $\varphi$. 
+The algorithm iteratively tries to check if a model such that
+$e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
 %(where $w_0$ is a world of the model). 
-The algorithm maintains, for each generated world $w$, a set $\Phi(w)$ of
-assignments  of the form  $e(w,\a)=r$, where $\a$ is a subformula of $\varphi$ and
-$r\in \Qcal$,
-specifying the intended value $r$ of $e(w,\a)$. We remark that, at each step of the execution,
-at most $O(\size{\varphi})$ entries of the map $\Phi$ must be recorded,
-and each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.
-The algorithm proceeds in two phases. First,
-the assignments  $e(w,\a)=r$  in $\Phi(w)$, where $\a$ is non-modal,  
-are saturated  by assigning values in $\Qcal$  to the subformulas of $\a$
-and updating the assignments in $\Phi(w)$ accordingly.
-At the end of this saturation phase,  every formula $\a$  occurring in $\Phi(w)$,
-is either atomic or modal. If all the $\a$ are atomic, the procedure
-terminates successfully if the assignments in $\Phi(w)$ are coherent
-(i.e., $\Phi(w)$ does not assign distinct values to the same formula), otherwise the procedure
-backtracks and tries different assignments from $\Qcal$. We point out that the memory space required to
-manage backtracking is $O(|\varphi|)$. 
-If some modal formula occurs in $\Phi(w)$, then for every modal formula
-$\alpha$   a successor world $w'$ is generated. First,
-a  value in $\Qcal$ for $R(w,w')$ is chosen and  $\Phi(w')$ is initialized
-so that it is consistent with the assignments in $\Phi(w)$ for modal formulas. Then
-the procedure is recursively applied to $w'$, taking into account the assignments in
+The algorithm maintains, for each generated world $w$, a set $\Phi(w)$
+of assignments of the form $e(w,\a)=r$, where $\a$ is a subformula of
+$\varphi$ and $r\in \Qcal$, specifying the intended value $r$ of
+$e(w,\a)$. We remark that, at each step of the execution, at most
+$O(\size{\varphi})$ entries of the map $\Phi$ must be recorded, and
+each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.  The
+algorithm proceeds in two phases. First, the assignments $e(w,\a)=r$
+in $\Phi(w)$, where $\a$ is non-modal, are saturated by assigning
+values in $\Qcal$ to the subformulas of $\a$ and updating the
+assignments in $\Phi(w)$ accordingly.  At the end of this saturation
+phase, every formula $\a$ occurring in $\Phi(w)$, is either atomic or
+modal. If all the $\a$ are atomic, the procedure terminates
+successfully if the assignments in $\Phi(w)$ are coherent (i.e.,
+$\Phi(w)$ does not assign distinct values to the same formula),
+otherwise the procedure backtracks and tries different assignments
+from $\Qcal$. We point out that the memory space required to manage
+backtracking is $O(|\varphi|)$.  If some modal formula occurs in
+$\Phi(w)$, then for every modal formula $\alpha$ a successor world
+$w'$ is generated. First, a value in $\Qcal$ for $R(w,w')$ is chosen
+and $\Phi(w')$ is initialized so that it is consistent with the
+assignments in $\Phi(w)$ for modal formulas. Then the procedure is
+recursively applied to $w'$, taking into account the assignments in
 $\Phi(w')$. Each recursive call strictly decreases the number of modal
 operators involved, hence the recursion depth is bounded by
-$|\varphi|$.
-If all the required successors of $w$ can be generated,
- the procedure terminates successfully; 
-accordingly,   a $\GWM$-model
-such that $e(w_0,\varphi)=r_0$ can be built, hence $\varphi\not\in\GWL$.
-Otherwise, the procedure backtracks. 
-If all attempts to construct a
-countermodel fail, we conclude that $\varphi\in\GWL$.
-One can show that the outlined procedure runs in PSPACE; see App.~\ref{app:pspace} for further details.
+refining$|\varphi|$.  If all the required successors of $w$ can be generated,
+the procedure terminates successfully; accordingly, a $\GWM$-model
+such that $e(w_0,\varphi)=r_0$ can be built, hence
+$\varphi\not\in\GWL$.  Otherwise, the procedure backtracks.  If all
+attempts to construct a countermodel fail, we conclude that
+$\varphi\in\GWL$.  One can show that the outlined procedure runs in
+PSPACE; see App.~\ref{app:pspace} for further details.
 
-We have implemented both the proof-search procedure and the
-countermodel extraction in the JTabWb
-framework~\cite{FerrariFF:17a}. The prover, named
+We have implemented both the proof-search and the countermodel
+extraction procedure. The prover, named
 \texttt{gwref}~\cite{gwrefProver}, performs a standard backward
-depth-first proof search, relying on the JTabWb engine extended with a
-Java implementation of the $\Calcw$ rules together with a basic
-proof-search strategy. The consistency of atomic constraints is
+depth-first proof search, relying on the JTabWb
+engine~\cite{FerrariFF:17a}. The consistency of atomic constraints is
 verified using the Choco-solver Java library~\cite{ChocoSolver:2025}.
-We emphasize that the calculus $\Calcw$ and the associated proof-search
-strategy can be smoothly adapted to treat the logic
-$\GWCL$~\cite{FerFioRod:2025}, characterized by crisp $\GWM$-models, by
-refining the notion of consistency for a set of atomic constraints
-$\Gat$: a solution $\s$ to $\Gat$ must satisfy
-$\s(R(w,w')) \in \{0,1\}$ for every pair of labels $w$, $w'$.
-To the best of our knowledge, the only other prover available for modal
-fuzzy logics is mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed
-for continuous t-norm-based logics, including G\"odel--Dummett logic.
-However, neither $\GWL$ nor $\GWCL$ are supported by mNiBLoS.
+We emphasize that the calculus $\Calcw$ and the associated
+proof-search strategy can be smoothly adapted to treat the logic
+$\GWCL$~\cite{FerFioRod:2025}, characterized by crisp $\GWM$-models,
+by refining the notion of consistency for a set of atomic constraints
+$\Gat$: a solution $\s$ to $\Gat$ must satisfy $\s(R(w,w')) \in
+\{0,1\}$ for every pair of labels $w$, $w'$.  To the best of our
+knowledge, the only other prover available for modal fuzzy logics is
+mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for continuous
+t-norm-based logics, including G\"odel--Dummett logic.  However,
+neither $\GWL$ nor $\GWCL$ are supported by mNiBLoS.
 
 As future work, we plan to extend the procedure to other witnessed
-G\"odel modal logics obtained by imposing additional constraints on the
+G\"odel modal logics imposing additional constraints on the
 accessibility relation (e.g., reflexivity, transitivity, seriality).
 In contrast, treating G\"odel modal logics with non-witnessed models
-appears to be considerably more challenging.
+seems to be considerably more challenging.
 
 
 
