@@ -1028,9 +1028,44 @@ $O(\size{\varphi}^{\size{\varphi}})$ (see Th.~4.1~\cite{BilkovaFK:22}).
 Note  that $\M$ cannot be constructed incrementally, one branch at a time,
 since the constraints generated during the expansion of a branch have
 global validity and must be preserved throughout the entire construction.
-Nevertheless, by adapting the procedure described in
-Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
-for $\GWL$ belongs to PSPACE (see, App.~\ref{app:pspace}).
+%%Nevertheless, by adapting the procedure described in
+%%Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
+%%for $\GWL$ belongs to PSPACE (see, App.~\ref{app:pspace}).
+
+Nevertheless, using the above bounds, we can define an algorithm to
+check if such a countermodel exists without effectively constructing
+it. In particular, from such bounds, we know that, if a counter model
+for $\M$ exists, there is a countermodel where the evaluation
+function takes values in
+$\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$ where $N\in
+O(\size{\varphi}^{\size{\varphi}})$; these are the values needed to
+give pairwise distinct values to the $e(w,p)$ and $R(w,w')$, for every
+possible pair of worlds $w$, $w'$ and every propositional variable $p$
+occurring in $\varphi$. The algorithm iteratively tries to check if a
+model such that $e(w_0,\varphi)=r$ exists for every $r\in\Qcal$ (where
+$w_0$ is the root of the model). During its execution, the algorithm
+maintains, for each generated world $w$, a set $\Phi(w)$ of
+constraints $e(w,\a)=r'$ specifying the intended values of subformulas
+of $\varphi$ at world $w$. The algorithm acts in two phases. First,
+propositional constraints are saturated by decomposing compound
+formulas and assigning values in $\Qcal$. If inconsistent constraints
+arise, the procedure backtracks over the corresponding choices of
+values in $\Qcal$. When only modal constraints remain, the procedure
+generates the successor worlds intended to witness the values of modal
+formulas, assigning a value from $\Qcal$ to the corresponding
+accessibility relation, and recursively verifies whether the
+constraints associated with these worlds can be satisfied. Each
+recursive call strictly decreases the number of modal operators
+involved, so the recursion depth is bounded by $|\varphi|$. Moreover,
+to backtrack the choices from $\Qcal$ we need to remember a rational
+value (assuming to try the values from $\Qcal$ in decreasing order);
+the data structure that must be maintained at each recursive call have
+size $O(|\varphi|)$; once a recursive call terminates the structures
+it used can be discarded. If a coherent assignment of constraints is
+found, a countermodel can be extracted; otherwise, all
+nondeterministic choices are exhausted and the formula is concluded to
+belong to $\GWL$. And from the above considerations the algorithm is
+in PSPACE.
 
 We have implemented both the proof-search procedure and the
 countermodel extraction in the JTabWb
