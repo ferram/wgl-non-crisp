@@ -485,7 +485,7 @@ and~\ref{lemma:rulesDec:box2} it follows that $\sizem{\G_1}\precm
 \newcommand{\Success}{\textsc{Success}}
 \newcommand{\Fail}{\textsc{Fail}}
 
-We sketch a PSPACE procedure to check the membership of a formula to
+We sketch a PSPACE procedure to decide the membership of a formula to
 $\GWL$.  Henceforth, we assume that the formula to be checked is
 $\varphi$.  As discussed in Sec.~\ref{sec_calculus}, if
 $\varphi\not\in\GWL$, there exists a tree-like countermodel
@@ -503,21 +503,20 @@ such that the images of $R$ and $e$ are contained in $\Qcal$.  To
 define the procedure, we need a global map $\Phi$ that specifies the
 intended values of the subformulas of $\varphi$ at each world of the
 model under construction.  More precisely, given a world name $w$,
-$\Phi(w)$ is a set of equalities of the form $e(w,\a)=r$, we call
-evaluations, where $\a$ is a subformula of $\varphi$ and
+$\Phi(w)$ is a set of assignments of the form $e(w,\a)=r$,  where $\a$ is a subformula of $\varphi$ and
 $r\in\Qcal$. We remark that $\Phi(w)$ can be stored in space
 $O(|\varphi|)$; moreover, to implement the search procedure, we do no
 not need to store the whole map $\Phi$, but at most
 $O(\size{\varphi})$ entries of $\Phi$.  A $\GWM$-model
-$\M=\stru{W,R,e}$ is coherent with $\Phi$ iff, for every $w$ in $W$
-and every evaluation $e(w,\a)=r$ stored in $\Phi(w)$, the value of
+$\M=\stru{W,R,e}$ complies with $\Phi$ iff, for every $w$ in $W$
+and every assignment $e(w,\a)=r$ stored in $\Phi(w)$, the value of
 $e(w,\a)$ (in $\M$) is $r$.  The decision procedure is implemented by
 the recursive procedure $\Search$ having the following specification:
 
 \begin{itemize}
 \item Let $w$ be a world name and let us assume that $\Phi(w)\neq
   \emptyset$.  The procedure $\Search(w)$ returns $\Success$ if a
-  $\GWM$-model coherent with $\Phi$ can be built, $\Fail$ otherwise.
+  $\GWM$-model complying with $\Phi$ can be built, $\Fail$ otherwise.
 \end{itemize}
 
 \noindent
@@ -529,9 +528,9 @@ computation of $\Search(w)$ consists of two main steps.
 
 \begin{enumerate}[label*=(Step~\arabic*)]
 \item\label{step:1} We apply propositional saturation reductions to
-  $\Phi(w)$ as long as possible. At each step, an evaluation
+  $\Phi(w)$ as long as possible. At each step, an assignment
   $e(w,\a\star\b)=r$ (with $\star\in \{\,\land,\,\lor,\,\to\,\}$) in
-  $\Phi(w)$ is removed and replaced by the evaluations $e(w,\a)=r_1$
+  $\Phi(w)$ is removed and replaced by the assignments $e(w,\a)=r_1$
   and $e(w,\b)=r_2$ required to justifies the value $r$, where the
   values $r_1$ and $r_2$ are selected with $\Qcal$-choices.  For
   instance, let $\psi=\a\to\b$.
@@ -556,23 +555,23 @@ computation of $\Search(w)$ consists of two main steps.
   \item Otherwise, if $\Phi(w)$ contains only atomic constraints, the
     call $\Search(w)$ returns $\Success$.
     
-  \item Otherwise, $\Phi(w)$ contains at least an evaluation of a
+  \item Otherwise, $\Phi(w)$ contains at least  a
     modal formula and the computation continues with~\ref{step:2}.
   \end{itemize}  
 
   % hence  $\varphi\not\in\GWL$.
 \item\label{step:2} Let $e(w,\#_1\a_1)=r_1,\dots,e(w,\#_n\a_n)=r_n$
-  (with $\#_i\in\{\Box,\Diamond\}$) be the evaluations in $\Phi(w)$
+  (with $\#_k\in\{\Box,\Diamond\}$) be all the assignments in $\Phi(w)$
   involving modal formulas.  We start a loop indexed by $k$ ranging
   over $\{1,\dots,n\}$.  Let $k$ be the current iteration and let us
-  assume that the evaluation of index $k$ has the form
+  assume that the assignment of index $k$ has the form
   $e(w,\Box\a_k)=r_k$ (the case $e(w,\Diam\a_k)=r_k$ is similar).  We
-  generate a new world $w_k$ and select with $\Qcal$-choice a value
+  generate a new world $w_k$ and select with a $\Qcal$-choice a value
   $r'_k$ for $R(w,w_k)$ and a value $r''_k$ for $e(w_k,\a_k)$ such
   that $r'_k\to r''_k = r_k$. The world $w_k$ is intended to represent
   the world witnessing that $e(w,\Box\a_k)=r_k$. We set
   $\Phi(w_k)=\{e(w_k,\a_k)=r''_k\}$.  We expand $\Phi(w_k)$ by adding
-  the evaluations required to justify the evaluations
+  the assignments required to account for the assignments
   $e(w,\#_j\a_j)=r_j$ occurring in $\Phi(w)$, where $j\neq k$. More
   precisely:
   \begin{itemize}
@@ -588,21 +587,20 @@ computation of $\Search(w)$ consists of two main steps.
   We recursively compute $\Search(w_k)$; we remark that the modal
   operators occurring in $\Phi(w_k)$ are fewer than the modal
   operators in $\Phi(w)$, thus the recursion is terminating. We also
-  stress that there at most $\size{\phi}$ nested recursive calls.  Let
+  stress that there are at most $\size{\phi}$ nested recursive calls.  Let
   us assume that $\Search(w_k)$ returns $\Success$.  If $k=n$ (last
   iteration), the call $\Search(w)$ returns $\Success$.  Otherwise the
   computation continues with next iteration $k+1$.  We point out that
   the entries of the map $\Phi$ exploited in the computation of
   $\Search(w_k)$ are no longer required, so they can be removed from
-  the the memory.  Let us assume that $\Search(w_k)$ returns $\Fail$.
+  the  memory.  Let us assume that $\Search(w_k)$ returns $\Fail$.
   Then, a backtrack step is needed.  If no new $\Qcal$-choice is
   possible, the call $\Search(w)$ returns $\Fail$.
 \end{enumerate}
-The procedure  can be implemented so that
-the $\Search(w)$ can be computed in space $O(\size{\varphi})$.
+The procedure  can be implemented so that  $\Search(w)$ can be computed in space $O(\size{\varphi})$.
 
 We can exploit $\Search$ to decide the validity of $\varphi$ in
-$\GWL$.  We initialize $\Phi$ by setting $e(w_0,\varphi)= q_0$, where
+$\GWL$.  We initialize $\Phi$ by setting $\Phi(w_0)=\{e(w_0,\varphi)= q_0\}$, where
 $q_0$ is any value in $\Qcal$ different from 1.  If $\Search(w_0)$
 returns $\Success$, then a model $\M$ containing a worlds $w_0$ such
 that $e(w_0,\varphi)=r_0$ can be built; since $r_0 < 1$, we conclude
