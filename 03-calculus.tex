@@ -1024,48 +1024,56 @@ extracted from an open branch with root $w_0:\varphi < 1$. One can
 easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
 that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
 Consequently, the size of $\M$ is
-$O(\size{\varphi}^{\size{\varphi}})$ (see Th.~4.1~\cite{BilkovaFK:22}).
+$O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
 Note  that $\M$ cannot be constructed incrementally, one branch at a time,
 since the constraints generated during the expansion of a branch have
 global validity and must be preserved throughout the entire construction.
-%%Nevertheless, by adapting the procedure described in
-%%Th.~4.2~\cite{BilkovaFK:22}, one can prove that the decision problem
-%%for $\GWL$ belongs to PSPACE (see, App.~\ref{app:pspace}).
-
 Nevertheless, using the above bounds, we can define an algorithm to
 check if such a countermodel exists without effectively constructing
-it. In particular, from such bounds, we know that, if a counter model
-for $\M$ exists, there is a countermodel where the evaluation
-function takes values in
+it. The  key observation is that we can bound the number of values $N$ needed
+to define the maps $R$ and $e$ of the countermodel.
+In particular, if $\varphi\not\in\GWL$,
+there is a countermodel where $R$ and $e$
+ take values in
 $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$ where $N\in
-O(\size{\varphi}^{\size{\varphi}})$; these are the values needed to
-give pairwise distinct values to the $e(w,p)$ and $R(w,w')$, for every
+O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can 
+assign pairwise distinct  values to $e(w,p)$ and $R(w,w')$, for every
 possible pair of worlds $w$, $w'$ and every propositional variable $p$
 occurring in $\varphi$. The algorithm iteratively tries to check if a
-model such that $e(w_0,\varphi)=r$ exists for every $r\in\Qcal$ (where
-$w_0$ is the root of the model). During its execution, the algorithm
-maintains, for each generated world $w$, a set $\Phi(w)$ of
-constraints $e(w,\a)=r'$ specifying the intended values of subformulas
-of $\varphi$ at world $w$. The algorithm acts in two phases. First,
-propositional constraints are saturated by decomposing compound
-formulas and assigning values in $\Qcal$. If inconsistent constraints
-arise, the procedure backtracks over the corresponding choices of
-values in $\Qcal$. When only modal constraints remain, the procedure
-generates the successor worlds intended to witness the values of modal
-formulas, assigning a value from $\Qcal$ to the corresponding
-accessibility relation, and recursively verifies whether the
-constraints associated with these worlds can be satisfied. Each
-recursive call strictly decreases the number of modal operators
-involved, so the recursion depth is bounded by $|\varphi|$. Moreover,
-to backtrack the choices from $\Qcal$ we need to remember a rational
-value (assuming to try the values from $\Qcal$ in decreasing order);
-the data structure that must be maintained at each recursive call have
-size $O(|\varphi|)$; once a recursive call terminates the structures
-it used can be discarded. If a coherent assignment of constraints is
-found, a countermodel can be extracted; otherwise, all
-nondeterministic choices are exhausted and the formula is concluded to
-belong to $\GWL$. And from the above considerations the algorithm is
-in PSPACE.
+model such that $e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
+%(where $w_0$ is a world of the model). 
+The algorithm maintains, for each generated world $w$, a set $\Phi(w)$ of
+assignments  of the form  $e(w,\a)=r$, where $\a$ is a subformula of $\varphi$ and
+$r\in \Qcal$,
+specifying the intended value $r$ of $e(w,\a)$. We remark that, at each step of the execution,
+at most $O(\size{\varphi})$ entries of the map $\Phi$ must be recorded,
+and each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.
+The algorithm proceeds in two phases. First,
+the assignments  $e(w,\a)=r$  in $\Phi(w)$, where $\a$ is non-modal,  
+are saturated  by assigning values in $\Qcal$  to the subformulas of $\a$
+and updating the assignments in $\Phi(w)$ accordingly.
+At the end of this saturation phase,  every formula $\a$  occurring in $\Phi(w)$,
+is either atomic or modal. If all the $\a$ are atomic, the procedure
+terminates successfully if the assignments in $\Phi(w)$ are coherent
+(i.e., $\Phi(w)$ does not assign distinct values to the same formula), otherwise the procedure
+backtracks and tries different assignments from $\Qcal$. We point out that the memory space required to
+manage backtracking is $O(|\varphi|)$. 
+If some modal formula occurs in $\Phi(w)$, then for every modal formula
+$\alpha$   a successor world $w'$ is generated. First,
+a  value in $\Qcal$ for $R(w,w')$ is chosen and  $\Phi(w')$ is initialized
+so that it is consistent with the assignments in $\Phi(w)$ for modal formulas. Then
+the procedure is recursively applied to $w'$, taking into account the assignments in
+$\Phi(w')$. Each recursive call strictly decreases the number of modal
+operators involved, hence the recursion depth is bounded by
+$|\varphi|$.
+If all the required successors of $w$ can be generated,
+ the procedure terminates successfully; 
+accordingly,   a $\GWM$-model
+such that $e(w_0,\varphi)=r_0$ can be built, hence $\varphi\not\in\GWL$.
+Otherwise, the procedure backtracks. 
+If all attempts to construct a
+countermodel fail, we conclude that $\varphi\in\GWL$.
+One can show that the outlined procedure runs in PSPACE; see App.~\ref{app:pspace} for further details.
 
 We have implemented both the proof-search procedure and the
 countermodel extraction in the JTabWb
