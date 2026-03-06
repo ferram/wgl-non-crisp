@@ -73,43 +73,8 @@ Here we exploit witnessed crisp models ($\GWCM$-models); we show that:
   similar.
 \end{proof}
 
-\begin{proposition}\label{prop:gwclBD}
-  Properties~\ref{defBD:P1} and~\ref{defBD:P2} holds.
-\end{proposition}  
 
-\begin{proof}
-  Let us assume, by contradiction, that property~\ref{defBD:P1} does
-  not hold.  Then, there exists a $\Box$-free formula $\varphi$ such
-  that $\Box p \tto\varphi$ is valid in $\GWCL$. As a consequence, in
-  the \GWCM-model $\M^\ast$ in Fig.~\ref{fig:ind} we have $e(w_0, \Box
-  p \tto\varphi)=1$. Since $e(w_0, \Box p)= 0.4$, we get $e(w_0,
-  \varphi)= 0.4$, in contradiction with
-  Lemma~\ref{lemma:defBD}\ref{lemma:defBD:1}.  This proves
-  that~\ref{defBD:P1} holds. The proof of~\ref{defBD:P2} is similar.
-\end{proof}
-
-
-\begin{proposition}\label{prop:defBD}
-  $\Box$ and $\Diam$ are not interdefinable in any modal logic $L$
-  contained in $\GWCL$.
-\end{proposition}  
-
-\begin{proof}
-  Let $L\subseteq \GWCL$ and assume
-  that  there is
-  a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
-  L$. Then, $\Box p\tto\varphi\in \GWCL$,
-  in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
-  $\Diam$ is similar.
-  % Let $L$ be any modal logic contained in $\GWCL$ and let us assume
-  % that in $L$ the operator $\Box$ can be defined.  Then, there exists
-  % a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
-  % L$. Since $L\subseteq \GWCL$, we get $\Box p\tto\varphi\in \GWCL$,
-  % in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
-  % $\Diam$ is similar.
-\end{proof}
-
-\begin{figure}[t]
+\begin{figure}[h]
   \centering
   \begin{minipage}{0.45\linewidth}
     \begin{tikzpicture}[scale=0.7]
@@ -160,6 +125,44 @@ Here we exploit witnessed crisp models ($\GWCM$-models); we show that:
   \label{fig:ind}
 \end{figure}
   
+
+
+\begin{proposition}\label{prop:gwclBD}
+  Properties~\ref{defBD:P1} and~\ref{defBD:P2} holds.
+\end{proposition}  
+
+\begin{proof}
+  Let us assume, by contradiction, that property~\ref{defBD:P1} does
+  not hold.  Then, there exists a $\Box$-free formula $\varphi$ such
+  that $\Box p \tto\varphi$ is valid in $\GWCL$. As a consequence, in
+  the \GWCM-model $\M^\ast$ in Fig.~\ref{fig:ind} we have $e(w_0, \Box
+  p \tto\varphi)=1$. Since $e(w_0, \Box p)= 0.4$, we get $e(w_0,
+  \varphi)= 0.4$, in contradiction with
+  Lemma~\ref{lemma:defBD}\ref{lemma:defBD:1}.  This proves
+  that~\ref{defBD:P1} holds. The proof of~\ref{defBD:P2} is similar.
+\end{proof}
+
+
+\begin{proposition}\label{prop:defBD}
+  $\Box$ and $\Diam$ are not interdefinable in any modal logic $L$
+  contained in $\GWCL$.
+\end{proposition}  
+
+\begin{proof}
+  Let $L\subseteq \GWCL$ and assume
+  that  there is
+  a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
+  L$. Then, $\Box p\tto\varphi\in \GWCL$,
+  in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
+  $\Diam$ is similar.
+  % Let $L$ be any modal logic contained in $\GWCL$ and let us assume
+  % that in $L$ the operator $\Box$ can be defined.  Then, there exists
+  % a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
+  % L$. Since $L\subseteq \GWCL$, we get $\Box p\tto\varphi\in \GWCL$,
+  % in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
+  % $\Diam$ is similar.
+\end{proof}
+
 
 
 \subsection{Proofs}\label{app:proofs}
