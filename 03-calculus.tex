@@ -563,7 +563,7 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 
 The relation $\precc$ is well-founded and can be used to instantiate
 $\prec$ in the definition of strong termination (see
-Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}).
+Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}); this proves that:
 
 \begin{proposition}\label{prop:term}
   The calculus $\Calcw$ is strongly terminating.
@@ -1027,11 +1027,11 @@ $O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
 Note that $\M$ cannot be constructed incrementally, one branch at a
 time, since the constraints generated during the expansion of a branch
 have global validity and must be preserved throughout the entire
-construction.  Nevertheless, using the above bounds, we can define an
+construction.  Nevertheless, using the above bounds, we can define a PSPACE
 algorithm to check if such a countermodel exists without effectively
 constructing it. The key observation is that, if $\varphi\not\in\GWL$,
 there is a countermodel where $R$ and $e$ take values in
-$\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$ where $N\in
+$\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$, where $N\in
 O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can
 assign pairwise distinct values to $e(w,p)$ and $R(w,w')$, for every
 possible pair of worlds $w$, $w'$ and every propositional variable
@@ -1044,7 +1044,7 @@ occurring in $\varphi$.
 %$\Qcal$, we can assign pairwise distinct values to $e(w,p)$ and
 %$R(w,w')$, for every possible pair of worlds $w$, $w'$ and every
 %propositional variable $p$ occurring in $\varphi$. 
-The algorithm iteratively tries to check if a model such that
+The algorithm iteratively tries to check whether a model such that
 $e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
 %(where $w_0$ is a world of the model). 
 The algorithm maintains, for each generated world $w$, a set $\Phi(w)$
@@ -1057,30 +1057,30 @@ algorithm proceeds in two phases. First, the assignments $e(w,\a)=r$
 in $\Phi(w)$, where $\a$ is non-modal, are saturated by assigning
 values in $\Qcal$ to the subformulas of $\a$ and updating the
 assignments in $\Phi(w)$ accordingly.  At the end of this saturation
-phase, every formula $\a$ occurring in $\Phi(w)$, is either atomic or
+phase, every formula $\a$ occurring in $\Phi(w)$ is either atomic or
 modal. If all the $\a$ are atomic, the procedure terminates
 successfully if the assignments in $\Phi(w)$ are coherent (i.e.,
 $\Phi(w)$ does not assign distinct values to the same formula),
 otherwise the procedure backtracks and tries different assignments
 from $\Qcal$. We point out that the memory space required to manage
-backtracking is $O(|\varphi|)$.  If some modal formula occurs in
-$\Phi(w)$, then for every modal formula $\alpha$ a successor world
-$w'$ is generated. First, a value in $\Qcal$ for $R(w,w')$ is chosen
+backtracking is $O(|\varphi|)$. Secondly,
+a loop is entered where, for every   $e(w,\a)=r$ in $\Phi(w)$ such that $\a$ is modal,  an $R$-successor world
+of $w'$ is generated (the witness for $\a$). At each iteration, a value from $\Qcal$ for $R(w,w')$ is chosen
 and $\Phi(w')$ is initialized so that it is consistent with the
-assignments in $\Phi(w)$ for modal formulas. Then the procedure is
-recursively applied to $w'$, taking into account the assignments in
+assignments in $\Phi(w)$ for modal formulas; then, the procedure is
+recursively applied to $w'$, relying on the assignments in
 $\Phi(w')$. Each recursive call strictly decreases the number of modal
 operators involved, hence the recursion depth is bounded by
-refining$|\varphi|$.  If all the required successors of $w$ can be generated,
+$|\varphi|$.  If all the required $R$-successors of $w$ can be generated,
 the procedure terminates successfully; accordingly, a $\GWM$-model
 such that $e(w_0,\varphi)=r_0$ can be built, hence
 $\varphi\not\in\GWL$.  Otherwise, the procedure backtracks.  If all
-attempts to construct a countermodel fail, we conclude that
+the attempts to construct a countermodel fail, we conclude that
 $\varphi\in\GWL$.  One can show that the outlined procedure runs in
-PSPACE; see App.~\ref{app:pspace} for further details.
+PSPACE, hence validity in $\GWL$ can be decided in PSPACE; see App.~\ref{app:pspace} for further details.
 
-We have implemented both the proof-search and the countermodel
-extraction procedure. The prover, named
+We have implemented a proof-search procedure for the calculus $\Calcw$  that supports countermodel extraction.
+The prover, named
 \texttt{gwref}~\cite{gwrefProver}, performs a standard backward
 depth-first proof search, relying on the JTabWb
 engine~\cite{FerrariFF:17a}. The consistency of atomic constraints is
