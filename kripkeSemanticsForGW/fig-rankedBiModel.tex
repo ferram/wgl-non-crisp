@@ -1,0 +1,132 @@
+% \begin{tikzpicture}[scale=0.8]
+% % OVALS around clusters
+       % cluster [y]
+       \node[ellipse,draw, fill = gray!10,minimum width = 8em, minimum height = 22ex ] (e) at (-5,4) {};
+      
+      
+      
+      % cluster  [x]
+       \node[ellipse,draw, fill = gray!10,minimum width = 8em, minimum height = 22ex ] (e) at (0,1.5) {};
+      
+      
+       % cluster [z]
+       \node[ellipse,draw, fill = gray!10,minimum width = 8em, minimum height = 22ex ] (e) at (5,4) {};
+           
+      % WORLDS
+      %%% cluster [x]
+      % x1
+      \draw[fill] (0,0) circle (3pt)
+      +(0,-0)   node (x1)  {}  % used to label the circle 
+      +(-0.6,0) node  {$x_1$}
+      ;
+      
+      % x08
+      \draw[fill] (0,1) circle (3pt)
+      +(0,-0)   node (x08)  {}  % used to label the circle 
+      +(-0.6,0) node  {$x_{0.8}$}
+      ;
+      
+      % x06
+      \draw[fill]  (0,2) circle (3pt)
+      +(0,0)   node (x06)  {}  % used to label the circle 
+      +(-0.6,0) node  {$x_{0.6}$}
+      ;
+      
+      % x04
+      \draw[fill] (0,3) circle (3pt)
+      +(0,0)   node (x04)  {}  % used to label the circle 
+      +(-0.6,0) node {$x_{0.4}$}  
+      ;
+
+      %%% cluster [y]
+      % y1
+      \draw[fill] (-5,2.5) circle (3pt)
+      +(0,-0)   node (y1)  {}  % used to label the circle 
+      +(-0.6,0) node  {$y_1$}
+      +(0.3,0) node[anchor=west]  {$p$}
+      ;
+
+  
+      % y08 
+      \draw[fill]  (-5,3.5) circle (3pt)
+      +(0,0)   node (y08)  {}  % used to label the circle 
+      +(-0.6,0) node  {$y_{0.8}$}
+      +(0.3,0) node[anchor=west]  {$p$}
+      ;
+
+      
+      % y06 
+      \draw[fill]  (-5,4.5) circle (3pt)
+      +(0,0)   node (y06)  {}  % used to label the circle 
+      +(-0.6,0) node  {$y_{0.6}$}
+      +(0.3,0) node[anchor=west]  {$p$}
+      ;
+      
+      % y04
+      \draw[fill] (-5,5.5) circle (3pt)
+      +(0,0)   node (y04)  {}  % used to label the circle 
+      +(-0.6,0) node  {$y_{0.4}$}
+      +(0.3,0) node[anchor=west]  {$p,\,q$}
+      ;
+      
+      %%% cluster [z]
+      % z1
+      \draw[fill] (5,2.5) circle (3pt)
+      +(0,-0)   node (z1)  {}  % used to label the circle 
+      +(-0.6,0) node  {$z_1$}
+      ;
+
+      % z08 
+      \draw[fill]  (5,3.5) circle (3pt)
+      +(0,0)   node (z08)  {}  % used to label the circle 
+      +(-0.6,0) node  {$z_{0.8}$}
+      +(0.3,0) node[anchor=west]  {$q$}
+      ;
+
+      
+      % z06 
+      \draw[fill]  (5,4.5) circle (3pt)
+      +(0,0)   node (z06)  {}  % used to label the circle 
+      +(-0.6,0) node  {$z_{0.6}$}
+      +(0.3,0) node[anchor=west]  {$p,\,q$}
+      ;
+      
+      % z04
+      \draw[fill] (5,5.5) circle (3pt)
+      +(0,0)   node (z04)  {}  % used to label the circle 
+      +(-0.6,0) node  {$z_{0.4}$}
+      +(0.3,0) node[anchor=west]  {$p,\,q$}
+      ;
+            
+      % ARROWS
+      % <=
+      \draw  (x1) -- (x08);
+      \draw  (x08) -- (x06);
+       \draw  (x06) -- (x04);
+      
+    \draw  (y1) -- (y08);
+      \draw  (y08) -- (y06);
+       \draw  (y06) -- (y04);
+
+
+      \draw  (z1) -- (z08);
+      \draw  (z08) -- (z06);
+       \draw  (z06) -- (z04);
+      
+
+       % S
+        \draw[->]  (x08) -- (y08);
+        \draw[->]  (x06) -- (y06);
+        \draw[->]  (x04) -- (y04);
+      
+      
+        \draw[->]  (x06) -- (z06);
+        \draw[->]  (x04) -- (z04);
+
+ %\end{tikzpicture}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 
