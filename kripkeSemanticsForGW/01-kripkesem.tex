@@ -228,15 +228,15 @@ defined as follows:
 \item $x\forcing p$  iff  $p \in V(x)$, where $p\in\PV$;
 \item $x\forcing \a \land \b$ iff $x \forcing \a$ and $x \forcing \b$;
 \item $x\forcing \a \lor \b$ iff $x \forcing \a$ or $x \forcing \b$;
-\item $x\forcing \a \to \b$ iff for every $y\in X$ s.t.  $y\geq x$, if
-  $y \forcing \a$ then $y \forcing \b$;
+\item $x\forcing \a \to \b$ iff for every $x'\in X$ s.t.  $x\leq x'$, if
+  $x' \forcing \a$ then $x' \forcing \b$;
 \item $x\forcing \Box\a $ iff for every $x',y'\in X$, if $x \leq x'$ and  $x' S y'$  then
   $y'\forcing \a$;
 \item $x\forcing \Diam\a $ iff there exists $y\in X$ s.t.~$x S y$ and
   $y \forcing \a$.
 \end{itemize}
 One can easily prove that forcing is persistent, i.e.: if $x\forcing
-\varphi$ and $x\leq y$, then $y\forcing\varphi$; in particular,
+\varphi$ and $x\leq x'$, then $x'\forcing\varphi$; in particular,
 persistence of $\Diam$-formulas follows from~\ref{F1};
 persistence of $\Box$-formulas holds by definition.
 
@@ -251,8 +251,8 @@ A formula $\varphi$ is valid in a $\GWM$-bimodel $\K$ iff $x\forcing
 the set of formulas valid in all the $\GWM$-bimodels; we show that
 $\LBM$ coincides with $\GWL$.
 To this aim, we establish
-a correspondence between the class of discrete \GWM-models and the
-class of \GWM-bimodels ensuring that, given any $\M$,  validity in $\M$ simulates
+a correspondence between the class of discrete $\GWM$-models and a particular 
+class of $\GWM$-bimodels ensuring that, given any $\M$,  validity in $\M$ simulates
 forcing in the corresponding $\K$.
 
 
@@ -266,12 +266,13 @@ there exists a unique world $x'\in\clust{x}$ such that
 $x' < x$ and, for
 every $y\in \clust{x}$ such that $x'\leq y \leq x$, either $y=x'$ or $y =x$;
 we call $x'$ the \emph{immediate $\leq$-predecessor} of $x$. 
-We introduce the following notation:  
+Given $x\in X$,
+we introduce the following notation:  
 \begin{itemize}
-\item $\xmin$  denotes the $\leq$-minimum element in $\clust{x}$;
-\item  $\xmax$ the $\leq$-maximum element in $\clust{x}$;
+\item $\xmin$  is the $\leq$-minimum element in $\clust{x}$;
+\item  $\xmax$ is the $\leq$-maximum element in $\clust{x}$;
 
-\item  If $x$ is not the $\leq$-minimum in $\clust{x}$,  $x^-$  denotes the immediate $\leq$-predecessor
+\item  If $x$ is not the $\leq$-minimum in $\clust{x}$,  $x^-$  is the immediate $\leq$-predecessor
   of $x$.
   
 \end{itemize}
@@ -282,7 +283,7 @@ from $x$ to $\xmax$; formally
 \[
   \height{x}\;=\;
   \begin{cases}
-0 &\text{if $x$ is the $\leq$-maximum of $\clust{x}$}    
+0 &\text{if $x$ is the $\leq$-maximum in $\clust{x}$}    
 \\
  \height{y} + 1 & \text{if  $x =y^-$}
   \end{cases}
@@ -326,13 +327,8 @@ By definition $\LBM\subseteq \LBMR$. We prove the converse relation, namely  $\L
 \noindent
 Let $\K=\stru{X,\leq,S,V}$ be a regular model.
 The \emph{height} of $\K$, denoted by $\height{\K}$, is the height of a cluster.
-Let  $\height{\K}=k$;  a \emph{ranking} over $\K=\stru{X,\leq,S,V}$ is an order preserving map 
- $\Rn : \{0,\dots, k\} \to (0,1]_\mathrm{Q}$  such that:
- \begin{itemize}
- \item  if $i < j$, then   $\Rnof{i} < \Rnof{j}$. 
-
-  \item $\Rnof{k} = 1$. 
- \end{itemize}
+Let  $\height{\K}=k$;  a \emph{ranking} over $\K$ is an order preserving map 
+ $\Rn : \{0,\dots, k\} \to (0,1]_\mathrm{Q}$  such that  $\Rnof{k} = 1$.
   The function $\Rn$ is extended to the worlds of $\K$ by setting
  \begin{itemize}
  \item $\Rnof{x} = \Rnof{\height{x}}$, for every $x\in X$.
@@ -340,17 +336,17 @@ Let  $\height{\K}=k$;  a \emph{ranking} over $\K=\stru{X,\leq,S,V}$ is an order 
 
 
 \noindent
-A \emph{ranked $\GWM$-bimodel} is a pair $(\K,\Rn)$, where $\K$ is a
+A \emph{ranked $\GWM$-bimodel} is a pair $(\K,\Rn)$, where $\K$ is a regular
 $\GWM$-bimodel and $\Rn$ is a ranking over $\K$.
 Let $(\K,\Rn)$ be a ranked $\GWM$-bimodel.
-By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, if  $ x S y$, then $\height{x}=\height{y}$.
+By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, if  $ x S y$, then $\Rnof{x}=\Rnof{y}$.
 The rank of a formula $\varphi$ in a cluster $\clust{x}$, denoted by  $\Rnof{\clust{x},\varphi}$
- (or else by $\Rnof{x,\varphi}$), is defined
+or else by $\Rnof{x,\varphi}$, is defined
 as follows:
 \[
 \Rnof{\clust{x},\varphi} \;=\; \max\left(\,\{\,
   \Rnof{x'}~|~\mbox{$x' \in \clust{x}$ and $x'\forcing\varphi$} 
-  \,\}\cup\{0\}\,\right)
+  \,\}\,\cup\,\{0\}\,\right)
 \]
 Note that $\Rnof{x,\varphi} \in \Rnof{X}\cup\{0\}$, where $\Rnof{X}$
 is the image of $\Rn$.
@@ -376,11 +372,11 @@ The following properties immediately follow from the definition of $\Rn$:
 
 \noindent
 Let $x$ and $y$ be two worlds of $\K$; the rank of $S$ w.r.t. the clusters~$\clust{x}$ and $\clust{y}$,
-denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   (or else by  $\Rnof{S_{x,y}}$)  is defined as follows:
+denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   or else by  $\Rnof{S_{x,y}}$,  is defined as follows:
 \[
 \Rnof{S_{\clust{x},\clust{y}}} \;=\; \max\left(\,\{\,
   \Rnof{x'}~|~\mbox{$x' \in \clust{x}$ and there exists $y'\in\clust{y}$ such that $x'\,S\, y'$} 
-  \,\}\cup\{0\}\,
+  \,\}\,\cup\,\{0\}\,
 \right)
 \]
 
@@ -410,7 +406,7 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   (or else by  $\Rnof{S_{x,y}}$)  is
   \Rnof{x_1,\Diam p} =0.8,\quad \Rnof{x_1,\Diam q} = 0.6
     \end{array}
 \]
-  \caption{A ranked $\GWM$-bimodel $(\K,\Rn)$.}
+  \caption{A ranked $\GWM$-bimodel $(\K,\Rn)$ (see Ex.~\ref{ex:rankedBiModel}).}
   \label{fig:rankedBiModel}
 \end{figure}
 % % ############################################################## 
@@ -419,14 +415,21 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   (or else by  $\Rnof{S_{x,y}}$)  is
 
 
  \begin{example}\label{ex:rankedBiModel}
-   Let us consider the  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-displayed in Fig.~\ref{fig:rankedBiModel}, where:
+   Let us consider the   $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
+   displayed in Fig.~\ref{fig:rankedBiModel}.
+The worlds of $\K$ have the form $w_r$, where $w\in\{x,y,z\}$ and  $r\in\{0.4,\,0.6,\,0.8,\,1\}$.
+The relation $\leq$ is
+  represented by the straight lines ($w\leq w'$ iff $w$ is below or
+  equal to $w'$), the relation $S$ is depicted by the arrows.
+ The   propositional variables in $V(w_r)$ are displayed to the right of
+  $w_r$. 
+Formally;
 \[
    \begin{array}{l}
-X\;=\;\{\,w_r~|~\text{$w\in\{x,y,z\}$ and  $r\in\{0.4,\,0.6,\,0.8,\,1\}$}   \,\}     
-\qquad
+%X\;=\;\{\,w_r~|~\text{$w\in\{x,y,z\}$ and  $r\in\{0.4,\,0.6,\,0.8,\,1\}$}   \,\}     
+%\qquad
 \leq\;=\;\{\,(w_r,w'_{r'})~|~\text{$w=w'$ and $r\geq r'$} \,\}
-     \\[1ex]
+ \qquad %    \\[1ex]
      S\;=\;\{\, (x_r,y_r)~|~r\leq 0.8 \,\}\;\cup\; \{\, (x_r,z_r)~|~r\leq 0.6 \,\}
      \\[1ex]
      V(w)\;=\;
@@ -441,11 +444,7 @@ X\;=\;\{\,w_r~|~\text{$w\in\{x,y,z\}$ and  $r\in\{0.4,\,0.6,\,0.8,\,1\}$}   \,\}
      \end{cases}
    \end{array}
 \]
-In the figure, the relation $\leq$ is
-  represented by the straight lines ($w\leq w'$ iff $w$ is below or
-  equal to $w'$), the relation $S$ is depicted by the arrows.
- The   propositional variables in $V(w_r)$ are displayed to the right of
-  $w_r$.  There are three clusters $\clust{x_1}$, $\clust{y_1}$ and
+There are three clusters $\clust{x_1}$, $\clust{y_1}$ and
   $\clust{z_1}$, enclosed in ovals. 
   The model $\K$ is regular. Since  $\K$  has height 3, a ranking over $\K$ has domain $\{0,1,2,3\}$.
   Let $\Rn$ be the ranking function over $\K$ defined as follows:
@@ -454,7 +453,7 @@ In the figure, the relation $\leq$ is
 \]
 and let us consider the  ranked $\GWM$-bimodel $(\K,\Rn)$.
 In  $(\K,\Rn)$, for every world $w_r$ in $\K$  it holds that $\Rnof{w_r}=r$.
-We have:
+Let $w$ and $w'$ be any two worlds of $\K$; then
 \[
  \Rnof{S_{w,w'}} \;=\; 
   \begin{cases}
