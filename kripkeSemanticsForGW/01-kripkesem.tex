@@ -340,28 +340,28 @@ A \emph{ranked $\GWM$-bimodel} is a pair $(\K,\Rn)$, where $\K$ is a regular
 $\GWM$-bimodel and $\Rn$ is a ranking over $\K$.
 Let $(\K,\Rn)$ be a ranked $\GWM$-bimodel.
 By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, if  $ x S y$, then $\Rnof{x}=\Rnof{y}$.
-The rank of a formula $\varphi$ in a cluster $\clust{x}$, denoted by  $\Rnof{\clust{x},\varphi}$
-or else by $\Rnof{x,\varphi}$, is defined
-as follows:
+The rank of a formula $\varphi$ in a cluster $\clust{x}$, denoted by  $\Rnof{\clust{x},\varphi}$,
+%or else by $\Rnof{x,\varphi}$,
+is defined as follows:
 \[
 \Rnof{\clust{x},\varphi} \;=\; \max\left(\,\{\,
   \Rnof{x'}~|~\mbox{$x' \in \clust{x}$ and $x'\forcing\varphi$} 
   \,\}\,\cup\,\{0\}\,\right)
 \]
-Note that $\Rnof{x,\varphi} \in \Rnof{X}\cup\{0\}$, where $\Rnof{X}$
+Note that $\Rnof{\clust{x},\varphi} \in \Rnof{X}\cup\{0\}$, where $\Rnof{X}$
 is the image of $\Rn$.
 The following properties immediately follow from the definition of $\Rn$:
 
  \begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*]
 
 \item\label{prop:Rn:1}
-  $\Rnof{x,\varphi}=0$  iff $\xmax\nforcing \varphi$;
+  $\Rnof{\clust{x},\varphi}=0$  iff $\xmax\nforcing \varphi$;
 \item\label{prop:Rn:2}
-  $\Rnof{x,\varphi}=1$ iff $\xmin\forcing \varphi$; 
+  $\Rnof{\clust{x},\varphi}=1$ iff $\xmin\forcing \varphi$; 
 
 
 \item\label{prop:Rn:3}
-  Let $\Rnof{x,\varphi}=r$, where $0 < r < 1$, and let $x_r\in \clust{x}$ be
+  Let $\Rnof{\clust{x},\varphi}=r$, where $0 < r < 1$, and let $x_r\in \clust{x}$ be
   such that $\Rnof{x_r} = r$. Then,
   $x_r\forcing \varphi$ and  $(x_r)^-\nforcing \varphi$. 
 
@@ -372,13 +372,18 @@ The following properties immediately follow from the definition of $\Rn$:
 
 \noindent
 Let $x$ and $y$ be two worlds of $\K$; the rank of $S$ w.r.t. the clusters~$\clust{x}$ and $\clust{y}$,
-denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   or else by  $\Rnof{S_{x,y}}$,  is defined as follows:
+denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   is defined as follows:
 \[
 \Rnof{S_{\clust{x},\clust{y}}} \;=\; \max\left(\,\{\,
   \Rnof{x'}~|~\mbox{$x' \in \clust{x}$ and there exists $y'\in\clust{y}$ such that $x'\,S\, y'$} 
   \,\}\,\cup\,\{0\}\,
 \right)
 \]
+In the notations  $\Rnof{\clust{x},\varphi}$ and $\Rnof{S_{\clust{x},\clust{y}}}$,
+we often replace a   cluster $\clust{z}$ with the $z$ (e.g.,
+we write $\Rnof{S_{x,y}}$ or   $\Rnof{S_{\clust{x},y}}$  instead of
+$\Rnof{S_{\clust{x},\clust{y}}}$).
+
 % By definition of $\Rnof{S_{\clust{x},\clust{y}}}$ and property~\ref{F1} we get:
 
 % \begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*,start=4]
@@ -813,17 +818,18 @@ Let $w$ be a world of $\M$  and $\varphi$ a formula; we prove  $e(w,\varphi) =\R
    The case  $\varphi =\bot$ is trivial, since  $e(w,\bot)=0$
    and $\Rnof{\Phi(w),\bot}=0$.
 
-   Let $\varphi=\a\star \b$, where $\star\in \{\,\land,\,\lor,\,\to\,\}$. We have:
+   Let $\varphi=\a\star \b$, where $\star\in \{\,\land,\,\lor,\,\to\,\}$. Then:
    \[
-     e(w, \a\star \b) \,= \, e(w,\a)\star (w,\b)
-     \,\stackrel{(\dag)}{=}\,
-     \Rnof{\Phi(w),\a}\star  \Rnof{\Phi(w),\b} 
- \,\stackrel{(\ddag)}{=}\,
-     \Rnof{\Phi(w),\a\star \b}
+     \begin{array}{lcll}
+       e(w, \a\star \b) & \;= \; & e(w,\a)\star (w,\b) &
+  \\[1ex]                                                       
+ &  \;= \; &     \Rnof{\Phi(w),\a}\star  \Rnof{\Phi(w),\b}
+& \text{induction hypothesis} 
+       \\[1ex]                                                      
+                        &  \;= \; &  \Rnof{\Phi(w),\a\star \b}
+           & \text{Lemma ~\ref{lemma:Rn}\ref{lemma:Rn:prop}}.
+        \end{array}    
    \]
-   where $(\dag)$ follows from the induction hypothesis and $(\ddag)$
-   from Lemma~\ref{lemma:Rn}\ref{lemma:Rn:prop}.
-
 Let $\M=\stru{W,R,e}$ and  $\K=\stru{X,\leq,S,V}$.
 We have:
 \[
@@ -857,31 +863,19 @@ $q_1=\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}$, where $w'\in W$.
 Let $y\in \Phi(w')$; 
 then $\Phi(w')=\clust{y}$ hence:
 \[
-  \begin{array}{l}
-  \Rnof{S_{\Phi(w),\Phi(w')}} =   \Rnof{S_{\Phi(w),y}}\
- \qquad
-\Rnof{S_{\Phi(w),\Phi(w')}} =  \Rnof{S_{\Phi(w),y}}
-    \\[1ex]
     \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\;
 \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\;=\;
     q_1    
-  \end{array}
   \]
 Since $\Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}\in \Qcal_2$,
-we get $q_1\in\Qcal_2$.
-This proves $\Qcal_1\subseteq \Qcal_2$.
+we get $q_1\in\Qcal_2$;
+this proves $\Qcal_1\subseteq \Qcal_2$.
 Conversely, let $q_2\in\Qcal_2$
 and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$, where $y\in X$.
-Then, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
+Since $\Phi$ is surjective, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
 \[
-  \begin{array}{l}
-    \Rnof{S_{\Phi(w),\Phi(w')}} =  \Rnof{S_{\Phi(w),y}}
-  \qquad
-    \Rnof{\Phi(w'),\a} =  \Rnof{y,\a}
-    \\[1ex]
     \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;=\;
         \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\; q_2
-  \end{array}
 \]
 Since  $\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\in \Qcal_1$,
 we get $q_2\in\Qcal_1$.
@@ -916,12 +910,12 @@ To show that $\LBMR$ and $\GWL$ coincide, we need the following lemma:
 
 \begin{proof}
   \ref{lemma:Phi:MtoK}. Let $\M=\stru{W,R,e}$ and let
-  $\Qcal = (e(W)\cup R(W) \cup \{1\}) \setminus \{0\}$; since $\M$ is discrete, $\Qcal$ is a
+  $\Qcal = (R(W)\cup e(W) \cup \{1\}) \setminus \{0\}$; since $\M$ is discrete, $\Qcal$ is a
 finite subset of $(0,1]_Q$.  The $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-and the rankimg  $\Rn$ over $\K$ are defined as follows:
+is defined as follows:
 \[
   \begin{array}{ll}
-    X\;=\;\{\, w_r~|~ r\in \Qcal\,\}
+    X\;=\;\{\, w_r~|~ \text{$w\in W$ and $r\in \Qcal$}\,\}
 &    
 \leq \;=\; \{\, (w_r, w'_{r'})~|~\text{$w = w'$ and $r \geq r'$ }  \,\}    
 \\[1ex]
@@ -930,12 +924,12 @@ and the rankimg  $\Rn$ over $\K$ are defined as follows:
 V \;=\; \{\, (w_r, p)~|~\text{ $r \leq e(w,p)$ }  \,\}
 \end{array}
 \]
-    One can easily  check that $\K$ is a  well-defined regular bimodel.
+    One can easily  check that $\K$ is a  well-defined regular $\GWM$-bimodel.
    For every $w\in W$, the set of  $w_r$ such that $r\in \Qcal$ is a cluster of $\K$.
-    Let  $q_0,r_1, \dots, q_{k}$ be an enumeration of the elements of $\Qcal$ in ascending order
-    (thus, $q_k=1$).
+    Let  $r_0,r_1, \dots, r_{k}$ be an enumeration of the elements of $\Qcal$ in ascending order
+    (thus, $r_k=1$).
    The map $\Rn : \{0,\dots,k\}\to\Qcal$
-    such that $\Rnof{k} = q_k$ is a ranking over $\K$.  Note that $\Rnof{w_{q_j}}=q_j$.
+    such that $\Rnof{k} = r_k$ is a ranking over $\K$.  Note that $\Rnof{w_{r_j}}=r_j$.
     The function $\Phi$ mapping the world $w$ of $\M$ to the cluster
     $\clust{w_1}$ settles a correspondence between $\M$ and  $(\K,\Rn)$. 
 
@@ -1089,7 +1083,8 @@ Let us consider the $\GWM$-countermodel $\M$ for the formula $\varphi=\Box (p\lo
 shown in Fig.~\ref{fig:corrCrispAx} on the left.
 On the right of the figure, we define the ranked $\GWM$-bimodel $(\K,\Rn)$  corresponding to $\M$ obtained by applying the
 procedure described in the proof of  Lemma~\ref{lemma:Phi}\ref{lemma:Phi:MtoK}. 
-Since $e(x,\varphi) = 0.6$, it follows that $\Rn{\clust{x_1}}=0.6$. Since $\Rnof{x_1}=1$, it holds that
+Since $e(x,\varphi) = 0.6$, by Prop.~\ref{prop:Phi}
+we get  $\Rnof{\clust{x_1},\varphi}=0.6$. Since $\Rnof{x_1}=1$, it holds that
 $x_1\nforcing \varphi$; accordingly, $\K$ is a countermodel for $\varphi$.
  \end{example}
 
@@ -1105,9 +1100,10 @@ there exist a discrete $\GWM$-model $\M=\stru{W,R,e}$ and $w\in W$ such that $e(
 By Lemma~\ref{lemma:Phi}\ref{lemma:Phi:MtoK} there is a ranked
 $\GWM$-bimodel $(\K,\Rn)$ and a correspondence $\Phi$ between $\M$
 and $(\K,\Rn)$. By Prop.~\ref{prop:Phi}, $\Rnof{\Phi(w),\varphi} =
-e(w,\varphi)$, hence $\Rnof{\Phi(w),\varphi} < 1$.  This implies that there
-exists $x\in \Phi(w)$ such that $x\nforcing \varphi$; thus
-$\varphi\not\in \LBM$. This proves that $\LBM\subseteq \GWL$.  The
+e(w,\varphi)$, hence $\Rnof{\Phi(w),\varphi} < 1$.
+Let $x^\star$  be the $\leq$-minimum element in the cluster $\Phi(w)$;
+by  property~\ref{prop:Rn:2},   $x^\star\nforcing \varphi$,
+hence  $\varphi\not\in \LBM$. This proves that $\LBM\subseteq \GWL$.  The
 proof of $\GWL\subseteq \LBM$ is similar and relies on
 Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   
