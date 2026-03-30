@@ -379,7 +379,15 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   or else by  $\Rnof{S_{x,y}}$,  is 
   \,\}\,\cup\,\{0\}\,
 \right)
 \]
+% By definition of $\Rnof{S_{\clust{x},\clust{y}}}$ and property~\ref{F1} we get:
 
+% \begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*,start=4]
+
+% \item\label{prop:Rn:4}
+%   Let $\Rnof{S_{\clust{x},\clust{y}}}=r$. For every $x'\in\clust{x}$ such that $\Rnof{x'}\leq r$,
+%   there exists $y'\in\clust{y}$ such that $x' S y'$.
+  
+% \end{enumerate}  
 
 % ############################################################## 
 %% FIG. RANKED GW-BIMODEL
@@ -546,8 +554,8 @@ Let $r=\Rnof{x,\Box \a}$; to prove~\ref{lemma:Rn:box}  we show that:
 \noindent 
 Let us assume $r=0$. By~\ref{prop:Rn:1}, it holds that $\xmax \nforcing  \Box \a$, hence
 there exists $y^\star\in X$ such that $\xmax S y^\star$ and $y^\star\nforcing \a$.
-By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, $\height{y^\star}=\height{y}$,
-hence  $y^\star=\ymax$, and this implies
+By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, $\height{y^\star}=\height{\xmax}=0$;
+it follows that  $y^\star=\ymax$, hence
 $\Rnof{y^\star,\a}=0$.
 Since $\Rnof{S_{x,y^\star}} > 0$,
 we get  $\Rnof{S_{x,y^\star}}\to \Rnof{y^\star,\a}=0$, and this proves~\ref{lemma:Rn:box:goal}.
@@ -576,9 +584,10 @@ From~\ref{lemma:Rn:box:1}, point~\ref{lemma:Rn:box:goal} follows.
 Let us assume $0 < r < 1$ and let  $x_r\in  \clust{x}$ such that  $\Rnof{x_r}=r$.
 By~\ref{prop:Rn:3},    $x_r\forcing \Box \a$  and   $(x_r)^-\nforcing \Box \a$. 
 There exists $y$ such that $ (x_r)^- S y$ and  $y\nforcing \a$.
-By~\ref{F1}, there exists $y_r\in\clust{y}$  such that
-$y \leq y_r$ and $x_r S y_r$: by Lemma~\ref{lemma:reg}\ref{lemma:reg:1},
- $\Rnof{y_r} = r$.
+By~\ref{F1}, there exists $y_r\in\clust{y}$  such that  $x_r S y_r$
+and $y \leq y_r$; by Lemma~\ref{lemma:reg}\ref{lemma:reg:1},
+$\Rnof{y_r} = \Rnof{x_r}$, namely
+$\Rnof{y_r} = r$.
 We prove that:
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=2]
 \item\label{lemma:Rn:box:2}
@@ -611,11 +620,16 @@ $\Rnof{y,\a}\geq r$.
 Since   $\Rnof{S_{x,y}} > 0$,
 there exists $x_1 \in \clust{x}$ such that
 $\Rnof{S_{x,y}} =\Rnof{x_1}$. Let $y_1\in \clust{y}$ such that $x_1 S y_1$.
-By Lemma~\ref{lemma:reg}\ref{lemma:reg:1} $\Rnof{y_1} = \Rnof{x_1}$,  hence $\Rnof{y_1} > \Rnof{y,\a}$.
-It follows that  $y_1\nforcing\a$, hence $x_1\nforcing \Box\a$. Accordingly,
+By Lemma~\ref{lemma:reg}\ref{lemma:reg:1} $\Rnof{y_1} = \Rnof{x_1}$,
+hence  $\Rnof{y_1} = \Rnof{S_{x,y}}$; since we are assuming   $\Rnof{S_{x,y}} >  \Rnof{y,\a}$,
+we get $\Rnof{y_1} > \Rnof{y,\a}$.
+It follows that  $y_1\nforcing\a$, hence $x_1\nforcing \Box\a$.
+Accordingly,
 $\Rnof{x_1}> r$, and this implies $x_1 < x_r$. 
-Since $\Rnof{S_{x,y}} =\Rnof{x_1}$, by~\ref{F1}  there exists
- $y_r\in\clust{y}$ such that $x_r S y_r$;  by Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, $\Rnof{y_r} = r$. 
+Since $\Rnof{S_{x,y}} =\Rnof{x_1}$,
+there exists $y_1\in \clust{y}$ such that $x_1 S y_1$.
+By~\ref{F1},  there exists
+ $y_r$ such that $x_r S y_r$ and $y_1\leq y_r$;  by Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, $\Rnof{y_r} =\Rnof{x_ r}= r$. 
 Since $x_r\forcing \Box \a$, we get $y_r\forcing \a$; it follows that
 $\Rnof{y,\a} \geq r$, and this concludes the proof of~\ref{lemma:Rn:box:3}.
 
@@ -641,7 +655,7 @@ $\Rnof{S_{x,y}}\land \Rnof{y,\a}=0$, for every $y\in X$.
 Let $y\in X$. If $\Rnof{S_{x,y}}=0$, we immediately get  $\Rnof{S_{x,y}}\land \Rnof{y,\a}=0$.
 Let us assume $\Rnof{S_{x,y}} > 0$. Then, there exists $y^\star \in \clust{y}$ such that
 $ \xmax S y^\star$. Since  $\xmax \nforcing  \Diam \a$, we get $y^\star\nforcing \a$.
-By Lemma~\ref{lemma:reg}\ref{lemma:reg:1},   $\height{y^\star}=0$; as a consequence,    $y^\star = \ymax$ and $\Rnof{y,\a}=0$.
+By Lemma~\ref{lemma:reg}\ref{lemma:reg:1},   $\height{y^\star}= \height{\xmax} = 0$; as a consequence,    $y^\star = \ymax$ and $\Rnof{y,\a}=0$.
 It follows that  $\Rnof{S_{x,y}}\land \Rnof{y,\a}=0$,
 and this concludes the proof of~\ref{lemma:Rn:diam:1}. From~\ref{lemma:Rn:diam:1},
 ~\ref{lemma:Rn:diam:goal} follows.
@@ -660,7 +674,7 @@ Let us assume $0 < r < 1$ and let  $x_r\in  \clust{x}$ such that  $\Rnof{x_r}=r$
 By~\ref{prop:Rn:3},    $x_r\forcing \Diam \a$  and   $(x_r)^-\nforcing \Diam \a$. 
 There exists $y_r$ such that  $ x_r S y_r$ and  $y_r\forcing \a$;
 by Lemma~\ref{lemma:reg}\ref{lemma:reg:1},
- $\Rnof{y_r}= r$, hence $\Rnof{y_r,\a}\geq r$.
+ $\Rnof{y_r}=  \Rnof{x_r} = r$, hence $\Rnof{y_r,\a}\geq r$.
 We prove that:
 
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=5]
@@ -686,10 +700,10 @@ we show that
  $\Rnof{S_{x,y}}\land \Rnof{y,\a} \leq r$.
  Let us assume  $\Rnof{S_{x,y}} > r$
  and let $x_r\in \clust{x}$ such that $\Rnof{x_r} = r$.
- Note that  $\Rnof{(x_r)^-}\leq \Rnof{S_{x,y}}$,
+ Note that  $\Rnof{S_{x,y}}\geq  \Rnof{(x_r)^-}$,
  hence  there exists $y^\star\in \clust{y}$ such that  $(x_r)^- S y^\star$.
  By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}  $\Rnof{y^\star}= \Rnof{(x_r)^-}$.
- Since $\Rnof{(x_r)^-} > r$, we have $(x_r)^-\nforcing \Diam \a$,
+ Since $\Rnof{x,\Diam \a}=r$ and $\Rnof{(x_r)^-} > r$, we have $(x_r)^-\nforcing \Diam \a$,
  hence  $y^\star\nforcing \a$.
  It follows that  $\Rnof{y,\a}< \Rnof{y^\star}$, hence   $\Rnof{y,\a}\leq r$.
  This implies  $\Rnof{S_{x,y}}\land \Rnof{y,\a}\leq  r$,
@@ -699,7 +713,7 @@ and this proves~\ref{lemma:Rn:diam:3}.
 
   
 \noindent
-A \emph{correspondence} between a discrete $\GWM$-model $\M=\stru{W,R,e}$ and a ranked
+A \emph{correspondence} between a  $\GWM$-model $\M=\stru{W,R,e}$ and a ranked
 $\GWM$-bimodel $(\K,\Rn)$, where $\K=\stru{X,\leq,S,V}$ is a regular model, is a 1-1 map
 $\Phi$ between the worlds of $\M$ and the clusters of $\K$ satisfying
 the following conditions:
@@ -774,29 +788,26 @@ the following conditions:
 
 \begin{example}\label{ex:corr}
 In    Fig.~\ref{fig:modelCorrespondence} we show a correspondence $\Phi$
-between the discrete model $\M=\stru{W,R,e}$  shown on  the left and 
+between the  $\GWM$-model $\M=\stru{W,R,e}$  shown on  the left and 
 the ranked $\GWM$-bimodel $(\K,\Rn)$  represented on the right  (see Ex.~\ref{ex:rankedBiModel}).
-
-\[
-\Phi(x)=\clust{x_1} \qquad \Phi(y)=\clust{y_1}\qquad  \Phi(z)=\clust{z_1}
- \]
  Note that, for every world $w$ in $\M$ and every   formula $\varphi$,
- it holds that  $e(w,\varphi)=\Rnof{\Phi(w),\varphi}$; this crucial property is proved in next lemma. 
+ it holds that  $e(w,\varphi)=\Rnof{\Phi(w),\varphi}$; this crucial property is proved in the next proposition. 
    \EndEx  
  \end{example}
 
 
 
 \begin{proposition}\label{prop:Phi}
-  Let $\Phi$ be a correspondence between $\M$ and  $(\K,\Rn)$.
-  For every formula $\varphi$ and every world $w$ of $\M$,
+  Let $\Phi$ be a correspondence between the $\GWM$-model $\M$ and  the ranked $\GWM$-bimodel $(\K,\Rn)$.
+  For every world $w$ of $\M$
+and every   formula $\varphi$,
   $e(w,\varphi) =\Rnof{\Phi(w),\varphi}$.
 \end{proposition}
 
 
 
 \begin{proof}
-Let $w\in W$ and $\varphi$ any formula; we prove  $e(w,\varphi) =\Rnof{\Phi(w),\varphi}$
+Let $w$ be a world of $\M$  and $\varphi$ a formula; we prove  $e(w,\varphi) =\Rnof{\Phi(w),\varphi}$
   by induction on the size of $\varphi$. If $\varphi\in\PV$,
    the assertion immediately follows from~\ref{corr:2}.
    The case  $\varphi =\bot$ is trivial, since  $e(w,\bot)=0$
@@ -844,27 +855,39 @@ We show that  $\Qcal_1=\Qcal_2$.
 Let $q_1\in \Qcal_1$ and let us assume that
 $q_1=\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}$, where $w'\in W$.  
 Let $y\in \Phi(w')$; 
-then $\clust{y}=\Phi(w')$ hence:
+then $\Phi(w')=\clust{y}$ hence:
 \[
-  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \,\in \Qcal_2
-  \qquad
-  \Rnof{S_{\Phi(w),y}}= \Rnof{S_{\Phi(w),\Phi(w')}}
-  \qquad
- \Rnof{y,\a}  = \Rnof{\Phi(w'),\a}  
-\]  
-This implies  $q_1\in\Qcal_2$. Conversely, let $q_2\in\Qcal_2$
-and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$.
+  \begin{array}{l}
+  \Rnof{S_{\Phi(w),\Phi(w')}} =   \Rnof{S_{\Phi(w),y}}\
+ \qquad
+\Rnof{S_{\Phi(w),\Phi(w')}} =  \Rnof{S_{\Phi(w),y}}
+    \\[1ex]
+    \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\;
+\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\;=\;
+    q_1    
+  \end{array}
+  \]
+Since $\Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}\in \Qcal_2$,
+we get $q_1\in\Qcal_2$.
+This proves $\Qcal_1\subseteq \Qcal_2$.
+Conversely, let $q_2\in\Qcal_2$
+and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$, where $y\in X$.
 Then, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
 \[
-  \Rnof{S_{\Phi(w),\Phi(w')}}\to  \Rnof{\Phi(w'),\a} \,\in \Qcal_1
+  \begin{array}{l}
+    \Rnof{S_{\Phi(w),\Phi(w')}} =  \Rnof{S_{\Phi(w),y}}
   \qquad
-\Rnof{S_{\Phi(w),\Phi(w')}} =  \Rnof{S_{\Phi(w),y}}
-  \qquad
- \Rnof{\Phi(w'),\a} =  \Rnof{y,\a} 
-\]  
-Accordingly  $q_2\in\Qcal_1$. Having proved that $\Qcal_1=\Qcal_2$, we conclude
+    \Rnof{\Phi(w'),\a} =  \Rnof{y,\a}
+    \\[1ex]
+    \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;=\;
+        \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\; q_2
+  \end{array}
+\]
+Since  $\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\in \Qcal_1$,
+we get $q_2\in\Qcal_1$.
+This proves $\Qcal_2\subseteq \Qcal_1$.
+Having proved that $\Qcal_1=\Qcal_2$, we conclude
  $e(w,\Box \a)  = \Rnof{\Phi(w),\Box \a}$. 
-
  The proof of  $e(w,\Diam \a)  = \Rnof{\Phi(w),\Diam \a}$ is similar.
 \end{proof}
 
@@ -892,10 +915,10 @@ To show that $\LBMR$ and $\GWL$ coincide, we need the following lemma:
 
 
 \begin{proof}
-  \ref{lemma:Phi:MtoK}. Let $\M=\stru{W,R,r}$ and let
+  \ref{lemma:Phi:MtoK}. Let $\M=\stru{W,R,e}$ and let
   $\Qcal = (e(W)\cup R(W) \cup \{1\}) \setminus \{0\}$; since $\M$ is discrete, $\Qcal$ is a
 finite subset of $(0,1]_Q$.  The $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-and the map $\Rn$ are defined as follows:
+and the rankimg  $\Rn$ over $\K$ are defined as follows:
 \[
   \begin{array}{ll}
     X\;=\;\{\, w_r~|~ r\in \Qcal\,\}
@@ -907,13 +930,12 @@ and the map $\Rn$ are defined as follows:
 V \;=\; \{\, (w_r, p)~|~\text{ $r \leq e(w,p)$ }  \,\}
 \end{array}
 \]
-    One can easily  check that $\K$ is a  well-defined regular model.
+    One can easily  check that $\K$ is a  well-defined regular bimodel.
    For every $w\in W$, the set of  $w_r$ such that $r\in \Qcal$ is a cluster of $\K$.
-    Let us assume that $\Qcal$ contains $k+1$ elements  ($k\geq 0$) and let 
-    $r_0,r_1, \dots, r_{k}$ be an enumeration of the elements of $\Rcal$ in ascending order
-    (thus, $r_k=1$).
+    Let  $q_0,r_1, \dots, q_{k}$ be an enumeration of the elements of $\Qcal$ in ascending order
+    (thus, $q_k=1$).
    The map $\Rn : \{0,\dots,k\}\to\Qcal$
-    such that $\Rnof{k} = r_k$ is a ranking over $\K$.  Note that $\Rnof{w_j}=r_j$.
+    such that $\Rnof{k} = q_k$ is a ranking over $\K$.  Note that $\Rnof{w_{q_j}}=q_j$.
     The function $\Phi$ mapping the world $w$ of $\M$ to the cluster
     $\clust{w_1}$ settles a correspondence between $\M$ and  $(\K,\Rn)$. 
 
@@ -943,19 +965,20 @@ One can easily check that   $\Phi$
 \begin{figure}[t]
   \centering
   \begin{minipage}{12em}
-      \begin{tikzpicture}[scale=0.8]
+    \begin{tikzpicture}[scale=0.8]
+         % GW-Model M
         % WORLDS  
         % x
         \draw[fill] (0,0) circle (3pt)
         +(0,-0)   node (x)  {}  % used to label the circle 
-        +(0,-0.3) node  {$x$}
+        +(-0.6,0) node  {$x$}
         ;
         
         % y 
         \draw[fill]  (0,1.5) circle (3pt)
         +(0,0)   node (y)  {}  % used to label the circle 
         +(-0.6,0)  node  {$y$} 
-        +(1.2,0.2) node  {$p=0.5$}
+        +(1.2,0.3) node  {$p=0.5$}
         +(1.2,-0.2) node  {$q=0.6$}
         ;
         
