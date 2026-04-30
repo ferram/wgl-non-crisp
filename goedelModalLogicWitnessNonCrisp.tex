@@ -60,7 +60,7 @@
 \usepackage[color=green!20,linecolor=red]{todonotes}
 \newcommand{\inlinetodo}[1]{\todo[inline,size=\small]{#1}}
 \newcommand{\tm}[1]{{\color{magenta} #1}} 
-
+\newcommand{\tr}[1]{{\color{red} #1}}
 
 %% LOGICS
 \newcommand{\GL}{\mathbf{G}}
@@ -240,6 +240,13 @@
 \newcommand{\ruleAxat}{\mathrm{Ax}\xspace}
 %% \newcommand{\ruleAxz}{\mathrm{Ax}_0\xspace}
 %% \newcommand{\ruleAxo}{\mathrm{Ax}_1\xspace}
+
+
+%% PSPACE proof
+\newcommand{\Search}{\textsc{Search}}
+\newcommand{\Success}{\textsc{Success}}
+\newcommand{\Fail}{\textsc{Fail}}
+
 
 
 %% GREEKS
@@ -452,9 +459,9 @@
 \bibliographystyle{eptcs}
 \bibliography{goedelModalLogicWitnessNonCrisp}
 
-\newpage
-\appendix
-\input{appendix}
+%\newpage
+%\appendix
+%\input{appendix}
  
 \end{document}
 

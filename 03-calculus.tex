@@ -397,8 +397,6 @@ An example of derivation is shown in Fig.~\ref{fig:der};
 % constraint).
 
 
-To prove the soundness of $\Calcw$, we need the
-following:
 
 %%######### EXAMPLE DERIVATION #########
 \begin{figure}[t]
@@ -458,6 +456,25 @@ following:
   \label{fig:der}
 \end{figure}
 
+
+\tr{Let $\M=\stru{W,R,e}$ be a $\GWM$-model;
+to prove Lemma~\ref{lemma:soundRule} we need the following definitions.
+\begin{itemize}
+\item Let $w\in W$, $p\in\PV$ and $r\in[0,1]$. By $e[(w,p):=r]$ we
+  denote the evaluation function $e'$ such that: $e'(w,p)=r$ and
+  $e'(w',q)=e(w',q)$ for every pair $(w',q)\in W\times\PV$ such that
+  $(w',q)\neq(w,p)$.
+
+\item Let $\Ical$ be an $\M$-interpretation, $w$ a label of $\LC$ and
+  $w^\star$ a world of $\M$.  By $\reass{\Ical}{w}{w^\star}$ we denote
+  the $\M$-interpretation $\Ical'$ such that $\Ical'(w) = w^\star$ and
+  $\Ical'(w')= \Ical(w')$ for every $w'\in \LC$ such that $w'\neq w$.
+\end{itemize}}
+
+To prove the soundness of $\Calcw$, we need the
+following:
+
+
 \begin{lemma}\label{lemma:soundRule}
   Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
   $\Gamma$ be the conclusion of $\rho$ and let $\M$ be a \GWM-model.
@@ -480,8 +497,165 @@ following:
   %%  values of $R$ and $e$ must be approximated with rationals.}
   accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
   conclude that $\M$ does not exist. %
-  For the other cases see App.~\ref{app:proofs}.
+
+
+
+
+
+
+
+
+  \tr{For the other cases see App.~\ref{app:proofs}.}
+
+
+  We only detail some representative case, by showing the corresponding rule application.
+  %Let $\rho$ be an application of $\to <$, where $\b\not\in \Vcal\cup{\bot}$:
+  \[\small
+  %% IMP LTS 
+  \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G_0}^{\G_1}$}    
+  % ------------------------------------------    
+  \RightLabel{$\to <$}
+  \UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
+  \DP
+  \qquad \b\not\in \Vcal\cup\{\bot\}
+  \]
+  By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
+  and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
+  \b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
+  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b
+  < t$. Note that $q$ is a fresh propositional variable. Now let
+  $r=e(\Ical(w),\b)$ and $\M'=\stru{W,R,e'}$ be the model where
+  $e'=e[(\Ical(w),q):=r]$.  We remark that, for every constraint $\chi$
+  not containing $q$, $\M\models_\Ical \chi$ iff $\M'\models_{\Ical}
+  \chi$.  Since $\M\models_{\Ical} \G_0$ and $q$ does not occur in
+  $\G_0$, we get $\M'\models_{\Ical} \G_0$.  It is easy to check that
+  $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
+  w:q$ and $\M'\models_{\Ical} w:q < t$, hence $\M'\models_{\Ical}
+  \G_1$.
+
+  %\smallskip
+  % Let $\rho$ be an application of $\to \leq$, where $\b\not\in \Vcal\cup{\bot}$:
+  \[
+  %% IMP LTE 
+  \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
+  \AXC{$\overbrace{w :\a > w:q,\, w :\b \leq w:q,\, w:q \leq  t,\,\G_0}^{\G_2}$}    
+  % ------------------------------------------    
+  \RightLabel{$\to\leq$}
+  \BIC{$\underbrace{w: \a\to \b \leq t,\,\G_0}_{\G}$}
+  \DP
+  \qquad \b\not\in \Vcal\cup\{\bot\}
+  \]
+  By the hypothesis, $\M\models_{\Ical} w: \a\to \b \leq t$ and
+  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w), \a\to \b)\leq
+  \Ical(t)$.  If $e(\Ical(w),\a) \leq e(\Ical(w),\b)$, then,
+  $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
+  $\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
+  $\M\models_\Ical \G_1$. Otherwise, $e(\Ical(w),\a) >
+  e(\Ical(w),\b)$ and  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
+  hence $\M\models_\Ical w:\b \leq t$.  Note that $q$ is a fresh
+  propositional variable.  Now let $r=e(\Ical(w),\b)$ and
+  $\M'=\stru{W,R,e'}$ be the model where $e'=e[(\Ical(w),q):=r]$.  Since
+  $\M\models_{\Ical} \G_0$ and $q$ does not occur in $\G_0$, we get
+  $\M'\models_{\Ical} \G_0$.  Moreover, one can easily check that
+  $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
+  w:q$ and $\M'\models_{\Ical} w:q \leq t$; we conclude
+  $\M'\models_{\Ical} \G_2$.
+
+  % \smallskip
+  % Let $\rho$ be an application of $\to \gt$, where $\b\not\in   \Vcal\cup{\bot}$:
+  \[
+  %% IMP GT 
+  \AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \G_0}^{\G_1}$}    
+  \AXC{$\overbrace{w:\b \gt t,\, \G_0}^{\G_2}$}
+  % ------------------------------------------       
+  \RightLabel{$\to\gt$}
+  \BIC{$\underbrace{w: \a\to \b \gt t,\,\G_0}_{\G}$}
+  \DP
+  \qquad \b\not\in \Vcal\cup\{\bot\}
+  \]
+  By the hypothesis, $\M\models_{\Ical} w: \a\to \b \gt t$ and
+  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\a\to\b) \gt\Ical(t)$.
+  We can reason as in the cases concerning rules $\to<$ and $\to\leq$.
+  If $e(\Ical(w),\a) > e(\Ical(w),\b)$, then $e(\Ical(w),\a\to \b) =
+  e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
+  $e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case
+  $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$.  Now let
+  $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,e'}$ be the model where
+  $e'=e[(\Ical(w),q):=r]$.  We can prove that $\M'\models_{\Ical} \G_1$.
+  % Let $\rho$ be an application of $\Box\lt$:
+  %\smallskip
+  \[
+  \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_1}$}
+  % -----------------------------------------
+  \RightLabel{$\Box\lt$}
+  \UIC{$\underbrace{w:\Box\a \lt t,\,\G_0}_{\G}$}    
+  \DP
+  \]
+  By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
+  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt
+  \Ical(t)$. 
+  % We have two cases.  If the world $\Ical(w)$ has no
+  % $R$-successors, then $e(\Ical(w),\Box\a)=1$ and $t=1$ and
+  % $\lt=\leq$. Since $\Ical(R(w,w_1))=0$ we have:
+  % \begin{itemize}
+  % \item $e(\Ical(w),R(w,w_1)\to w_1:\a)=1$;
+  % \item $e(\Ical(w),\psi_1=R(w,w_1)\to w_1:\d)=1$ for every constraint of the
+  %   kind $\psi_1\geq t$ in $\Phibd{\G,w,w_1}$;
+  % \item $e(\Ical(w),\psi_2=R(w,w_1)\wedge w_1:\d)=0$ for every
+  %   constraint of the kind $\psi_2\leq t$ in $\Phibd{\G,w,w_1}$.
+  % \end{itemize}
+  % Hence we get that $\M\models_{\Ical} \G_1$.  Otherwise if $\Ical(w)$
+  % has at least one $R$-successor, 
+  Since $\M$ is a $\GWM$-model, there exists a world $w^\star$ of $\M$
+  such that $R(\Ical(w),w^\star)\to e(w^\star,\a)=e(\Ical(w),\Box\a)$.
+  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We remark that, for every
+  constraint $\chi$ not containing $w_1$, $\M\models_\Ical \chi$ iff
+  $\M\models_{\Ical'} \chi$. Since $w_1$ is a fresh world label, it
+  does not occur in $\G_0$, and hence
+  $\M\models_{\Ical'}\G_0$. Moreover:
+  \begin{itemize}
+  \item Since $e(\Ical(w),\Box \a)\lt \Ical(t)$ and $e(\Ical(w),\Box
+    \a) = R(\Ical(w),w^\star)\to e(w^\star,\a)$, we have
+    $R(\Ical(w),w^\star)\to e(w^\star,\a)\lt \Ical(t)$, and this
+    implies $\M\models_{\Ical'} R(w,w_1)\to w_1:\a\lt t$.
+    
+  \item For every $\chi=R(w,w_1)\to w_1 : \d \gt
+    t'\in\Phibd{\G,w,w_1}$, we have $w : \Box \b \gt t'\in \G_0$,
+    hence $e(\Ical(w),\Box \b) \gt \Ical(t')$.  %%Since $\Ical(w) R w^\star$, 
+    It follows that $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
+    \Ical(t')$, and this implies $\M\models_{\Ical'} \chi$.
+
+  \item For every $\chi=R(w,w_1)\wedge w_1 : \b \lt
+    t'\in\Phibd{\G,w,w_1}$, we have $w : \Diam \b \lt t'\in \G_0$,
+    hence $e(\Ical(w),\Diam \b) \lt
+    \Ical(t')$. %% Since $\Ical(w) R w^\star$,
+    It follows that $R(\Ical(w),w^\star)\land
+    e(w^\star,\b)\lt\Ical(t')$, and this implies $\M\models_{\Ical'}
+    \chi$.
+  \end{itemize}
+  We conclude $\M\models_{\Ical'} \G_1$.  
+  % The case where $\rho$ is rule $\Diam\gt$ is similar.
+  % \smallskip
+  % Let $\rho$ be an application of $R\to <$:
+  % \[
+  % \AXC{$\overbrace{w':\a<R(w,w'),\,  w':\a  < t,\,  \G_0}^{\G_1}$}    
+  % % ------------------------------------------    
+  % \RightLabel{$R\to <$}
+  % \UIC{$\underbrace{R(w,w') \to w':\a < t,\,\G_0}_{\G}$}
+  % \DP
+  % \]
+  % By the hypothesis, it holds that $\M\models_{\Ical} R(w,w')\to w':
+  % \a < t$ and $\M\models_{\Ical} \G_0$.  This implies that
+  % $\Ical(R(w,w')\to w':\a) < \Ical(t) \leq 1$, hence
+  % $R(\Ical(w),\Ical(w')) > e(\Ical(w'),\a)$ and $\Ical(R(w,w')\to
+  % w':\a)= e(\Ical(w'),\a)$, thus $\M\models_\Ical w':\a < t$ and
+  % $\M\models_{\Ical} \G_1$.  The cases of the rules $R\land\gt$,
+  % $R\land\lt$, $R\to\leq$ and $R\to\gt$ are similar.
+
 \end{proof}
+
+
+
 
 \begin{proposition}[Soundness]\label{prop:sound}
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
@@ -561,9 +735,145 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 % \end{lemma}
 
 
-The relation $\precc$ is well-founded and can be used to instantiate
+\tr{The relation $\precc$ is well-founded and can be used to instantiate
 $\prec$ in the definition of strong termination (see
-Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}); this proves that:
+Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}); this proves that:}
+
+
+\begin{lemma}\label{lemma:rulesDec}
+  Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
+  $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
+  Then,  $\G'\precc \G$.
+\end{lemma}
+
+  
+\begin{proof}
+  We only discuss two representative cases.
+  Let us consider the following application of rule $\to < $:
+  \[
+  \begin{array}{l}
+    \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,\D_w,\,\Theta}^{\G_1}$}    
+    % ------------------------------------------    
+    \RightLabel{$\to < $}
+    \UIC{$\underbrace{w: \a\to \b < t,\,\D_w,\,\Theta}_\G$}
+ \DP
+ \qquad
+ \begin{minipage}{20em}
+   all the constraints in $\Delta_w$ have label $w$
+   \\[.5ex]
+   no constraint in $\Theta$ has label $w$
+ \end{minipage}
+ \\[8ex]
+ % \mbox{all the constraints in $\Delta_w$ have label $w$, no constraint in $\Theta$ has label $w$}
+ % \\[1ex]
+ \G[w] =\{w:\a\to \b < t\} \cup \D_w 
+ \hspace{3em}
+ \G_1[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
+ \\[1ex]
+ \sizem{\G} \,=\, \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta}
+ \hspace{4em}
+ \sizem{\G_1} \;=\;
+ \{\, \wg{\G_1[w]} \,\}    \cup \sizem{\Theta}  
+\end{array}
+\]
+% We have ($\cup$ denotes the multiset union):
+% \[
+% \sizem{\G} \,=\, \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta}
+% \hspace{3em}
+% \sizem{\G_1} \;=\;
+% \{\, \wg{\G_1[w]} \,\}    \cup \sizem{\Theta}    
+% \]
+We prove that $\sizem{\G_1}\precm \sizem{\G}$. The following holds:
+\[
+\begin{array}{rcl}
+  \wg{\G[w]}&\,=\, &\wg{w:\a\to \b < t} + \wg{\D_w} \;=\; \wg{\a} +  \wg{\b} + 1 +  \wg{\D_w} 
+  \\[1ex]
+  \wg{\G[w']}&\,=\, & \wg{w :\a > w : q} +\wg{w :\b \leq w :q} + \wg{w : q  < t } + \wg{\D_w}
+  \\
+  &\,=\,&  \wg{\a} +  \wg{\b} + 0 +  \wg{\D_w} 
+\end{array}
+\]
+Since $\wg{\G[w']} < \wg{\G[w]}$, we get $\sizem{\G_1}\precm
+\sizem{\G}$, hence $\G_1\precc \G$.
+
+% -------------------------------------------------------------------------
+
+\smallskip 
+
+Let us consider the following application of $\Box\lt$:
+\[
+\begin{array}{l}
+  \AXC{$\overbrace{\D_{w_1}, \;\D_w,\;\Theta}^{\G_1}$}
+  % -----------------------------------------
+  \RightLabel{$\Box\lt$}
+  \UIC{$\underbrace{w:\Box\a \lt t,\;\Delta_w,\;\Theta}_\G$}    
+  \DP
+  \qquad
+  \begin{minipage}{22em}
+    all the constraints in $\Delta_w$ have label $w$
+    \\[.5ex]
+    no constraint in $\Theta$ has label $w$
+    \\[1ex]
+    $\D_{w_1}\;=\;\{\,  R(w,w_1)\to w_1:\a \lt t\,\}\,\cup\, \Phibd{\Delta_w,w,w_1}$
+  \end{minipage}
+  \\[8ex]
+  \G[w] =\{w:\Box\a \lt t\} \cup \D_w
+  \hspace{5em}
+  \G_1[w] =\D_w
+  \hspace{5em}
+  \G_1[w_1]=\D_{w_1}
+  \\[1ex]
+  \sizem{\G} \;=\; \{\, \wg{\G[w]} \,\}\,\cup\, \sizem{\Theta} 
+  \hspace{4em}
+  \sizem{\G_1} \;=\;
+  \{\, \wg{\G_1[w]},\,   \wg{\G_1[w_1]} \,\}    \cup \sizem{\Theta}   
+\end{array}
+\]
+We prove that $\sizem{\G_1}\precm   \sizem{\G}$. To this aim,  we show that:
+
+\begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+\item\label{lemma:rulesDec:box1} $\wg{\G_1[w]} < \wg{\G[w]}$.
+    
+\item\label{lemma:rulesDec:box2}
+  $\wg{\G_1[w_1]} < \wg{\G[w]}$.
+\end{enumerate}
+The proof of point~\ref{lemma:rulesDec:box1} is immediate since $\G[w]
+= \{w:\Box\a \lt t\}\cup\G_1[w]$.  We
+prove~\ref{lemma:rulesDec:box2}. We have:
+\[
+\begin{array}{l}
+  \wg{\G[w]}\;=\; \wg{w:\Box\a \lt t } + \wg{\Delta_w} \;=\; \wg{\a} + 2 +  \wg{\Delta_w}
+  \\[1ex]
+  \wg{\G_1[w_1]}\;=\; 
+  \wg{ R(w,w_1)\to w_1:\a } + \wg{ \Phibd{\Delta_w,w,w_1} }
+  \;=\;  \wg{\a} + 1 + \wg{ \Phibd{\Delta_w,w,w_1}}
+\end{array}
+\]
+To conclude the proof of~\ref{lemma:rulesDec:box2}, we show that:
+  
+\begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*,start=3]    
+\item\label{lemma:rulesDec:box3}
+  $\wg{ \Phibd{\Delta_w,w,w_1}} <  \wg{\Delta_w}$.
+\end{enumerate}
+Let $\chi_1\in \Phibd{\Delta_w,w,w_1}$. There exists $\chi\in
+\Delta_w$ such that one of the two following conditions holds:
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]    
+\item\label{lemma:rulesDec:box3a}
+  $\chi = w:\Box \b \gt' t'$ and $\chi_1 = R(w,w_1)\to w_1 : \b \gt' t'$;
+  
+\item\label{lemma:rulesDec:box3b}
+  $\chi = w:\Diam \b \lt' t'$ and $\chi_1 = R(w,w_1)\land w_1 : \b \lt' t'$.
+\end{enumerate}
+In both cases, it holds that $\wg{\chi_1}= \wg{\b} +1$ and $\wg{\chi}=
+\wg{\b} +2$, hence $\wg{\chi_1} < \wg{\chi}$; this
+proves~\ref{lemma:rulesDec:box3}.  From~\ref{lemma:rulesDec:box1}
+and~\ref{lemma:rulesDec:box2} it follows that $\sizem{\G_1}\precm
+\sizem{\G}$, hence $\G_1\precc \G$.
+\end{proof}
+
+
+
+
 
 \begin{proposition}\label{prop:term}
   The calculus $\Calcw$ is strongly terminating.
@@ -1003,81 +1313,216 @@ To sum up, we get the completeness of $\Calcw$ and the finite model property for
 \begin{proposition}[Completeness]\label{prop:compl}
   Let $\G$  be a finite multiset of constraints of the form $w:\varphi\abstractorder t$.
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
- \item\label{prop:compl:1}
- $\provesw{\Gamma}$ iff, for every \GWM-model  $\M$,  $\M\not\models\G$.
+  \item\label{prop:compl:1}
+    $\provesw{\Gamma}$ iff, for every \GWM-model  $\M$,  $\M\not\models\G$.
 
-     
-\item\label{prop:compl2}
-$\varphi\in\GWL$ iff  $\provesw w:\varphi < 1$; moreover, if
-$\varphi\not\in\GWL$, 
-there exists a discrete countermodel for $\varphi$.
-
-
-
+    
+  \item\label{prop:compl2}
+    $\varphi\in\GWL$ iff  $\provesw w:\varphi < 1$; moreover, if
+    $\varphi\not\in\GWL$, 
+    there exists a discrete countermodel for $\varphi$.
 \end{enumerate}
 \end{proposition}
 
+
+\begin{proof}
+We sketch a PSPACE procedure to decide the membership of a formula to
+$\GWL$.  Henceforth, we assume that the formula to be checked is
+$\varphi$.  As discussed in Sec.~\ref{sec_calculus}, if
+$\varphi\not\in\GWL$, there exists a tree-like countermodel
+$\M=\stru{W,R,e}$ for $\varphi$ such that the number of worlds is
+$O(\size{\varphi}^{\size{\varphi}})$.  We can also bound the number
+$N$ of values needed to define $R$ and $e$: in the worst case, the
+values $e(w,p)$ and $R(w,w')$ must all be pairwise distinct, for every
+world $w$, $w'$ and every propositional variable $p$ occurring in
+$\varphi$; accordingly, $N$ is in
+$O(\size{\varphi}^{\size{\varphi}})$.  We set
+$\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$; note that the elements of
+$\Qcal$ can be generated in space $O(\size{\varphi})$.  By the above
+discussion, if $\varphi\not\in\GWL$ there exists a countermodel $\M$
+such that the images of $R$ and $e$ are contained in $\Qcal$.  To
+define the procedure, we need a global map $\Phi$ that specifies the
+intended values of the subformulas of $\varphi$ at each world of the
+model under construction.  More precisely, given a world name $w$,
+$\Phi(w)$ is a set of assignments of the form $e(w,\a)=r$,  where $\a$ is a subformula of $\varphi$ and
+$r\in\Qcal$. We remark that $\Phi(w)$ can be stored in space
+$O(|\varphi|)$; moreover, to implement the search procedure, we do no
+not need to store the whole map $\Phi$, but at most
+$O(\size{\varphi})$ entries of $\Phi$.  A $\GWM$-model
+$\M=\stru{W,R,e}$ complies with $\Phi$ iff, for every $w$ in $W$
+and every assignment $e(w,\a)=r$ stored in $\Phi(w)$, the value of
+$e(w,\a)$ (in $\M$) is $r$.  The decision procedure is implemented by
+the recursive procedure $\Search$ having the following specification:
+
+\begin{itemize}
+\item Let $w$ be a world name and let us assume that $\Phi(w)\neq
+  \emptyset$.  The procedure $\Search(w)$ returns $\Success$ if a
+  $\GWM$-model complying with $\Phi$ can be built, $\Fail$ otherwise.
+\end{itemize}
+
 \noindent
-Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
-extracted from an open branch with root $w_0:\varphi < 1$. One can
-easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
-that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
-Consequently, the size of $\M$ is
-$O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
-Note that $\M$ cannot be constructed incrementally, one branch at a
-time, since the constraints generated during the expansion of a branch
-have global validity and must be preserved throughout the entire
-construction.  Nevertheless, using the above bounds, we can define a PSPACE
-algorithm to check if such a countermodel exists without effectively
-constructing it. The key observation is that, if $\varphi\not\in\GWL$,
-there is a countermodel where $R$ and $e$ take values in
-$\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$, where $N\in
-O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can
-assign pairwise distinct values to $e(w,p)$ and $R(w,w')$, for every
-possible pair of worlds $w$, $w'$ and every propositional variable
-occurring in $\varphi$.
-%The key observation is that we can bound the number of values $N$
-%needed to define the maps $R$ and $e$ of the countermodel.  In
-%particular, if $\varphi\not\in\GWL$, there is a countermodel where $R$
-%and $e$ take values in $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$
-%where $N\in O(\size{\varphi}^{\size{\varphi}})$. Indeed, using
-%$\Qcal$, we can assign pairwise distinct values to $e(w,p)$ and
-%$R(w,w')$, for every possible pair of worlds $w$, $w'$ and every
-%propositional variable $p$ occurring in $\varphi$. 
-The algorithm iteratively tries to check whether a model such that
-$e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
-%(where $w_0$ is a world of the model). 
-The algorithm maintains, for each generated world $w$, a set $\Phi(w)$
-of assignments of the form $e(w,\a)=r$, where $\a$ is a subformula of
-$\varphi$ and $r\in \Qcal$, specifying the intended value $r$ of
-$e(w,\a)$. We remark that, at each step of the execution, at most
-$O(\size{\varphi})$ entries of the map $\Phi$ must be recorded, and
-each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.  The
-algorithm proceeds in two phases. First, the assignments $e(w,\a)=r$
-in $\Phi(w)$, where $\a$ is non-modal, are saturated by assigning
-values in $\Qcal$ to the subformulas of $\a$ and updating the
-assignments in $\Phi(w)$ accordingly.  At the end of this saturation
-phase, every formula $\a$ occurring in $\Phi(w)$ is either atomic or
-modal. If all the $\a$ are atomic, the procedure terminates
-successfully if the assignments in $\Phi(w)$ are coherent (i.e.,
-$\Phi(w)$ does not assign distinct values to the same formula),
-otherwise the procedure backtracks and tries different assignments
-from $\Qcal$. We point out that the memory space required to manage
-backtracking is $O(|\varphi|)$. Secondly,
-a loop is entered where, for every   $e(w,\a)=r$ in $\Phi(w)$ such that $\a$ is modal,  an $R$-successor world
-of $w'$ is generated (the witness for $\a$). At each iteration, a value from $\Qcal$ for $R(w,w')$ is chosen
-and $\Phi(w')$ is initialized so that it is consistent with the
-assignments in $\Phi(w)$ for modal formulas; then, the procedure is
-recursively applied to $w'$, relying on the assignments in
-$\Phi(w')$. Each recursive call strictly decreases the number of modal
-operators involved, hence the recursion depth is bounded by
-$|\varphi|$.  If all the required $R$-successors of $w$ can be generated,
-the procedure terminates successfully; accordingly, a $\GWM$-model
-such that $e(w_0,\varphi)=r_0$ can be built, hence
-$\varphi\not\in\GWL$.  Otherwise, the procedure backtracks.  If all
-the attempts to construct a countermodel fail, we conclude that
-$\varphi\in\GWL$.  One can show that the outlined procedure runs in
-PSPACE, hence validity in $\GWL$ can be decided in PSPACE; see App.~\ref{app:pspace} for further details.
+The procedure, at some points, requires the selection of a value from
+$\Qcal$, possibly satisfying some conditions: we call this a
+$\Qcal$-choice.  $\Qcal$-choices can be revoked and redone; such
+backtrack steps can be implemented in space $O(\size{\varphi})$.  The
+computation of $\Search(w)$ consists of two main steps.
+
+\begin{enumerate}[label*=(Step~\arabic*)]
+\item\label{step:1} We apply propositional saturation reductions to
+  $\Phi(w)$ as long as possible. At each step, an assignment
+  $e(w,\a\star\b)=r$ (with $\star\in \{\,\land,\,\lor,\,\to\,\}$) in
+  $\Phi(w)$ is removed and replaced by the assignments $e(w,\a)=r_1$
+  and $e(w,\b)=r_2$ required to justifies the value $r$, where the
+  values $r_1$ and $r_2$ are selected with $\Qcal$-choices.  For
+  instance, let $\psi=\a\to\b$.
+  \begin{itemize}
+  \item If $r=1$, we must have $e(w,\a) \leq e(w,\b)$; the values
+    $r_1$ and $r_2$ are selected with $\Qcal$-choices so that $r_1\leq
+    r_2$; in $\Phi(w)$, $e(w,\a\to \b)=r$ is replaced with $e(w,\a )=
+    r_1$ and $e(w,\b)=r_2$.
+  \item If $r<1$, a value $r_1$ is selected with a $\Qcal$-choice so
+    that $r_1> r$; in $\Phi(w)$, $e(w,\a\to \b)=r$ is replaced with
+    $e(w,\a)= r_1$ and $e(w,\b) = r$ (thus, $r_2$=r).
+  \end{itemize}
+  At the end of~\ref{step:1}, the formulas occurring in $\Phi(w)$ are
+  either atomic or modal.
+  
+  \begin{itemize}
+  \item If $\Phi(w)$ contains two evaluations $e(w,\a)=r_1$ and
+    $e(w,\a)=r_2$ such that $r_1\neq r_2$, a backtrack step is needed.
+    If no new $\Qcal$-choice is possible, the call $\Search(w)$
+    returns $\Fail$.
+
+  \item Otherwise, if $\Phi(w)$ contains only atomic constraints, the
+    call $\Search(w)$ returns $\Success$.
+    
+  \item Otherwise, $\Phi(w)$ contains at least  a
+    modal formula and the computation continues with~\ref{step:2}.
+  \end{itemize}  
+
+  % hence  $\varphi\not\in\GWL$.
+\item\label{step:2} Let $e(w,\#_1\a_1)=r_1,\dots,e(w,\#_n\a_n)=r_n$
+  (with $\#_k\in\{\Box,\Diamond\}$) be all the assignments in $\Phi(w)$
+  involving modal formulas.  We start a loop indexed by $k$ ranging
+  over $\{1,\dots,n\}$.  Let $k$ be the current iteration and let us
+  assume that the assignment of index $k$ has the form
+  $e(w,\Box\a_k)=r_k$ (the case $e(w,\Diam\a_k)=r_k$ is similar).  We
+  generate a new world $w_k$ and select with a $\Qcal$-choice a value
+  $r'_k$ for $R(w,w_k)$ and a value $r''_k$ for $e(w_k,\a_k)$ such
+  that $r'_k\to r''_k = r_k$. The world $w_k$ is intended to represent
+  the world witnessing that $e(w,\Box\a_k)=r_k$. We set
+  $\Phi(w_k)=\{e(w_k,\a_k)=r''_k\}$.  We expand $\Phi(w_k)$ by adding
+  the assignments required to account for the assignments
+  $e(w,\#_j\a_j)=r_j$ occurring in $\Phi(w)$, where $j\neq k$. More
+  precisely:
+  \begin{itemize}
+  \item for every $e(w,\Box \a_j)=r_j$ in $\Phi(w)$ ($j\neq k$), we
+    select with a $\Qcal$-choice a value $r'_j$ such that $r'_k \to
+    r'_j \geq r_j$ and we add $e(w_k,\a_j)=r'_j$ to $\Phi(w_k)$;
+    
+
+  \item for every $e(w,\Diam \a_j)=r_j$ in $\Phi$ ($j\neq k$), we
+    select with a $\Qcal$-choice a value $r'_j$ such that $r'_k \land
+    r'_j \leq r_j$ and we add $e(w_k,\a_j)=r'_j$ to $\Phi(w_k)$.
+  \end{itemize}
+  We recursively compute $\Search(w_k)$; we remark that the modal
+  operators occurring in $\Phi(w_k)$ are fewer than the modal
+  operators in $\Phi(w)$, thus the recursion is terminating. We also
+  stress that there are at most $\size{\phi}$ nested recursive calls.  Let
+  us assume that $\Search(w_k)$ returns $\Success$.  If $k=n$ (last
+  iteration), the call $\Search(w)$ returns $\Success$.  Otherwise the
+  computation continues with next iteration $k+1$.  We point out that
+  the entries of the map $\Phi$ exploited in the computation of
+  $\Search(w_k)$ are no longer required, so they can be removed from
+  the  memory.  Let us assume that $\Search(w_k)$ returns $\Fail$.
+  Then, a backtrack step is needed.  If no new $\Qcal$-choice is
+  possible, the call $\Search(w)$ returns $\Fail$.
+\end{enumerate}
+The procedure  can be implemented so that  $\Search(w)$ is computed in space $O(\size{\varphi})$.
+
+We can exploit $\Search$ to decide the validity of $\varphi$ in
+$\GWL$.  We initialize $\Phi$ by setting $\Phi(w_0)=\{e(w_0,\varphi)= q_0\}$, where
+$q_0$ is any value in $\Qcal$ different from 1.  If $\Search(w_0)$
+returns $\Success$, then a model $\M$ containing a worlds $w_0$ such
+that $e(w_0,\varphi)=r_0$ can be built; since $r_0 < 1$, we conclude
+$\varphi\not\in \GWL$.  If $\Search(w_0)$ returns $\Fail$, for every
+possible choice of $r_0$, it follows that no $\GWM$-countermodel for
+$\varphi$ can be built; accordingly, $\varphi\in \GWL$.
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+% \noindent
+%%% ORGINAL PSPACE proof
+% Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
+% extracted from an open branch with root $w_0:\varphi < 1$. One can
+% easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
+% that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
+% Consequently, the size of $\M$ is
+% $O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
+% Note that $\M$ cannot be constructed incrementally, one branch at a
+% time, since the constraints generated during the expansion of a branch
+% have global validity and must be preserved throughout the entire
+% construction.  Nevertheless, using the above bounds, we can define a PSPACE
+% algorithm to check if such a countermodel exists without effectively
+% constructing it. The key observation is that, if $\varphi\not\in\GWL$,
+% there is a countermodel where $R$ and $e$ take values in
+% $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$, where $N\in
+% O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can
+% assign pairwise distinct values to $e(w,p)$ and $R(w,w')$, for every
+% possible pair of worlds $w$, $w'$ and every propositional variable
+% occurring in $\varphi$.
+% %The key observation is that we can bound the number of values $N$
+% %needed to define the maps $R$ and $e$ of the countermodel.  In
+% %particular, if $\varphi\not\in\GWL$, there is a countermodel where $R$
+% %and $e$ take values in $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$
+% %where $N\in O(\size{\varphi}^{\size{\varphi}})$. Indeed, using
+% %$\Qcal$, we can assign pairwise distinct values to $e(w,p)$ and
+% %$R(w,w')$, for every possible pair of worlds $w$, $w'$ and every
+% %propositional variable $p$ occurring in $\varphi$. 
+% The algorithm iteratively tries to check whether a model such that
+% $e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
+% %(where $w_0$ is a world of the model). 
+% The algorithm maintains, for each generated world $w$, a set $\Phi(w)$
+% of assignments of the form $e(w,\a)=r$, where $\a$ is a subformula of
+% $\varphi$ and $r\in \Qcal$, specifying the intended value $r$ of
+% $e(w,\a)$. We remark that, at each step of the execution, at most
+% $O(\size{\varphi})$ entries of the map $\Phi$ must be recorded, and
+% each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.  The
+% algorithm proceeds in two phases. First, the assignments $e(w,\a)=r$
+% in $\Phi(w)$, where $\a$ is non-modal, are saturated by assigning
+% values in $\Qcal$ to the subformulas of $\a$ and updating the
+% assignments in $\Phi(w)$ accordingly.  At the end of this saturation
+% phase, every formula $\a$ occurring in $\Phi(w)$ is either atomic or
+% modal. If all the $\a$ are atomic, the procedure terminates
+% successfully if the assignments in $\Phi(w)$ are coherent (i.e.,
+% $\Phi(w)$ does not assign distinct values to the same formula),
+% otherwise the procedure backtracks and tries different assignments
+% from $\Qcal$. We point out that the memory space required to manage
+% backtracking is $O(|\varphi|)$. Secondly, a loop is entered where, for
+% every $e(w,\a)=r$ in $\Phi(w)$ such that $\a$ is modal, an
+% $R$-successor world of $w'$ is generated (the witness for $\a$). At
+% each iteration, a value from $\Qcal$ for $R(w,w')$ is chosen and
+% $\Phi(w')$ is initialized so that it is consistent with the
+% assignments in $\Phi(w)$ for modal formulas; then, the procedure is
+% recursively applied to $w'$, relying on the assignments in
+% $\Phi(w')$. Each recursive call strictly decreases the number of modal
+% operators involved, hence the recursion depth is bounded by
+% $|\varphi|$.  If all the required $R$-successors of $w$ can be
+% generated, the procedure terminates successfully; accordingly, a
+% $\GWM$-model such that $e(w_0,\varphi)=r_0$ can be built, hence
+% $\varphi\not\in\GWL$.  Otherwise, the procedure backtracks.  If all
+% the attempts to construct a countermodel fail, we conclude that
+% $\varphi\in\GWL$.  One can show that the outlined procedure runs in
+% PSPACE, hence validity in $\GWL$ can be decided in PSPACE; see
+% App.~\ref{app:pspace} for further details.
 
 We have implemented a proof-search procedure for the calculus $\Calcw$  that supports countermodel extraction.
 The prover, named
