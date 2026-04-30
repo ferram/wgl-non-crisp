@@ -189,7 +189,7 @@ also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
 property.
 
 Let $\a$ be a formula of modal logic $\KL$; to simplify the presentation, we assume that
-$\a$ does not contain $\Diam$ (actually, in $\KL$ the formula $\Diam\varphi$ can be represented as $\neg\Box\neg\varphi$).
+ $\Diam$ is not a primitive connective of the $\K$ language (actually, in $\KL$ the formula $\Diam\varphi$ can be represented as $\neg\Box\neg\varphi$).
 The translation $*$
 is obtained by replacing each propostitional variable $p$ occurring in $\a$ with $\neg\neg\a$.
 Note that a $\K$-model can be seen as a crisp $\G$-model $\stru{W,R,e}$,   where 
@@ -240,32 +240,39 @@ Let $\M_1=\stru{W,R_1,e_1}$ be the   $\GM$-model defined as follows:
    $e_1(w,\varphi)= e_1(w,\varphi^*)$, for every  for every $w\in W$ and every  formula $\varphi$ of $\KL$.
  \end{enumerate}
  Let $\varphi=p$, with $p\in \PV$; note that $\varphi^*=\neg \neg p$. If $e(w,p)=0$, we get
- $e(w,\neg\neg p)=0$ and  $e_1(w,p) = 0$;  if $e(w,p)> 0$, we get $e(w,\neg\neg p)=1$; 
- $e_1(w,p) = 1$.  
+ $e(w,\neg\neg p)=0$ and  $e_1(w,p) = 0$;  if $e(w,p)> 0$, we get $e(w,\neg\neg p)=1$ and 
+ $e_1(w,p) = 1$.   
  Let $\varphi = \Box \psi$;
-note that $\varphi^*=\Box (\varphi')^*$.
+note that $\varphi^*=\Box \psi^*$.
  Assume $e_1(w,  \Box \varphi')=0$.
  there exists $w'\in W$ such that $R_1(w,w')=1$ and $e_1(w',   \varphi')=0$.
- Then,  $R(w,w')>0$ and, by the induction hypothesis,   $e(w',   (\varphi')^*)=0$.
-It follows that $R(w,w')\to e(w',   (\varphi')^*)=0$, hence  $e(w,  \Box (\varphi')*)=0$.
+ Then,  $R(w,w')>0$ and, by the induction hypothesis,   $e(w',   \psi^*)=0$.
+It follows that $R(w,w')\to e(w',   \psi^*)=0$, hence  $e(w,  \Box \psi*)=0$.
 Assume $e_1(w,  \Box \varphi')=1$; we show that
 \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=2]    
  \item\label{lemma:K:1:proof:2}
-  $R(w,w')\to e(w',(\varphi')^*)=1$, for every $w'\in W$.
+  $R(w,w')\to e(w',\psi^*)=1$, for every $w'\in W$.
  \end{enumerate}
 Let $w'\in W$.
  If $R(w,w')=0$, \ref{lemma:K:1:proof:2} trivially holds. Let us assume  $R(w,w')>0$.
  Then $R(w,w_1)=1$ and, by the fact that   $e_1(w,  \Box \varphi')=1$,
  we get   $e_1(w',  \varphi')=1$. By the induction hypothesis,
- it follows that  $e(w',  (\varphi')^*)=1$, hence $R(w,w')\to e(w',(\varphi')^*)=1$;
+ it follows that  $e(w',  \psi^*)=1$, hence $R(w,w')\to e(w',\psi^*)=1$;
  this concludes the proof of~\ref{lemma:K:1:proof:2}.
- From~\ref{lemma:K:1:proof:2},  we get  $e(w,  \Box (\varphi')*)=1$. 
+ From~\ref{lemma:K:1:proof:2},  we get  $e(w,  \Box \psi*)=1$. 
 This proof of~\ref{lemma:K:1:proof:1} in the remaining cases is similar.
- 
-Since  we $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:2} it follows that
-$e_1(w,\a) = 1$ (thus,  $e(w,\a^*) =1$). Accordingly $\a\not\in\KL$,
+
+We remark that, from~\ref{lemma:K:1:proof:2}, it follows that
+$e(w,\varphi^*)$ is 0 or 1; this depends on the fact that
+in $\varphi^*$ the propositional variables are double negated and $\Diam$ does not occurr.
+Since  $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:2} it follows that
+$e_1(w,\a) = 0$ . Accordingly $\a\not\in\KL$,
 and this proves~\ref{lemma:K:1}.
 \end{proof}
+
+
+By Lemma~\label{lemma:K}, taking into account  the mutual relationships between the G\"odel modal logics introduced above
+(see Fig.~\ref{fig:diagram}), we conclude:
 
 \begin{proposition}
 Let $\a$ be a formula of $\KL$ and let  $L$ be any of the logics $\GKL$, $\GCL$, $\GWL$ and $\GWCL$.   
