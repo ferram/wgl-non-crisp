@@ -1337,8 +1337,9 @@ The validity problem for $\GWL$ is PSPACE-complete.
 \end{proposition}
 
 \begin{proof}
-  Since the modal logic $\KL$ is PSPACE-complete~\cite{Ladner:77} and $\KL$ can be embedded into $\GWL$
-  (see Prop.~\ref{prop:embedding}),   the validity problem for $\GWL$   is PSPACE-hard.
+  Since the modal logic $\KL$ can be embedded into $\GWL$  (see Prop.~\ref{prop:embedding})
+  and $\KL$ is PSPACE-complete~\cite{Ladner:77}, 
+    the validity problem for $\GWL$   is PSPACE-hard.
 It remains to prove that   $\GWL$-validity   can be checked in PSPACE. 
 To this aim, we sketch a PSPACE procedure to decide the membership of a formula to
 $\GWL$.  Henceforth, we assume that the formula to be checked is
