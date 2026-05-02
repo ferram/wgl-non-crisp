@@ -188,18 +188,18 @@ e.g.,~\cite{FerFioRod:2025}), thus $(Wt)$ is not valid in $\GCL$; this
 also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
 property.
 
-We show that the modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram}
+We show that the modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram},
 %$\GKL$, $\GCL$, $\GWL$ and $\GWCL$
 by exploiting the translation $*$ introduced in~\cite{MetOli1}.
 Note that a $\KL$-model can be viewed as a $\GWCM$-model   where 
 the image of the evaluation function is the set $\{0,1\}$.
 To simplify the presentation, we assume that
 $\Diam$ is not a primitive connective  in the language of  $\KL$ 
-(actually,  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
+(actually, in $\KL$ the formula  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
 Let $\a$ be a formula of  $\KL$;
 the formula $\a^*$
-is obtained by replacing each propostitional variable $p$ occurring in $\a$ with $\neg\neg p$.
-As shown in the following lemma, the evaluation of a formula $\a^*$ at any  world in a $\GM$-model is binary, taking only the values 0 or 1;
+is obtained by replacing each propositional variable $p$ occurring in $\a$ with $\neg\neg p$.
+As shown in the following lemma, the evaluation of a formula $\a^*$ at any  world of a $\GM$-model is binary (0 or 1);
 this is essentially due to the fact that propositional variables in $\a^*$ are double negated and $\Diam$ does not occur in $\a^*$.
 
 \begin{lemma}\label{lemma:K}
@@ -224,7 +224,7 @@ Since the  formulas $\a$ and  $\a^*$  are equivalent in $\KL$,
 
   We prove  point~\ref{lemma:K:1}. Let us assume that $\a^*\not\in \GKL$.
   There exists a $\GM$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$ such that $e(w,\a^*)< 1$.
-Let $\M_1=\stru{W,R_1,e_1}$ be the   $\GM$-model defined as follows:
+Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KL$-model  defined as follows:
 \[
   R_1(w,w')\;=\;
   \begin{cases}
@@ -240,7 +240,7 @@ Let $\M_1=\stru{W,R_1,e_1}$ be the   $\GM$-model defined as follows:
  0 & \text{otherwise} 
 \end{cases}
  \]  
-Let $w\in W$ and let $\varphi$ be any formul  of $\KL$; by induction on the size of $\varphi$, we prove that:
+ Let $w\in W$ and let $\varphi$ be any formula  of $\KL$; by induction on the size of $\varphi$, we prove that:
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*]    
  \item\label{lemma:K:1:proof:1}
    $e_1(w,\varphi)= e(w,\varphi^*)$.
@@ -252,21 +252,30 @@ note that $\varphi^*=\Box \psi^*$.
  There exists $w'\in W$ such that $R_1(w,w')=1$ and $e_1(w',   \psi)=0$.
  Then,  $R(w,w')>0$ and, by the induction hypothesis,   $e(w',   \psi^*)=0$.
  It follows that $R(w,w')\to e(w',   \psi^*)=0$, hence  $e(w,  \Box \psi^*)=0$.
- Assume $e_1(w,  \Box \psi)=1$; to prove that  $e(w,  \Box \psi^*)=1$,  we show that:
-\begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=2]    
- \item\label{lemma:K:1:proof:2}
-  $R(w,w')\to e(w',\psi^*)=1$, for every $w'\in W$.
+ Let $e_1(w,  \Box \psi)=1$ and assume, by contradiction,  $e(w,  \Box \psi^*) <  1$. Then:
+ \begin{enumerate}[label=(\dag), ref=(\dag)]    
+ \item \label{lemma:K:1:proof:2}
+   there is  $w'\in W$ such that  $R(w,w')\to e(w',\psi^*) < 1$.
  \end{enumerate}
-Let $w'\in W$.
- If $R(w,w')=0$, \ref{lemma:K:1:proof:2} trivially holds. Let us assume  $R(w,w')>0$.
- Then,  $R_1(w,w')=1$ and, by the fact that   $e_1(w,  \Box \psi)=1$,
- we get   $e_1(w',  \psi)=1$.  By the induction hypothesis,
- it follows that  $e(w',  \psi^*)=1$, 
-hence~\ref{lemma:K:1:proof:2} holds.
- From~\ref{lemma:K:1:proof:2},  we conclude  $e(w,  \Box \psi^*)=1$. 
-The proof of~\ref{lemma:K:1:proof:1} in the remaining cases is similar.
+ It follows that $R(w,w') > 0$, hence $R_1(w,w') = 1$, which implies  $e_1(w',  \psi)=1$. 
+ By the induction hypothesis,  $e(w',  \psi^*)=1$, hence   $R(w,w')\to e(w',\psi^*) = 1$,
+ contradicting~\ref{lemma:K:1:proof:2}. 
+ We conclude    $e(w,  \Box \psi^*) = 1$.
+%  Assume $e_1(w,  \Box \psi)=1$; to prove that  $e(w,  \Box \psi^*)=1$,  we show that:
+% \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=2]    
+%  \item\label{lemma:K:1:proof:2}
+%   $R(w,w')\to e(w',\psi^*)=1$, for every $w'\in W$.
+%  \end{enumerate}
+% Let $w'\in W$.
+%  If $R(w,w')=0$, \ref{lemma:K:1:proof:2} trivially holds. Let us assume  $R(w,w')>0$.
+%  Then,  $R_1(w,w')=1$ and, by the fact that   $e_1(w,  \Box \psi)=1$,
+%  we get   $e_1(w',  \psi)=1$.  By the induction hypothesis,
+%  it follows that  $e(w',  \psi^*)=1$, 
+% hence~\ref{lemma:K:1:proof:2} holds.
+%  From~\ref{lemma:K:1:proof:2},  we conclude  $e(w,  \Box \psi^*)=1$.
+The proof of~\ref{lemma:K:1:proof:1} in the remaining cases easily follows from the induction hypothesis.
 Since  $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:1} it follows that
-$e_1(w,\a) = 0$ . Since $\M_1$ is a $\KL$-model, we conclude $\a\not\in\KL$,
+$e_1(w,\a) = 0$ . Accordingly, $\a\not\in\KL$,
 and this proves~\ref{lemma:K:1}.
 \end{proof}
 
@@ -279,14 +288,10 @@ Then, $\a\in\KL$ iff $\a^*\in L$.
 \end{proposition}
 
 
-\tr{Finally, we remark that, in all the mentioned modal logics, $\Box$ and
-$\Diam$ are not interdefinable.  This is proved for $\GCL$
-in~\cite{RodriguezV:21}; in App.~\ref{app:noninterdBD} the proof is
-extended to all the other modal logics mentioned in Fig.~\ref{fig:diagram}.}
-
-The non interdefinability of the modal operators in $\GCL$ has been
-proved in~\cite{RodriguezV:21} by exploiting algebraic semantics.
-Here we exploit witnessed crisp models ($\GWCM$-models); we show that:
+We conclude this section by discussing the non-interdefinability of $\Box$ and $\Diam$.
+This was established for  $\GCL$ in~\cite{RodriguezV:21}   using algebraic semantics.
+Here, we instead employ  $\GWCM$-models  to extend the result to any modal logic contained in $\GWCL$.
+We prove that:
 
 \begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*]    
 \item\label{defBD:P1}
@@ -329,7 +334,7 @@ Here we exploit witnessed crisp models ($\GWCM$-models); we show that:
     $e(w_2,\a)=\Phi(e(w_1,\a))$,
     where $\Phi(0)=0$,  $\Phi(0.4)=0.5$, $\Phi(1)=1$.
   \end{enumerate}
-  We prove~\ref{lemma:defBD:1}, by induction on the structure of
+  We prove~\ref{lemma:defBD:1}, by induction on the size of
   $\varphi$.  If $\varphi\in\PV\cup\{\bot\}$, we have $e(w_0,\varphi)
   = 0$.  The cases $\varphi=\a\land \b$, $\varphi=\a\lor \b$ and
   $\varphi=\a\to \b$ easily follow by the induction hypothesis.  Let
