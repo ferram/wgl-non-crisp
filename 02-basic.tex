@@ -188,36 +188,42 @@ e.g.,~\cite{FerFioRod:2025}), thus $(Wt)$ is not valid in $\GCL$; this
 also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
 property.
 
-Let $\a$ be a formula of modal logic $\KL$; to simplify the presentation, we assume that
- $\Diam$ is not a primitive connective of the $\K$ language (actually, in $\KL$ the formula $\Diam\varphi$ can be represented as $\neg\Box\neg\varphi$).
-The translation $*$
-is obtained by replacing each propostitional variable $p$ occurring in $\a$ with $\neg\neg\a$.
-Note that a $\K$-model can be seen as a crisp $\G$-model $\stru{W,R,e}$,   where 
-the image of $e$ is the set $\{0,1\}$.
+We show that the modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram}
+%$\GKL$, $\GCL$, $\GWL$ and $\GWCL$
+by exploiting the translation $*$ introduced in~\cite{MetOli1}.
+Note that a $\KL$-model can be viewed as a $\GWCM$-model   where 
+the image of the evaluation function is the set $\{0,1\}$.
+To simplify the presentation, we assume that
+$\Diam$ is not a primitive connective  in the language of  $\KL$ 
+(actually,  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
+Let $\a$ be a formula of  $\KL$;
+the formula $\a^*$
+is obtained by replacing each propostitional variable $p$ occurring in $\a$ with $\neg\neg p$.
+As shown in the following lemma, the evaluation of a formula $\a^*$ at any  world in a $\GM$-model is binary, taking only the values 0 or 1;
+this is essentially due to the fact that propositional variables in $\a^*$ are double negated and $\Diam$ does not occur in $\a^*$.
 
 \begin{lemma}\label{lemma:K}
-  Let $\a$ be a formula of the modal logic $\KL$. 
+  Let $\a$ be a formula of  $\KL$. 
 
 \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
 \item\label{lemma:K:1}
 If $\a\in\KL$ then $\a^*\in \GKL$.
   
 \item\label{lemma:K:2}
-If $\a\not\in\KL$ then $\a^*\in \GWCL$.
+If $\a\not\in\KL$ then $\a^*\not\in \GWCL$.
   
   \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Proof of point~\ref{lemma:K:2} is trivial. Indeed, if $\a\not\in \KL$,
-  thene there exists a finite $\KL$-model $\M=\stru{W,R,e}$ and a a world $w$ in $W$
-  such that $e(w,\a)=0$. Note that  formulas $\a$ and  $\a^*$  are equivalent in $\KL$,
-  thus  $e(w,\a^*)=0$. Since  $\M$ is a  crisp $\GWM$-model, we conclude  $\a^*\not\in \GWCL$.
+  Proof of point~\ref{lemma:K:2} is immediate. Indeed, let us assume $\a\not\in \KL$;
+   there exists a finite $\KL$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$
+   such that $e(w,\a)=0$; we remark that  $\M$ is a  $\GWCM$-model.
+Since the  formulas $\a$ and  $\a^*$  are equivalent in $\KL$,
+  we get  $e(w,\a^*)=0$, hence  $\a^*\not\in \GWCL$.
 
   We prove  point~\ref{lemma:K:1}. Let us assume that $\a^*\not\in \GKL$.
   There exists a $\GM$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$ such that $e(w,\a^*)< 1$.
-Note  that, for every $w\in W$ and every  formula $\varphi$ of $\KL$,
-the value of $e(w,\varphi^*)$ is 0 or 1 (recall that $\varphi^*$ does not contain $\Diam$).
 Let $\M_1=\stru{W,R_1,e_1}$ be the   $\GM$-model defined as follows:
 \[
   R_1(w,w')\;=\;
@@ -234,45 +240,38 @@ Let $\M_1=\stru{W,R_1,e_1}$ be the   $\GM$-model defined as follows:
  0 & \text{otherwise} 
 \end{cases}
  \]  
- We can prove that:
+Let $w\in W$ and let $\varphi$ be any formul  of $\KL$; by induction on the size of $\varphi$, we prove that:
  \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*]    
  \item\label{lemma:K:1:proof:1}
-   $e_1(w,\varphi)= e_1(w,\varphi^*)$, for every  for every $w\in W$ and every  formula $\varphi$ of $\KL$.
+   $e_1(w,\varphi)= e(w,\varphi^*)$.
  \end{enumerate}
- Let $\varphi=p$, with $p\in \PV$; note that $\varphi^*=\neg \neg p$. If $e(w,p)=0$, we get
- $e(w,\neg\neg p)=0$ and  $e_1(w,p) = 0$;  if $e(w,p)> 0$, we get $e(w,\neg\neg p)=1$ and 
- $e_1(w,p) = 1$.   
+The base case where $\varphi\in\PV\cup\{\bot\}$ immediately follows from the definition of $\varphi^*$.
  Let $\varphi = \Box \psi$;
 note that $\varphi^*=\Box \psi^*$.
- Assume $e_1(w,  \Box \varphi')=0$.
- there exists $w'\in W$ such that $R_1(w,w')=1$ and $e_1(w',   \varphi')=0$.
+ Assume $e_1(w,  \Box \psi)=0$.
+ There exists $w'\in W$ such that $R_1(w,w')=1$ and $e_1(w',   \psi)=0$.
  Then,  $R(w,w')>0$ and, by the induction hypothesis,   $e(w',   \psi^*)=0$.
-It follows that $R(w,w')\to e(w',   \psi^*)=0$, hence  $e(w,  \Box \psi*)=0$.
-Assume $e_1(w,  \Box \varphi')=1$; we show that
+ It follows that $R(w,w')\to e(w',   \psi^*)=0$, hence  $e(w,  \Box \psi^*)=0$.
+ Assume $e_1(w,  \Box \psi)=1$; to prove that  $e(w,  \Box \psi^*)=1$,  we show that:
 \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=2]    
  \item\label{lemma:K:1:proof:2}
   $R(w,w')\to e(w',\psi^*)=1$, for every $w'\in W$.
  \end{enumerate}
 Let $w'\in W$.
  If $R(w,w')=0$, \ref{lemma:K:1:proof:2} trivially holds. Let us assume  $R(w,w')>0$.
- Then $R(w,w_1)=1$ and, by the fact that   $e_1(w,  \Box \varphi')=1$,
- we get   $e_1(w',  \varphi')=1$. By the induction hypothesis,
- it follows that  $e(w',  \psi^*)=1$, hence $R(w,w')\to e(w',\psi^*)=1$;
- this concludes the proof of~\ref{lemma:K:1:proof:2}.
- From~\ref{lemma:K:1:proof:2},  we get  $e(w,  \Box \psi*)=1$. 
-This proof of~\ref{lemma:K:1:proof:1} in the remaining cases is similar.
-
-We remark that, from~\ref{lemma:K:1:proof:2}, it follows that
-$e(w,\varphi^*)$ is 0 or 1; this depends on the fact that
-in $\varphi^*$ the propositional variables are double negated and $\Diam$ does not occurr.
-Since  $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:2} it follows that
-$e_1(w,\a) = 0$ . Accordingly $\a\not\in\KL$,
+ Then,  $R_1(w,w')=1$ and, by the fact that   $e_1(w,  \Box \psi)=1$,
+ we get   $e_1(w',  \psi)=1$.  By the induction hypothesis,
+ it follows that  $e(w',  \psi^*)=1$, 
+hence~\ref{lemma:K:1:proof:2} holds.
+ From~\ref{lemma:K:1:proof:2},  we conclude  $e(w,  \Box \psi^*)=1$. 
+The proof of~\ref{lemma:K:1:proof:1} in the remaining cases is similar.
+Since  $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:1} it follows that
+$e_1(w,\a) = 0$ . Since $\M_1$ is a $\KL$-model, we conclude $\a\not\in\KL$,
 and this proves~\ref{lemma:K:1}.
 \end{proof}
 
 
-By Lemma~\label{lemma:K}, taking into account  the mutual relationships between the G\"odel modal logics introduced above
-(see Fig.~\ref{fig:diagram}), we conclude:
+As a consequence of Lemma~\ref{lemma:K}, we get:
 
 \begin{proposition}
 Let $\a$ be a formula of $\KL$ and let  $L$ be any of the logics $\GKL$, $\GCL$, $\GWL$ and $\GWCL$.   
