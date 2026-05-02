@@ -3,8 +3,10 @@
 
 Formulas are built over a countable set of propositional variables
 $\PV$, using the propositional connectives $\land$, $\lor$, $\to$, the
-constant $\bot$ and the modal connectives $\Box$, $\Diam$.  We write
-$\neg \varphi$ as a shorthand for $\varphi\to \bot$.  The symbols
+constant $\bot$ and the modal connectives $\Box$, $\Diam$.  We introduce the following abbreviations:
+$\neg \varphi$ stands  for $\varphi\to \bot$; 
+$\phi_1\tto \phi_2$  stands  for $(\phi_1\to \phi_2)\land(\phi_2\to \phi_1)$.
+The symbols
 $\land$, $\lor$ and $\to$ are also used to denote algebraic
 operations.
 The \emph{G\"odel algebra} is a structure
@@ -139,7 +141,7 @@ provability in $\GKL$):
 In~\cite{CaiRod2015} it is proved that $\GKL$ is the set of formulas
 valid in every \GM-model.  We introduce some logics extending $\GKL$,
 by providing a semantic characterization (see Fig.~\ref{fig:diagram}
-for an overview):
+for an overview); we call \emph{$\GWCM$-model} a crisp $\GWM$-model:
 
 \begin{figure}[t]
   \centering
@@ -154,8 +156,8 @@ for an overview):
 \item $\GCL$ is the set of formulas valid in every crisp \GM-model
   (see~\cite{RodriguezV:21});
 \item $\GWL$ is the set of formulas valid in every \GWM-model;
-\item $\GWCL$ is the set of formulas valid in every witnessed crisp
-  \GM-model (see~\cite{FerFioRod:2025}).
+\item $\GWCL$ is the set of formulas valid in every 
+  \GWCM-model (see~\cite{FerFioRod:2025}).
 \end{itemize}
 
 
@@ -190,9 +192,10 @@ property.
 
 We show that the modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram},
 %$\GKL$, $\GCL$, $\GWL$ and $\GWCL$
-by exploiting the translation $*$ introduced in~\cite{MetOli1}.
-Note that a $\KL$-model can be viewed as a $\GWCM$-model   where 
-the image of the evaluation function is the set $\{0,1\}$.
+by exploiting the translation $*$ introduced in~\cite{MetOli1}
+We note that a  model for the logic $\KL$
+can be viewed as a $\GWCM$-model   whose evaluation function takes values only in the set   $\{0,1\}$;
+ we refer to such a model as a  \emph{$\KM$-model}.
 To simplify the presentation, we assume that
 $\Diam$ is not a primitive connective  in the language of  $\KL$ 
 (actually, in $\KL$ the formula  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
@@ -210,21 +213,17 @@ this is essentially due to the fact that propositional variables in $\a^*$ are d
 If $\a\in\KL$ then $\a^*\in \GKL$.
   
 \item\label{lemma:K:2}
-If $\a\not\in\KL$ then $\a^*\not\in \GWCL$.
+If $\a^*\in \GWCL$ then  $\a\in\KL$. 
   
   \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Proof of point~\ref{lemma:K:2} is immediate. Indeed, let us assume $\a\not\in \KL$;
-   there exists a finite $\KL$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$
-   such that $e(w,\a)=0$; we remark that  $\M$ is a  $\GWCM$-model.
-Since the  formulas $\a$ and  $\a^*$  are equivalent in $\KL$,
-  we get  $e(w,\a^*)=0$, hence  $\a^*\not\in \GWCL$.
-
+  Proof of point~\ref{lemma:K:2} is immediate, since
+  $\GWCL\subseteq \KL$ and the formula  $\a\tto a^*$  is valid in  $\KL$.
   We prove  point~\ref{lemma:K:1}. Let us assume that $\a^*\not\in \GKL$.
   There exists a $\GM$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$ such that $e(w,\a^*)< 1$.
-Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KL$-model  defined as follows:
+Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KM$-model  defined as follows:
 \[
   R_1(w,w')\;=\;
   \begin{cases}
@@ -245,7 +244,7 @@ Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KL$-model  defined as follows:
  \item\label{lemma:K:1:proof:1}
    $e_1(w,\varphi)= e(w,\varphi^*)$.
  \end{enumerate}
-The base case where $\varphi\in\PV\cup\{\bot\}$ immediately follows from the definition of $\varphi^*$.
+The  case  $\varphi\in\PV\cup\{\bot\}$ immediately follows from the definition of $\varphi^*$.
  Let $\varphi = \Box \psi$;
 note that $\varphi^*=\Box \psi^*$.
  Assume $e_1(w,  \Box \psi)=0$.
@@ -282,7 +281,7 @@ and this proves~\ref{lemma:K:1}.
 
 As a consequence of Lemma~\ref{lemma:K}, we get:
 
-\begin{proposition}
+\begin{proposition}\label{prop:embedding}
 Let $\a$ be a formula of $\KL$ and let  $L$ be any of the logics $\GKL$, $\GCL$, $\GWL$ and $\GWCL$.   
 Then, $\a\in\KL$ iff $\a^*\in L$.
 \end{proposition}

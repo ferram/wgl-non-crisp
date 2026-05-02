@@ -456,20 +456,21 @@ An example of derivation is shown in Fig.~\ref{fig:der};
   \label{fig:der}
 \end{figure}
 
-
-\tr{Let $\M=\stru{W,R,e}$ be a $\GWM$-model;
-to prove Lemma~\ref{lemma:soundRule} we need the following definitions.
+%To prove the next lemma, we need the following definitions.
+Let $\M=\stru{W,R,e}$ be a $\GWM$-model and  $\Ical$  an $\M$-interpretation.
 \begin{itemize}
-\item Let $w\in W$, $p\in\PV$ and $r\in[0,1]$. By $e[(w,p):=r]$ we
-  denote the evaluation function $e'$ such that: $e'(w,p)=r$ and
+\item 
+  By $e[(w,p):=r]$,
+where $(w,p)\in W\times \PV$ and $r\in[0,1]$,
+  we   denote the evaluation function $e'$ such that: $e'(w,p)=r$ and
   $e'(w',q)=e(w',q)$ for every pair $(w',q)\in W\times\PV$ such that
   $(w',q)\neq(w,p)$.
 
-\item Let $\Ical$ be an $\M$-interpretation, $w$ a label of $\LC$ and
-  $w^\star$ a world of $\M$.  By $\reass{\Ical}{w}{w^\star}$ we denote
+\item
+    By $\reass{\Ical}{w}{w^\star}$, where   $w\in \LC$  and   $w^\star\in W$,   we denote
   the $\M$-interpretation $\Ical'$ such that $\Ical'(w) = w^\star$ and
   $\Ical'(w')= \Ical(w')$ for every $w'\in \LC$ such that $w'\neq w$.
-\end{itemize}}
+\end{itemize}
 
 To prove the soundness of $\Calcw$, we need the
 following:
@@ -498,17 +499,8 @@ following:
   accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
   conclude that $\M$ does not exist. %
 
-
-
-
-
-
-
-
-  \tr{For the other cases see App.~\ref{app:proofs}.}
-
-
-  We only detail some representative case, by showing the corresponding rule application.
+  Let $\rho\neq \ruleAxat$;
+  we only detail some  representative case, by showing the corresponding rule application.
   %Let $\rho$ be an application of $\to <$, where $\b\not\in \Vcal\cup{\bot}$:
   \[\small
   %% IMP LTS 
@@ -735,9 +727,9 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 % \end{lemma}
 
 
-\tr{The relation $\precc$ is well-founded and can be used to instantiate
-$\prec$ in the definition of strong termination (see
-Lemma~\ref{lemma:rulesDec} in App.~\ref{app:proofs}); this proves that:}
+The relation $\precc$ is well-founded;
+in the next lemma we show that  $\precc$ 
+can be used to instantiate $\prec$ in the definition of strong termination.
 
 
 \begin{lemma}\label{lemma:rulesDec}
@@ -1325,8 +1317,30 @@ To sum up, we get the completeness of $\Calcw$ and the finite model property for
 \end{proposition}
 
 
+\noindent
+Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
+extracted from an open branch with root $w_0:\varphi < 1$. One can
+easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
+that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
+Consequently, the size of $\M$ is
+$O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
+Note that $\M$ cannot be constructed incrementally, one branch at a
+time, since the constraints generated during the expansion of a branch
+have global validity and must be preserved throughout the entire
+construction.  Nevertheless, we can 
+define a PSPACE
+algorithm to check if such a countermodel exists without effectively
+constructing it; this is discussed in the proof of the next proposition.
+
+\begin{proposition}
+The validity problem for $\GWL$ is PSPACE-complete.  
+\end{proposition}
+
 \begin{proof}
-We sketch a PSPACE procedure to decide the membership of a formula to
+  Since the modal logic $\KL$ is PSPACE-complete~\cite{Ladner:77} and $\KL$ can be embedded into $\GWL$
+  (see Prop.~\ref{prop:embedding}),   the validity problem for $\GWL$   is PSPACE-hard.
+It remains to prove that   $\GWL$-validity   can be checked in PSPACE. 
+To this aim, we sketch a PSPACE procedure to decide the membership of a formula to
 $\GWL$.  Henceforth, we assume that the formula to be checked is
 $\varphi$.  As discussed in Sec.~\ref{sec_calculus}, if
 $\varphi\not\in\GWL$, there exists a tree-like countermodel
@@ -1458,71 +1472,6 @@ $\varphi$ can be built; accordingly, $\varphi\in \GWL$.
 
 
 
-
-% \noindent
-%%% ORGINAL PSPACE proof
-% Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
-% extracted from an open branch with root $w_0:\varphi < 1$. One can
-% easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
-% that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
-% Consequently, the size of $\M$ is
-% $O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
-% Note that $\M$ cannot be constructed incrementally, one branch at a
-% time, since the constraints generated during the expansion of a branch
-% have global validity and must be preserved throughout the entire
-% construction.  Nevertheless, using the above bounds, we can define a PSPACE
-% algorithm to check if such a countermodel exists without effectively
-% constructing it. The key observation is that, if $\varphi\not\in\GWL$,
-% there is a countermodel where $R$ and $e$ take values in
-% $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$, where $N\in
-% O(\size{\varphi}^{\size{\varphi}})$. Indeed, using $\Qcal$, we can
-% assign pairwise distinct values to $e(w,p)$ and $R(w,w')$, for every
-% possible pair of worlds $w$, $w'$ and every propositional variable
-% occurring in $\varphi$.
-% %The key observation is that we can bound the number of values $N$
-% %needed to define the maps $R$ and $e$ of the countermodel.  In
-% %particular, if $\varphi\not\in\GWL$, there is a countermodel where $R$
-% %and $e$ take values in $\Qcal=\{0,\frac{1}{N},\frac{1}{N-1},\dots,1\}$
-% %where $N\in O(\size{\varphi}^{\size{\varphi}})$. Indeed, using
-% %$\Qcal$, we can assign pairwise distinct values to $e(w,p)$ and
-% %$R(w,w')$, for every possible pair of worlds $w$, $w'$ and every
-% %propositional variable $p$ occurring in $\varphi$. 
-% The algorithm iteratively tries to check whether a model such that
-% $e(w_0,\varphi)=r_0$ exists, where $r_0\in\Qcal\setminus\{1\}$.
-% %(where $w_0$ is a world of the model). 
-% The algorithm maintains, for each generated world $w$, a set $\Phi(w)$
-% of assignments of the form $e(w,\a)=r$, where $\a$ is a subformula of
-% $\varphi$ and $r\in \Qcal$, specifying the intended value $r$ of
-% $e(w,\a)$. We remark that, at each step of the execution, at most
-% $O(\size{\varphi})$ entries of the map $\Phi$ must be recorded, and
-% each entry $\Phi(w)$ requires $O(\size{\varphi})$ space.  The
-% algorithm proceeds in two phases. First, the assignments $e(w,\a)=r$
-% in $\Phi(w)$, where $\a$ is non-modal, are saturated by assigning
-% values in $\Qcal$ to the subformulas of $\a$ and updating the
-% assignments in $\Phi(w)$ accordingly.  At the end of this saturation
-% phase, every formula $\a$ occurring in $\Phi(w)$ is either atomic or
-% modal. If all the $\a$ are atomic, the procedure terminates
-% successfully if the assignments in $\Phi(w)$ are coherent (i.e.,
-% $\Phi(w)$ does not assign distinct values to the same formula),
-% otherwise the procedure backtracks and tries different assignments
-% from $\Qcal$. We point out that the memory space required to manage
-% backtracking is $O(|\varphi|)$. Secondly, a loop is entered where, for
-% every $e(w,\a)=r$ in $\Phi(w)$ such that $\a$ is modal, an
-% $R$-successor world of $w'$ is generated (the witness for $\a$). At
-% each iteration, a value from $\Qcal$ for $R(w,w')$ is chosen and
-% $\Phi(w')$ is initialized so that it is consistent with the
-% assignments in $\Phi(w)$ for modal formulas; then, the procedure is
-% recursively applied to $w'$, relying on the assignments in
-% $\Phi(w')$. Each recursive call strictly decreases the number of modal
-% operators involved, hence the recursion depth is bounded by
-% $|\varphi|$.  If all the required $R$-successors of $w$ can be
-% generated, the procedure terminates successfully; accordingly, a
-% $\GWM$-model such that $e(w_0,\varphi)=r_0$ can be built, hence
-% $\varphi\not\in\GWL$.  Otherwise, the procedure backtracks.  If all
-% the attempts to construct a countermodel fail, we conclude that
-% $\varphi\in\GWL$.  One can show that the outlined procedure runs in
-% PSPACE, hence validity in $\GWL$ can be decided in PSPACE; see
-% App.~\ref{app:pspace} for further details.
 
 We have implemented a proof-search procedure for the calculus $\Calcw$  that supports countermodel extraction.
 The prover, named
