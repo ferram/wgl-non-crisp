@@ -1323,7 +1323,12 @@ extracted from an open branch with root $w_0:\varphi < 1$. One can
 easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
 that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
 Consequently, the size of $\M$ is
-$O(\size{\varphi}^{\size{\varphi}})$. % (see Th.~4.1~\cite{BilkovaFK:22}).
+$O(\size{\varphi}^{\size{\varphi}})$;
+moreover, we can define define formulas $\varphi$
+having countermodels of size $2^{\size{\varphi}}$
+(e.~g.,  consider the  translation $\varphi^*$ 
+  of a $\KL$-formula  $\varphi$
+such that $\varphi$  has a countermodel of exponential size).
 Note that $\M$ cannot be constructed incrementally, one branch at a
 time, since the constraints generated during the expansion of a branch
 have global validity and must be preserved throughout the entire
@@ -1463,13 +1468,7 @@ that $e(w_0,\varphi)=r_0$ can be built; since $r_0 < 1$, we conclude
 $\varphi\not\in \GWL$.  If $\Search(w_0)$ returns $\Fail$, for every
 possible choice of $r_0$, it follows that no $\GWM$-countermodel for
 $\varphi$ can be built; accordingly, $\varphi\in \GWL$.
-
-
 \end{proof}
-
-
-
-
 
 
 
@@ -1490,6 +1489,23 @@ knowledge, the only other prover available for modal fuzzy logics is
 mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for continuous
 t-norm-based logics, including G\"odel--Dummett logic.  However,
 neither $\GWL$ nor $\GWCL$ are supported by mNiBLoS.
+
+
+The results presented in this paper are highly relevant to the study
+of intermediate predicate logics.
+It is well known that
+modal logics can be viewed as characterizing interesting fragments of
+first-order logics, in particular, the one-variable fragments of
+intuitionistic predicate logic. 
+From this perspective, our results have both theoretical and
+practical significance.
+For instance, in~\cite{BI-IGPL2016},
+the authors establish Herbrand's Theorem and the
+interpolation property, and introduce an alternative Skolemization
+method for a wide class of intermediate intuitionistic predicate
+logics enjoying the finite model property.
+
+
 
 As future work, we plan to extend the procedure to other witnessed
 G\"odel modal logics imposing additional constraints on the

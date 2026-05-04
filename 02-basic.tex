@@ -108,7 +108,9 @@ is understood that $r$ is 0 (e.g., $R(w_i,w_j)=0$, for every $i\geq 1$
 and $j\geq 0$).  It holds that $e(w_0,\Box p)=0$, but the witnessing
 condition fails since there is no $w_j\in W$ such that $R(w_0,w_j) \to
 e(w_j,p)=0$.  Similarly $e(w_0,\Diamond q)=1$, but there is no
-witness.  
+witness.
+In denoting a class of models, the superscript $\mathrm{c}$ means ``crisp''
+(e.~g.,   $\GWCM$-model stands for  ``crisp  $\GWM$-model''). 
 
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
@@ -140,8 +142,8 @@ provability in $\GKL$):
 \]
 In~\cite{CaiRod2015} it is proved that $\GKL$ is the set of formulas
 valid in every \GM-model.  We introduce some logics extending $\GKL$,
-by providing a semantic characterization (see Fig.~\ref{fig:diagram}
-for an overview); we call \emph{$\GWCM$-model} a crisp $\GWM$-model:
+by providing a semantic characterization
+(see Fig.~\ref{fig:diagram}:
 
 \begin{figure}[t]
   \centering
@@ -153,7 +155,7 @@ for an overview); we call \emph{$\GWCM$-model} a crisp $\GWM$-model:
 
 
 \begin{itemize}
-\item $\GCL$ is the set of formulas valid in every crisp \GM-model
+\item $\GCL$ is the set of formulas valid in every  \GCM-model
   (see~\cite{RodriguezV:21});
 \item $\GWL$ is the set of formulas valid in every \GWM-model;
 \item $\GWCL$ is the set of formulas valid in every 
@@ -185,18 +187,18 @@ implies $e(w, \Box\neg \neg \a)=0$, hence $e(w, (Wt)) = 1$. This
 proves that $(Wt)$ is valid in $\GWL$.  Since every finite model is
 witnessed, a countermodel for $(Wt)$ must be infinite.  The instance
 $\Box \neg\neg p\to \neg\neg \Box p$ of $(Wt)$ is not valid in the
-crisp $\GM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see,
+ $\GCM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see,
 e.g.,~\cite{FerFioRod:2025}), thus $(Wt)$ is not valid in $\GCL$; this
 also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
 property.
 
 We show that the modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram},
 %$\GKL$, $\GCL$, $\GWL$ and $\GWCL$
-by exploiting the translation $*$ introduced in~\cite{MetOli1}
-We note that a  model for the logic $\KL$
+by exploiting the translation $*$ introduced in~\cite{MetOli1}.
+We stress that a  model for the logic $\KL$ (a  \emph{$\KM$-model})
 can be viewed as a $\GWCM$-model   whose evaluation function takes values only in the set   $\{0,1\}$;
- we refer to such a model as a  \emph{$\KM$-model}.
-To simplify the presentation, we assume that
+accordingly, $\GWCL\subseteq\KL$.
+We assume that
 $\Diam$ is not a primitive connective  in the language of  $\KL$ 
 (actually, in $\KL$ the formula  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
 Let $\a$ be a formula of  $\KL$;
@@ -219,8 +221,8 @@ If $\a^*\in \GWCL$ then  $\a\in\KL$.
 \end{lemma}
 
 \begin{proof}
-  Proof of point~\ref{lemma:K:2} is immediate, since
-  $\GWCL\subseteq \KL$ and the formula  $\a\tto a^*$  is valid in  $\KL$.
+The  proof of point~\ref{lemma:K:2} is immediate, since
+  $\GWCL\subseteq \KL$ and the formula  $\a\tto \a^*$  is valid in  $\KL$.
   We prove  point~\ref{lemma:K:1}. Let us assume that $\a^*\not\in \GKL$.
   There exists a $\GM$-model $\M=\stru{W,R,e}$ and  a world $w$ in $W$ such that $e(w,\a^*)< 1$.
 Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KM$-model  defined as follows:
@@ -244,34 +246,23 @@ Let $\M_1=\stru{W,R_1,e_1}$ be the   $\KM$-model  defined as follows:
  \item\label{lemma:K:1:proof:1}
    $e_1(w,\varphi)= e(w,\varphi^*)$.
  \end{enumerate}
-The  case  $\varphi\in\PV\cup\{\bot\}$ immediately follows from the definition of $\varphi^*$.
- Let $\varphi = \Box \psi$;
+ The  case  $\varphi\in\PV\cup\{\bot\}$ is immediate.
+  Let $\varphi = \Box \psi$;
 note that $\varphi^*=\Box \psi^*$.
  Assume $e_1(w,  \Box \psi)=0$.
  There exists $w'\in W$ such that $R_1(w,w')=1$ and $e_1(w',   \psi)=0$.
  Then,  $R(w,w')>0$ and, by the induction hypothesis,   $e(w',   \psi^*)=0$.
  It follows that $R(w,w')\to e(w',   \psi^*)=0$, hence  $e(w,  \Box \psi^*)=0$.
- Let $e_1(w,  \Box \psi)=1$ and assume, by contradiction,  $e(w,  \Box \psi^*) <  1$. Then:
- \begin{enumerate}[label=(\dag), ref=(\dag)]    
- \item \label{lemma:K:1:proof:2}
-   there is  $w'\in W$ such that  $R(w,w')\to e(w',\psi^*) < 1$.
- \end{enumerate}
- It follows that $R(w,w') > 0$, hence $R_1(w,w') = 1$, which implies  $e_1(w',  \psi)=1$. 
- By the induction hypothesis,  $e(w',  \psi^*)=1$, hence   $R(w,w')\to e(w',\psi^*) = 1$,
- contradicting~\ref{lemma:K:1:proof:2}. 
- We conclude    $e(w,  \Box \psi^*) = 1$.
-%  Assume $e_1(w,  \Box \psi)=1$; to prove that  $e(w,  \Box \psi^*)=1$,  we show that:
-% \begin{enumerate}[label=(\Alph*), ref=(\Alph*),leftmargin=*,start=2]    
-%  \item\label{lemma:K:1:proof:2}
-%   $R(w,w')\to e(w',\psi^*)=1$, for every $w'\in W$.
-%  \end{enumerate}
-% Let $w'\in W$.
-%  If $R(w,w')=0$, \ref{lemma:K:1:proof:2} trivially holds. Let us assume  $R(w,w')>0$.
-%  Then,  $R_1(w,w')=1$ and, by the fact that   $e_1(w,  \Box \psi)=1$,
-%  we get   $e_1(w',  \psi)=1$.  By the induction hypothesis,
-%  it follows that  $e(w',  \psi^*)=1$, 
-% hence~\ref{lemma:K:1:proof:2} holds.
-%  From~\ref{lemma:K:1:proof:2},  we conclude  $e(w,  \Box \psi^*)=1$.
+ Let $e_1(w,  \Box \psi)=1$ and assume, by contradiction,  $e(w,  \Box \psi^*) <  1$.
+ By the induction hypothesis,  for every $w' \in W$ it holds that  $e(w',\psi^*)\in\{0,1\}$,
+ hence  $R(w,w')\to e(w',\psi^*) \in \{0,1\}$ and  $e(w,  \Box \psi^*) \in \{0, 1\}$.
+ Thus,   $e(w,  \Box \psi^*) =  0$ and
+ there is  $w'\in W$ such that  $R(w,w')\to e(w',\psi^*) = 0$.
+ We get   $R(w,w') > 0$ and  $e(w',\psi^*)=0$,
+ hence $R_1(w,w') = 1$ and  $e_1(w',  \psi)=0$,
+ contradicting the assumption  $e_1(w,  \Box \psi)=1$.
+Since the assumption $e(w,  \Box \psi^*) <  1$ yields a contradiction, 
+ we conclude    $e(w,  \Box \psi^*) = 1$.
 The proof of~\ref{lemma:K:1:proof:1} in the remaining cases easily follows from the induction hypothesis.
 Since  $e(w,\a^*)< 1$, from~\ref{lemma:K:1:proof:1} it follows that
 $e_1(w,\a) = 0$ . Accordingly, $\a\not\in\KL$,
