@@ -254,7 +254,7 @@ $R(w,w')\to w':\varphi$ are called
 \emph{$R$-constraints}.
 Given a multiset of constraints $\G$, by
 $\Atm{\G}$ we denote the set of atomic constraints in $\G$.
-Let $\M=\stru{W,R,e}$ be a \GWM-model. An $\M$-interpretation of
+Let $\M=\stru{W,R,e}$ be a \GWM-model. An \emph{$\M$-interpretation} of
 $\LC$ is a function $\Ical$ mapping labels of $\LC$ to $W$.
 We extend $\Ical$ to c-terms as follows:
 \[
@@ -457,23 +457,26 @@ An example of derivation is shown in Fig.~\ref{fig:der};
 \end{figure}
 
 %To prove the next lemma, we need the following definitions.
-Let $\M=\stru{W,R,e}$ be a $\GWM$-model and  $\Ical$  an $\M$-interpretation.
-\begin{itemize}
-\item 
-  By $e[(w,p):=r]$,
-where $(w,p)\in W\times \PV$ and $r\in[0,1]$,
-  we   denote the evaluation function $e'$ such that: $e'(w,p)=r$ and
-  $e'(w',q)=e(w',q)$ for every pair $(w',q)\in W\times\PV$ such that
-  $(w',q)\neq(w,p)$.
+Let $\M=\stru{W,R,e}$ be a $\GWM$-model and  $\Ical$  an $\M$-interpretation;
+let $p \in \PV$,  $r\in[0,1]$ and   $w^\star\in W$.
+The evaluation function   $\reass{e}{p}{r}$   and the  $\M$-interpretation  $\reass{\Ical}{w}{w^\star}$ are defined as follows:
+\[
+\reass{e}{p}{r}(w,p')\:=\;
+  \begin{cases}
+  r &\text{if $p'=p$}  
+ \\[0.5ex]
+ e(w,p') &\text{otherwise}   
+  \end{cases}
+\hspace{4em}
+  \reass{\Ical}{w}{w^\star}(w') \:=\;
+  \begin{cases}
+  w^* &\text{if $w'=w$}  
+ \\[0.5ex]
+ \Ical(w') &\text{otherwise}   
+  \end{cases}
+\]
+One can prove that  $\M=\stru{W,R, \reass{e}{p}{r}}$ is a \GWM-model.
 
-\item
-    By $\reass{\Ical}{w}{w^\star}$, where   $w\in \LC$  and   $w^\star\in W$,   we denote
-  the $\M$-interpretation $\Ical'$ such that $\Ical'(w) = w^\star$ and
-  $\Ical'(w')= \Ical(w')$ for every $w'\in \LC$ such that $w'\neq w$.
-\end{itemize}
-
-To prove the soundness of $\Calcw$, we need the
-following:
 
 
 \begin{lemma}\label{lemma:soundRule}
@@ -525,7 +528,8 @@ We only detail some  representative cases, by showing the corresponding rule app
   \b) < \Ical(t)$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
   $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus
 $e(\Ical(w),\b) < \Ical(t)$.
-Let $r=e(\Ical(w),\b)$, let $e'=e[(\Ical(w),q):=r]$   and   $\M'=\stru{W,R,e'}$;
+Let $r=e(\Ical(w),\b)$ and  $\M'=\stru{W,R,\reass{e}{q}{r}}$;
+we remark  that $\M'$ is a \GWM-model.
 we remark  that $\M'$ is a \GWM-model.
   Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in
   $\Delta$, we get $\M'\models_{\Ical} \Delta$.  It is easy to check that
@@ -534,8 +538,7 @@ we remark  that $\M'$ is a \GWM-model.
   \G_1$.
 
   %\smallskip
-  % Let $\rho$ be an application of $\to \leq$, where $\b\not\in \Vcal\cup{\bot}$:
-  \[
+  \[\small
   %% IMP LTE 
   \AXC{$\overbrace{t \geq 1,\, \Delta}^{\G_1}$}    
   \AXC{$\overbrace{w :\a > w:q,\, w :\b \leq w:q,\, w:q \leq  t,\,\Delta}^{\G_2}$}    
@@ -558,17 +561,16 @@ we remark  that $\M'$ is a \GWM-model.
   $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
   e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
   hence $\M\models_\Ical w:\b \leq t$.
-  Let $r=e(\Ical(w),\b)$,  let  $e'=e[(\Ical(w),q):=r]$ and
-  $\M'=\stru{W,R,e'}$; note that $\M'$ is a $\GWM$-model.  Since
-  $\M\models_{\Ical} \Delta$ and $q$ does not occur in $\Delta$, we get
+  Let $r=e(\Ical(w),\b)$ and  $\M'=\stru{W,R,\reass{e}{q}{r}}$;
+ note that $\M'$ is a $\GWM$-model. 
+  Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in $\Delta$, we get
   $\M'\models_{\Ical} \Delta$.  Moreover, one can easily check that
   $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
   w:q$ and $\M'\models_{\Ical} w:q \leq t$; we conclude
   $\M'\models_{\Ical} \G_2$.
 
-  % \smallskip
-  % Let $\rho$ be an application of $\to \gt$, where $\b\not\in   \Vcal\cup{\bot}$:
-  \[
+
+  \[\small
   %% IMP GT 
   \AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \Delta}^{\G_1}$}    
   \AXC{$\overbrace{w:\b \gt t,\, \Delta}^{\G_2}$}
@@ -585,16 +587,14 @@ we remark  that $\M'$ is a \GWM-model.
   \]
   By the hypothesis, $\M\models_{\Ical} w: \a\to \b \gt t$ and
   $\M\models_{\Ical} \Delta$, hence $e(\Ical(w),\a\to\b) \gt\Ical(t)$.
-  %We can reason as in the cases concerning rules $\to<$ and $\to\leq$.
   Let us assume  $e(\Ical(w),\a) > e(\Ical(w),\b)$; then $e(\Ical(w),\a\to \b) =
   e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
   $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
   $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$, thus
   $\M\models_\Ical 1 \gt t$.  Let
-  $r=e(\Ical(w),\a)$, let  $e'=e[(\Ical(w),q):=r]$ and  $\M'=\stru{W,R,e'}$;
-  note that  $\M'=\stru{W,R,e'}$ is a  \GWM-model. 
+  $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,\reass{e}{q}{r}}$;  note that  $\M'$ is a  \GWM-model. 
   Reasoning as in the previous cases,   we can prove that $\M'\models_{\Ical} \G_1$.
-  \[
+  \[\small
   \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\Delta}^{\G_1}$}
   % -----------------------------------------
   \RightLabel{$\Box\lt$}
@@ -703,6 +703,7 @@ The relation $\precm$ is a multiset order, hence $\precm$ is
 well-founded (see~\cite{BaaderN:98}, Th.~2.5.5 and Lemma 2.5.6).
 Given the multisets of constraints $\G_1$ and $\G_2$,
 we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$. 
+
 % We introduce the following well-founded relation $\precc$ between finite multisets
 % of constraints:
 % \[
@@ -710,11 +711,7 @@ we set $\G_1 \precc \G_2$ iff  $\sizem{\G_1} \precm\sizem{\G_2}$.
 % \]  
 % We can prove (see App.~\ref{app:proofs}):
 
-% \begin{lemma}\label{lemma:rulesDec}
-%   Let $\rho$ be an application of a rule of the calculus $\Calcw$, let
-%   $\Gamma$ be the conclusion of $\rho$ and  $\G'$ any of the premises of $\rho$.
-%   Then,  $\G'\precc \G$.
-% \end{lemma}
+
 
 
 The relation $\precc$ is well-founded;
@@ -746,8 +743,6 @@ can be used to instantiate $\prec$ in the definition of strong termination.
    no constraint in $\Theta$ has label $w$
  \end{minipage}
  \\[8ex]
- % \mbox{all the constraints in $\Delta_w$ have label $w$, no constraint in $\Theta$ has label $w$}
- % \\[1ex]
  \G[w] =\{w:\a\to \b < t\} \cup \D_w 
  \hspace{3em}
  \G_1[w] =\{\,  w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t  \,\}\cup\D_w
@@ -758,24 +753,19 @@ can be used to instantiate $\prec$ in the definition of strong termination.
  \{\, \wg{\G_1[w]} \,\}    \cup \sizem{\Theta}  
 \end{array}
 \]
-% We have ($\cup$ denotes the multiset union):
-% \[
-% \sizem{\G} \,=\, \{\, \wg{\G[w]} \,\}\cup \sizem{\Theta}
-% \hspace{3em}
-% \sizem{\G_1} \;=\;
-% \{\, \wg{\G_1[w]} \,\}    \cup \sizem{\Theta}    
-% \]
-We prove that $\sizem{\G_1}\precm \sizem{\G}$. The following holds:
+To prove that $\sizem{\G_1}\precm \sizem{\G}$,
+we show that  $\wg{\G_1[w]} < \wg{\G[w]}$. 
+The following holds:
 \[
 \begin{array}{rcl}
   \wg{\G[w]}&\,=\, &\wg{w:\a\to \b < t} + \wg{\D_w} \;=\; \wg{\a} +  \wg{\b} + 1 +  \wg{\D_w} 
   \\[1ex]
-  \wg{\G[w']}&\,=\, & \wg{w :\a > w : q} +\wg{w :\b \leq w :q} + \wg{w : q  < t } + \wg{\D_w}
+  \wg{\G_1[w]}&\,=\, & \wg{w :\a > w : q} +\wg{w :\b \leq w :q} + \wg{w : q  < t } + \wg{\D_w}
   \\
   &\,=\,&  \wg{\a} +  \wg{\b} + 0 +  \wg{\D_w} 
 \end{array}
 \]
-Since $\wg{\G[w']} < \wg{\G[w]}$, we get $\sizem{\G_1}\precm
+Since $\wg{\G_1[w]} < \wg{\G[w]}$, we get $\sizem{\G_1}\precm
 \sizem{\G}$, hence $\G_1\precc \G$.
 
 % -------------------------------------------------------------------------
@@ -855,7 +845,7 @@ and~\ref{lemma:rulesDec:box2} it follows that $\sizem{\G_1}\precm
 
 
 
-
+As an immediate consequence of Lemma~\ref{lemma:rulesDec}, we get:
 
 \begin{proposition}\label{prop:term}
   The calculus $\Calcw$ is strongly terminating.
@@ -938,7 +928,7 @@ following holds:
     \]
   \end{tabular}
   \vspace{-2ex}
-\caption{Weight function $\wgname$ on constraints and associated multisets $\G[w]$ and $\sizem{\G}$.}
+\caption{Weight function $\wgname$ on constraints and the multisets $\G[w]$,  $\sizem{\G}$.}
 \label{fig:weight}
 \end{figure}
   
@@ -1009,7 +999,7 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
   $\varphi$, witnessing that $\varphi\not\in\GWL$.
   Note that the worlds of $\M$ are $w_0$ and $w_1$ and,
   as expected, $\M$ is not crisp, since $0 < \sigma(R(w_0,w_1)) < 1$.
-    A solution
+    A concrete solution
   $\s^\star$ is obtained by setting $\sigma^\star(w_1:p) = 0.5$ and
   $\sigma^\star(R(w_0,w_1))= \sigma^\star(c) = \sigma^\star(w_1:q) =
   0.6$.  The model $\Mod{\Atmp{\G_7},\s^\star}$ is essentially the
@@ -1133,7 +1123,7 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
  %%%%%%%%%%%%%%%% IMP LTE
  Let $\chi= w:\a\to \b \leq t$; we only consider the case
  $\b\not\in\PV\cup\{\bot\}$.  Since $\app{\chi}{\G_k}{\G_{k+1}}$, the
- applied rule is $\to\leq$, hence one of the followings two subcases
+ applied rule is $\to\leq$, hence one of the following two subcases
  holds:
  
  \begin{enumerate}[label=(B\arabic*), ref=(B\arabic*),leftmargin=*]
@@ -1162,7 +1152,7 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
  %%%%%%%%%%%%%%%% IMP GT
  Let $\chi= w:\a\to \b \gt t$; we only consider the case
  $\b\not\in\PV\cup\{\bot\}$.  Since $\app{\chi}{\G_k}{\G_{k+1}}$, the
- applied rule is $\to\gt$, hence one of the followings two subcases
+ applied rule is $\to\gt$, hence one of the following two subcases
  holds:
  
  \begin{enumerate}[label=(C\arabic*), ref=(C\arabic*),leftmargin=*]
@@ -1282,12 +1272,11 @@ performed by $\Bs$ are plain.
   an open branch $\Bcal=\stru{\G_0,\dots,\G_n}$.  Since $\Bs$ is
   plain, the branch $\Bcal$ is saturated.
 Let $\s$ be  a solution to $\Atmp{\G_n}$;
-by Prop.~\ref{prop:satBranch}, 
+by Prop.~\ref{prop:satBranch}\ref{prop:satBranch:1}, 
   $\Mod{\Atmp{\G_n},\s}$ is a discrete countermodel for $\G_0$.
 \end{proof}
 
 \noindent
-%%We remark that $\Bs$ does not need to implement backtracking.
 To sum up, we get the completeness of $\Calcw$ and the finite model property for $\GWL$.
 
 
@@ -1338,13 +1327,13 @@ The validity problem for $\GWL$ is PSPACE-complete.
 It remains to prove that   $\GWL$-validity   can be checked in PSPACE. 
 To this aim, we sketch a PSPACE procedure to decide the membership of a formula to
 $\GWL$.  Henceforth, we assume that the formula to be checked is
-$\varphi$.  As discussed in Sec.~\ref{sec_calculus}, if
-$\varphi\not\in\GWL$, there exists a tree-like countermodel
+$\varphi$.  As discussed above, if
+$\varphi\not\in\GWL$, then there exists a tree-like countermodel
 $\M=\stru{W,R,e}$ for $\varphi$ such that the number of worlds is
 $O(\size{\varphi}^{\size{\varphi}})$.  We can also bound the number
 $N$ of values needed to define $R$ and $e$: in the worst case, the
 values $e(w,p)$ and $R(w,w')$ must all be pairwise distinct, for every
-world $w$, $w'$ and every propositional variable $p$ occurring in
+world $w$, $w'$ in $\M$  and every propositional variable $p$ occurring in
 $\varphi$; accordingly, $N$ is in
 $O(\size{\varphi}^{\size{\varphi}})$.  We set
 $\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$; note that the elements of
@@ -1384,7 +1373,7 @@ computation of $\Search(w)$ consists of two main steps.
   $\Phi(w)$ is removed and replaced by the assignments $e(w,\a)=r_1$
   and $e(w,\b)=r_2$ required to justifies the value $r$, where the
   values $r_1$ and $r_2$ are selected with $\Qcal$-choices.  For
-  instance, let $\psi=\a\to\b$.
+  instance, let us assume that the assignment at hand is $e(w,\a\to\b)=r$.
   \begin{itemize}
   \item If $r=1$, we must have $e(w,\a) \leq e(w,\b)$; the values
     $r_1$ and $r_2$ are selected with $\Qcal$-choices so that $r_1\leq
