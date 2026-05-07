@@ -327,17 +327,17 @@ The \emph{main constraint} of a rule application is the constraint
 displayed in the conclusion.  Rules for implication, having a main
 constraint of the kind $w:\a\to \b\abstractorder t$, are defined
 according to the structure of $\b$.  Let us consider the rule
-$\ruleToLTAt$, having main constraint $w:\a\to p < t$ ($p\in\PV\cup\{\bot\}$). The premise
-contains the constraints $w:\a > w:p$ and $w:p < t$.  This reflects
-the fact that, given a $\GWM$-model $\M$, a world $w$ in $\M$ and an
-$\M$-interpretation $\Ical$, if $e(\Ical(w), \a\to p) < \Ical(t)$,
-it holds that $e(\Ical(w),\a) > e(\Ical(w),p)$, $e(\Ical(w), \a\to p) =
-e(\Ical(w),p)$ and $e(\Ical(w),p) < \Ical(t)$.  This rule  cannot
-be generalized   to any   $w:\a\to \b < t$ since
-the constraint $w:\a > w:\b$ is not allowed if if $\b\not\in\PV\cup\{\bot\}$.
-This case is covered by rule $\ruleToLT$,
-which  introduces a new propositional variable $q$ behaving in
-$w$ as $\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
+$\ruleToLTAt$, having main constraint $w:\a\to p < t$
+($p\in\PV\cup\{\bot\}$). The premise contains the constraints $w:\a >
+w:p$ and $w:p < t$.  This reflects the fact that, given a $\GWM$-model
+$\M$, a world $w$ in $\M$ and an $\M$-interpretation $\Ical$, if
+$e(\Ical(w), \a\to p) < \Ical(t)$, it holds that $e(\Ical(w),\a) >
+e(\Ical(w),p)$, $e(\Ical(w), \a\to p) = e(\Ical(w),p)$ and
+$e(\Ical(w),p) < \Ical(t)$.  This rule cannot be generalized to any
+$w:\a\to \b < t$ since the constraint $w:\a > w:\b$ is not allowed if
+$\b\not\in\PV\cup\{\bot\}$.  This case is covered by rule $\ruleToLT$,
+which introduces a new propositional variable $q$ behaving in $w$ as
+$\b$, and $w:\a > w:\b$ is replaced by $w:\a > w: q$.  The
 correspondence between $\b$ and $q$ is set by the constraint $w:\b\leq
 w:q$, while the converse constraint $w:\b\geq w:q$ can be omitted.
 There are two modal rules (see Fig.~\ref{fig:calc2}), the former

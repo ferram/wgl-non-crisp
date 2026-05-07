@@ -110,7 +110,7 @@ condition fails since there is no $w_j\in W$ such that $R(w_0,w_j) \to
 e(w_j,p)=0$.  Similarly $e(w_0,\Diamond q)=1$, but there is no
 witness.
 In denoting a class of models, the superscript $\mathrm{c}$ means ``crisp''
-(e.~g.,   $\GWCM$-model stands for  ``crisp  $\GWM$-model''). 
+(e.g.,   $\GWCM$-model stands for  ``crisp  $\GWM$-model''). 
 
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
@@ -205,6 +205,89 @@ the formula $\a^*$
 is obtained by replacing each propositional variable $p$ occurring in $\a$ with $\neg\neg p$.
 As shown in the following lemma, the evaluation of a formula $\a^*$ at any  world of a $\GM$-model is binary (0 or 1);
 this is essentially due to the fact that propositional variables in $\a^*$ are double negated and $\Diam$ does not occur in $\a^*$.
+
+
+\begin{figure}[t]
+  \centering
+  \[\small
+  \begin{array}{c}
+    \begin{minipage}{10em}
+      \begin{tikzpicture}[scale=0.8]
+        % WORLDS  
+        % w0
+        \draw[fill] (0,0) circle (3pt)
+        +(0,-0)   node (w0)  {}  % used to label the circle 
+        +(0,-0.3) node  {$w_0$}
+        ;
+        
+        % w1 
+        \draw[fill]  (0,1.5) circle (3pt)
+        +(0,0)   node (w1)  {}  % used to label the circle 
+        +(-0.6,0)  node  {$w_1$} 
+        +(1.2,0.2) node  {$p=0.5$}
+        +(1.2,-0.2) node  {$q=0.6$}
+        ;
+        
+        
+        % ARROWS
+        \draw[->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
+      \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{20em}
+      \[\small
+      \begin{array}{l}
+        % -----------------------------------------      
+        \fcolorbox{black}{gray!10}{
+          \begin{minipage}{20em}\small
+            $W=\{\,w_0,\,\,w_1\,\}$
+            \\[.5ex]
+            $R(w_0,w_0)=R(w_1,w_1)=0, \;R(w_0,w_1) = 0.6$
+            \\[.5ex]
+            $e(w_0,p) = e(w_0,q)=0$  
+            \\[.5ex]
+            $e(w_1,p) = 0.5,\; e(w_1,q)=0.6$
+          \end{minipage}
+        } % end box    
+        % -----------------------------------------  
+      \end{array}
+      \]
+    \end{minipage} 
+    \\[10ex]
+    \begin{array}{rcl}
+      e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
+      \inf\{\, 0\to 0,\, 0.6\to 0.6\,\}\,=\,1
+      \\[1ex]
+      e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+      
+      \inf\{\, 0\to 0,\,  0.6\to 0.5\,\}    \,=\, 0.5
+      \\[1ex]
+      e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+      \sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
+      \\[1ex]
+      e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
+    \end{array}
+    % \begin{array}{rcl}
+    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
+    %   \inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
+    %   \\
+    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+      
+    %   \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
+    %   \\
+    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+    %   \sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
+    %   \\[1ex]
+    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
+    % \end{array}
+  \end{array}
+  \]
+  
+  \caption{A countermodel for the formula $\varphi=\Box (p\lor q)\to
+    (\Box p \lor \Diam q) $ (instance of (Cr)).}
+  \label{fig:countGW}
+\end{figure}
+
+
 
 \begin{lemma}\label{lemma:K}
   Let $\a$ be a formula of  $\KL$. 
@@ -347,7 +430,44 @@ We prove that:
 \end{proof}
 
 
-\begin{figure}[h]
+
+\begin{proposition}\label{prop:gwclBD}
+  Properties~\ref{defBD:P1} and~\ref{defBD:P2} hold.
+\end{proposition}  
+
+\begin{proof}
+  Let us assume, by contradiction, that property~\ref{defBD:P1} does
+  not hold.  Then, there exists a $\Box$-free formula $\varphi$ such
+  that $\Box p \tto\varphi$ is valid in $\GWCL$. As a consequence, in
+  the \GWCM-model $\M^\ast$ in Fig.~\ref{fig:ind} we have $e(w_0, \Box
+  p \tto\varphi)=1$. Since $e(w_0, \Box p)= 0.4$, we get $e(w_0,
+  \varphi)= 0.4$, in contradiction with
+  Lemma~\ref{lemma:defBD}\ref{lemma:defBD:1}.  This proves
+  that~\ref{defBD:P1} holds. The proof of~\ref{defBD:P2} is similar.
+\end{proof}
+
+
+\begin{proposition}\label{prop:defBD}
+  $\Box$ and $\Diam$ are not interdefinable in any modal logic $L$
+  contained in $\GWCL$.
+\end{proposition}  
+
+\begin{proof}
+  Let $L\subseteq \GWCL$ and assume
+  that  there is
+  a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
+  L$. Then, $\Box p\tto\varphi\in \GWCL$,
+  in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
+  $\Diam$ is similar.
+  % Let $L$ be any modal logic contained in $\GWCL$ and let us assume
+  % that in $L$ the operator $\Box$ can be defined.  Then, there exists
+  % a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
+  % L$. Since $L\subseteq \GWCL$, we get $\Box p\tto\varphi\in \GWCL$,
+  % in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
+  % $\Diam$ is similar.
+\end{proof}
+
+\begin{figure}[t]
   \centering
   \begin{minipage}{0.45\linewidth}
     \begin{tikzpicture}[scale=0.7]
@@ -400,124 +520,7 @@ We prove that:
   
 
 
-\begin{proposition}\label{prop:gwclBD}
-  Properties~\ref{defBD:P1} and~\ref{defBD:P2} holds.
-\end{proposition}  
 
-\begin{proof}
-  Let us assume, by contradiction, that property~\ref{defBD:P1} does
-  not hold.  Then, there exists a $\Box$-free formula $\varphi$ such
-  that $\Box p \tto\varphi$ is valid in $\GWCL$. As a consequence, in
-  the \GWCM-model $\M^\ast$ in Fig.~\ref{fig:ind} we have $e(w_0, \Box
-  p \tto\varphi)=1$. Since $e(w_0, \Box p)= 0.4$, we get $e(w_0,
-  \varphi)= 0.4$, in contradiction with
-  Lemma~\ref{lemma:defBD}\ref{lemma:defBD:1}.  This proves
-  that~\ref{defBD:P1} holds. The proof of~\ref{defBD:P2} is similar.
-\end{proof}
-
-
-\begin{proposition}\label{prop:defBD}
-  $\Box$ and $\Diam$ are not interdefinable in any modal logic $L$
-  contained in $\GWCL$.
-\end{proposition}  
-
-\begin{proof}
-  Let $L\subseteq \GWCL$ and assume
-  that  there is
-  a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
-  L$. Then, $\Box p\tto\varphi\in \GWCL$,
-  in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
-  $\Diam$ is similar.
-  % Let $L$ be any modal logic contained in $\GWCL$ and let us assume
-  % that in $L$ the operator $\Box$ can be defined.  Then, there exists
-  % a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
-  % L$. Since $L\subseteq \GWCL$, we get $\Box p\tto\varphi\in \GWCL$,
-  % in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
-  % $\Diam$ is similar.
-\end{proof}
-
-
-
-
-\begin{figure}[t]
-  \centering
-  \[\small
-  \begin{array}{c}
-    \begin{minipage}{10em}
-      \begin{tikzpicture}[scale=0.8]
-        % WORLDS  
-        % w0
-        \draw[fill] (0,0) circle (3pt)
-        +(0,-0)   node (w0)  {}  % used to label the circle 
-        +(0,-0.3) node  {$w_0$}
-        ;
-        
-        % w1 
-        \draw[fill]  (0,1.5) circle (3pt)
-        +(0,0)   node (w1)  {}  % used to label the circle 
-        +(-0.6,0)  node  {$w_1$} 
-        +(1.2,0.2) node  {$p=0.5$}
-        +(1.2,-0.2) node  {$q=0.6$}
-        ;
-        
-        
-        % ARROWS
-        \draw[->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
-      \end{tikzpicture}
-    \end{minipage}
-    \begin{minipage}{20em}
-      \[\small
-      \begin{array}{l}
-        % -----------------------------------------      
-        \fcolorbox{black}{gray!10}{
-          \begin{minipage}{20em}\small
-            $W=\{\,w_0,\,\,w_1\,\}$
-            \\[.5ex]
-            $R(w_0,w_0)=R(w_1,w_1)=0, \;R(w_0,w_1) = 0.6$
-            \\[.5ex]
-            $e(w_0,p) = e(w_0,q)=0$  
-            \\[.5ex]
-            $e(w_1,p) = 0.5,\; e(w_1,q)=0.6$
-          \end{minipage}
-        } % end box    
-        % -----------------------------------------  
-      \end{array}
-      \]
-    \end{minipage} 
-    \\[10ex]
-    \begin{array}{rcl}
-      e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-      \inf\{\, 0\to 0,\, 0.6\to 0.6\,\}\,=\,1
-      \\[1ex]
-      e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
-      
-      \inf\{\, 0\to 0,\,  0.6\to 0.5\,\}    \,=\, 0.5
-      \\[1ex]
-      e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-      \sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
-      \\[1ex]
-      e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
-    \end{array}
-    % \begin{array}{rcl}
-    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-    %   \inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
-    %   \\
-    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
-      
-    %   \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
-    %   \\
-    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-    %   \sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
-    %   \\[1ex]
-    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
-    % \end{array}
-  \end{array}
-  \]
-  
-  \caption{A countermodel for the formula $\varphi=\Box (p\lor q)\to
-    (\Box p \lor \Diam q) $ (instance of (Cr)).}
-  \label{fig:countGW}
-\end{figure}
 
 
 
