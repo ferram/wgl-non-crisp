@@ -477,14 +477,15 @@ following:
 
 
 \begin{lemma}\label{lemma:soundRule}
-  Let $\rho$ be an instance of a rule of the calculus $\Calcw$, let
-  $\Gamma$ be the conclusion of $\rho$ and let $\M$ be a \GWM-model.
-  If $\M\models\G$, then there exists a premise $\G'$ of $\rho$ such
-  that $\M\models\G'$.
+  Let $\rho$ be an instance of a rule of $\Calcw$ and 
+ let $\Gamma$  be the conclusion of $\rho$. If there is  a \GWM-model $\M$
+such that $\M\models\G$, then there are a premise $\G'$ of $\rho$
+and a  \GWM-model $\M'$
+  such that $\M'\models\G'$.
 \end{lemma}
 
 \begin{proof}
-  Let $\rho$ be the rule $\ruleAxat$; since the rule has no premises,
+  Let $\rho$ be an application of the rule $\ruleAxat$; since the rule has no premises,
   we have to show that there is no $\M$ such that $\M\models \G$.  Let
   us assume, by contradiction, that there is a \GWM-model
   $\M=\stru{W,R,e}$ and an $\M$-interpretation $\Ical$ such that
@@ -499,56 +500,69 @@ following:
   accordingly, $\Atmp{\G}$ is consistent, a contradiction.  We
   conclude that $\M$ does not exist. %
 
-  Let $\rho\neq \ruleAxat$;
-  we only detail some  representative case, by showing the corresponding rule application.
+  Let $\rho\neq \ruleAxat$ and let us assume $\M\models_\Ical\G$, where $\M=\stru{W,R,e}$
+is a \GWM-model  and $\Ical$ is an $\M$-interpretation;
+we show that  then there are a premise $\G'$ of $\rho$
+and a  \GWM-model $\M'$ such that $\M'\models\G'$.
+We only detail some  representative cases, by showing the corresponding rule application.
   %Let $\rho$ be an application of $\to <$, where $\b\not\in \Vcal\cup{\bot}$:
   \[\small
   %% IMP LTS 
-  \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \G_0}^{\G_1}$}    
+  \AXC{$\overbrace{w :\a > w : q,\,  w :\b \leq w :q,\,  w : q  < t,\,  \Delta}^{\G_1}$}    
   % ------------------------------------------    
   \RightLabel{$\to <$}
-  \UIC{$\underbrace{w: \a\to \b < t,\,\G_0}_{\G}$}
+  \UIC{$\underbrace{w: \a\to \b < t,\,\Delta}_{\G}$}
   \DP
-  \qquad \b\not\in \Vcal\cup\{\bot\}
+  \qquad
+  \begin{minipage}{10em}
+    $\b\not\in \Vcal\cup\{\bot\}$
+    \\[.5ex]
+    $q$ does not occur in $\G$
+  \end{minipage}
   \]
-  By the hypothesis, it holds that $\M\models_{\Ical} w: \a\to \b < t$
-  and $\M\models_{\Ical} \G_0$.  This implies that $e(\Ical(w), \a\to
-  \b) < \Ical(t) \leq 1$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
+  By the hypothesis,  $\M\models_{\Ical} w: \a\to \b < t$
+  and $\M\models_{\Ical} \Delta$.  This implies that $e(\Ical(w), \a\to
+  \b) < \Ical(t)$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
   $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b
-  < t$. Note that $q$ is a fresh propositional variable. Now let
-  $r=e(\Ical(w),\b)$ and $\M'=\stru{W,R,e'}$ be the model where
-  $e'=e[(\Ical(w),q):=r]$.  We remark that, for every constraint $\chi$
-  not containing $q$, $\M\models_\Ical \chi$ iff $\M'\models_{\Ical}
-  \chi$.  Since $\M\models_{\Ical} \G_0$ and $q$ does not occur in
-  $\G_0$, we get $\M'\models_{\Ical} \G_0$.  It is easy to check that
+  < t$. 
+  Let $r=e(\Ical(w),\b)$ and let $\M'=\stru{W,R,e'}$ be the \GWM-model where
+  $e'=e[(\Ical(w),q):=r]$.
+%  We remark that, for every constraint $\chi$ not containing $q$, $\M'\models_\Ical \chi$ iff $\M\models_{\Ical}  \chi$.
+  Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in
+  $\Delta$, we get $\M'\models_{\Ical} \Delta$.  It is easy to check that
   $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
-  w:q$ and $\M'\models_{\Ical} w:q < t$, hence $\M'\models_{\Ical}
+  w:q$ and $\M'\models_{\Ical} w:q < t$; we conclude $\M'\models_{\Ical}
   \G_1$.
 
   %\smallskip
   % Let $\rho$ be an application of $\to \leq$, where $\b\not\in \Vcal\cup{\bot}$:
   \[
   %% IMP LTE 
-  \AXC{$\overbrace{t \geq 1,\, \G_0}^{\G_1}$}    
-  \AXC{$\overbrace{w :\a > w:q,\, w :\b \leq w:q,\, w:q \leq  t,\,\G_0}^{\G_2}$}    
+  \AXC{$\overbrace{t \geq 1,\, \Delta}^{\G_1}$}    
+  \AXC{$\overbrace{w :\a > w:q,\, w :\b \leq w:q,\, w:q \leq  t,\,\Delta}^{\G_2}$}    
   % ------------------------------------------    
   \RightLabel{$\to\leq$}
-  \BIC{$\underbrace{w: \a\to \b \leq t,\,\G_0}_{\G}$}
+  \BIC{$\underbrace{w: \a\to \b \leq t,\,\Delta}_{\G}$}
   \DP
-  \qquad \b\not\in \Vcal\cup\{\bot\}
+  \qquad 
+  \begin{minipage}{10em}
+    $\b\not\in \Vcal\cup\{\bot\}$
+    \\[.5ex]
+    $q$ does not occur in $\G$
+  \end{minipage}
   \]
   By the hypothesis, $\M\models_{\Ical} w: \a\to \b \leq t$ and
-  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w), \a\to \b)\leq
-  \Ical(t)$.  If $e(\Ical(w),\a) \leq e(\Ical(w),\b)$, then,
+  $\M\models_{\Ical} \Delta$, hence $e(\Ical(w), \a\to \b)\leq
+  \Ical(t)$.  Let us assume $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
   $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
   $\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
-  $\M\models_\Ical \G_1$. Otherwise, $e(\Ical(w),\a) >
-  e(\Ical(w),\b)$ and  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
-  hence $\M\models_\Ical w:\b \leq t$.  Note that $q$ is a fresh
-  propositional variable.  Now let $r=e(\Ical(w),\b)$ and
-  $\M'=\stru{W,R,e'}$ be the model where $e'=e[(\Ical(w),q):=r]$.  Since
-  $\M\models_{\Ical} \G_0$ and $q$ does not occur in $\G_0$, we get
-  $\M'\models_{\Ical} \G_0$.  Moreover, one can easily check that
+  $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
+  e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
+  hence $\M\models_\Ical w:\b \leq t$.
+  Let $r=e(\Ical(w),\b)$ and let
+  $\M'=\stru{W,R,e'}$ be the $\GWM$-model where $e'=e[(\Ical(w),q):=r]$.  Since
+  $\M\models_{\Ical} \Delta$ and $q$ does not occur in $\Delta$, we get
+  $\M'\models_{\Ical} \Delta$.  Moreover, one can easily check that
   $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
   w:q$ and $\M'\models_{\Ical} w:q \leq t$; we conclude
   $\M'\models_{\Ical} \G_2$.
@@ -557,93 +571,75 @@ following:
   % Let $\rho$ be an application of $\to \gt$, where $\b\not\in   \Vcal\cup{\bot}$:
   \[
   %% IMP GT 
-  \AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \G_0}^{\G_1}$}    
-  \AXC{$\overbrace{w:\b \gt t,\, \G_0}^{\G_2}$}
+  \AXC{$\overbrace{w :\a \leq w:q,\,  w :\b \geq w:q,\,1\gt t,\, \Delta}^{\G_1}$}    
+  \AXC{$\overbrace{w:\b \gt t,\, \Delta}^{\G_2}$}
   % ------------------------------------------       
   \RightLabel{$\to\gt$}
-  \BIC{$\underbrace{w: \a\to \b \gt t,\,\G_0}_{\G}$}
+  \BIC{$\underbrace{w: \a\to \b \gt t,\,\Delta}_{\G}$}
   \DP
-  \qquad \b\not\in \Vcal\cup\{\bot\}
+\qquad
+  \begin{minipage}{10em}
+    $\b\not\in \Vcal\cup\{\bot\}$
+    \\[.5ex]
+    $q$ does not occur in $\G$
+  \end{minipage}
   \]
   By the hypothesis, $\M\models_{\Ical} w: \a\to \b \gt t$ and
-  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\a\to\b) \gt\Ical(t)$.
-  We can reason as in the cases concerning rules $\to<$ and $\to\leq$.
-  If $e(\Ical(w),\a) > e(\Ical(w),\b)$, then $e(\Ical(w),\a\to \b) =
+  $\M\models_{\Ical} \Delta$, hence $e(\Ical(w),\a\to\b) \gt\Ical(t)$.
+  %We can reason as in the cases concerning rules $\to<$ and $\to\leq$.
+  Let us assume  $e(\Ical(w),\a) > e(\Ical(w),\b)$; then $e(\Ical(w),\a\to \b) =
   e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
-  $e(\Ical(w),\a) \leq e(\Ical(w),\b)$.  In this case
-  $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$.  Now let
-  $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,e'}$ be the model where
-  $e'=e[(\Ical(w),q):=r]$.  We can prove that $\M'\models_{\Ical} \G_1$.
+  $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
+  $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$, thus
+  $\M\models_\Ical 1 \gt t$.  Let
+  $r=e(\Ical(w),\a)$ and let $\M'=\stru{W,R,e'}$ be the \GWM-model where
+  $e'=e[(\Ical(w),q):=r]$; reasoning as in the previous cases,   we can prove that $\M'\models_{\Ical} \G_1$.
   % Let $\rho$ be an application of $\Box\lt$:
   %\smallskip
   \[
-  \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\G_0}^{\G_1}$}
+  \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\Delta}^{\G_1}$}
   % -----------------------------------------
   \RightLabel{$\Box\lt$}
-  \UIC{$\underbrace{w:\Box\a \lt t,\,\G_0}_{\G}$}    
+  \UIC{$\underbrace{w:\Box\a \lt t,\,\Delta}_{\G}$}    
   \DP
-  \]
+  \qquad
+  \text{$w_1$ does not occur in $\G$}
+\]
   By the hypothesis, $\M\models_{\Ical} w:\Box\a \lt t$ and
-  $\M\models_{\Ical} \G_0$, hence $e(\Ical(w),\Box \a)\lt
+  $\M\models_{\Ical} \Delta$, hence $e(\Ical(w),\Box \a)\lt
   \Ical(t)$. 
-  % We have two cases.  If the world $\Ical(w)$ has no
-  % $R$-successors, then $e(\Ical(w),\Box\a)=1$ and $t=1$ and
-  % $\lt=\leq$. Since $\Ical(R(w,w_1))=0$ we have:
-  % \begin{itemize}
-  % \item $e(\Ical(w),R(w,w_1)\to w_1:\a)=1$;
-  % \item $e(\Ical(w),\psi_1=R(w,w_1)\to w_1:\d)=1$ for every constraint of the
-  %   kind $\psi_1\geq t$ in $\Phibd{\G,w,w_1}$;
-  % \item $e(\Ical(w),\psi_2=R(w,w_1)\wedge w_1:\d)=0$ for every
-  %   constraint of the kind $\psi_2\leq t$ in $\Phibd{\G,w,w_1}$.
-  % \end{itemize}
-  % Hence we get that $\M\models_{\Ical} \G_1$.  Otherwise if $\Ical(w)$
-  % has at least one $R$-successor, 
   Since $\M$ is a $\GWM$-model, there exists a world $w^\star$ of $\M$
   such that $R(\Ical(w),w^\star)\to e(w^\star,\a)=e(\Ical(w),\Box\a)$.
-  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.  We remark that, for every
-  constraint $\chi$ not containing $w_1$, $\M\models_\Ical \chi$ iff
-  $\M\models_{\Ical'} \chi$. Since $w_1$ is a fresh world label, it
-  does not occur in $\G_0$, and hence
-  $\M\models_{\Ical'}\G_0$. Moreover:
-  \begin{itemize}
-  \item Since $e(\Ical(w),\Box \a)\lt \Ical(t)$ and $e(\Ical(w),\Box
-    \a) = R(\Ical(w),w^\star)\to e(w^\star,\a)$, we have
-    $R(\Ical(w),w^\star)\to e(w^\star,\a)\lt \Ical(t)$, and this
-    implies $\M\models_{\Ical'} R(w,w_1)\to w_1:\a\lt t$.
-    
-  \item For every $\chi=R(w,w_1)\to w_1 : \d \gt
-    t'\in\Phibd{\G,w,w_1}$, we have $w : \Box \b \gt t'\in \G_0$,
-    hence $e(\Ical(w),\Box \b) \gt \Ical(t')$.  %%Since $\Ical(w) R w^\star$, 
-    It follows that $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
-    \Ical(t')$, and this implies $\M\models_{\Ical'} \chi$.
+  Let $\Ical'=\reass{\Ical}{w_1}{w^\star}$.
+  We prove that:
 
-  \item For every $\chi=R(w,w_1)\wedge w_1 : \b \lt
-    t'\in\Phibd{\G,w,w_1}$, we have $w : \Diam \b \lt t'\in \G_0$,
-    hence $e(\Ical(w),\Diam \b) \lt
-    \Ical(t')$. %% Since $\Ical(w) R w^\star$,
-    It follows that $R(\Ical(w),w^\star)\land
-    e(w^\star,\b)\lt\Ical(t')$, and this implies $\M\models_{\Ical'}
-    \chi$.
-  \end{itemize}
-  We conclude $\M\models_{\Ical'} \G_1$.  
-  % The case where $\rho$ is rule $\Diam\gt$ is similar.
-  % \smallskip
-  % Let $\rho$ be an application of $R\to <$:
-  % \[
-  % \AXC{$\overbrace{w':\a<R(w,w'),\,  w':\a  < t,\,  \G_0}^{\G_1}$}    
-  % % ------------------------------------------    
-  % \RightLabel{$R\to <$}
-  % \UIC{$\underbrace{R(w,w') \to w':\a < t,\,\G_0}_{\G}$}
-  % \DP
-  % \]
-  % By the hypothesis, it holds that $\M\models_{\Ical} R(w,w')\to w':
-  % \a < t$ and $\M\models_{\Ical} \G_0$.  This implies that
-  % $\Ical(R(w,w')\to w':\a) < \Ical(t) \leq 1$, hence
-  % $R(\Ical(w),\Ical(w')) > e(\Ical(w'),\a)$ and $\Ical(R(w,w')\to
-  % w':\a)= e(\Ical(w'),\a)$, thus $\M\models_\Ical w':\a < t$ and
-  % $\M\models_{\Ical} \G_1$.  The cases of the rules $R\land\gt$,
-  % $R\land\lt$, $R\to\leq$ and $R\to\gt$ are similar.
+  \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
+  \item\label{prop:soundRule:box:1}     
+ $\M\models_{\Ical'}\Delta$.
 
+\item\label{prop:soundRule:box:2}     
+$\M\models_{\Ical'} R(w,w_1)\to w_1:\a\lt t$.
+
+\item\label{prop:soundRule:box:3}     
+  $\M\models_{\Ical'} \Phibd{\G,w,w_1}$.
+  %For every $\chi=R(w,w_1)\to w_1 : \b \gt t'\in\Phibd{\G,w,w_1}$,  $\M\models_{\Ical'} \chi$.
+
+% \item\label{prop:soundRule:box:4}     
+%    For every $\chi=R(w,w_1)\wedge w_1 : \b \lt t'\in\Phibd{\G,w,w_1}$,  $\M\models_{\Ical'} \chi$.
+  \end{enumerate}
+  Point~\ref{prop:soundRule:box:1} follows from the fact that $\M\models_{\Ical}\Delta$ and $w_1$ does not occur in $\D$.
+  Since $e(\Ical(w),\Box \a)\lt \Ical(t)$ and $e(\Ical(w),\Box
+    \a) = R(\Ical(w),w^\star)\to e(w^\star,\a)$, we get
+    $R(\Ical(w),w^\star)\to e(w^\star,\a)\lt \Ical(t)$; this proves~\ref{prop:soundRule:box:2}.
+    Let $\chi\in\Phibd{\G,w,w_1}$;  we show that  $\M\models_{\Ical'}\chi$,
+    and this proves ~\ref{prop:soundRule:box:3}.
+    Let  $\chi=R(w,w_1)\to w_1:\b\gt t'$. Then,  $w : \Box \b \gt t'\in \Delta$,
+hence $e(\Ical(w),\Box \b) \gt \Ical(t')$. It follows that
+ $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
+ \Ical(t')$,  hence $\M\models_{\Ical'} \chi$.
+ The  proof of   $\M\models_{\Ical'} \chi$ in the  case $\chi= R(w,w_1)\wedge w_1 : \b  \lt t'$ is similar,
+ taking into account that  $w : \Diam \b \lt t'\in \Delta$.
+From points~\ref{prop:soundRule:box:1}--\ref{prop:soundRule:box:3}, we conclude  $\M\models_{\Ical'} \G_1$.  
 \end{proof}
 
 
