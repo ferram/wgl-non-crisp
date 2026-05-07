@@ -523,11 +523,10 @@ We only detail some  representative cases, by showing the corresponding rule app
   By the hypothesis,  $\M\models_{\Ical} w: \a\to \b < t$
   and $\M\models_{\Ical} \Delta$.  This implies that $e(\Ical(w), \a\to
   \b) < \Ical(t)$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
-  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus $\M\models_\Ical w:\b
-  < t$. 
-  Let $r=e(\Ical(w),\b)$ and let $\M'=\stru{W,R,e'}$ be the \GWM-model where
-  $e'=e[(\Ical(w),q):=r]$.
-%  We remark that, for every constraint $\chi$ not containing $q$, $\M'\models_\Ical \chi$ iff $\M\models_{\Ical}  \chi$.
+  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus
+$e(\Ical(w),\b) < \Ical(t)$.
+Let $r=e(\Ical(w),\b)$, let $e'=e[(\Ical(w),q):=r]$   and   $\M'=\stru{W,R,e'}$;
+we remark  that $\M'$ is a \GWM-model.
   Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in
   $\Delta$, we get $\M'\models_{\Ical} \Delta$.  It is easy to check that
   $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
@@ -554,13 +553,13 @@ We only detail some  representative cases, by showing the corresponding rule app
   By the hypothesis, $\M\models_{\Ical} w: \a\to \b \leq t$ and
   $\M\models_{\Ical} \Delta$, hence $e(\Ical(w), \a\to \b)\leq
   \Ical(t)$.  Let us assume $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
-  $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, namely
-  $\Ical(t) =1$.  It follows that $\M\models_\Ical t \geq 1$, hence
+  $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, thus
+  $\Ical(t) =1$.  We get $\M\models_\Ical t \geq 1$, hence
   $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
   e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
   hence $\M\models_\Ical w:\b \leq t$.
-  Let $r=e(\Ical(w),\b)$ and let
-  $\M'=\stru{W,R,e'}$ be the $\GWM$-model where $e'=e[(\Ical(w),q):=r]$.  Since
+  Let $r=e(\Ical(w),\b)$,  let  $e'=e[(\Ical(w),q):=r]$ and
+  $\M'=\stru{W,R,e'}$; note that $\M'$ is a $\GWM$-model.  Since
   $\M\models_{\Ical} \Delta$ and $q$ does not occur in $\Delta$, we get
   $\M'\models_{\Ical} \Delta$.  Moreover, one can easily check that
   $\M'\models_{\Ical} w :\b \leq w:q$ and $\M'\models_{\Ical} w :\a >
@@ -592,10 +591,9 @@ We only detail some  representative cases, by showing the corresponding rule app
   $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
   $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$, thus
   $\M\models_\Ical 1 \gt t$.  Let
-  $r=e(\Ical(w),\a)$ and let $\M'=\stru{W,R,e'}$ be the \GWM-model where
-  $e'=e[(\Ical(w),q):=r]$; reasoning as in the previous cases,   we can prove that $\M'\models_{\Ical} \G_1$.
-  % Let $\rho$ be an application of $\Box\lt$:
-  %\smallskip
+  $r=e(\Ical(w),\a)$, let  $e'=e[(\Ical(w),q):=r]$ and  $\M'=\stru{W,R,e'}$;
+  note that  $\M'=\stru{W,R,e'}$ is a  \GWM-model. 
+  Reasoning as in the previous cases,   we can prove that $\M'\models_{\Ical} \G_1$.
   \[
   \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\Delta}^{\G_1}$}
   % -----------------------------------------
@@ -622,10 +620,6 @@ $\M\models_{\Ical'} R(w,w_1)\to w_1:\a\lt t$.
 
 \item\label{prop:soundRule:box:3}     
   $\M\models_{\Ical'} \Phibd{\G,w,w_1}$.
-  %For every $\chi=R(w,w_1)\to w_1 : \b \gt t'\in\Phibd{\G,w,w_1}$,  $\M\models_{\Ical'} \chi$.
-
-% \item\label{prop:soundRule:box:4}     
-%    For every $\chi=R(w,w_1)\wedge w_1 : \b \lt t'\in\Phibd{\G,w,w_1}$,  $\M\models_{\Ical'} \chi$.
   \end{enumerate}
   Point~\ref{prop:soundRule:box:1} follows from the fact that $\M\models_{\Ical}\Delta$ and $w_1$ does not occur in $\D$.
   Since $e(\Ical(w),\Box \a)\lt \Ical(t)$ and $e(\Ical(w),\Box
@@ -637,8 +631,8 @@ $\M\models_{\Ical'} R(w,w_1)\to w_1:\a\lt t$.
 hence $e(\Ical(w),\Box \b) \gt \Ical(t')$. It follows that
  $R(\Ical(w),w^\star)\to e(w^\star,\b)\gt
  \Ical(t')$,  hence $\M\models_{\Ical'} \chi$.
- The  proof of   $\M\models_{\Ical'} \chi$ in the  case $\chi= R(w,w_1)\wedge w_1 : \b  \lt t'$ is similar,
- taking into account that  $w : \Diam \b \lt t'\in \Delta$.
+ The  proof of   $\M\models_{\Ical'} \chi$ in the  case $\chi= R(w,w_1)\wedge w_1 : \b  \lt' t'$ is similar,
+ taking into account that  $w : \Diam \b \lt' t'\in \Delta$.
 From points~\ref{prop:soundRule:box:1}--\ref{prop:soundRule:box:3}, we conclude  $\M\models_{\Ical'} \G_1$.  
 \end{proof}
 
