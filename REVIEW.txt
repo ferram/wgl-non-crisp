@@ -1,0 +1,137 @@
+SUBMISSION: 8628
+TITLE: A Gödel Modal Logic Over Witnessed Models
+
+----------------------- REVIEW 1 ---------------------
+
+SUBMISSION: 8628
+TITLE: A Gödel Modal Logic Over Witnessed Models
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+Summery:
+The paper introduces a Goedel modal logic GW based on witnessed Kripke
+semantics, in which the truth value of modal formulas is always
+realized by an actual accessible world rather than by non-attained
+infima or suprema. Building on this semantic framework, the authors
+develop a constraint-based refutation calculus (CGW), prove its
+soundness, completeness, and strong termination, and show that failed
+proof search yields finite countermodels, establishing the finite
+model property for GW. Additionally, a PSPACE decision procedure is
+outlined, and an implementation is reported.
+
+--------------------------------------------------------------------
+----------------------------------------------------------------------
+Strengths:
+The paper is technically solid and well-structured. The move to
+witnessed semantics is well-motivated: it eliminates limit-based
+phenomena in Goedel modal logics and enables a more constructive and
+proof-theoretically well-behaved framework. The development of the
+calculus CGW is careful and nontrivial, and the proofs of soundness,
+completeness, and strong termination are convincing.
+
+--------------------------------------------------------------------
+----------------------------------------------------------------------
+Weaknesses and Points for Improvement:
+Despite its technical strength, the paper would benefit from
+clarification on several conceptual aspects:
+
+-1- The most important issue concerns the lack of a syntactic
+ characterization of the logic GW. While GW is defined semantically as
+ the set of formulas valid in witnessed Goedel Kripke models, the
+ paper does not provide a corresponding Hilbert-style or sequent-style
+ axiomatization, nor does it discuss whether such an axiomatization
+ exists. In contrast, the base logic GK is explicitly introduced via
+ axioms and rules. The proposed calculus CGW, although sound and
+ complete, functions as a refutation and decision procedure rather
+ than a standard deductive system generating theorems of the logic. As
+ a result, the 'underlying logic' of GW remains only implicitly
+ characterized via semantics and refutation.
+
+-2- While the technical motivation (restoring finite model property
+ and constructive semantics) is clear, the broader logical or
+ practical significance could be elaborated further. In particular, it
+ would be helpful to better situate GW among existing Goedel modal
+ logics and explain more explicitly in which contexts this new logic
+ is preferable or necessary.
+
+-3- Although the calculus is well-designed, it is relatively complex,
+with many rules and case distinctions. Some discussion on whether this
+complexity is inherent or whether simplifications are possible would
+be welcome.
+
+-4- The PSPACE decision procedure is also presented at a high level; a
+ slightly more detailed justification or comparison with related
+ approaches could improve clarity.
+
+
+----------------------- REVIEW 2 ---------------------
+
+SUBMISSION: 8628
+TITLE: A Gödel Modal Logic Over Witnessed Models
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+The paper studies Goedel model logic over (not necessarily crisp)
+witnessed models. These are many-valued modal logics where
+propositional variables and the accessibility relation take on values
+in the standard Goedel algebra, i.e., the real unit
+interval. Moreover, the semantics clauses for the modalities are
+witnessed in the sense that the infima and suprema that need to be
+determined to evaluate, respectively, a box and diamond formula at a
+world are always realized among the successors of that world. The
+modal logics of the classes of all Goedel models, crisp Goedel models,
+witnessed and Goedel models, and crisp, witnessed Goedel modals are
+shown to be distinct.
+
+Building on their earlier work for crisp witnessed models, the authors
+introduce a refutation calculus for the Goedel modal logic of (not
+necessarily crisp) witnessed models. The calculus makes use of an
+expanded language that can capture constraints incorporating semantic
+information, rather like labelled tableaux. It is shown to be sound in
+the sense that derivable sets of constraints are not satisfiable, and
+complete in the sense that all non-satisfiable sets of constraints are
+derivable. It is also shown to be strongly terminating. As the
+countermodels extracted from derivations are finite, it follows that
+the logic has the FMP.
+
+I found the paper well-written. It should definitely be of interest to
+the AiML community. The introduction contextualises the work nicely
+within the broader literature. Definitions and motivations are clear
+and, as far as I could see, the proofs are technically correct. I did
+not find any typos or errors, except that the definition of
+M-interpretation on p5 should be put in italics.
+
+
+----------------------- REVIEW 3 ---------------------
+
+SUBMISSION: 8628
+TITLE: A Gödel Modal Logic Over Witnessed Models
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+Following up on authors' earlier work on Gödel modal logic, the
+current paper presents a Gödel modal logic GW evaluated over
+[0,1]-valued Kripke models that are witnessed, i.e. the suprema
+(infima) locally evaluating diamond (box) formulas are always realized
+in a successor world. The main contributions are:
+- considering [0,1]-valued Kripke models with fuzzy accessibility relations (earlier work was on crisp models)
+- providing constraint tableaux calculus sound, complete, and strongly terminating for GW
+- providing explicit countermodel construction
+- proving decidability in PSPACE, including an implementation of the algorithm.
+
+This clearly is of interest to AiML community, the paper is well
+written, and I recommend acceptance.
+
+I have a few comments:
+
+- one thing that the paper does not discuss further is an
+  axiomatization of the logics GW^c (which is mentioned as being
+  recently proposed in [10]), and GW. A comment on the difficulties in
+  providing it or proving it complete would go a long way.
+
+- Is not GW in fact PSPACE complete? Some closely related logics,
+  including KG and KG^c or similar bi-Gödel modal logics are PSPACE
+  complete.

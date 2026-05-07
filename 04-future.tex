@@ -1,0 +1,66 @@
+\section{Conclusions and Future Work}
+
+
+We have implemented a proof-search procedure for the calculus $\Calcw$  that supports countermodel extraction.
+The prover, named
+\texttt{gwref}~\cite{gwrefProver}, performs a standard backward
+depth-first proof search, relying on the JTabWb
+engine~\cite{FerrariFF:17a}. The consistency of atomic constraints is
+verified using the Choco-solver Java library~\cite{ChocoSolver:2025}.
+We emphasize that the calculus $\Calcw$ and the associated
+proof-search strategy can be smoothly adapted to treat the logic
+$\GWCL$~\cite{FerFioRod:2025}, characterized by crisp $\GWM$-models,
+by refining the notion of consistency for a set of atomic constraints
+$\Gat$: a solution $\s$ to $\Gat$ must satisfy $\s(R(w,w')) \in
+\{0,1\}$ for every pair of labels $w$, $w'$.  To the best of our
+knowledge, the only other prover available for modal fuzzy logics is
+mNiBLoS~\cite{Vidal:16}, an SMT-based solver designed for continuous
+t-norm-based logics, including G\"odel--Dummett logic.  However,
+neither $\GWL$ nor $\GWCL$ are supported by mNiBLoS.
+
+
+The results presented in this paper are highly relevant to the study
+of intermediate predicate logics.
+It is well known that
+modal logics can be viewed as characterizing interesting fragments of
+first-order logics, in particular, the one-variable fragments of
+intuitionistic predicate logic. 
+From this perspective, our results have both theoretical and
+practical significance.
+For instance, in~\cite{BI-IGPL2016},
+the authors establish Herbrand's Theorem and the
+interpolation property, and introduce an alternative Skolemization
+method for a wide class of intermediate intuitionistic predicate
+logics enjoying the finite model property.
+
+\tr{The results presented in this paper are highly relevant to the
+  study of intermediate predicate logics. It is well known that modal
+  logics can be used to characterize relevant fragments of
+  intermediate first-order logics, especially certain one-variable
+  fragments. From this perspective, the witnessed semantics and finite
+  model property established here suggest strong connections with
+  proof-theoretic properties of intermediate predicate logics, such as
+  Herbrand’s Theorem, interpolation, and alternative forms of
+  Skolemization studied in \cite{BI-IGPL2016} for broad classes of
+  intermediate intuitionistic predicate logics with the finite model
+  property. Motivated by these connections with intermediate logics,
+  and in order to place $\GWL$ within the broader setting of
+  intuitionistic modal logics, we plan to provide a birelational
+  Kripke semantics characterization of $\GWL$, extending to this
+  setting the approach developed for $\GWCL$ in
+  \cite{FerFioRod:2025}. }
+
+
+As future work, we plan to extend the procedure to other witnessed
+G\"odel modal logics imposing additional constraints on the
+accessibility relation (e.g., reflexivity, transitivity, seriality).
+In contrast, treating G\"odel modal logics with non-witnessed models
+seems to be considerably more challenging.
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "goedelModalLogicWitnessNonCrisp"
+%%% End: 
