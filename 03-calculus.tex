@@ -477,10 +477,9 @@ are defined as follows ($w\in W$ and $p\in\PV$):
   \end{cases}
 \]
 Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that,
- for every formula $\varphi$ not containing $p_0$.
-$e(w',\varphi)=e(w,\varphi)$ and
- $e'(w,p_0\tto \a)$.
- As a consequence, $\stru{W,R,e'}$ is a $\GWM$-model.
+ for every formula $\varphi$ not containing $p_0$,
+$e'(w,\varphi)=e(w,\varphi)$. Accordingly,
+ $e'(w,p_0\tto \a)=1$, and this implies that $\stru{W,R,e'}$ is a $\GWM$-model.
  Let  $\Ical'=\reass{\Ical}{w_0}{w^\star}$ and let $\chi$ be a constraint not containing $w_0$;
  one can prove that $\M\models_{\Ical'}\chi$ iff  $\M\models_{\Ical}\chi$. 
 
@@ -565,8 +564,7 @@ we remark  that $\M'$ is a \GWM-model.
   \Ical(t)$.  Let us assume $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
   $e(\Ical(w),\a\to \b) = 1$, which implies $1\leq \Ical(t)$, thus
   $\Ical(t) =1$.  We get $\M\models_\Ical t \geq 1$, hence
-  $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
-  e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
+  $\M\models_\Ical \G_1$. Assume  $e(\Ical(w),\a) > e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
   hence $\M\models_\Ical w:\b \leq t$.
   Let   $\M'=\stru{W,R,\reass{e}{q}{\b}}$;
  note that $\M'$ is a $\GWM$-model. 
