@@ -476,8 +476,10 @@ are defined as follows ($w\in W$ and $p\in\PV$):
  \Ical(w) &\text{otherwise}   
   \end{cases}
 \]
-Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that
- $e'(w,p_0\tto \a)$ and, for every formula $\varphi$ not containing $p_0$, $e(w',\varphi)=e(w,\varphi)$.
+Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that,
+ for every formula $\varphi$ not containing $p_0$.
+$e(w',\varphi)=e(w,\varphi)$ and
+ $e'(w,p_0\tto \a)$.
  As a consequence, $\stru{W,R,e'}$ is a $\GWM$-model.
  Let  $\Ical'=\reass{\Ical}{w_0}{w^\star}$ and let $\chi$ be a constraint not containing $w_0$;
  one can prove that $\M\models_{\Ical'}\chi$ iff  $\M\models_{\Ical}\chi$. 
@@ -488,13 +490,13 @@ Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that
 \begin{lemma}\label{lemma:soundRule}
   Let $\rho$ be an instance of a rule of $\Calcw$ and 
  let $\Gamma$  be the conclusion of $\rho$. If there is  a \GWM-model $\M$
-such that $\M\models\G$, then there are a premise $\G'$ of $\rho$
-and a  \GWM-model $\M'$
+ such that $\M\models\G$, then there exist a
+\GWM-model $\M'$ and a   premise $\G'$ of $\rho$
   such that $\M'\models\G'$.
 \end{lemma}
 
 \begin{proof}
-  Let $\rho$ be an application of the rule $\ruleAxat$; since the rule has no premises,
+  Let $\rho$ be an instance of the rule $\ruleAxat$; since the rule has no premises,
   we have to show that there is no $\M$ such that $\M\models \G$.  Let
   us assume, by contradiction, that there is a \GWM-model
   $\M=\stru{W,R,e}$ and an $\M$-interpretation $\Ical$ such that
@@ -511,8 +513,8 @@ and a  \GWM-model $\M'$
 
   Let $\rho\neq \ruleAxat$ and let us assume $\M\models_\Ical\G$, where $\M=\stru{W,R,e}$
 is a \GWM-model  and $\Ical$ is an $\M$-interpretation;
-we show that  then there are a premise $\G'$ of $\rho$
-and a  \GWM-model $\M'$ such that $\M'\models\G'$.
+we prove that  then there exist a  \GWM-model $\M'$ 
+and a premise $\G'$ of $\rho$ such that $\M'\models\G'$.
 We only detail some  representative cases, by showing the corresponding rule application.
   %Let $\rho$ be an application of $\to <$, where $\b\not\in \Vcal\cup{\bot}$:
   \[\small
