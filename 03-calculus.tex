@@ -456,26 +456,32 @@ An example of derivation is shown in Fig.~\ref{fig:der};
   \label{fig:der}
 \end{figure}
 
-%To prove the next lemma, we need the following definitions.
-Let $\M=\stru{W,R,e}$ be a $\GWM$-model and  $\Ical$  an $\M$-interpretation;
-let $p \in \PV$,  $r\in[0,1]$ and   $w^\star\in W$.
-The evaluation function   $\reass{e}{p}{r}$   and the  $\M$-interpretation  $\reass{\Ical}{w}{w^\star}$ are defined as follows:
+
+Let $\M=\stru{W,R,e}$ be a $\GWM$-model and  $\Ical$  an $\M$-interpretation.
+Let $p_0 \in \PV$ and $\a$  a formula not containing $p_0$, let $w_0\in\LC$  and   $w^\star\in W$.
+The evaluation function   $\reass{e}{p_0}{\a}$   and the  $\M$-interpretation  $\reass{\Ical}{w_0}{w^\star}$
+are defined as follows ($w\in W$ and $p\in\PV$):
 \[
-\reass{e}{p}{r}(w,p')\:=\;
+\reass{e}{p_0}{\a}(w,p)\:=\;
   \begin{cases}
-  r &\text{if $p'=p$}  
+  e(w,\a) &\text{if $p=p_0$}  
  \\[0.5ex]
- e(w,p') &\text{otherwise}   
+ e(w,p) &\text{otherwise}   
   \end{cases}
 \hspace{4em}
-  \reass{\Ical}{w}{w^\star}(w') \:=\;
+  \reass{\Ical}{w_0}{w^\star}(w) \:=\;
   \begin{cases}
-  w^* &\text{if $w'=w$}  
+  w^* &\text{if $w=w_0$}  
  \\[0.5ex]
- \Ical(w') &\text{otherwise}   
+ \Ical(w) &\text{otherwise}   
   \end{cases}
 \]
-One can prove that  $\M=\stru{W,R, \reass{e}{p}{r}}$ is a \GWM-model.
+Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that
+ $e'(w,p_0\tto \a)$ and, for every formula $\varphi$ not containing $p_0$, $e(w',\varphi)=e(w,\varphi)$.
+ As a consequence, $\stru{W,R,e'}$ is a $\GWM$-model.
+ Let  $\Ical'=\reass{\Ical}{w_0}{w^\star}$ and let $\chi$ be a constraint not containing $w_0$;
+ one can prove that $\M\models_{\Ical'}\chi$ iff  $\M\models_{\Ical}\chi$. 
+
 
 
 
@@ -527,9 +533,8 @@ We only detail some  representative cases, by showing the corresponding rule app
   and $\M\models_{\Ical} \Delta$.  This implies that $e(\Ical(w), \a\to
   \b) < \Ical(t)$, hence $e(\Ical(w),\a) > e(\Ical(w),\b)$ and
   $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$, thus
-$e(\Ical(w),\b) < \Ical(t)$.
-Let $r=e(\Ical(w),\b)$ and  $\M'=\stru{W,R,\reass{e}{q}{r}}$;
-we remark  that $\M'$ is a \GWM-model.
+$e(\Ical(w),\b) < \Ical(t)$. 
+Let   $\M'=\stru{W,R,\reass{e}{q}{\b}}$;
 we remark  that $\M'$ is a \GWM-model.
   Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in
   $\Delta$, we get $\M'\models_{\Ical} \Delta$.  It is easy to check that
@@ -561,7 +566,7 @@ we remark  that $\M'$ is a \GWM-model.
   $\M\models_\Ical \G_1$. Let us assume $e(\Ical(w),\a) >
   e(\Ical(w),\b)$; then,  $e(\Ical(w),\a\to \b) = e(\Ical(w),\b)$,
   hence $\M\models_\Ical w:\b \leq t$.
-  Let $r=e(\Ical(w),\b)$ and  $\M'=\stru{W,R,\reass{e}{q}{r}}$;
+  Let   $\M'=\stru{W,R,\reass{e}{q}{\b}}$;
  note that $\M'$ is a $\GWM$-model. 
   Since $\M\models_{\Ical} \Delta$ and $q$ does not occur in $\Delta$, we get
   $\M'\models_{\Ical} \Delta$.  Moreover, one can easily check that
@@ -591,8 +596,7 @@ we remark  that $\M'$ is a \GWM-model.
   e(\Ical(w),\b)$, hence $\M\models_\Ical \G_2$.  Let us assume
   $e(\Ical(w),\a) \leq e(\Ical(w),\b)$; then,
   $e(\Ical(w),\a\to \b) = 1$, which implies $1 \gt \Ical(t)$, thus
-  $\M\models_\Ical 1 \gt t$.  Let
-  $r=e(\Ical(w),\a)$ and $\M'=\stru{W,R,\reass{e}{q}{r}}$;  note that  $\M'$ is a  \GWM-model. 
+  $\M\models_\Ical 1 \gt t$.  Let  $\M'=\stru{W,R,\reass{e}{q}{\a}}$;  note that  $\M'$ is a  \GWM-model. 
   Reasoning as in the previous cases,   we can prove that $\M'\models_{\Ical} \G_1$.
   \[\small
   \AXC{$\overbrace{R(w,w_1)\to w_1:\a \lt t,\,\Phibd{\G,w,w_1},\,\Delta}^{\G_1}$}
