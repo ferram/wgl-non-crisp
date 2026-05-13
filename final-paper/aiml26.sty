@@ -1,0 +1,40 @@
+%%%% 
+%%%% Additional style file for AiML 2026
+%%%%
+%%%% Please make sure to include this file in your document, with the command: 
+%%%% \usepackage{aiml26macro}
+%%%% 
+%%%%
+%%%% Do NOT modify the file eptcs.csl (this file will be deleted and replaced by the 
+%%%% default version in the publication stage). 
+%%%% Instead, include your macros in this file (aiml26), or in an additional file, or in the main 
+%%%% document. Upload the file aiml26.sty and any additional file in the zip file of your submission.
+
+
+%%%% Theorem counters
+
+\usepackage{amsthm}
+%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+%
+\theoremstyle{definition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}%[section]
+\newtheorem{exercise}[theorem]{{Exercise}}
+
+   
+%%%% Printing the Appendix
+  
+\newcommand{\Appendix}{\appendix\section*{Appendix}}
+  
