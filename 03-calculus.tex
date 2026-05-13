@@ -1268,19 +1268,21 @@ performed by $\Bs$ are plain.
 \begin{proof}
   Assume that $\Bs$ fails.  By tracing the computation, we can build
   an open branch $\Bcal=\stru{\G_0,\dots,\G_n}$.  Since $\Bs$ is
-  plain, the branch $\Bcal$ is saturated.
-Let $\s$ be  a solution to $\Atmp{\G_n}$;
-by Prop.~\ref{prop:satBranch}\ref{prop:satBranch:1}, 
-  $\Mod{\Atmp{\G_n},\s}$ is a discrete countermodel for $\G_0$.
+  plain, the branch $\Bcal$ is saturated.  Let $\s$ be a solution to
+  $\Atmp{\G_n}$; by Prop.~\ref{prop:satBranch}\ref{prop:satBranch:1},
+  we get that $\Mod{\Atmp{\G_n},\s}$ is a discrete countermodel for
+  $\G_0$.
 \end{proof}
 
 \noindent
-To sum up, we get the completeness of $\Calcw$ and the finite model property for $\GWL$.
+To sum up, we get the completeness of $\Calcw$ and the finite model
+property for $\GWL$.
 
 
 
 \begin{proposition}[Completeness]\label{prop:compl}
-  Let $\G$  be a finite multiset of constraints of the form $w:\varphi\abstractorder t$.
+  Let $\G$ be a finite multiset of constraints of the form
+  $w:\varphi\abstractorder t$.
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]    
   \item\label{prop:compl:1}
     $\provesw{\Gamma}$ iff, for every \GWM-model  $\M$,  $\M\not\models\G$.
@@ -1296,7 +1298,7 @@ To sum up, we get the completeness of $\Calcw$ and the finite model property for
 
 \noindent
 Let $\varphi \notin \GWL$ and let $\M$ be the discrete countermodel
-extracted from an open branch with root $w_0:\varphi < 1$. One can
+extracted from an opennn branch with root $w_0:\varphi < 1$. One can
 easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
 that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
 Consequently, the size of $\M$ is
