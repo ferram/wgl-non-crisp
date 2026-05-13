@@ -297,22 +297,14 @@ $k\in\{0,1\}$, and $\s(w:\bot)=0$.  Let $\Gat$ be a set of atomic
 constraints.  By $\s(\Gat)$ we denote the set of constraints obtained
 by replacing every atomic c-term $t$ occurring in $\Gat$ with $\s(t)$.
 Note that $\s(\Gat)$ is a set of rational constraints of the form $r_1
-\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$;
-if all the constraint in $\s(\Gat)$ hold, 
-$\s$ is a  \emph{solution} to $\Gat$.
-The set $\Gat$ is \emph{consistent} iff it admits at least a solution.
-% \begin{itemize}[leftmargin=*]
-% \item $\Gat$ is \emph{consistent} iff there exists a substitution $\s$
-%   such that all the constraints in $\s(\Gat)$ hold; we call $\s$ a
-%   \emph{solution} to $\Gat$.
-% \end{itemize}
-We remark that consistency of $\Gat$ can be checked by a Constraint
-Solver over $Q$: one has to abstract the c-terms $w : p$ and $R(w,w')$
-occurring in $\Gat$ by introducing new variables ranging over
-$\Qrange$, and then check the consistency of the obtained constraints
-by exploiting the solver.
-
-
+\abstractorder r_2$, with $r_1$ and $r_2$ in $\Qrange$; if all the
+constraints in $\s(\Gat)$ hold, $\s$ is a \emph{solution} to $\Gat$.
+The set $\Gat$ is \emph{consistent} iff it admits at least one
+solution.  We remark that consistency of $\Gat$ can be checked by a
+Constraint Solver over $Q$: one has to abstract the c-terms $w : p$
+and $R(w,w')$ occurring in $\Gat$ by introducing new variables ranging
+over $\Qrange$, and then check the consistency of the obtained
+constraints by exploiting the solver.
 
 Hereafter, in constraints $\lt$ and $\lt'$ are metasymbols ranging over
 $\{<,\leq\}$; similarly $\gt,\gt' \in \{>,\geq\}$. The rules of the calculus
@@ -476,12 +468,13 @@ are defined as follows ($w\in W$ and $p\in\PV$):
  \Ical(w) &\text{otherwise}   
   \end{cases}
 \]
-Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that,
- for every formula $\varphi$ not containing $p_0$,
-$e'(w,\varphi)=e(w,\varphi)$. Accordingly,
- $e'(w,p_0\tto \a)=1$, and this implies that $\stru{W,R,e'}$ is a $\GWM$-model.
- Let  $\Ical'=\reass{\Ical}{w_0}{w^\star}$ and let $\chi$ be a constraint not containing $w_0$;
- one can prove that $\M\models_{\Ical'}\chi$ iff  $\M\models_{\Ical}\chi$. 
+Let $e'=\reass{e}{p_0}{\a}$ and $w\in W$; one can prove that, for
+every formula $\varphi$ not containing $p_0$,
+$e'(w,\varphi)=e(w,\varphi)$. Accordingly, $e'(w,p_0\tto \a)=1$, and
+this implies that $\stru{W,R,e'}$ is a $\GWM$-model.  Let
+$\Ical'=\reass{\Ical}{w_0}{w^\star}$ and let $\chi$ be a constraint
+not containing $w_0$; one can prove that $\M\models_{\Ical'}\chi$ iff
+$\M\models_{\Ical}\chi$.
 
 
 
@@ -856,7 +849,7 @@ As an immediate consequence of Lemma~\ref{lemma:rulesDec}, we get:
   The calculus $\Calcw$ is strongly terminating.
 \end{proposition}
 
-Accordingly, any backward proof search strategy for $\Calcw$
+Consequently, any backward proof search strategy for $\Calcw$
 terminates.  Following~\cite{FerFioFio:2013,FioFer:2021jlc}, we focus
 on strategies where failure is certified by countermodels, i.e.: if
 proof search for a multiset of constraints $\G$ fails, a \GWM-model
@@ -1183,7 +1176,7 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
  $\M\models_\Ical w:\b\gt t$, namely $e(w,\b)\gt\Ical(t)$.  Since
  $e(w,\a\to\b)\geq e(w,\b)$, we get $e(w,\a\to\b)\gt\Ical(t)$, hence
  $\M\models_\Ical w:\a\to \b \gt t$.  The cases concerning
- $R$-constrains can be proved as the corresponding propositional
+ $R$-constraints can be proved as the corresponding propositional
  cases.
 
 
@@ -1220,7 +1213,7 @@ $\Mod{\Atmp{\G_n},\s}$ is a countermodel for $\G_0$.
  immediate.  Let $\gt$ be $>$.  Since $\chi\in\G_n$, we get $1
  >t\in\Atmp{\G_n}$, thus $\M\models_\Ical1 > t$
  by~\ref{lemma:count:atmp}.  Let us assume that $R(w,w')$ occurs in
- $\G_n$.  Then, there exists $k > 0$ be such that $R(w,w')$ is
+ $\G_n$.  Then, there exists $k > 0$ such that $R(w,w')$ is
  introduced in $\G_{k}$ by an application of a modal rule $\rho$,
  namely:
  \begin{itemize}
@@ -1307,56 +1300,54 @@ extracted from an open branch with root $w_0:\varphi < 1$. One can
 easily show that the depth of $\M$ is bounded by $\size{\varphi}$ and
 that every world in $\M$ has at most $\size{\varphi}$ $R$-successors.
 Consequently, the size of $\M$ is
-$O(\size{\varphi}^{\size{\varphi}})$;
-moreover, we can define define formulas $\varphi$
-having countermodels of size $2^{\size{\varphi}}$
-(e.~g.,  consider the  translation $\varphi^*$ 
-  of a $\KL$-formula  $\varphi$
-such that $\varphi$  has a countermodel of exponential size).
-Note that $\M$ cannot be constructed incrementally, one branch at a
-time, since the constraints generated during the expansion of a branch
-have global validity and must be preserved throughout the entire
-construction.  Nevertheless, we can 
-define a PSPACE
-algorithm to check if such a countermodel exists without effectively
-constructing it; this is discussed in the proof of the next proposition.
+$O(\size{\varphi}^{\size{\varphi}})$; moreover, we can define formulas
+$\varphi$ having countermodels of size $2^{\size{\varphi}}$ (e.g.,
+consider the translation $\varphi^*$ of a $\KL$-formula $\varphi$ such
+that $\varphi$ has a countermodel of exponential size).  Note that
+$\M$ cannot be constructed incrementally, one branch at a time, since
+the constraints generated during the expansion of a branch have global
+validity and must be preserved throughout the entire construction.
+Nevertheless, we can define a PSPACE algorithm to check if such a
+countermodel exists without effectively constructing it; this is
+discussed in the proof of the next proposition.
 
 \begin{proposition}
 The validity problem for $\GWL$ is PSPACE-complete.  
 \end{proposition}
 
 \begin{proof}
-  Since the modal logic $\KL$ can be embedded into $\GWL$  (see Prop.~\ref{prop:embedding})
-  and $\KL$ is PSPACE-complete~\cite{Ladner:77}, 
-    the validity problem for $\GWL$   is PSPACE-hard.
-It remains to prove that   $\GWL$-validity   can be checked in PSPACE. 
-To this aim, we sketch a PSPACE procedure to decide the membership of a formula to
-$\GWL$.  Henceforth, we assume that the formula to be checked is
-$\varphi$.  As discussed above, if
-$\varphi\not\in\GWL$, then there exists a tree-like countermodel
-$\M=\stru{W,R,e}$ for $\varphi$ such that the number of worlds is
-$O(\size{\varphi}^{\size{\varphi}})$.  We can also bound the number
-$N$ of values needed to define $R$ and $e$: in the worst case, the
-values $e(w,p)$ and $R(w,w')$ must all be pairwise distinct, for every
-world $w$, $w'$ in $\M$  and every propositional variable $p$ occurring in
-$\varphi$; accordingly, $N$ is in
-$O(\size{\varphi}^{\size{\varphi}})$.  We set
-$\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$; note that the elements of
-$\Qcal$ can be generated in space $O(\size{\varphi})$.  By the above
-discussion, if $\varphi\not\in\GWL$ there exists a countermodel $\M$
-such that the images of $R$ and $e$ are contained in $\Qcal$.  To
-define the procedure, we need a global map $\Phi$ that specifies the
-intended values of the subformulas of $\varphi$ at each world of the
-model under construction.  More precisely, given a world name $w$,
-$\Phi(w)$ is a set of assignments of the form $e(w,\a)=r$,  where $\a$ is a subformula of $\varphi$ and
-$r\in\Qcal$. We remark that $\Phi(w)$ can be stored in space
-$O(|\varphi|)$; moreover, to implement the search procedure, we do no
-not need to store the whole map $\Phi$, but at most
-$O(\size{\varphi})$ entries of $\Phi$.  A $\GWM$-model
-$\M=\stru{W,R,e}$ complies with $\Phi$ iff, for every $w$ in $W$
-and every assignment $e(w,\a)=r$ stored in $\Phi(w)$, the value of
-$e(w,\a)$ (in $\M$) is $r$.  The decision procedure is implemented by
-the recursive procedure $\Search$ having the following specification:
+  Since the modal logic $\KL$ can be embedded into $\GWL$
+  (Prop.~\ref{prop:embedding}) and $\KL$ is
+  PSPACE-complete~\cite{Ladner:77}, the validity problem for $\GWL$ is
+  PSPACE-hard.  It remains to prove that $\GWL$-validity can be
+  checked in PSPACE.  To this aim, we sketch a PSPACE procedure to
+  decide the membership of a formula to $\GWL$.  Henceforth, we assume
+  that the formula to be checked is $\varphi$.  As discussed above, if
+  $\varphi\not\in\GWL$, then there exists a tree-like countermodel
+  $\M=\stru{W,R,e}$ for $\varphi$ such that the number of worlds is
+  $O(\size{\varphi}^{\size{\varphi}})$.  We can also bound the number
+  $N$ of values needed to define $R$ and $e$: in the worst case, the
+  values $e(w,p)$ and $R(w,w')$ must all be pairwise distinct, for
+  every world $w$, $w'$ in $\M$ and every propositional variable $p$
+  occurring in $\varphi$; accordingly, $N$ is in
+  $O(\size{\varphi}^{\size{\varphi}})$.  We set
+  $\Qcal=\{0\}\cup\{~1/k~|~1\leq k\leq N\}$; note that the elements of
+  $\Qcal$ can be generated in space $O(\size{\varphi})$.  By the above
+  discussion, if $\varphi\not\in\GWL$ there exists a countermodel $\M$
+  such that the images of $R$ and $e$ are contained in $\Qcal$.  To
+  define the procedure, we need a global map $\Phi$ that specifies the
+  intended values of the subformulas of $\varphi$ at each world of the
+  model under construction.  More precisely, given a world name $w$,
+  $\Phi(w)$ is a set of assignments of the form $e(w,\a)=r$, where
+  $\a$ is a subformula of $\varphi$ and $r\in\Qcal$. We remark that
+  $\Phi(w)$ can be stored in space $O(|\varphi|)$; moreover, to
+  implement the search procedure, we do no not need to store the whole
+  map $\Phi$, but at most $O(\size{\varphi})$ entries of $\Phi$.  A
+  $\GWM$-model $\M=\stru{W,R,e}$ complies with $\Phi$ iff, for every
+  $w$ in $W$ and every assignment $e(w,\a)=r$ stored in $\Phi(w)$, the
+  value of $e(w,\a)$ (in $\M$) is $r$.  The decision procedure is
+  implemented by the recursive procedure $\Search$ having the
+  following specification:
 
 \begin{itemize}
 \item Let $w$ be a world name and let us assume that $\Phi(w)\neq
@@ -1429,29 +1420,31 @@ computation of $\Search(w)$ consists of two main steps.
     select with a $\Qcal$-choice a value $r'_j$ such that $r'_k \land
     r'_j \leq r_j$ and we add $e(w_k,\a_j)=r'_j$ to $\Phi(w_k)$.
   \end{itemize}
-  We recursively compute $\Search(w_k)$; we remark that the modal
+  We compute recursively $\Search(w_k)$; notice that the modal
   operators occurring in $\Phi(w_k)$ are fewer than the modal
   operators in $\Phi(w)$, thus the recursion is terminating. We also
-  stress that there are at most $\size{\phi}$ nested recursive calls.  Let
-  us assume that $\Search(w_k)$ returns $\Success$.  If $k=n$ (last
-  iteration), the call $\Search(w)$ returns $\Success$.  Otherwise the
-  computation continues with next iteration $k+1$.  We point out that
-  the entries of the map $\Phi$ exploited in the computation of
-  $\Search(w_k)$ are no longer required, so they can be removed from
-  the  memory.  Let us assume that $\Search(w_k)$ returns $\Fail$.
-  Then, a backtrack step is needed.  If no new $\Qcal$-choice is
-  possible, the call $\Search(w)$ returns $\Fail$.
+  stress that there are at most $\size{\phi}$ nested recursive calls.
+  Let us assume that $\Search(w_k)$ returns $\Success$.  If $k=n$
+  (last iteration), the call $\Search(w)$ returns $\Success$.
+  Otherwise the computation continues with next iteration $k+1$.  We
+  point out that the entries of the map $\Phi$ exploited in the
+  computation of $\Search(w_k)$ are no longer required, so they can be
+  removed from the memory.  Let us assume that $\Search(w_k)$ returns
+  $\Fail$.  Then, a backtrack step is needed.  If no new
+  $\Qcal$-choice is possible, the call $\Search(w)$ returns $\Fail$.
 \end{enumerate}
-The procedure  can be implemented so that  $\Search(w)$ is computed in space $O(\size{\varphi})$.
+The procedure can be implemented so that $\Search(w)$ is computed in
+space $O(\size{\varphi})$.
 
 We can exploit $\Search$ to decide the validity of $\varphi$ in
-$\GWL$.  We initialize $\Phi$ by setting $\Phi(w_0)=\{e(w_0,\varphi)= q_0\}$, where
-$q_0$ is any value in $\Qcal$ different from 1.  If $\Search(w_0)$
-returns $\Success$, then a model $\M$ containing a worlds $w_0$ such
-that $e(w_0,\varphi)=r_0$ can be built; since $r_0 < 1$, we conclude
-$\varphi\not\in \GWL$.  If $\Search(w_0)$ returns $\Fail$, for every
-possible choice of $r_0$, it follows that no $\GWM$-countermodel for
-$\varphi$ can be built; accordingly, $\varphi\in \GWL$.
+$\GWL$.  We initialize $\Phi$ by setting $\Phi(w_0)=\{e(w_0,\varphi)=
+q_0\}$, where $q_0$ is any value in $\Qcal$ different from 1.  If
+$\Search(w_0)$ returns $\Success$, then a model $\M$ containing a
+world $w_0$ such that $e(w_0,\varphi)=r_0$ can be built; since $r_0 <
+1$, we conclude $\varphi\not\in \GWL$.  If $\Search(w_0)$ returns
+$\Fail$, for every possible choice of $r_0$, it follows that no
+$\GWM$-countermodel for $\varphi$ can be built; accordingly,
+$\varphi\in \GWL$.
 \end{proof}
 
 

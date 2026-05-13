@@ -108,9 +108,9 @@ is understood that $r$ is 0 (e.g., $R(w_i,w_j)=0$, for every $i\geq 1$
 and $j\geq 0$).  It holds that $e(w_0,\Box p)=0$, but the witnessing
 condition fails since there is no $w_j\in W$ such that $R(w_0,w_j) \to
 e(w_j,p)=0$.  Similarly $e(w_0,\Diamond q)=1$, but there is no
-witness.
-In denoting a class of models, the superscript $\mathrm{c}$ means ``crisp''
-(e.g.,   $\GWCM$-model stands for  ``crisp  $\GWM$-model''). 
+witness.  When denoting a class of models, the superscript
+$\mathrm{c}$ means ``crisp'' (e.g., $\GWCM$-model stands for ``crisp
+$\GWM$-model'').
 
 A formula $\varphi$ is \emph{valid} in $\M=\stru{W,R,e}$ iff
 $e(w,\varphi)=1$ for every world $w$ in $W$.  If $\varphi$ is not
@@ -165,9 +165,9 @@ by providing a semantic characterization
 
 \noindent
 The logic $\GCL$ is obtained by adding the Crisp axiom
-$\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, we call $(Cr)$, to $\GKL$
-(see~\cite{RodriguezV:21}).  The logic $\GWCL$ has been introduced
-in~\cite{FerFioRod:2025} and recently its axiomatization has been
+$\Box(\a\lor\b)\to (\Box \a \lor \Diam \b)$, which we call $(Cr)$, to
+$\GKL$ (see~\cite{RodriguezV:21}).  The logic $\GWCL$ was introduced
+in~\cite{FerFioRod:2025} and recently an axiomatization has been
 proposed in~\cite{RV26}.  By definition,
 $\GKL\subseteq\GCL\subseteq\GWCL$ and
 $\GKL\subseteq\GWL\subseteq\GWCL$; we show that all the inclusions are
@@ -187,24 +187,26 @@ implies $e(w, \Box\neg \neg \a)=0$, hence $e(w, (Wt)) = 1$. This
 proves that $(Wt)$ is valid in $\GWL$.  Since every finite model is
 witnessed, a countermodel for $(Wt)$ must be infinite.  The instance
 $\Box \neg\neg p\to \neg\neg \Box p$ of $(Wt)$ is not valid in the
- $\GCM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see,
+$\GCM$-model $\M$ in Fig.~\ref{fig:nonWitn} (see,
 e.g.,~\cite{FerFioRod:2025}), thus $(Wt)$ is not valid in $\GCL$; this
 also ascertains that neither $\GCL$ nor $\GKL$ enjoy the finite model
 property.
 
-We show that the (classical) modal logic $\KL$ can be embedded into each  of the logics in Fig.~\ref{fig:diagram},
-by exploiting the translation $*$ introduced in~\cite{MetOli1}.
-We stress that a  model for the logic $\KL$ (a  \emph{$\KM$-model})
-can be viewed as a $\GWCM$-model   whose evaluation function takes values only in the set   $\{0,1\}$;
-accordingly, $\GWCL\subseteq\KL$.
-We assume that
-$\Diam$ is not a primitive connective  in the language of  $\KL$ 
-(actually, in $\KL$ the formula  $\Diam\varphi$ can be defined as  $\neg\Box\neg\varphi$).
-Let $\a$ be a formula of  $\KL$;
-the formula $\a^*$
-is obtained by replacing each propositional variable $p$ occurring in $\a$ with $\neg\neg p$.
-As shown in the following lemma, the evaluation of a formula $\a^*$ at any  world of a $\GM$-model is binary (0 or 1);
-this is essentially due to the fact that propositional variables in $\a^*$ are double negated and $\Diam$ does not occur in $\a^*$.
+We show that the (classical) modal logic $\KL$ can be embedded into
+each of the logics in Fig.~\ref{fig:diagram}, by exploiting the
+translation $*$ introduced in~\cite{MetOli1}.  We stress that a model
+for the logic $\KL$ (a \emph{$\KM$-model}) can be viewed as a
+$\GWCM$-model whose evaluation function takes values only in the set
+$\{0,1\}$; accordingly, $\GWCL\subseteq\KL$.  We assume that $\Diam$
+is not a primitive connective in the language of $\KL$ (actually, in
+$\KL$ the formula $\Diam\varphi$ can be defined as
+$\neg\Box\neg\varphi$).  Let $\a$ be a formula of $\KL$; the formula
+$\a^*$ is obtained by replacing each propositional variable $p$
+occurring in $\a$ with $\neg\neg p$.  As shown in the following lemma,
+the evaluation of a formula $\a^*$ at any world of a $\GM$-model is
+binary (0 or 1); this is essentially due to the fact that
+propositional variables in $\a^*$ are double negated and $\Diam$ does
+not occur in $\a^*$.
 
 
 \begin{figure}[t]
@@ -458,7 +460,7 @@ We prove that:
   a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
   L$. Then, $\Box p\tto\varphi\in \GWCL$,
   in contradiction with Lemma~\ref{prop:gwclBD}.  The proof for
-  $\Diam$ is similar.
+  $\Diam$ is analogous.
   % Let $L$ be any modal logic contained in $\GWCL$ and let us assume
   % that in $L$ the operator $\Box$ can be defined.  Then, there exists
   % a $\Box$-free formula $\varphi$ such that $\Box p\tto\varphi\in
