@@ -1,0 +1,37 @@
+\def\@copystr{}
+\def\copyrightstr#1{\gdef\@copystr{#1}}
+\def\@version{}
+\def\version#1{\gdef\@version{#1}}
+\def\@modulo{}
+\def\modulo#1{\gdef\@modulo{#1}}
+
+\newcommand{\strcopyright}{~$\copyright$~\@copystr}
+
+
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.13\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      ~$\copyright$~\@copystr
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.08\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \@version
+    \end{beamercolorbox}%
+    %\begin{beamercolorbox}[wd=.06\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    %  \usebeamerfont{author in head/foot}
+    %  \@modulo
+    %\end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.67\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \footsec{\insertshortpart}{\insertsection}{\insertsubsection}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.13\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{title in head/foot}\@modulo~~\insertframenumber{}
+      %% non visualizzare il numero totale durante il corso
+      %%~/~\inserttotalframenumber
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}

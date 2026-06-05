@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%% FILEDS definition
+%%% FOR THE TITLE PAGE
+\def\@titleAffiliation{}    % the affiliation of the authors
+\def\titleAffiliation#1{\gdef\@titleAffiliation{#1}}
+\def\@titleConferenceName{} % the name of the conference
+\def\titleConferenceName#1{\gdef\@titleConferenceName{#1}}
+\def\@titleConferenceLocation{} % the location of the conference
+\def\titleConferenceLocation#1{\gdef\@titleConferenceLocation{#1}}
+%%% FOR THE FOOTLINE in 
+\def\@footlineConferenceACR{} % the acronym of the conference  
+\def\footlineConferenceACR#1{\gdef\@footlineConferenceACR{#1}}
+\def\@footlineAuthors{}       % the authors
+\def\footlineAuthors#1{\gdef\@footlineAuthors{#1}}
+\def\@footlineTitle{}       % the title - different from the title if require abbreviations
+\def\footlineTitle#1{\gdef\@footlineTitle{#1}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE
+\setbeamertemplate{title page}{
+  \vskip4.25em%
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \vskip0.25em%
+    \ifx\insertsubtitle\@empty%
+    \else%
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+    \vskip0.25em%
+    \fi%            
+  \end{beamercolorbox}
+  \vskip2ex%
+  \begin{center}
+    \usebeamerfont{author}{\insertauthor}\par
+    \vskip2.00em%
+    {\fontsize{6pt}{6pt}\selectfont\@titleAffiliation}\par
+    \vskip2.5em%
+    {\large\tb{\@titleConferenceName}}\par
+    \vskip2.5em%
+    {\small \@titleConferenceLocation}\par\vspace{.8ex}
+  \end{center}
+  \VFILL 
+  
+}
+
+%%%%%%%%%%%%%%%%% FOOTNOTE
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.13\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      ~\@footlineConferenceACR
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \@footlineAuthors
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.32\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \ifx\@footlineTitle\empty \inserttitle \else \@footlineTitle \fi
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.23\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \emph{\insertsection}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.07\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{title in head/foot}\insertframenumber{}~/~\inserttotalframenumber
+    \end{beamercolorbox}%
+  }
+  \vskip0pt%
+}
+
+\makeatother
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../slides.tex"
+%%% End: 

@@ -1,0 +1,347 @@
+%% Stile Slides
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mf-beamer-slides-macro}[]
+\message{< Macro 4 beamer slides >}
+
+\RequirePackage{tikz}
+\usetikzlibrary{fadings,shapes.arrows,shadows}   
+\tikzfading[name=arrowfading, top color=transparent!0, bottom color=transparent!95]
+\tikzset{arrowfill/.style={top color=OrangeRed!20, bottom color=Red, general shadow={fill=black, shadow yshift=-0.8ex, path fading=arrowfading}}}
+\tikzset{arrowstyle/.style={draw=FireBrick,arrowfill, single arrow,minimum height=#1, single arrow,
+single arrow head extend=.4cm,}}
+
+\newcommand{\tikzfancyarrow}[2][2cm]{\tikz[baseline=-0.5ex]\node [arrowstyle=#1] {#2};}
+
+
+
+\mode<all>{
+  % centering for arrays
+  \usepackage{array,tabularx}
+  \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+  % skip con pausa
+  \newcommand{\SP}{\vspace*{1ex}\pause}
+  \newcommand{\MP}{\vspace*{2ex}\pause}
+  \newcommand{\BP}{\vspace*{3ex}\pause}
+  \newcommand{\HP}{\vspace*{4ex}\pause}
+  \newcommand{\HHP}{\vspace*{10ex}\pause}
+
+  % skip senza pausa
+  \newcommand{\SSK}{\vspace*{1ex}}
+  \newcommand{\MSK}{\vspace*{2ex}}
+  \newcommand{\BSK}{\vspace*{3ex}}
+  \newcommand{\HSK}{\vspace*{4ex}}
+  \newcommand{\HHSK}{\vspace*{10ex}}
+  
+  \newcommand{\VFILL}{\vspace{40ex}\mbox{~}}
+  \newcommand{\DIMOSTRIAMO}{\emr{Dimostrazione}}
+
+  % FONT
+  \newcommand{\smallfont}{\fontsize{7pt}{9pt}\selectfont}
+  \newcommand{\medfont}{\fontsize{8pt}{10pt}\selectfont}
+  \newcommand{\smallfontintitle}{\normalsize\selectfont}
+
+  %
+  \newenvironment{noindentation}{}{} % just to avoi indentation
+  
+  % TODO e ANNOTAZIONI
+  \RequirePackage{todonotes}
+  \newcommand{\inlinetodo}[1]{\todo[inline]{#1}}
+  \presetkeys{todonotes}{inline}{}
+
+
+  % %%% PER IMPORTARE LE IMMAGINI
+  \RequirePackage{graphicx} 
+  \newcommand{\imgbasedir}{}
+  % \newcommand{\fig}[1]{\includegraphics[clip=false]{#1}}
+  \newcommand{\fig}[2]{\includegraphics[scale=#1,clip=false]{./img/#2}}
+  \newcommand{\figpath}[2]{\includegraphics[scale=#1,clip=false]{#2}}
+  
+  %% FONT TESTO
+  \newcommand{\lf}[1]{\mbox{\upshape\texttt{#1}}} 
+
+  % RGB: three numbers given in the form red,green,blue; 
+  % the quantity of each color is represented with a number between 0 and 255. 	
+  \definecolor{darkgreen}{RGB}{0,100,0}  
+  \newcommand{\black}{\color{black}} 
+  \newcommand{\blue}{\color{blue}} 
+  \newcommand{\red}{\color{red}} 
+  \newcommand{\darkgreen}{\color{darkgreen}} 
+  \newcommand{\green}{\color{green}} 
+  \newcommand{\teal}{\color{teal}} 
+  
+
+  %% BOX COLORATI
+  \newcommand{\ycbox}[1]{\colorbox{yellow}{#1}}
+  \newcommand{\gcbox}[1]{\colorbox{lightgray}{#1}}
+  % \newcommand{\ccbox}[1]{\colorbox{cyan}{\color{white}#1}}
+    \newcommand{\ccbox}[1]{\colorbox{cyan!50}{#1}}
+  \newcommand{\ggbox}[1]{\colorbox{green}{#1}}
+  \newcommand{\ylfcbox}[1]{\colorbox{yellow}{\lfb{#1}}}
+  \newcommand{\glfcbox}[1]{\colorbox{blue!15}{\lf{#1}}}
+  \newcommand{\clfcbox}[1]{\colorbox{cyan}{\lf{\color{white}#1}}}
+
+
+  %% COLORI TESTO
+  \newcommand{\tb}[1]{{\color{blue} #1}}
+  \newcommand{\tr}[1]{{\color{red} #1}} 
+  \newcommand{\tm}[1]{{\color{magenta} #1}} 
+  \newcommand{\tg}[1]{{\teal #1}} 
+  \newcommand{\emb}[1]{{\em \color{blue} #1}} 
+  \newcommand{\emy}[1]{{\em \color{yellow} #1}} 
+  \newcommand{\emr}[1]{{\em \color{red} #1}} 
+  \newcommand{\emm}[1]{{\em \color{magenta} #1}} 
+  \newcommand{\emg}[1]{{\em \teal #1}} 
+  \newcommand{\bfb}[1]{{\bf \color{blue} #1}} 
+  \newcommand{\bfr}[1]{{\bf \color{red} #1}} 
+  \newcommand{\bfm}[1]{{\bf \color{magenta} #1}} 
+  \newcommand{\bfg}[1]{{\bf \teal #1}} 
+  \newcommand{\lfb}[1]{\tb{\lf{#1}}}
+  \newcommand{\lfr}[1]{\tr{\lf{#1}}}
+  \newcommand{\lfm}[1]{\tm{\lf{#1}}}
+  \newcommand{\lfg}[1]{\tg{\lf{#1}}}
+  \newcommand{\scb}[1]{\tb{\lf{#1}}}
+  \newcommand{\scr}[1]{\tr{\lf{#1}}}
+  \newcommand{\scm}[1]{\tm{\lf{#1}}}
+  \newcommand{\scg}[1]{\tg{\lf{#1}}}
+  
+  %%%%%%%% MACRO STILE
+  \newcommand{\termdef}[1]{\bfb{#1}}
+  \newcommand{\persdef}[1]{\bfm{#1}}
+
+
+} % mode<all>
+
+
+
+%%%% 
+
+\mode<presentation>
+{ 
+  %% BLOCCHI colorati
+  \setbeamercolor{blue2 head}{fg=white, bg=blue!300} %
+  \setbeamercolor{blue2 body}{fg=black, bg=blue!25} %
+  \setbeamercolor{blue head}{fg=white, bg=black!30!blue!80} %
+  \setbeamercolor{blue body}{fg=black, bg=gray!20} %
+  \setbeamercolor{lightblue head}{fg=white, bg=blue!60} %
+  \setbeamercolor{lightblue body}{fg=black, bg=blue!15} %
+  \setbeamercolor{green head}{fg=white, bg=green!60!blue!150} %
+  \setbeamercolor{green body}{fg=black, bg=green!25} %
+  \setbeamercolor{red head}{fg=white, bg=black!30!red!90}
+  \setbeamercolor{red body}{fg=black, bg=red!30}
+  \setbeamercolor{pink body}{fg=black, bg=red!15}
+  \setbeamercolor{gray head}{fg=white, bg=gray!60!blue!150} %
+  \setbeamercolor{gray body}{fg=black, bg=gray!20} %
+  
+  \newenvironment{minip}[2]{\par\hspace{#1}\begin{minipage}{#2}}{\end{minipage}\par\medskip}  
+  
+  \newenvironment{winpink}{
+    \begin{beamerboxesrounded}[lower=pink body, upper=red head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}
+  }
+
+  \newenvironment{winblue}{
+    \begin{beamerboxesrounded}[lower=blue body, upper=blue head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}
+  }
+  
+  \newenvironment{wingray}{
+    \begin{beamerboxesrounded}[lower=gray body, upper=gray head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}
+  }
+
+  \newenvironment{wingreengray}{
+    \begin{beamerboxesrounded}[lower=gray body, upper=green head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}
+  }
+
+  \newenvironment{wingreen}{
+    \begin{beamerboxesrounded}[lower=green body, upper=green head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}
+  }
+
+  \newenvironment{srcbox}{
+    \begin{beamerboxesrounded}[lower=gray body, upper=gray head,
+      shadow=true] %
+    } {\end{beamerboxesrounded}\usebeamercolor{mine}}
+  
+  
+  \newenvironment{psrcbox}[3]{
+    \begin{minip}{#1}{#2}
+      \begin{beamerboxesrounded}[lower=lightblue body, upper=gray head, shadow=true]{#3}
+        \begingroup
+      }%
+      {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+
+
+  \newenvironment{pagesrcbox}[3]{
+    \par\medskip
+    \begin{minip}{#1}{#2}
+      \begin{beamerboxesrounded}[lower=lightblue body, upper=green head, shadow=true]{#3}
+        \begingroup
+      }%
+      {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+  
+  \newenvironment{bluebox}[3]{
+    \par\medskip
+    \begin{minip}{#1}{#2}
+      \begin{beamerboxesrounded}[lower=blue body, upper=blue2 head, shadow=true]{#3}
+        \begingroup
+      }%
+      {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+  
+
+  % \newenvironment{greenbox}[3]{
+  %   \par\medskip
+  %   \begin{minip}{#1}{#2}
+  %     \begin{beamerboxesrounded}[lower=green body, upper=green head, shadow=true]{#3}
+  %       \begingroup
+  %     }%
+  %     {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+
+  \newenvironment{pinkbox}[3]{
+    \par\medskip
+    \begin{minip}{#1}{#2}
+      \begin{beamerboxesrounded}[lower=pink body, upper=red head, shadow=true]{#3}
+        \begingroup
+      }%
+      {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+  
+  
+  \def\@boxlower{}
+  \def\@boxupper{}
+  \newenvironment{wbox}[1]{
+    \ifthenelse{\equal{#1}{blue}} %if 
+    {\gdef\@boxlower{blue body}\gdef\@boxupper{blue head}} %then
+    { %else
+      \ifthenelse{\equal{#1}{pink}} %if
+      {\gdef\@boxlower{pink body}\gdef\@boxupper{red head}} %then
+      { %else
+        \ifthenelse{\equal{#1}{blue2}} %if 
+        {\gdef\@boxlower{blue2 body}\gdef\@boxupper{blue2 head}} %then
+        { %else
+          \ifthenelse{\equal{#1}{green}} % if
+          {\gdef\@boxlower{green body}\gdef\@boxupper{green head}} %then
+          {\gdef\@boxlower{gray body}\gdef\@boxupper{gray head}} %else
+        }
+      }
+    }
+    
+    \begin{beamerboxesrounded}[lower=\@boxlower, upper=\@boxupper, shadow=true] %
+    } {\end{beamerboxesrounded}\usebeamercolor{mine}}
+  
+  
+  \newenvironment{pbox}[4]{
+    \ifthenelse{\equal{#1}{blue}}{\gdef\@boxlower{blue body}\gdef\@boxupper{blue2 head}} %
+    {\ifthenelse{\equal{#1}{pink}}{\gdef\@boxlower{pink body}\gdef\@boxupper{red head}} %
+      {\ifthenelse{\equal{#1}{green}}{\gdef\@boxlower{green body}\gdef\@boxupper{green head}} %
+        {\gdef\@boxlower{gray body}\gdef\@boxupper{gray head}}
+      }
+    }
+    
+    \par\medskip
+    \begin{minip}{#2}{#3}
+      \begin{beamerboxesrounded}[lower=\@boxlower, upper=\@boxupper, shadow=true]{#4}
+        \begingroup
+      }%
+      {\endgroup\end{beamerboxesrounded}\end{minip}\usebeamercolor{mine}}
+  
+
+
+
+  %% \boxtobox e \fboxtobox costruiscono due box in orizzontale collegati da un
+  %% freccia. \boxtobox  introduce una pausa fra la visualizzazione del primo box e
+  %% la visualizzazione del secondo \fboxtobox non introduce pause.
+  
+  %% #1 - indentazione
+  %% #2 - dimensione primo box
+  %% #3 - testo primo box
+  %% #4 - dimensione secondo box
+  %% #5 - testo secondo box
+  \newcommand{\boxtobox}[5]{  %%con pausa
+    \par\hspace*{#1}\begin{tabular}{ccc}
+      \begin{minipage}{#2}
+        #3
+      \end{minipage}
+      &
+      \pause
+      \begin{minipage}[c]{4ex}
+        \includegraphics[scale=.04,clip=true]{\beamerStyleDIR/redArrow.jpg}
+      \end{minipage}
+      &
+      \begin{minipage}{#4}
+        #5
+      \end{minipage}
+    \end{tabular}
+    \par
+  }
+  
+  \newcommand{\boxnextbox}[5]{%%con pausa
+    \par\hspace*{#1}\begin{tabular}{cp{1ex}c}
+      \begin{minipage}{#2}
+        #3
+      \end{minipage}
+      &
+      \pause
+      &
+      \begin{minipage}{#4}
+        #5
+      \end{minipage}
+    \end{tabular}
+    \par
+  }
+  
+  \newcommand{\fboxtobox}[5]{  %%senza pausa
+    \par\hspace*{#1}\begin{tabular}{ccc}
+      \begin{minipage}{#2}
+        #3
+      \end{minipage}
+      &
+      \begin{minipage}[c]{2ex}
+        \includegraphics[scale=.04,clip=true]{\beamerStyleDIR/redArrow.jpg}
+      \end{minipage}
+      &
+      \begin{minipage}{#4}
+        #5
+      \end{minipage}
+    \end{tabular}
+    \par
+  }
+  
+  %% #1 - indentazione
+  %% #2 - dimensione primo box
+  %% #3 - testo primo box
+  %% #4 - spazio fra i box
+  %% #4 - dimensione secondo box
+  %% #5 - testo secondo box
+  \newcommand{\boxnexttobox}[6]{  %%con pausa
+    \par\hspace*{#1}\begin{tabular}{ccc}
+      \begin{minipage}{#2}
+        #3
+      \end{minipage}
+      &
+      \pause
+      \makebox[#4]{}
+      % \begin{minipage}[c]{2ex}
+      %   \includegraphics[scale=.04,clip=true]{redArrow.jpg}
+      % \end{minipage}
+      &
+      \begin{minipage}{#5}
+        #6
+      \end{minipage}
+    \end{tabular}
+    \par
+  }
+  
+}
+  
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../slides.tex"
+%%% End: 

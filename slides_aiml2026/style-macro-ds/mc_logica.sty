@@ -1,0 +1,38 @@
+\RequirePackage{stmaryrd}
+\newcommand{\bim}{\leftrightarrow}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\bigland}{\bigwedge}
+
+\newcommand{\TERM}{\mathrm{TERM}} %% termini
+\newcommand{\FV}[1]{\mathrm{FV}(#1)} %% variabili libere di una foprmula
+
+%\newcommand{\rb}{{\rrbracket}}
+%\newcommand{\lb}{{\llbracket}}
+
+\newcommand{\ALF}{\mathcal{A}}  %%  alfabeto
+\newcommand{\den}[3]{\llbracket#1\rrbracket_{#2}^{#3}} %% denotazione di un termine [termine][modello][assegnamento]
+
+
+
+
+%%
+%% Tableau
+%%
+\newcommand{\TabA}[3]{
+  \frac{\phantom{a}\stackrel{\textstyle #2}
+    {\phantom{\scriptscriptstyle .}}\phantom{a}}
+  {\stackrel{\phantom{\scriptscriptstyle .}}{\textstyle #3}}
+  {\scriptstyle #1} 
+}
+\newcommand{\TabB}[4]{
+  \frac{\phantom{aa}\stackrel{\textstyle #2}
+    {\phantom{\scriptscriptstyle .}}\phantom{aa}}
+  {\stackrel{\phantom{\scriptscriptstyle .}}{\textstyle #3~\left|~#4\right.}}
+  {\scriptstyle #1} 
+}
+
+
+
+%% Risoluzione
+
+\newcommand{\derR}{\vdash_{\mathbf{R}}}

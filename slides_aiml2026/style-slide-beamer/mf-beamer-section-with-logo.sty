@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%% comandi per la definizione dei campi
+\def\@sectionpageUni{}
+\def\sectionpageUni#1{\gdef\@sectionpageUni{#1}}
+\def\@sectionpageCds{}
+\def\sectionpageCds#1{\gdef\@sectionpageCds{#1}}
+\def\@sectionpageInsegnameqnto{}
+\def\sectionpageInsegramento#1{\gdef\@sectionpageInsegnamento{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION TITLE FRAME 
+\AtBeginSection[]{
+  \begin{frame}
+    \vspace{4ex}
+    
+    \flushright\begin{table}[h]
+      \sffamily 
+      \begin{tabularx}{1\textwidth}{>{\centering\arraybackslash}m{1.cm}>{\centering\arraybackslash}m{10cm}}
+        \includegraphics[width=2cm]{\beamerStyleDIR/logo-insubria.jpg}
+        &{\@sectionpageUni}\par\vspace{.8ex}
+        {\@sectionpageCds}\par\vspace{2.5ex}
+        {\bf\@sectionpageInsegnamento}~-~%\par\vspace{1ex}
+        {\bf\insertauthor}
+      \end{tabularx}
+    \end{table}
+
+    \vspace{4ex}
+
+     \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+       \usebeamerfont{title}\insertpart\par\vspace{1ex}
+        \insertsectionhead\par%
+     \end{beamercolorbox}
+     \VFILL 
+  \end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE
+\setbeamertemplate{title page}{
+  \vspace{4ex}   
+  \flushright\begin{table}[h]
+    \sffamily 
+    \begin{tabularx}{1\textwidth}{>{\centering\arraybackslash}m{1.cm}>{\centering\arraybackslash}m{10cm}}
+      \includegraphics[width=2cm]{\beamerStyleDIR/logo-insubria.jpg}
+      &\par\vspace{2ex}
+      {\@sectionpageUni}\par\vspace{.8ex}
+      {\@sectionpageCds}\par\vspace{2.5ex}
+      %{\bf\@sectionpageInsegnamento}~-~%\par\vspace{1ex}
+      %{\bf\insertauthor}
+    \end{tabularx}
+  \end{table}
+  
+  \vspace{4ex}
+  
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+    \vskip0.25em%
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+    \fi%            
+  \end{beamercolorbox}
+  \vskip4ex%
+  \begin{center}
+    \usebeamerfont{author}{\insertauthor}
+  \end{center}
+  \VFILL 
+  
+}
+\makeatother

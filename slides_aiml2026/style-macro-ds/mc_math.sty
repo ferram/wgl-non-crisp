@@ -1,0 +1,51 @@
+%%
+%% mc_math.sty
+%%
+%% File di macro by Mauro 04.2020
+%%
+\message{< Macro math, MF, 04 2020 >}
+
+
+\newcommand{\quadbox}[1]{\quad\mbox{#1}\quad}
+
+\newcommand{\ov}[1]{\overline{#1}}
+
+%% 
+%% DEFINIZIONE SIMBOLI MATEMATICI 
+%% 
+\newcommand{\nupla}[2]{#1_{1},\dots,#1_{#2}} % n-upla
+\newcommand{\stru}[1]{\langle #1 \rangle} % struttura
+\newcommand{\comp}{\circ} % simbolo di composizione
+\newcommand{\Pow}{{\rm Pow}} % Power set
+%\newcommand{\dom}{{\rm dom}} % domainNI
+%\newcommand{\cod}{{\rm com}} % domainNI
+%\newcommand{\ran}{{\rm ran}} % range
+%\newcommand{\img}{{\rm img}} % image
+\newcommand{\NN}{\mathbf{N}} % Natural Numbers
+\newcommand{\RR}{\mathbf{R}} % Real  Numbers
+\newcommand{\QQ}{\mathbf{N}} % Rational Numbers
+\newcommand{\ZZ}{\mathbf{Z}}
+  
+
+%% 
+%% ABBREVIAZIONI UTILIZZATE NELLE DIMOSTRAZIONI
+%%
+%% FORALL e EXISTS con tilde
+\newcommand{\FORALL}{\tilde{\forall}}
+\newcommand{\EXISTS}{\tilde{\exists}}
+
+
+\RequirePackage{mathtools}
+%% SIMBOLI FUORI DA DISPLAY MATH: <=>, =>, <=
+\newcommand{\IMPLIED}[1][]{\mbox{~\tr{$\xLeftarrow{~\mbox{#1}~}$}~}}
+\newcommand{\SSE}[1][]{\mbox{~\tr{$\xLeftrightarrow{~\mbox{#1}~}$}~}}
+\newcommand{\IMPLIES}[1][]{~\tr{$\xRightarrow{~\mbox{#1}~}$}~}
+
+%% SIMBOLI IN DISPLAY MATH: : <=>, =>, <=
+\newcommand{\MIMPLIED}[1][]{\xLeftarrow{~\mbox{#1}~}}
+\newcommand{\MSSE}[1][]{\xLeftrightarrow{~\mbox{#1}~}}
+\newcommand{\MIMPLIES}[1][]{\xRightarrow{~\mbox{#1}~}}
+\newcommand{\MUPDOWN}{\Updownarrow}
+
+
+

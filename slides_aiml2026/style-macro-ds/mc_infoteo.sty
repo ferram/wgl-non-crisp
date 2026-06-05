@@ -1,0 +1,77 @@
+
+
+%% AUTOMI
+\newcommand{\hd}{\hat{\delta}}  %% nome funzione di transizione estesa di \delta
+
+\newcommand{\eclose}[1]{\mbox{\textsc{eclose}}(#1)} %% epsolon-chiusura
+\newcommand{\trans}[1]{\stackrel{#1~}{\to}}  %% transizione con etichetta
+\newcommand{\deriv}{\Rightarrow}  %% transizione con etichetta
+\newcommand{\derivs}{\stackrel{*}{\Rightarrow}}  %% transizione con etichetta
+\newcommand{\pdadim}{\vdash}
+\newcommand{\pdadims}{\stackrel{*}{\vdash}}  %% transizione con etichetta
+
+%%%MODIFICHE PER DERIVAZIONI
+\newlength{\lungtop}\newlength{\lungbottom}\newlength{\lungmiddle}
+\newcommand{\twoargumentarrow}[2]{
+  \settowidth{\lungtop}{$\scriptstyle #1$}
+  \settowidth{\lungbottom}{$\scriptscriptstyle #2$}
+  \settowidth{\lungmiddle}{$\Rightarrow$}
+  \Rightarrow\hspace{-\lungmiddle}\hspace{-0.3ex}
+  \raisebox{1.1ex}{$\scriptstyle #1$}\hspace{-\lungtop}\hspace{-0.3ex}
+  \raisebox{-0.75ex}{$\scriptscriptstyle #2$}\hspace{-\lungbottom}
+  \hspace{\lungmiddle}
+  %\ifthenelse{\lungtop>\lungbottom}{\hspace{-\lungbottom}\hspace{\lungtop}}{}
+  }
+%%\def\ders{\mathrel{\mbox{$\twoargumentarrow{*}{}$}}}
+\def\lmder{\mathrel{\mbox{$\twoargumentarrow{}{lm}$}}}
+\def\rmder{\mathrel{\mbox{$\twoargumentarrow{}{rm}$}}}
+\def\lmders{\mathrel{\mbox{$\twoargumentarrow{*}{lm}$}}}
+\def\rmders{\mathrel{\mbox{$\twoargumentarrow{*}{rm}$}}}
+%%\def\derg#1{\mathrel{\mbox{$\twoargumentarrow{}{#1}$}}}
+%%\def\dersg#1{\mathrel{\mbox{$\twoargumentarrow{*}{#1}$}}}
+
+%% GRAMMATICHE
+\newcommand{\OR}{~$|$~}
+
+
+%% ALCUNI LINGUAGGI (usati in linguaggi regolari e CFG)
+\newcommand{\Lpr}{L_{pr}}  %% linguaggio delle stringhe di 1 di lunghezza prima
+\newcommand{\Lpal}{L_{pal}} %% linguaggio dei palindromi
+
+
+
+%% MDT
+\newcommand{\testina}[2]{\stackon{\fbox{#1}}{\tr{#2}}}
+\newcommand{\cella}[1]{\fbox{#1}}
+\newcommand{\blank}{\mbox{\emph{\textblank}}\xspace}
+\newcommand{\seqstep}{\stackrel{*}{\Longrightarrow}}
+\newcommand{\cod}{\mathsf{cod}}
+\newcommand{\dec}{\mathsf{dec}}
+
+
+%% Macchine di Turing
+\newcommand{\ML}{\lf{L}}  %% testina - sposta a sinistra
+\newcommand{\MR}{\lf{R}}  %% testina - sposta a destra
+
+
+%%  codifiche MDT
+\newcommand{\cb}{\mathsf{\#_{01}}}
+\newcommand{\cbinv}{\mathsf{\#_{01}^{-1}}}
+\newcommand{\cmdt}{\mathsf{\#_{MdT}}}
+\newcommand{\cmdtinv}{\mathsf{\#_{MdT}^{-1}}}
+\newcommand{\cunaria}{\mathsf{\#_{unaria}}}
+
+%% enumerazione MDT e stringhe
+\newcommand{\emdt}{e_\mathrm{MdT}}
+\newcommand{\estring}{e_\mathrm{01}}
+
+
+%% Problemi di decisione
+\newcommand{\ALMDT}{\mathbf{LM}}
+\newcommand{\HALTING}{\mathrm{HP}}
+
+
+
+
+
+

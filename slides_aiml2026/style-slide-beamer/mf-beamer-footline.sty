@@ -1,0 +1,23 @@
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.17\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      ~~$\copyright$~\@copystr
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.09\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      ~v.~\@version~
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.67\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \footsec{\insertshortpart}{\insertsection}{\insertsubsection}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.07\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{title in head/foot}\insertframenumber{}
+      %% non visualizzare il numero totale durante il corso
+      %%~/~\inserttotalframenumber
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}

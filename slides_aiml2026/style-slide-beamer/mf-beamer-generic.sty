@@ -1,0 +1,182 @@
+%% Tema beamer 
+%% Cmd aggiuntivi
+%% \copyrightstr{2013~Mauro Ferrari} % definisce la stringa da aggiungere dopo il copyright copy
+%% \titleimage{scale}{file} % immagine a fianco del titolo 
+
+\mode<presentation>
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\def\@titleimagefile{}
+\def\@titleimagescale{}
+\def\titleimage#1#2{\gdef\@titleimagescale{#1}\gdef\@titleimagefile{#2}}
+
+\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+
+\usetheme{Frankfurt} 
+%\usecolortheme{lily} 
+\usecolortheme{orchid} 
+
+% \usecolortheme{whale}
+% %\usecolortheme{orchid}
+% \useoutertheme{smoothbars}
+
+
+%% INNER THEME
+%\useinnertheme{rounded} %
+
+% %% >> OUTERTHEME
+\mode<presentation>
+
+%% Navigation bar --------->
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+\newcommand{\footsec}[3]{
+  #1\hspace{4ex}#2\hspace{4ex}#3
+  %\ifthenelse{\isempty{@subtitle}}{true}{#1}
+  %\ifthenelse{\equal{#1}{}}{}{#1}
+  %\ifthenelse{\equal{#2}{}}{}{~$>$~#2}
+  %\ifthenelse{\isempty{#3}}{}{~$>$~#3}
+}
+
+% Make sure \pause is correctly ended when used inside a TikZ picutre
+\AtBeginDocument
+{
+  \begingroup\expandafter\expandafter\expandafter\endgroup
+  \expandafter\ifx\csname endtikzpicture\endcsname\relax
+  \else
+  \newcommand*{\beamer@tikzpicture@env}{tikzpicture}
+  \begingroup
+  \toks0\expandafter{\endtikzpicture}%
+  \xdef\endtikzpicture{%
+    \noexpand\ifx\noexpand\beamer@tikzpicture@env\noexpand\@currenvir
+    \noexpand\expandafter\noexpand\beamer@endcovered
+    \noexpand\fi
+    \the\toks0
+  }%
+  \endgroup
+  \fi
+}
+
+
+
+%% <--------- navigation bar 
+
+% \defbeamertemplate*{headline}{infolines theme}
+% { \leavevmode%
+%   \hbox{%
+%     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+%       \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+%     \end{beamercolorbox}%
+%     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+%       \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+%     \end{beamercolorbox}}%
+%   \vskip0pt%
+% }
+
+\setbeamersize{text margin left=1em,text margin right=1.5em}
+ \setlength{\leftmargini}{1.5\beamer@leftmargin}
+ \setlength{\leftmarginii}{\beamer@leftmargin}
+ \setlength{\leftmarginiii}{\beamer@leftmargin}
+% \mode<all>
+
+
+\setbeamertemplate{section page}
+{
+    \begin{centering}
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+    \end{centering}
+}
+
+
+\makeatletter
+\AtBeginPart{%
+  \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+}
+%% number, shortname, page.
+\providecommand\beamer@partintoc[3]{%
+  \ifnum\c@tocdepth=-1\relax
+  % requesting onlyparts.
+  \makebox[3em][r]{#1~}--{~\blue #2}
+  \par
+  \fi
+}
+\define@key{beamertoc}{onlyparts}[]{%
+  \c@tocdepth=-1\relax
+}
+\makeatother%
+
+
+\setbeamerfont*{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body}
+
+%\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate body
+
+% %% << OUTERTHEME
+
+% \ifbeamer@secheader\else\setbeamertemplate{headline}[default]\fi
+
+% \mode<all>
+
+
+% %  \setbeamertemplate{theorem begin}{%
+% %   \begin{\inserttheoremblockenv} {%
+% %       \ifx\inserttheoremname\@empty\ifx\inserttheoremaddition\@empty\else\inserttheoremaddition\fi
+% %       \else\inserttheoremname\ifx\inserttheoremaddition\@empty\else:~\inserttheoremaddition\fi\fi
+% %     }%
+% %   }%
+% %   \setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}\usebeamercolor[fg]{normal text}}
+
+
+
+% % \def\ttr<#1>#2{ %
+% %   \temporal<#1>{{\color{black}#2}}{{\color{red}#2}}{{\color{black}#2}}
+% % }%
+
+% % \def\ttb<#1>{ %
+% %   \temporal<#1>{\color{black}}{\color{blue}}{\color{black}}
+% % }%
+
+% % \def\enf<#1>{ %
+% %    \temporal<#1>{\color{black!50}}{\color{black}}{\color{black!70}}
+% %  }%
+
+
+% %%% Indice delle parti
+% \makeatletter
+% \AtBeginPart{%
+%   \addtocontents{toc}{\protect\beamer@partintoc{\beamer@partnameshort}{\beamer@partname}{\the\c@page}}%
+% }
+% %% number, shortname, page.
+% \providecommand\beamer@partintoc[3]{%
+%   \ifnum\c@tocdepth=-1\relax
+%     % requesting onlyparts.
+%     \makebox[4em][r]{#1:} #2
+%     \par
+%   \fi
+% }
+% \define@key{beamertoc}{onlyparts}[]{%
+%   \c@tocdepth=-1\relax
+% }
+% \makeatother%
+
+% \setbeamertemplate{enumerate item}{(\insertenumlabel)}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../slides.tex"
+%%% End: 
