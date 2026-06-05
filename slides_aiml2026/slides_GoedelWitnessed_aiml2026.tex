@@ -1,0 +1,232 @@
+\documentclass[10pt,handout,professionalfonts]{beamer}  %% no pause
+%\documentclass[10pt,professionalfonts]{beamer}  %%  pause 
+
+%%
+%% Required PACKAGES
+%%
+%\RequirePackage[italian]{babel}
+\RequirePackage{xspace}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{url}
+\RequirePackage{xcolor}
+\RequirePackage{xifthen}
+\RequirePackage{colortbl} 
+\RequirePackage{pifont}
+\RequirePackage{cancel}
+%\usepackage{enumitem}
+\usepackage{bussproofs}\EnableBpAbbreviations     
+%%% TIKZ
+\RequirePackage{tikz}
+\usetikzlibrary{snakes,shapes,arrows,automata,backgrounds,positioning}
+%%%
+
+%% STYLE/MACRO DIRS
+\newcommand{\baseDIR}{.}
+\newcommand{\beamerStyleDIR}{\baseDIR/style-slide-beamer/}
+\newcommand{\dsmacroDIR}{./style-macro-ds/}
+\newcommand{\IMAGES}{}
+
+%%
+%%  MIE MACRO 
+%%
+%% MACRO GENERICHE SLIDES
+\RequirePackage{\beamerStyleDIR/mf-beamer-generic}
+\RequirePackage{\beamerStyleDIR/mf-beamer-conferences}
+\RequirePackage{\beamerStyleDIR/mf-beamer-slides-macro}
+\RequirePackage{\beamerStyleDIR/mf-tcolorbox-slide-macro}
+
+%% MACRO SPECIFICHE
+\RequirePackage{\dsmacroDIR/mc_math}
+\RequirePackage{\dsmacroDIR/mc_calligraphic}
+\RequirePackage{\dsmacroDIR/mc_greek}
+%\RequirePackage{\dsmacroDIR/mc_logica}
+
+
+\newtcolorbox{custombox}[1][]{
+  boxrule=0.02cm,
+  center,
+  colframe=blue!75!black,
+  fontupper=\small,
+  before skip=2mm,
+  after skip=2mm,
+  top=0mm,
+  bottom=0mm,
+  #1
+}
+
+\newtcolorbox{customcit}[2][]{
+  beforeafter skip=1\baselineskip,
+  colbacktitle=tcbx_Blue_Bright,
+  top=0.2cm,
+  bottom=0.2cm,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\small,
+  fontlower=\small,
+  coltitle=black,
+  %center title,
+  title={#2},
+  #1
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MACRO LOCALI begin
+\newcommand{\worldsfont}{\fontsize{8pt}{9pt}\selectfont}
+
+
+\newcommand{\G}{\Gamma}
+
+
+%% LOGICS
+\newcommand{\IPL}{\mathbf{IPL}\xspace}
+\newcommand{\GL}{\mathbf{GL}}
+\newcommand{\GKL}{\mathbf{GK}}
+\newcommand{\GCL}{\mathbf{G}^\mathrm{c}}
+\newcommand{\GWL}{\mathbf{GW}}
+\newcommand{\GWCL}{\mathbf{GW}^\mathrm{c}}
+\newcommand{\KGL}{\mathbf{KG}^2_\mathrm{fb}}
+\newcommand{\KL}{\mathbf{K}}
+
+
+%% CALCULI
+\newcommand{\Calcc}{\Ccal_{\mathrm{GW}^\mathrm{c}}}
+\newcommand{\Calc}{\Ccal_{\mathrm{GW}}}
+\newcommand{\TKGL}{\Tcal(\KGL)}
+
+%% PROOF SEARCH
+\newcommand{\Bs}{\mbox{\textsc{Bs}}}
+
+%% SETS
+\newcommand{\Qrange}{[0,1]_{\mathrm{Q}}}
+\newcommand{\Atm}[1]{\mathrm{At}(#1)}
+\newcommand{\Atmp}[1]{\mathrm{At}^{+}\!(#1)}
+\newcommand{\Gat}{\G_\mathrm{at}}
+\newcommand{\Phibd}[1]{\Phi^{\Box,\Diam}(#1)}
+\newcommand{\Phizo}[1]{\Phi^{0,1}(#1)}
+\newcommand{\PV}{\Vcal}
+\newcommand{\Sf}[1]{\mathrm{Sf}(#1)}
+\newcommand{\Sfm}[1]{\mathrm{Sf}^-(#1)}
+
+
+%% Relations
+%% proves
+\newcommand{\proves}[3]{{#2}\,\vdash_{#1}\, #3}
+\newcommand{\nproves}[3]{{#2}\,\nvdash_{#1}\, #3}
+\newcommand{\provesc}[1]{\vdash_{\mathrm{GW}^\mathrm{c}} #1}
+\newcommand{\nprovesc}[1]{\nvdash_{\mathrm{GW}^\mathrm{c}} #1}
+\newcommand{\provesgw}[1]{\vdash_{\mathrm{GW}} #1}
+\newcommand{\nprovesgw}[1]{\nvdash_{\mathrm{GW}} #1}
+
+
+%% forcing
+\newcommand{\forcing}{\Vdash}
+\newcommand{\nforcing}{\nVdash}
+%% well-founded relations
+\newcommand{\precm}{\prec_{\mathrm{m}}} 
+\newcommand{\precc}{\prec_{\mathrm{c}}}
+
+
+
+%% Complexity measures
+\newcommand{\size}[1]{|#1|}
+\newcommand{\sizem}[1]{||#1||}
+
+
+
+%% Connectives
+\newcommand{\tto}{\leftrightarrow}
+\newcommand{\IFF}{\Longleftrightarrow}
+\newcommand{\Implies}{\Longrightarrow}
+\newcommand{\DownImplies}{\Longdownarrow}
+\newcommand{\Diam}{\lozenge}
+
+%% Order relations
+\newcommand{\abstractorder}{\blacktriangledown}
+\newcommand{\gt}{\rhd}
+\newcommand{\lt}{\lhd}
+
+
+%% Semantic relations
+
+
+
+%% Rules - names
+\newcommand{\ruleAxat}{\mathrm{Ax}\xspace}
+
+%% Models
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\Modname}{\mathrm{Mod}}
+\newcommand{\Mod}[1]{\Modname(#1)}
+
+%% Kripke models
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Val}{V}{%\vartheta}
+\newcommand{\Valof}[1]{\Val(#1)}
+\newcommand{\Rn}{\mathrm{Rn}}
+\newcommand{\Rnof}[1]{\Rn(#1)}
+
+
+\newcommand{\bigredarrow}{\mbox{\raisebox{-.5ex}{\includegraphics[scale=.04,clip=true]{\beamerStyleDIR/redArrow.jpg}}}}
+
+\newcommand{\citebib}[1]{\tg{[\small #1]}}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MACRO LOCALI end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEAMER PAGE STYLE CONFIGURATION
+\setbeamersize{description width=2em}
+\setbeamertemplate{description item}[align left]
+\setbeamertemplate{headline}[default]
+
+%%%%%%%%%%%%%%%%% TITLE
+\title{A G\"odel Modal Logic Over Witnessed  Models}
+\subtitle{} %
+\author{ %
+  M.Ferrari$^{(1)}$
+  \hspace{6ex}\underline{C.Fiorentini}$^{(2)}$
+  \hspace{6ex}P.Giardini$^{(1)}$
+  \hspace{6ex}R.O. Rodriguez$^{(3)}$
+} %
+\titleAffiliation{
+ (1) Università degli Studi dell'Insubria\quad
+ (2) Università degli Studi di Milano\quad
+ (3) Universidad de Buenos Aires
+}
+\titleConferenceName{
+Advances in Modal Logic 2026}
+\titleConferenceLocation{ DATE - Amsterdam}
+\footlineConferenceACR{}
+\footlineAuthors{Ferrari~Fiorentini~Giardini~Rodriguez}
+%\footlineTitle{Redefine only if the title is too long}
+\date{} %
+
+
+\begin{document}
+
+
+{ %%%%%%%%%%%%%%%%% TITLE PAGE WITH NO FOOTLINE
+  \setbeamertemplate{footline}{} 
+  \frame{\titlepage}  %% the title page
+}
+
+ \input{01-intro.tex}
+  \input{02-calculus.tex}
+  \input{03-calculus-properties.tex}
+ \input{04-conclusions.tex}
+
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "slides_GoedelWitnessed_aiml2026"
+%%% End: 

@@ -1,0 +1,84 @@
+\newcommand{\figGCcountermondelworldsfont}{\fontsize{6pt}{7pt}\selectfont}
+
+
+    \begin{minipage}{20em}
+      \begin{tikzpicture}[scale=0.7]
+        % WORLDS  
+        % w0
+        \draw[fill] (0,0) circle (3pt)
+        +(0,-0)   node (w0)  {}  % used to label the circle 
+        +(0,-0.3) node  {$w_0$}
+        ;
+        
+        % w1 
+        \draw[fill]  (0,1.5) circle (3pt)
+        +(0,0)   node (w1)  {}  % used to label the circle 
+        +(-0.6,0)  node  {$w_1$} 
+        +(1.2,0.2) node  {$p=0.5$}
+        +(1.2,-0.2) node  {$q=0.6$}
+        ;
+        
+        
+        % ARROWS
+        \draw[->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
+
+
+
+  % valuations
+  \draw (3.8,0) node{
+    \begin{minipage}{25ex}%\figGCcountermondelworldsfont
+      \ggbox{$ \Box(p\lor q) \to (\Box p \lor \Diam  q) = 0.6$}
+    \end{minipage}
+  }; 
+ \end{tikzpicture}
+ \end{minipage}\begin{minipage}[b]{11em}
+            \[
+      \begin{array}{l}
+        % -----------------------------------------      
+        \fcolorbox{black}{gray!10}{
+          \begin{minipage}{11em} \footnotesize
+             $R(w_0,w_1) = 0.6$
+             \\[.5ex]
+             $e(w_1, p) = 0.5,\; e(w_1, q)=0.6$
+            % \\[.5ex]
+           % $e(\,w_0, \; \tm{\Box(p\lor q) \to (\Box p \lor \Diam  q)} \,) = 0.6 < 1$
+          \end{minipage}
+        } % end box    
+        % -----------------------------------------  
+      \end{array}
+      \]
+    \end{minipage} 
+    % \\[10ex]
+    % \begin{array}{rcl}
+    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
+    %   \inf\{\, 0\to 0,\, 0.6\to 0.6\,\}\,=\,1
+    %   \\[1ex]
+    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+      
+    %   \inf\{\, 0\to 0,\,  0.6\to 0.5\,\}    \,=\, 0.5
+    %   \\[1ex]
+    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+    %   \sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
+    %   \\[1ex]
+    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
+    % \end{array}
+    % \begin{array}{rcl}
+    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
+    %   \inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
+    %   \\
+    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
+      
+    %   \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
+    %   \\
+    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
+    %   \sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
+    %   \\[1ex]
+    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
+    % \end{array}
+  
+  
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "slides_GoedelWitnessed_aiml2026"
+%%% End: 

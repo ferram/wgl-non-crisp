@@ -1,0 +1,70 @@
+%% enumitem 
+\RequirePackage{enumitem}
+\setlist{leftmargin=*}
+\setlist{nosep,itemsep=1ex,topsep=2ex,align=left}
+\setitemize[2]{label=$\bullet$}
+\setenumerate[1]{label=(\arabic*), ref=(\arabic*)}
+\setenumerate[2]{leftmargin=*,label=(\alph*),ref=(\theenumi.\alph*)}
+\setenumerate[3]{label=(\roman*)), ref=(\theenumii.\roman*)}
+%\newenvironment{enuroman}{\begin{enumerate}[label=\tm{(\Roman*)},ref=\tm{(\arabic*)}]}
+%{\end{enumerate}}
+\newlist{enuroman}{enumerate}{1}
+\setlist[enuroman]{label=\tm{(\Roman*)},ref=\tm{(\Roman*)}}
+
+%% SKIP
+\newcommand{\SSK}{\vspace*{1ex}}
+\newcommand{\MSK}{\vspace*{2ex}}
+\newcommand{\BSK}{\vspace*{3ex}}
+\newcommand{\HSK}{\vspace*{4ex}}
+\newcommand{\HHSK}{\vspace*{10ex}}
+
+
+%% FONT
+\newcommand{\lf}[1]{{\texttt{\upshape #1}}}
+
+%% COLORI TESTO
+\RequirePackage{xcolor}
+\newcommand{\tb}[1]{{\color{blue} #1}}
+\newcommand{\tr}[1]{{\color{red} #1}} 
+\newcommand{\tm}[1]{{\color{magenta} #1}} 
+\newcommand{\tg}[1]{{\teal #1}} 
+\newcommand{\emb}[1]{{\em \color{blue} #1}} 
+\newcommand{\emy}[1]{{\em \color{yellow} #1}} 
+\newcommand{\emr}[1]{{\em \color{red} #1}} 
+\newcommand{\emm}[1]{{\em \color{magenta} #1}} 
+\newcommand{\emg}[1]{{\em \teal #1}} 
+\newcommand{\bfb}[1]{{\upshape\bf \color{blue} #1}} 
+\newcommand{\bfr}[1]{{\upshape\bf \color{red} #1}} 
+\newcommand{\bfm}[1]{{\upshape\bf \color{magenta} #1}} 
+\newcommand{\bfg}[1]{{\upshape\bf \teal #1}} 
+\newcommand{\lfb}[1]{\tb{\lf{#1}}}
+\newcommand{\lfr}[1]{\tr{\lf{#1}}}
+\newcommand{\lfm}[1]{\tm{\lf{#1}}}
+\newcommand{\lfg}[1]{\tg{\lf{#1}}}
+\newcommand{\scb}[1]{\tb{\lf{#1}}}
+\newcommand{\scr}[1]{\tr{\lf{#1}}}
+\newcommand{\scm}[1]{\tm{\lf{#1}}}
+\newcommand{\scg}[1]{\tg{\lf{#1}}}
+
+
+
+%%%%%%%% MACRO STILE
+\newcommand{\termdef}[1]{\bfb{#1}}
+\newcommand{\persdef}[1]{\bfm{#1}}
+
+
+
+%% PER IMPORTARE LE FIGURE
+\RequirePackage{graphicx} 
+\newcommand{\fig}[1]{\includegraphics[clip=false]{#1}}
+\newcommand{\figscale}[2]{\includegraphics[scale=#2,clip=false]{#1}}
+\newcommand{\figpng}[2]{\includegraphics[width=#1]{#2}}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../intai.tex"
+%%% End: 
+

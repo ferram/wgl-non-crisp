@@ -1,0 +1,95 @@
+\newcommand{\figGCcountermondelworldsfont}{\fontsize{8pt}{8pt}\selectfont}
+
+\begin{tikzpicture}[scale=0.8]      
+  % MODEL
+  \draw (1,3.5) node{
+    % -----------------------------------------      
+    \fcolorbox{black}{gray!10}{
+      \begin{minipage}{25em}\fontsize{6pt}{6pt}\selectfont
+        $W=\{\,w_j~|~j\geq 0\,\}$\quad
+        $R(w_0,w_0) = 0$\quad$R(w_0,w_k)= 1, k\geq 1$\quad %  \\[.5ex]
+        $e(w_k,p) = \frac{1}{k+1}\;\; k\geq 1$  
+      \end{minipage}
+    } % end box    
+  };
+  
+  % WORLDS  
+  % w0
+  \draw[fill] (0,-0.5) circle (3pt)
+  +(0,-0)   node (w0)  {}  % used to label the circle 
+  +(0,-0.3) node  {\figGCcountermondelworldsfont $w_0$}
+  ;
+  
+  % w1 
+  \draw[fill]  (-3,1) circle (3pt)
+  +(0,0)   node (w1)  {}  % used to label the circle 
+  +(-0.6,0)  node  {\figGCcountermondelworldsfont $w_1$} 
+  +(0,0.8) node  {
+    \begin{minipage}{10ex}\figGCcountermondelworldsfont
+      \[
+      \begin{array}{r}
+        p=1/2\\
+ %       \tb{\neg\neg p=1}\\[6ex]
+      \end{array}
+      \]
+    \end{minipage}
+  }
+  ;
+  
+  % w2
+  \draw[fill] (-1,1) circle (3pt)
+  +(0,0)   node (w2)  {}  % used to label the circle 
+  +(-0.6,0) node{\figGCcountermondelworldsfont $w_2$}
+  +(0,0.8) node{
+    \begin{minipage}{10ex}\figGCcountermondelworldsfont
+      \[
+      \begin{array}{r}
+        p=1/3\\
+%        \tb{\neg\neg p=1}\\[6ex]
+      \end{array}
+      \]
+    \end{minipage}
+  }
+  ;
+  
+  % w3
+  \draw[fill] (1,1) circle (3pt)
+  +(0,0)   node (w3)  {}  % used to label the circle 
+  +(-0.6,0) node{\figGCcountermondelworldsfont $w_3$}
+  +(0,0.8) node{
+    \begin{minipage}{10ex}\figGCcountermondelworldsfont
+      \[
+      \begin{array}{r}
+        p=1/4\\
+  %      \tb{\neg\neg p=1}\\[6ex]
+      \end{array}
+      \]
+    \end{minipage}
+  }
+  ;
+  
+  % DOTS
+  
+  \draw[fill] (2,1) node{.....}  ; 
+  
+  % ARROWS
+  \draw[magenta,->] (w0) -- (w1) node[midway,above, xshift=-1em,yshift=-2ex] {\figGCcountermondelworldsfont 1};
+  \draw[magenta,->] (w0) -- (w2) node[midway, above,xshift=.2em] {\figGCcountermondelworldsfont  1}  ;
+  \draw[magenta,->] (w0) -- (w3) node[midway, above, xshift=0.5em,yshift=-2ex] {\figGCcountermondelworldsfont 1} ;
+  
+  % valuations
+  \draw (3.8,-.7) node{
+    \begin{minipage}{25ex}\figGCcountermondelworldsfont
+      \ggbox{$\Box  p = 0$}
+    \end{minipage}
+  }; 
+        
+
+\end{tikzpicture}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "slides_GoedelWitnessed_aiml2026"
+%%% End: 

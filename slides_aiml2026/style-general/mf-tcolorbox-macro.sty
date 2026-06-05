@@ -1,0 +1,204 @@
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+
+%%\RequirePackage[dvipsnames]{xcolor}
+\definecolor{tcbx_Blue_Dark}{rgb}{0.090196,0.211765,0.364706}
+\definecolor{tcbx_Blue_Medium}{rgb}{0.658824,0.798039,0.945098}
+\definecolor{tcbx_Blue_Bright}{rgb}{0.858824,0.898039,0.945098}
+\definecolor{tcbx_Blue_BBright}{rgb}{0.858824,0.898039,0.945098}
+\definecolor{tcbx_Green_Dark}{rgb}{0.078431,0.407843,0.176471}
+\definecolor{tcbx_Pale_Green}{rgb}{204, 255, 229}
+
+\newtcolorbox{sommario}[1]{
+  beforeafter skip=1\baselineskip,
+  colbacktitle=white,
+  top=0.2cm,
+  bottom=0.2cm,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\upshape\small,
+  fontlower=\itshape\small,
+  coltitle=black,
+  center title,
+  title={#1},
+}
+
+\newtcolorbox{tabella}[2][]{
+  oversize,
+  %%floatplacement=t,
+  float,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  toptitle=0.2cm,
+  bottomtitle=0.2cm,
+  top=0.5cm,
+  bottom=0.5cm,
+  % boxsep=5mm,
+  % leftupper=18cm,
+  colframe=tcbx_Blue_Dark, 
+  colback=tcbx_Blue_Bright,
+  % colback=blue!10!white,coltitle=red!70!black,
+  fonttitle=\bfseries,
+  coltitle=black,
+  center title,
+  title={#2},
+  #1
+}
+
+% \newtcolorbox{bbluebox}[2][]{
+%   %%floatplacement=t,
+%   float,
+%   % colbacktitle=red!10!white,
+%   colbacktitle=tcbx_Blue_Medium,
+%   toptitle=0.2cm,
+%   bottomtitle=0.2cm,
+%   top=0.5cm,
+%   bottom=0.5cm,
+%   % boxsep=5mm,
+%   % leftupper=18cm,
+%   colframe=tcbx_Blue_Dark, 
+%   colback=tcbx_Blue_Bright,
+%   % colback=blue!10!white,coltitle=red!70!black,
+%   fonttitle=\bfseries,
+%   coltitle=black,
+%   center title,
+%   title={#2},
+%   #1
+% }
+
+\newtcolorbox{bbluebox}[2][]{
+  beforeafter skip=1\baselineskip,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  %toptitle=0.1cm,
+  %bottomtitle=0.2cm,
+  top=0.2cm,
+  bottom=0.2cm,
+  left=0cm,
+  %boxsep=5mm,
+  %leftupper=18cm,
+  %colframe=Blue_Dark, 
+  %colback=Blue_BBright,
+  %colback=blue!10!white,coltitle=red!70!black,
+  colframe=tcbx_Blue_Dark, 
+  colback=tcbx_Blue_Bright,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\upshape,
+  fontlower=\upshape,
+  coltitle=black,
+  %center title,
+  title={#2},
+  #1
+}
+
+
+
+\newtcolorbox{explanationbox}[2][]{
+  oversize,
+  %%floatplacement=t,
+  float,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  toptitle=0.2cm,
+  bottomtitle=0.2cm,
+  top=0.5cm,
+  bottom=0.5cm,
+  % boxsep=5mm,
+  % leftupper=18cm,
+  colframe=tcbx_Blue_Dark, 
+  colback=tcbx_Blue_Bright,
+  % colback=blue!10!white,coltitle=red!70!black,
+  fonttitle=\bfseries,
+  coltitle=black,
+  center title,
+  title={#2},
+  #1
+}
+
+
+\newtcolorbox{algo}[2][]{
+  before skip=1\baselineskip,
+  after={\vspace{.5\baselineskip}\noindent},
+  oversize,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  %toptitle=0.1cm,
+  %bottomtitle=0.2cm,
+  top=0.2cm,
+  bottom=0.2cm,
+  % boxsep=5mm,
+  % leftupper=18cm,
+  colframe=tcbx_Blue_Dark, 
+  colback=tcbx_Blue_BBright,
+  % colback=blue!10!white,coltitle=red!70!black,
+  fonttitle=\bfseries,
+  fontupper=\sffamily\small,
+  fontlower=\sffamily\small,
+  coltitle=black,
+  %center title,
+  title={#2},
+  #1
+}
+
+
+\newtcolorbox{citazione}[1][]{
+  beforeafter skip=1\baselineskip,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  %toptitle=0.1cm,
+  %bottomtitle=0.2cm,
+  top=0.2cm,
+  bottom=0.2cm,
+  % boxsep=5mm,
+  % leftupper=18cm,
+  %colframe=Blue_Dark, 
+  %colback=Blue_BBright,
+  % colback=blue!10!white,coltitle=red!70!black,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\upshape\small,
+  fontlower=\upshape\small,
+  coltitle=black,
+  %center title,
+  title={#1},
+  #1
+}
+
+
+%% DEFINIZIONE IF default FALSE
+\newif\ifshowpersonalnote\showpersonalnotetrue
+\RequirePackage{comment}
+\ifshowpersonalnote
+\newtcolorbox{personalnote}[1][]{
+  beforeafter skip=1\baselineskip,
+  % colbacktitle=red!10!white,
+  colbacktitle=tcbx_Blue_Medium,
+  % toptitle=0.1cm,
+  %bottomtitle=0.2cm,
+  top=0.2cm,
+  bottom=0.2cm,
+  % boxsep=5mm,
+  % leftupper=18cm,
+  %colframe=Blue_Dark, 
+  colback=BlanchedAlmond,
+  %colback=blue!10!white,coltitle=red!70!black,
+  halign lower=flush right,
+  fonttitle=\bfseries,
+  fontupper=\upshape\small,
+  fontlower=\itshape\small,
+  coltitle=black,
+  %center title,
+  title={#1},
+  #1
+}
+\else
+\excludecomment{personalnote}
+\fi
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../intai.tex"
+%%% End: 

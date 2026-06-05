@@ -1,0 +1,51 @@
+  %%% LOGICS DIAGRAM
+%  \begin{minipage}{\linewidth}
+%  \begin{center}\small
+  \begin{tikzpicture}[
+    level 1/.style={sibling distance=10em},
+    % level 2/.style={sibling distance=4em},
+    ]
+    \node[fill=gray!10] (GWc) {$\GWCL$}
+    child{ 
+      node[fill=gray!10] (Gc) {$\GCL = \GKL + (Cr)$}
+      child[missing]{}
+      child{
+        node (GK)[fill=gray!10]  {$\GKL$}
+        edge from parent
+        %node[right=.5ex] {$\subset$}
+      } 
+      edge from parent
+      %node[right=.5ex] {$\subset$}
+    }
+    child{ 
+      node[fill=green!25] (GW) {$\GWL$}
+      edge from parent
+      %node[left=.5ex] {$\subset$}
+    } 
+    ;
+    %\draw (GW) -- node[left=.5ex] {$\subset$} (GK) ;    
+    \draw (GW) -- (GK) ;    
+
+    \node[right=1ex of GWc] {\begin{minipage}{16ex}
+      \small $(Cr)$, $(Wt)$  valid\end{minipage}};
+    \node[right=1ex of GW] {\begin{minipage}{16ex}
+      \small $(Cr)$ NOT valid \par$ (Wt)$ valid  \end{minipage}};
+    \node[left=-1ex of Gc] {\begin{minipage}{16ex}
+      \small     $(Wt)$ NOT valid\end{minipage}};
+  \node[right=1ex of GK] {\begin{minipage}{22ex}
+      \small $(Cr)$, $(Wt)$   NOT valid\end{minipage}};
+
+  \end{tikzpicture}
+{\small
+  \[
+    (Cr)\quad \Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)
+    \hspace{4em}
+    (Wt)\quad\Box \neg\neg \a \to \neg\neg\Box \a   
+  \]}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "aiml2026_slides"
+%%% End: 
