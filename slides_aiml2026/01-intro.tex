@@ -49,62 +49,95 @@ This beacuase this is the only fuzzy logic which admits weakening and contractio
   \tm{$\lor$}, \tm{$\to$} ($\tm{\neg} \varphi=\varphi\to\bot$),
   \tb{$\Box$}, \tb{$\Diam$}.
 
-  % \bfb{Formulas}
-  % \begin{itemize}
-  % \item countable set of propositional variables \tm{$\PV$}; 
-  % \item propositional connectives: \tm{$\land$}, \tm{$\lor$}, \tm{$\to$} ($\tm{\neg}
-  %   \varphi=\varphi\to\bot$)
-  % \item modal operators: \tm{$\Box$}, \tm{$\Diam$}
-  % \end{itemize}
-
   
   \MSK
   \bfb{G\"odel-Kripke model ($\GKL$-model)}: $\M=\stru{W,R,e}$ where:
   \begin{center}
   \begin{tabular}{p{15ex}p{25ex}p{20ex}}
-    $W\not=\emptyset$&$\tm{R:W\times W\to [0,1]}$& $e:W\times\PV\to [0,1]$\\
+    $W\not=\emptyset$&$\tm{R:W\times W\to [0,1]}$& $e:W\times\PV\to [0,1]$
+    \\
     \mbox{\medfont worlds}&\mbox{\medfont \tm{accessibility relation}}&\mbox{\medfont evaluation}
   \end{tabular}
   \end{center}
   
-  
-  \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
+\begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
     \hspace{-2ex}\begin{tabular}{p{72ex}}
-      \medfont $e(w,\bot) = 0$\\[2ex]
-      \medfont $e(w,\a \tr{\star} \b) = e(w,\a)\, \tr{\star}\, e(w,\b)$, for 
-      $\tr{\star}\in \{\,\land,\,\lor,\,\to\,,\,\neg\,\}$\\[1ex]
-      \medfont$
-      \quad a\tr{\land} b = \min(a,b)
-      \quad
-      a\tr{\lor} b = \max(a,b)
-      \quad
-      a\tr{\to} b =
+      %\medfont
+      $e(w,\bot) = 0$
+      \\[2ex]
+      %\medfont
+      $e(w,\,\a \,\tr{\star} \,\b) = e(w,\a)\; \tr{\star}\; e(w,\b)$, for 
+      $\tr{\star}\in \{\,\land,\,\lor,\,\to\,\}$
+      \\[1ex]
+      % \medfont
+      $
+      \quad a\,\tr{\land}\, b = \min(a,b)
+      \qquad
+      a\,\tr{\lor}\, b = \max(a,b)
+      \qquad
+      a\,\tr{\to}\, b =
       \begin{cases}
         \tb{1} & \mbox{if $a\leq b$}\\
         \tr{b} &  \mbox{if $a > b$}     
       \end{cases}$
-      % \quad
-      % \tr{\neg}a=%a\to\tr{\bot}=
-      % \begin{cases}
-      %   \tb{1} & \mbox{if {$a=0$}}\\     
-      %   \tr{0} & \mbox{if {$a>0$}}
-      % \end{cases}
-      % $
       \\[4ex]
-      \medfont $e(w,\tm{\Box} \a) = \tm{\inf}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\to}\, e(\tr{x},\a)\,\Big\}$
-      \quad $e(w,\tm{\Diam} \a)= \tm{\sup}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\land}\, e(\tr{x},\a)\,\Big\}$
+      \text{Note that}
+      \\
+  $ e(w, \tm{\neg}\a) =
+      \begin{cases}
+        \tb 1 & \mbox{if $e(w,\a)=0$}\\
+        \tb 0 &  \mbox{if $e(w,\a) > 0$}     
+      \end{cases}$
+%       %\medfont
+%       $e(w,\tm{\Box} \a) = \tm{\inf}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\to}\, e(\tr{x},\a)\,\Big\}$
+% \\[2ex]
+%       $e(w,\tm{\Diam} \a)= \tm{\sup}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\land}\, e(\tr{x},\a)\,\Big\}$
+    \end{tabular}
+  \end{tcolorbox}
+
+
+  
+  
+  \VFILL
+\end{frame}
+
+%======================================================================================
+
+\begin{frame}
+  \frametitle{G\"odel-Kripke semantics}
+
+
+ $\tb{\M}=\stru{W,R,e}$ 
+  
+  \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
+    \hspace{-2ex}\begin{tabular}{p{72ex}}
+         %\medfont
+      $e(w,\tm{\Box} \a) \;=\; \tm{\inf}_{\tr{x}\in W}\Big\{\;R(w,\tr{x})\;\tr{\to}\; e(\tr{x},\a)\;\Big\}$
+\\[4ex]
+      $e(w,\tm{\Diam} \a)\;=\; \tm{\sup}_{\tr{x}\in W}\Big\{\;R(w,\tr{x})\;\tr{\land}\; e(\tr{x},\a)\:\Big\}$
     \end{tabular}
   \end{tcolorbox}
   
   
-
-  \begin{bbluebox}{}%{$\varphi$ valid in $\Mcal$ }%[colframe=blue!75!black][Subformula property]
-    \begin{center}
-      \bfb{$\varphi$ is valid in} $\tb{\Mcal}=\stru{W,R,e}$ iff \tb{$\forall w\in W$, 
-      $e(w,\varphi)=1$}\qquad($\Mcal\models \varphi$)
-    \end{center}
+  \begin{bbluebox}{}%
+    \[
+      \begin{array}{lcl}
+   \tb{\M\models \varphi}  &\;\tm\IFF\;& \forall w\in W,\ e(w,\varphi)=1
+\\
+\text{\medfont $\varphi$ is \tb{valid} in $\tb{\M}$}
+      \end{array}
+      \]
   \end{bbluebox}
 
+  Assume that $\M\not\models \varphi$:
+
+\smallskip
+  \begin{itemize}
+  \item there is $w\in w$ such that $e(w,\varphi) < 1$
+  \end{itemize}
+\smallskip
+  
+  We say that $\M$ is a \tb{countermodel} for $\varphi$.
 
   \VFILL
 
@@ -117,7 +150,7 @@ This beacuase this is the only fuzzy logic which admits weakening and contractio
 %======================================================================================
 
 \begin{frame}
-  \frametitle{G\"odel modal logics}
+  \frametitle{G\"odel modal logics: $\GKL$}
 
    \BSK
   {\bfb{G\"odel Modal Logic}} - \tm{no restriction on $R$}
@@ -144,7 +177,7 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
   $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$
 \end{tabular}
 \]
-{\smallfont Caicedo, Rodr{\'{\i}}guez: Bi-modal {G}{\"{o}}del logic over
+{\smallfont Caicedo \& Rodr{\'{\i}}guez. Bi-modal {G}{\"{o}}del logic over
     [0,1]-valued Kripke frames. JLC  %\textbf{25}(1), 37--55 
     (2015)
 }
@@ -162,10 +195,20 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
 % }
 
 \medskip
-    \item  %[\tm{[3]}]
-   $\GKL_\Box$ and $\GKL_\Diamond$: analytic calculi,  decidability, PSPACE-completeness
+    \item
+Decidable, PSPACE complete.
+
+{\smallfont
+Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
   
-{ \smallfont  Metcalfe, Olivetti: Towards a proof theory of {G}{\"{o}}del modal
+  }
+
+
+\medskip
+    \item  %[\tm{[3]}]
+Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
+  
+{ \smallfont  Metcalfe \& Olivetti. Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
     (2011)}
     
@@ -180,32 +223,17 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
 %======================================================================================
 
 \begin{frame}
-  \frametitle{G\"odel modal logics}
+  \frametitle{G\"odel modal logics: $\GCL$}
 
-%    \BSK
-%   {\bfb{G\"odel Modal Logic}} - \tm{no restriction on $R$}
-
-% \BSK 
     {\bfb{Crisp G\"odel Modal Logic}} - \tm{$R$ crisp}
   \[
   \GCL=\{~\varphi~|~\varphi~\mbox{valid in all}~
   \underbrace{\mbox{\bfm{crisp} G\"odel-Kripke models}}_{\mbox{\tb{$\GCL$-models}}}~\}
   \]
 
-\begin{custombox}[top=0mm,bottom=0mm,width=\linewidth]
+\begin{custombox}[top=0mm,bottom=0mm,width=25em]
     \begin{tabular}{c}
-      \begin{minipage}{35ex}
-        \medfont $R:W\times W\to \tm{\{0,1\}}$\hspace{4ex}$(R\subseteq W\times W)$
-      \end{minipage}
-      % \\[2ex]
-      % \begin{minipage}{80ex}
-      % \begin{center}
-      %   $e(w,\tm{\Box} \a) = \tm{\inf}\left(\,  \{\,e(\tr{x},\a)~|~w R \tr{x} \,\}\cup\{1\} \,\right)$ \quad ($=1$ if $R(w)=\emptyset$)\\[1ex]
-      %   $e(w,\tm{\Diam} \a) =\tm{\sup}\left(\,  \{\,e(\tr{x},\a)~|~w R \tr{x} \,\}\cup\{0\} \,\right)$
-      %   \quad ($=0$ if $R(w)=\emptyset$)
-      %   \end{center}
-%      \end{minipage}
-%    \\[2ex]
+  \tm{crisp}:      $R:W\times W\to \tm{\{0,1\}}$\hspace{4em}$(R\subseteq W\times W)$
     \end{tabular}
   \end{custombox}
     \SSK
@@ -215,26 +243,82 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
   \BSK
   \begin{itemize}
   \item $\GCL \;\;\tm{=}\;\; \GKL\;\;\tm{+}\;\; \underbrace{\Box(\a\lor\b) \to (\Box\a \lor \Diam  \b)}_{\mathrm{(Cr)}}$
-%     \[\small
-% (Cr) \;\; \Box(\a\lor\b) \to (\Box\a \lor \Diam  \b) 
-%       \]
-
       \smallskip
 
-      {\smallfont  Rodr{\'{\i}}guez, Vidal: Axiomatization of crisp {G}{\"{o}}del modal
+      {\smallfont  Rodr{\'{\i}}guez \& Vidal. Axiomatization of crisp {G}{\"{o}}del modal
     logic. Studia Logica  %\textbf{109}(2),  367--395 
     (2021)}   
 
-\medskip
-\item  $\GCL_\Box = \GKL_\Box$ but $\GCL_\Diam \neq \GKL_\Diam$.
+\medskip  
+\item $\GCL \neq \GKL$
+  \[
+  \begin{array}{cl}
+  \Box(p\lor q) \to (\Box p \lor\Diam q) & \in \GCL\setminus \GKL 
+\\
+ \text{\medfont instance of $(Cr)$}
+  \end{array}
+ \]  
 
 \input{fig-F1-counterCrisp}
+  
+
+
+  \end{itemize}
+
+
+ \VFILL
+
+\end{frame}
+
+
+
+%======================================================================================
+
+\begin{frame}
+  \frametitle{G\"odel modal logics:  $\GCL$}
+
+
+% \BSK 
+    {\bfb{Crisp G\"odel Modal Logic}} - \tm{$R$ crisp}
+  \[
+  \GCL=\{~\varphi~|~\varphi~\mbox{valid in all}~
+  \underbrace{\mbox{\bfm{crisp} G\"odel-Kripke models}}_{\mbox{\tb{$\GCL$-models}}}~\}
+  \]
+
+\begin{custombox}[top=0mm,bottom=0mm,width=25em]
+    \begin{tabular}{c}
+  \tm{crisp}:      $R:W\times W\to \tm{\{0,1\}}$\hspace{4em}$(R\subseteq W\times W)$
+    \end{tabular}
+  \end{custombox}
+    \SSK
+
+
+    \begin{itemize}
+
+\medskip
+
+\item Decidable and PSPACE complete
+
+  
+{\smallfont
+Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
+  
+  }
+
+
+
+
+      
+
+\medskip
+\item  $\GCL_\Box = \GKL_\Box$ but  $\GCL_\Diam \neq \GKL_\Diam$.
+
   
 
 \medskip
 
 \item  %[\tm{[3]}]
-   $\GCL_\Diam$: analytic calculi,  decidability, PSPACE-completeness
+ Analytic calculus for   $\GCL_\Diam$.
   
 { \smallfont  Metcalfe, Olivetti: Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
@@ -249,35 +333,33 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
  \VFILL
 
 \end{frame}
-
-
 %======================================================================================
 
 
 \begin{frame}
-\frametitle{G\"odel modal logics}
+\frametitle{G\"odel modal logics: witnessed models}
 
   \begin{center}
     \input{fig-F2-nonWitnessed.tex}
   \end{center}
   \[
-    \medfont
+    \small
   \begin{array}{lcl}
     e(w_0,\Box p) &= &
-                           \inf_{j\geq 0}\{\, \mbox{$R(w_0,w_j)\to  e(w_j,p)$} \,\}
+                           \inf\{\, R(w_0,w_j)\to  e(w_j,p)~|~w_j\in W \,\}
 
     \\[1ex]
                   &\;=\; & \inf\,\{\,
        \underbrace{\overset{\tm{0}}{R(w_0,w_0)}\to  e(w_0,p)}_{\tm 1},\;
-        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}},\;
-          \underbrace{\overset{\tm{1}}{R(w_0,w_2)}\to  \overset{\tm{1/3}}{e(w_2,p)}}_{\tm{1/3}},\;\dots   \,\}
+        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}},\;\dots\,\}
+        %  \underbrace{\overset{\tm{1}}{R(w_0,w_2)}\to  \overset{\tm{1/3}}{e(w_2,p)}}_{\tm{1/3}},\;\dots   \,\}
       \\[1ex]
        &\;=\; & \inf\,\{\, 1, \, 1/2,\, 1/3,\, 1/4, \, \dots \,\} \;=\; {\tm  0}                    
 \end{array}
        \]
 
        \begin{itemize}
-       \item \tm{0} is the infimum of  $R(w_0,w_j)\to  e(w_j,p)$  but \tm{not} the minimum!
+       \item \tm{0} is the \tb{infimum} of the set of $R(w_0,w_j)\to  e(w_j,p)$,  but \tm{not} the minimum!
 
 \item Indeed, there is no $w_j$ such that $R(w_0,w_j)\to e(w_j,p) = 0$.
          
@@ -294,7 +376,7 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics}
+\begin{frame}\frametitle{G\"odel modal logics: witnessed models}
 
   %\MSK
   \[
@@ -306,7 +388,7 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
  \]
 
   
-  {\bfb{Witnessed  G\"odel Modal Logic}} - \tm{$R$  witnessed}
+%  {\bfb{Witnessed  G\"odel Modal Logic}} - \tm{$R$  witnessed}
 
 
  
@@ -346,23 +428,24 @@ Note that every finite model is witnessed
 
 
 \begin{frame}
-\frametitle{G\"odel modal logics}
+\frametitle{G\"odel modal logics: witnessed models}
 
 \[
-(Wt) = \Box \neg\neg \a \to \neg\neg \Box \a
+(Wt) \quad \Box \neg\neg \a \to \neg\neg \Box \a
 \]
 \begin{itemize}
 
-\item $(Wt)$ is valid in every witnessed model
+\item $(Wt)$ is valid in every witnessed model (hence, in every finite model)
 
 
-\item $(Wt)$ is not valid in this infinite $\GWL$-model  
+\item Countermodel for $(Wt)$:
 
 \input{fig-F3-counterWt}
   
 
 
-Accordingly, both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
+Accordingly, both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)
+%\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
 
 
 \smallskip
@@ -386,7 +469,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics}
+\begin{frame}\frametitle{G\"odel modal logics: witnessed models}
 
  
   \begin{itemize}
