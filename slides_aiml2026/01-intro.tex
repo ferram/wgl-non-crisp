@@ -453,15 +453,37 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 \item This hows that  both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)
 %\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
 
+\end{itemize}
 
 
-\item  $\GKL_\Diamond$ has FMP
+
+
+  \VFILL
+  
+\end{frame}
+
+
+
+%======================================================================================
+
+
+\begin{frame}
+\frametitle{G\"odel modal logics: witnessed models}
+
+
+  \begin{itemize}
+  
+  \item  $\GKL_\Diamond$ has FMP
 
 
   {\smallfont
 Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %\textbf{94}(2),  189--214 
     (2010)
 }
+
+
+  \item  $\GCL_\Diamond$ has not FMP
+
 
 
 \end{itemize}
@@ -522,7 +544,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 
 \begin{frame}\frametitle{G\"odel modal logics: overview}
 
-\input{fig-F4-logicsDiagram}
+\input{fig-F5-logicsDiagram}
 
 Let $\mathbf{L}$ be any of the above logics.
 
@@ -544,7 +566,10 @@ $\begin{array}{ll}
   \end{custombox}   
       \end{minipage}
     \]
-\end{itemize}
+
+
+\item decision problem for $\mathbf{L}$ is PSPACE complete
+  \end{itemize}
 
   
 \end{frame}
@@ -553,44 +578,52 @@ $\begin{array}{ll}
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics}
+\begin{frame}\frametitle{G\"odel modal logics: overiview}
 
+
+%\input{fig-F4-logicsDiagram}
+
+
+  
 \begin{tabular}{m{4em}|m{6em}|m{6em}|m{12em} }
-& {\blue Axiomatization} &  {\blue FMP}  &  {\blue Decidability (\dag)}
+& {\blue Axiomatization} &  {\blue FMP}  &  {\blue Calculi }
 \\[1ex]
 %-----------------------------------
 \hline\hline  &&&\\  
-$\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   & \darkgreen\cmark\
+$\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fragments
 \\&&
-     only for $\GKL_\Diamond$ &\scriptsize sequent calculi for  $\GKL_\Box$ and $\GKL_\Diamond$
+   \small  only for $\GKL_\Diamond$ & %\scriptsize sequent calculi for  $\GKL_\Box$ and $\GKL_\Diamond$
                                 
   \\[1ex]
 %-----------------------------------
  \hline  &&&\\  
-     $\GCL$ &    \darkgreen\cmark\    &  \red\xmark\; & \darkgreen\cmark\
+     $\GCL$ &    \darkgreen\cmark\    &  \red\xmark\; &\small only for $\Box/\Diam$-fragments
   \\[.5ex]&
             \small $\GCL_\Box =\GKL_\Box$
 &&
-            \scriptsize sequent calculus for   $\GCL_\Diamond$          
  \\[1ex]                                      
 % ----------------------------
- \hline  &&&\\  
-  $\GWCL$   &  \red\; \Huge ?  & \darkgreen\cmark\ & \darkgreen\cmark\
-      \\[.5ex]&&&
-   \scriptsize refutation calculus based on constraints                                                     
+ \hline\hline \cellcolor{gray!20}   & \cellcolor{gray!20} & \cellcolor{gray!20} & \cellcolor{gray!20} \\  
+  $\GWCL$  \cellcolor{gray!20}   &  \cellcolor{gray!20}  \red\; \Huge ?  &  \cellcolor{gray!20} \darkgreen\cmark\
+                                         &  \small\cellcolor{gray!20}  refutation calculus    
  \\[1ex]                                      
 % ----------------------------
  \hline \cellcolor{gray!20} &\cellcolor{gray!20}&\cellcolor{gray!20}&\cellcolor{gray!20}\\  
-\cellcolor{gray!20}    $\GWL$   & \cellcolor{gray!20}\red\;  \Huge ? & \cellcolor{gray!20} \darkgreen\cmark\ & \cellcolor{gray!20}\darkgreen\cmark\
-  \\[.5ex]\cellcolor{gray!20}&\cellcolor{gray!20}&\cellcolor{gray!20}&\cellcolor{gray!20}
-   \scriptsize refutation calculus based on constraints     
+  \cellcolor{gray!20}    $\GWL$   & \cellcolor{gray!20}\red\;  \Huge ? & \cellcolor{gray!20} \darkgreen\cmark\
+                                         &\small \cellcolor{gray!20} refutation calculus 
 \end{tabular}
 
 \medskip
 \begin{itemize}
-\item[(\dag)]
-In all the logics, the decision problem is in PSPACE
-\end{itemize}
+\item \tb{Non-witnessed logics:} axiomatizazion, no FMP, calculi only for fragments  
+
+\smallskip
+\item \tb{Witnessed logics:}  FMP, refutation calculi based on constraints, no axiomatization
+
+\end{itemize}  
+
+% \item[(\dag)]
+% In all the logics, the decision problem is in PSPACE
 
 
 \end{frame}
