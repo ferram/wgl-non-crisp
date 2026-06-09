@@ -7,7 +7,7 @@
     ]
     \node[fill=gray!10] (GWc) {$\GWCL$}
     child{ 
-      node[fill=gray!10] (Gc) {$\GCL = \GKL + (Cr)$}
+      node[fill=gray!10] (Gc) {$\GCL = \GKL + \tb{(Cr)}$}
       child[missing]{}
       child{
         node (GK)[fill=gray!10]  {$\GKL$}
@@ -27,20 +27,20 @@
     \draw (GW) -- (GK) ;    
 
     \node[right=1ex of GWc] {\begin{minipage}{16ex}
-      \small $(Cr)$, $(Wt)$  valid\end{minipage}};
+      \small $\tb{(Cr)}$, $\tb{(Wt)}$\end{minipage}};
     \node[right=1ex of GW] {\begin{minipage}{16ex}
-      \small $(Cr)$ NOT valid \par$ (Wt)$ valid  \end{minipage}};
-    \node[left=-1ex of Gc] {\begin{minipage}{16ex}
-      \small     $(Wt)$ NOT valid\end{minipage}};
+      \small $\tr{\xcancel{(Cr)}}$, $\tb{ (Wt)}$   \end{minipage}};
+    \node[left=-1ex of Gc] {\begin{minipage}{3em}
+      \small     $\tr{\xcancel{(Wt)}}$ \end{minipage}};
   \node[right=1ex of GK] {\begin{minipage}{22ex}
-      \small $(Cr)$, $(Wt)$   NOT valid\end{minipage}};
+      \small $\tr{\xcancel{(Cr)}}$, $\tr{\xcancel{(Wt)}}$\end{minipage}};
 
   \end{tikzpicture}
 {\small
   \[
-    (Cr)\quad \Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)
+    \tb{(Cr)\quad \Box (\a \lor \b)\to (\Box \a \lor \Diamond \b)}
     \hspace{4em}
-    (Wt)\quad\Box \neg\neg \a \to \neg\neg\Box \a   
+   \tb{ (Wt)\quad\Box \neg\neg \a \to \neg\neg\Box \a }  
   \]}
 
 

@@ -31,7 +31,7 @@
 
     \dots\emb{this is the only
     fuzzy logic whose modal analogue admits the normality axiom} $\Box
-  (\a\to\b) \to (\Box\a\to\Box\b)$ \citebib{Buo et al., 2011}.
+  (\a\to\b) \to (\Box\a\to\Box\b)$ \citebib{Bou et al., 2011}.
 
   
 This beacuase this is the only fuzzy logic which admits weakening and contraction. 
@@ -381,9 +381,9 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
   %\MSK
   \[
     \begin{array}{lcl}
- e(w,\Box \a) &= &\inf_{x\in W}\Big\{\,R(w,x)\,\to\, e(x,\a)\,\Big\}
- \\[1ex]
-  e(w,\Diam \a) &= &\sup_{x\in W}\Big\{\,R(w,x)\,\land\, e(x,\a)\,\Big\}
+ e(w,\Box \a) &= &\tm{\inf}\ \Big\{\,R(w,x)\,\to\, e(x,\a)~|~x\in W \,\Big\}
+ \\[2ex]
+  e(w,\Diam \a) &= &\tm{\sup}\ \Big\{\,R(w,x)\,\land\, e(x,\a)~|~x\in W  \,\Big\}
     \end{array}
  \]
 
@@ -394,24 +394,27 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
  
   \begin{itemize}
   \item   $\M=\stru{W,R,e}$ is \tm{witnessed}  if the values of $e(w,\Box\a)$ and $e(w,\Diam\a)$
-are witnessed by some world $w'$ in $\M$, namely:
+are witnessed by some world $\tm{w'}$ in $\M$, namely:
 
 
 
  \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
 \[
 \begin{array}{lcl}
- e(w,\Box \a)=r  &\tm\IFF& \exists\ w'\in W.\ R(w,w') \to  e(w',\a) = r
+ e(w,\Box \a)=r  &\tm\IFF& \exists\ \tm{w'}\in W.\ R(w,\tm{w'}) \to  e(\tm{w'},\a) = r
 \\[.3ex]
-&&\text{\small\tm{infimum}= \tm{minimum}}
+        &&\tb{\text{\small infimum}  \,=\,  \text{\small minimum} }
   \\[1.5ex]
- e(w,\Diam \a)=r  &\tm\IFF& \exists\ w'\in W.\ R(w,w') \land  e(w',\a) = r
+ e(w,\Diam \a)=r  &\tm\IFF& \exists\ \tm{w'}\in W.\ R(w,\tm{w'}) \land  e(\tm{w}',\a) = r
 \\[.3ex]
-&&\text{\small\tm{supremum}= \tm{maximum}}
-\end{array}
+                 &&
+\tb{\text{\small supremum}  \,=\,  \text{\small maximum} }
+ \end{array}
 \]
 \end{tcolorbox}
-Note that every finite model is witnessed
+
+
+\item Every finite model is witnessed
 
  
 \end{itemize}
@@ -430,6 +433,9 @@ Note that every finite model is witnessed
 \begin{frame}
 \frametitle{G\"odel modal logics: witnessed models}
 
+
+
+
 \[
 (Wt) \quad \Box \neg\neg \a \to \neg\neg \Box \a
 \]
@@ -438,18 +444,18 @@ Note that every finite model is witnessed
 \item $(Wt)$ is valid in every witnessed model (hence, in every finite model)
 
 
-\item Countermodel for $(Wt)$:
+\item A countermodel for $(Wt)$ must be \tb{infinite}:
 
 \input{fig-F3-counterWt}
   
 
 
-Accordingly, both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)
+\item This hows that  both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)
 %\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
 
 
-\smallskip
-However,   $\GKL_\Diamond$ has FMP
+
+\item  $\GKL_\Diamond$ has FMP
 
 
   {\smallfont
@@ -469,26 +475,41 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics: witnessed models}
+\begin{frame}\frametitle{G\"odel modal logics:  $\GWCL$ and  $\GWL$ }
 
  
   \begin{itemize}
-  \item  We have introduced logic
+
+\item Witnessed condition has been discusses in many papers
+
+
+
+
+    
+\item  In  \citebib{Ferrari et al.,  TABLEAUX 2025} we have introduced the logic
     \[
  \GWCL\;=\;\{~\varphi~|~\varphi~\mbox{valid in all}~
   \underbrace{\mbox{\bfm{witnessed crisp} G\"odel-Kripke models}}_{\mbox{\tb{$\GWCL$-models}}}~\}
       \]
+      \begin{itemize}
+      \item[$\surd$] refutation calculus for   $\GWCL$ (based on constraints)
+ \item[$\surd$]  PSPACE completeness 
+        \end{itemize}
 
-\item We have introduced calculus, PSPACE completenness
-      \smallskip
-      {\smallfont Ferrari, Fiorentini,  Rodr{\'{\i}}guez:  A G\"odel Modal Logic over Witnessed Crisp Models. TABLEAUX 2025  (2025)}   
+      
 
 
-\item Here we study      
+\item Here we extends the previous results to the logic      
   \[
   \GWL  =\{~\varphi~|~\varphi~\mbox{valid in all}~
   \underbrace{\mbox{\bfm{witnessed} G\"odel-Kripke models}}_{\mbox{\tb{$\GWL$-models}}}~\}
-  \]
+\]
+
+  \begin{itemize}
+      \item[$\surd$] refutation calculus for   $\GWL$
+ \item[$\surd$]  PSPACE completeness 
+        \end{itemize}
+
 \end{itemize}
 
   \VFILL
@@ -499,7 +520,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics}
+\begin{frame}\frametitle{G\"odel modal logics: overview}
 
 \input{fig-F4-logicsDiagram}
 
