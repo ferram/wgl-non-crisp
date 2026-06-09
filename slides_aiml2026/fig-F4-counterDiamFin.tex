@@ -1,6 +1,6 @@
 \newcommand{\figGCcountermondelworldsfont}{\fontsize{8pt}{8pt}\selectfont}
 
-\begin{tikzpicture}[scale=0.9]      
+\begin{tikzpicture}[scale=0.8]      
   % MODEL
   % \draw (1,3.5) node{
   %   % -----------------------------------------      
@@ -21,15 +21,15 @@
   ;
   
   % w1 
-  \draw[fill]  (-3,1) circle (3pt)
+  \draw[fill]  (-4,1) circle (3pt)
   +(0,0)   node (w1)  {}  % used to label the circle 
   +(-0.6,0)  node  {\figGCcountermondelworldsfont $w_1$} 
-  +(0,0.3) node  {
+  +(0,0.4) node  {
     \begin{minipage}{10ex}\figGCcountermondelworldsfont
       \[
-      \begin{array}{r}
+      \begin{array}{l}
         p=1/2\\[.2ex]
-        \tb{\neg\neg p=1}\\[6ex]
+        q = 1/2-1/3\\[6ex]
       \end{array}
       \]
     \end{minipage}
@@ -40,12 +40,12 @@
   \draw[fill] (-1,1) circle (3pt)
   +(0,0)   node (w2)  {}  % used to label the circle 
   +(-0.6,0) node{\figGCcountermondelworldsfont $w_2$}
-  +(0,0.3) node{
+  +(0,0.4) node{
     \begin{minipage}{10ex}\figGCcountermondelworldsfont
       \[
-      \begin{array}{r}
-        p=1/3\\[.2ex]
-        \tb{\neg\neg p=1}\\[6ex]
+      \begin{array}{l}
+        p=1/2\\[.2ex]
+        q= 1/2-1/4\\[6ex]
       \end{array}
       \]
     \end{minipage}
@@ -53,15 +53,15 @@
   ;
   
   % w3
-  \draw[fill] (1,1) circle (3pt)
+  \draw[fill] (2,1) circle (3pt)
   +(0,0)   node (w3)  {}  % used to label the circle 
   +(-0.6,0) node{\figGCcountermondelworldsfont $w_3$}
-  +(0,0.3) node{
+  +(0,0.4) node{
     \begin{minipage}{10ex}\figGCcountermondelworldsfont
       \[
-      \begin{array}{r}
-        p=1/4\\[.2ex]
-        \tb{\neg\neg p=1}\\[6ex]
+      \begin{array}{l}
+        p=1/2\\[.2ex]
+        q= 1/2-1/5\\[6ex]
       \end{array}
       \]
     \end{minipage}
@@ -70,45 +70,37 @@
   
   % DOTS
   
-  \draw[fill] (2,1) node{.....}  ; 
+  \draw[fill] (3.5,1) node{.....}  ; 
   
+ 
 
-  % EVALUATIONS
+ % EVALUATIONS
 
-
-  \draw (3,-0.6) node{\begin{minipage}{25ex}\figGCcountermondelworldsfont
-      $\Box  p = 0$ (non witnessed)\\[.5ex]
-      $\Box \neg\neg p= 1$
+  \draw (4,-0.6) node{\begin{minipage}{27ex}\figGCcountermondelworldsfont
+      $\Diam p= 1/2$
+      \\[.5ex]
+      $\Diam q = 1/2$ \tb{(non witnessed)}
+      \\[.5ex]
+      $\Diam(p \to  q) = 1/2$  \tb{(non witnessed)}
     \end{minipage}};
 
-  \draw (0,-1.7) node (eval) {
+  \draw (0,-1.9) node (eval) {
     \begin{minipage}{25ex}\figGCcountermondelworldsfont
-      \ggbox{$\overset{\tm{1}}{\Box \neg\neg   p}  \to \overset{\tm{0}}{\neg \neg \Box p} = 0$}
+      \ggbox{$\overset{\tm{1}}{(\Diam p \to \Diam q)} \;\to\;
+        \overset{\tm{0}}{\neg \Diam q} \,\lor\,\overset{\tm{1/2}}{\Diam(p\to q)}\,=\, 1/2$}
     \end{minipage}
   }; 
         
 
-  \draw(5,0.4) node{\figGCcountermondelworldsfont
-$
-  e(w,\neg\neg\varphi)\,=\,
-  \begin{cases}
-  0 & \text{if $e(w,\varphi)=0$}  
-    \\
-    1 & \text{otherwise}
-  \end{cases}$ 
-    };
-
-
-  % ARROWS
+ % ARROWS
   \draw[magenta,->] (w0) -- (w1) node[midway,above, xshift=-1em,yshift=-2ex] {\figGCcountermondelworldsfont 1};
   \draw[magenta,->] (w0) -- (w2) node[midway, above,xshift=.2em] {\figGCcountermondelworldsfont  1}  ;
   \draw[magenta,->] (w0) -- (w3) node[midway, above, xshift=0.5em,yshift=-2ex] {\figGCcountermondelworldsfont 1} ;
-
+  
  \draw[blue,thick,->] (w0.west)  .. controls +(-1.5,0) and +(-1.5,0) ..  (eval.west);
   
-%   \draw[blue,thick,->] (w0) to[out=-10,in=0,relative] (eval);
+
   
-    
 \end{tikzpicture}
 
 

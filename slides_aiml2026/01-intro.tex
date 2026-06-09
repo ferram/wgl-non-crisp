@@ -34,7 +34,7 @@
   (\a\to\b) \to (\Box\a\to\Box\b)$ \citebib{Bou et al., 2011}.
 
   
-This beacuase this is the only fuzzy logic which admits weakening and contraction. 
+This because this is the only fuzzy logic which admits weakening and contraction. 
 
   
   \VFILL
@@ -444,13 +444,13 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 \item $(Wt)$ is valid in every witnessed model (hence, in every finite model)
 
 
-\item A countermodel for $(Wt)$ must be \tb{infinite}:
+\item  $(Wt)$ admits an \tb{infinite (non-witnessed) countermodel}:
 
 \input{fig-F3-counterWt}
   
 
 
-\item This hows that  both $\GKL$ and $\GCL$   do not have the FMP   (Finite Model Property)
+\item $\GKL$,  $\GCL$  and their $\Box$-fragments do not have  the \tb{Finite Model Property (FMP)}
 %\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
 
 \end{itemize}
@@ -483,8 +483,18 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 
 
   \item  $\GCL_\Diamond$ has not FMP
+    \begin{itemize}
+    \item[-] The formula
+      \[
+(Wt^c)\quad (\Diam\a\to\Diam\b)\;\to\;\neg \Diam \b \,\lor\,\Diam(\a\to\b)
+        \]
+        is valid in all witnessed crisp models  (hence, in all finite crisp models)
 
+     \item[-] $(Wt^c)$ admits an \tb{infinite (non-witnessed) crisp countermodel}:  
 
+\input{fig-F4-counterDiamFin}
+
+    \end{itemize}
 
 \end{itemize}
 
@@ -568,7 +578,7 @@ $\begin{array}{ll}
     \]
 
 
-\item decision problem for $\mathbf{L}$ is PSPACE complete
+\item The decision problem for $\mathbf{L}$ is PSPACE complete
   \end{itemize}
 
   
@@ -578,10 +588,10 @@ $\begin{array}{ll}
 %======================================================================================
 
 
-\begin{frame}\frametitle{G\"odel modal logics: overiview}
+\begin{frame}\frametitle{G\"odel modal logics: overview}
 
 
-%\input{fig-F4-logicsDiagram}
+
 
 
   
@@ -605,20 +615,20 @@ $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fr
 % ----------------------------
  \hline\hline \cellcolor{gray!20}   & \cellcolor{gray!20} & \cellcolor{gray!20} & \cellcolor{gray!20} \\  
   $\GWCL$  \cellcolor{gray!20}   &  \cellcolor{gray!20}  \red\; \Huge ?  &  \cellcolor{gray!20} \darkgreen\cmark\
-                                         &  \small\cellcolor{gray!20}  refutation calculus    
+                                         &  \small\cellcolor{gray!20}  refutation constraint calculus    
  \\[1ex]                                      
 % ----------------------------
  \hline \cellcolor{gray!20} &\cellcolor{gray!20}&\cellcolor{gray!20}&\cellcolor{gray!20}\\  
   \cellcolor{gray!20}    $\GWL$   & \cellcolor{gray!20}\red\;  \Huge ? & \cellcolor{gray!20} \darkgreen\cmark\
-                                         &\small \cellcolor{gray!20} refutation calculus 
+                                         &\small \cellcolor{gray!20} refutation constraint calculus 
 \end{tabular}
 
 \medskip
 \begin{itemize}
-\item \tb{Non-witnessed logics:} axiomatizazion, no FMP, calculi only for fragments  
+\item \tb{Non-witnessed logics:} axiomatization, no FMP, calculi only for fragments  
 
 \smallskip
-\item \tb{Witnessed logics:}  FMP, refutation calculi based on constraints, no axiomatization
+\item \tb{Witnessed logics:}  FMP, refutation calculi, no axiomatization
 
 \end{itemize}  
 
