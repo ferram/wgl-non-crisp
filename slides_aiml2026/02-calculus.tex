@@ -7,13 +7,12 @@
 
   \begin{itemize}
   \item 
-$\Calc$ is inspired by the calculus $\TKGL$ for $\KGL$ presented in
+    $\Calc$ is inspired by a calculus %$\TKGL$
+    for $\KGL$ presented in
   \citebib{B{\'{\i}}lkov{\'{a}} et al., IJCAR, 2022}.
-
   \begin{quote}
-  \medfont  $\KGL$: extension of     $\GWCL$, over a more expressive language
+  \medfont  $\KGL$: extension of     $\GWCL$, over a more expressive language\\
 (involutive negation,   co-implication)
-
 \end{quote}
   
 
@@ -21,7 +20,7 @@ $\Calc$ is inspired by the calculus $\TKGL$ for $\KGL$ presented in
     
 
  \item 
-   $\Calcc$ is a generalization of the calculus %$\Calcc$
+   $\Calc$ is a generalization of the calculus %$\Calcc$
    for the logic $\GWCL$ introduced
    in  \citebib{Ferrari et al., TABLEAUX, 2025}.
   
@@ -38,10 +37,10 @@ $\Calc$ is inspired by the calculus $\TKGL$ for $\KGL$ presented in
   
   \bfb{Results overview}
   \begin{itemize}\small
-  \item termination
+  \item strong termination
   \item completeness
   \item countermodel-construction and finite model property
-  \item proof-search procedure (no-backtracking)\\
+  \item proof-search procedure  %(no-backtracking)\\
   \item PSPACE-decidability 
   \item JTabWb implementation
   \end{itemize}
@@ -123,13 +122,13 @@ $\Calc$ is inspired by the calculus $\TKGL$ for $\KGL$ presented in
 
   \MSK
   
-  \bfb{Examples}
+%  \bfb{Examples}
 
   
   \begin{center}\medfont
     \begin{tabular}{p{30ex}|p{50ex}}
       \emb{Constraint} & \emm{Intuitive semantical reading}\\[4ex]
-   (1) \; $w_0 : \a \;\tm{<}\; w_1 : p $ & The value of formula $\a$ at world $w_0$  is \tm{$<$} than the value of  $p$ (prop.~var.) at world $w_2$ 
+   (1) \; $w_0 : \a \;\tm{<}\; w_1 : p $ & The value of formula $\a$ at world $w_0$  is \tm{$<$} than the value of  $p$ (prop.~var.) at world $w_1$ 
       \\[4ex]
       %%%%%%%%%%
      (2)\; $w_0 :\a \;\tm{\geq}\; R(w_0,w_1)  $  &
@@ -138,7 +137,7 @@ $\Calc$ is inspired by the calculus $\TKGL$ for $\KGL$ presented in
       %%%%%%%%%%
      (3)\; $ R(w_0,w_1) \to \tm{\underbrace{\black w_1: \a}_{\tm{r}}}  \;\tm{>}\; 0$ 
       &
-Let $\tm{r}$ be the  the value of $\a$ at $w_0$.\\[-2.5ex]
+Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
      &   The value of   $ R(w_0,w_1) \to \tm{r}$      is \tm{$> 0$}
     \end{tabular}
   \end{center}
@@ -383,7 +382,7 @@ e(w,\, \a \,\tr{\land}\, \b)\;=\; e(w,\a)\;\tr{\land}\;e(w,\b)\;=\;\tr{\min}\{\;
  \item 
  
  \smallskip
- Let   $e(w, \Box \a)=\tm r$. The value $\tm r$ is witnessed by a world $\tb{w_1}$, namely: 
+ Let   $e(w, \Box \a)=\tm r$. The value $\tm r$ is \tb{witnessed} by a world $\tb{w_1}$, namely: 
 \[\small
   \begin{array}{c}
     R(w,\tb{w_1}) \to \tb{w_1}: \a \,=\,\tm r
@@ -544,7 +543,7 @@ We conclude that there is no  $\GWL$-model $\M$ such that $\M\models \G$
 \end{center}
 
 \smallskip
-In the above example:
+%In the above example:
 \[
     \Atmp{\G} \quad\tr{\leadsto}\quad   \{\;{1} > \ggbox{$X$}\,,\;\ggbox{$X$} \leq 1\,,\; \ggbox{$X$} \geq 1\;\}
 \qquad\text{\tr{no solution}}

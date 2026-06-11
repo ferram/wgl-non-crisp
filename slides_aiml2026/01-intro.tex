@@ -45,13 +45,19 @@ This because this is the only fuzzy logic which admits weakening and contraction
 \begin{frame}
   \frametitle{G\"odel-Kripke semantics}
   
-  \bfb{Language}: $\tm{\PV}=\{p_1,p_2,\dots\}$, \tm{$\land$},
+  \bfb{Language}
+
+  \medskip
+  $\tm{\PV}=\{p_1,p_2,\dots\}$, \tm{$\land$},
   \tm{$\lor$}, \tm{$\to$} ($\tm{\neg} \varphi=\varphi\to\bot$),
   \tb{$\Box$}, \tb{$\Diam$}.
 
   
   \MSK
-  \bfb{G\"odel-Kripke model ($\GKL$-model)}: $\M=\stru{W,R,e}$ where:
+  \bfb{G\"odel-Kripke model ($\GKL$-model)}
+
+\medskip
+  $\M=\stru{W,R,e}$ where:
   \begin{center}
   \begin{tabular}{p{15ex}p{25ex}p{20ex}}
     $W\not=\emptyset$&$\tm{R:W\times W\to [0,1]}$& $e:W\times\PV\to [0,1]$
@@ -64,7 +70,7 @@ This because this is the only fuzzy logic which admits weakening and contraction
     \hspace{-2ex}\begin{tabular}{p{72ex}}
       %\medfont
       $e(w,\bot) = 0$
-      \\[2ex]
+      \\[1ex]
       %\medfont
       $e(w,\,\a \,\tr{\star} \,\b) = e(w,\a)\; \tr{\star}\; e(w,\b)$, for 
       $\tr{\star}\in \{\,\land,\,\lor,\,\to\,\}$
@@ -75,25 +81,24 @@ This because this is the only fuzzy logic which admits weakening and contraction
       \qquad
       a\,\tr{\lor}\, b = \max(a,b)
       \qquad
-      a\,\tr{\to}\, b =
+      \underset{\text{residuum}}{a\,\tr{\to}\, b} =
       \begin{cases}
         \tb{1} & \mbox{if $a\leq b$}\\
         \tr{b} &  \mbox{if $a > b$}     
       \end{cases}$
       \\[4ex]
-      \text{Note that}
+    \end{tabular}
+  \end{tcolorbox}
+
+\smallskip
+\medfont
+Note that
       \\
   $ e(w, \tm{\neg}\a) =
       \begin{cases}
         \tb 1 & \mbox{if $e(w,\a)=0$}\\
         \tb 0 &  \mbox{if $e(w,\a) > 0$}     
       \end{cases}$
-%       %\medfont
-%       $e(w,\tm{\Box} \a) = \tm{\inf}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\to}\, e(\tr{x},\a)\,\Big\}$
-% \\[2ex]
-%       $e(w,\tm{\Diam} \a)= \tm{\sup}_{\tr{x}\in W}\Big\{\,R(w,\tr{x})\,\tr{\land}\, e(\tr{x},\a)\,\Big\}$
-    \end{tabular}
-  \end{tcolorbox}
 
 
   
@@ -107,7 +112,7 @@ This because this is the only fuzzy logic which admits weakening and contraction
   \frametitle{G\"odel-Kripke semantics}
 
 
- $\tb{\M}=\stru{W,R,e}$ 
+% $\tb{\M}=\stru{W,R,e}$ 
   
   \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
     \hspace{-2ex}\begin{tabular}{p{72ex}}
@@ -122,18 +127,19 @@ This because this is the only fuzzy logic which admits weakening and contraction
   \begin{bbluebox}{}%
     \[
       \begin{array}{lcl}
-   \tb{\M\models \varphi}  &\;\tm\IFF\;& \forall w\in W,\ e(w,\varphi)=1
+   \tb{\M\models \varphi}  &\;\tm\IFF\;& \forall w\in \M,\ e(w,\varphi)=1
 \\
-\text{\medfont $\varphi$ is \tb{valid} in $\tb{\M}$}
+\text{\medfont $\varphi$ is \tb{valid} in $\M$}
       \end{array}
       \]
   \end{bbluebox}
 
-  Assume that $\M\not\models \varphi$:
+  
+  Assume that $\blue \M\not\models \varphi$:
 
 \smallskip
   \begin{itemize}
-  \item there is $w\in w$ such that $e(w,\varphi) < 1$
+  \item there is a world $w$  in $\M$ such that $e(w,\varphi) < 1$
   \end{itemize}
 \smallskip
   
@@ -183,21 +189,13 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
 }
     
 
-% \medskip
-% \item  %[\tm{[2]}]
-%   $\GKL$ does not enjoy FMP (Finite Model Property), but
-%      $\GKL_\Diamond$ has FMP
 
-
-%   {\smallfont
-% Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %\textbf{94}(2),  189--214 
-%     (2010)
-% }
 
 \medskip
     \item
 Decidable, PSPACE complete.
 
+\smallskip
 {\smallfont
 Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
   
@@ -207,7 +205,8 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 \medskip
     \item  %[\tm{[3]}]
 Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
-  
+
+\smallskip
 { \smallfont  Metcalfe \& Olivetti. Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
     (2011)}
@@ -299,7 +298,7 @@ Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
 
 \item Decidable and PSPACE complete
 
-  
+\smallskip  
 {\smallfont
 Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
   
@@ -319,7 +318,8 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
 \item  %[\tm{[3]}]
  Analytic calculus for   $\GCL_\Diam$.
-  
+
+ \smallskip
 { \smallfont  Metcalfe, Olivetti: Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
     (2011)} 
@@ -338,8 +338,11 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
 \begin{frame}
 \frametitle{G\"odel modal logics: witnessed models}
+\[\small
+ e(w,\Box \a) \,= \,\tm{\inf}\ \Big\{\,R(w,w')\,\to\, e(x,\a)~|~w'\in W \,\Big\}
+ \]
 
-  \begin{center}
+ \begin{center}
     \input{fig-F2-nonWitnessed.tex}
   \end{center}
   \[
@@ -350,11 +353,11 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
     \\[1ex]
                   &\;=\; & \inf\,\{\,
-       \underbrace{\overset{\tm{0}}{R(w_0,w_0)}\to  e(w_0,p)}_{\tm 1},\;
-        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}},\;\dots\,\}
+       \underbrace{\overset{\tm{0}}{R(w_0,w_0)}\to  e(w_0,p)}_{\tm 1}\,,\;
+        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}}\,,\;\dots\,\}
         %  \underbrace{\overset{\tm{1}}{R(w_0,w_2)}\to  \overset{\tm{1/3}}{e(w_2,p)}}_{\tm{1/3}},\;\dots   \,\}
       \\[1ex]
-       &\;=\; & \inf\,\{\, 1, \, 1/2,\, 1/3,\, 1/4, \, \dots \,\} \;=\; {\tm  0}                    
+       &\;=\; & \inf\,\{\, 1\,, \, 1/2\,,\, 1/3\,,\, 1/4\,, \, \dots \,\} \;=\; {\tm  0}                    
 \end{array}
        \]
 
@@ -379,11 +382,11 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 \begin{frame}\frametitle{G\"odel modal logics: witnessed models}
 
   %\MSK
-  \[
+  \[\small
     \begin{array}{lcl}
- e(w,\Box \a) &= &\tm{\inf}\ \Big\{\,R(w,x)\,\to\, e(x,\a)~|~x\in W \,\Big\}
+ e(w,\Box \a) &= &\tm{\inf}\ \Big\{\,R(w,w')\,\to\, e(w',\a)~|~w'\in W \,\Big\}
  \\[2ex]
-  e(w,\Diam \a) &= &\tm{\sup}\ \Big\{\,R(w,x)\,\land\, e(x,\a)~|~x\in W  \,\Big\}
+  e(w,\Diam \a) &= &\tm{\sup}\ \Big\{\,R(w,w')\,\land\, e(w',\a)~|~w'\in W  \,\Big\}
     \end{array}
  \]
 
@@ -444,12 +447,16 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 \item $(Wt)$ is valid in every witnessed model (hence, in every finite model)
 
 
-\item  $(Wt)$ admits an \tb{infinite (non-witnessed) countermodel}:
+  \smallskip
+\item  $(Wt)$ admits a \tb{ non-witnessed (infinite) countermodel}:
 
 \input{fig-F3-counterWt}
   
+\smallskip
+Note that the countermodel is \tm{crisp}
 
 
+\smallskip
 \item $\GKL$,  $\GCL$  and their $\Box$-fragments do not have  the \tb{Finite Model Property (FMP)}
 %\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
 
@@ -490,7 +497,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
         \]
         is valid in all witnessed crisp models  (hence, in all finite crisp models)
 
-     \item[-] $(Wt^c)$ admits an \tb{infinite (non-witnessed) crisp countermodel}:  
+     \item[-] $(Wt^c)$ admits an \tb{non-witnessed (infinite) crisp countermodel}:  
 
 \input{fig-F4-counterDiamFin}
 
@@ -516,7 +523,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 
 
 
-
+\medskip
     
 \item  In  \citebib{Ferrari et al.,  TABLEAUX 2025} we have introduced the logic
     \[
@@ -530,8 +537,8 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 
       
 
-
-\item Here we extends the previous results to the logic      
+\medskip
+\item Here we extend the previous results to the logic      
   \[
   \GWL  =\{~\varphi~|~\varphi~\mbox{valid in all}~
   \underbrace{\mbox{\bfm{witnessed} G\"odel-Kripke models}}_{\mbox{\tb{$\GWL$-models}}}~\}
@@ -625,10 +632,10 @@ $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fr
 
 \medskip
 \begin{itemize}
-\item \tb{Non-witnessed logics:} axiomatization, no FMP, calculi only for fragments  
+\item \tb{Non-witnessed logics:} axiomatization, no FMP, calculi only for fragments.  
 
 \smallskip
-\item \tb{Witnessed logics:}  FMP, refutation calculi, no axiomatization
+\item \tb{Witnessed logics:}  FMP, refutation calculi, no axiomatization. 
 
 \end{itemize}  
 
@@ -637,227 +644,6 @@ $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fr
 
 
 \end{frame}
-
-
-
-
-
-
-
-% ======================================================================================
-% ======================================================================================
-%======================================================================================
-
-% \begin{frame}
-%   \frametitle{Our proposal}
-  
-%   \MSK
-
-%   {\bfb{Witnessed crisp G\"odel Modal Logic}} - \tm{$R$ crisp and witnessed}
-%   \begin{custombox}[top=0mm,bottom=0mm,width=\linewidth]
-%     \begin{tabular}{c}
-%     \begin{minipage}{35ex}
-%         \medfont $R:W\times W\to \tm{\{0,1\}}$\hspace{4ex}$(R\subseteq W\times W)$
-%       \end{minipage}
-%       \\[2ex]
-%       \begin{minipage}{75ex}\small
-%         $\forall w:R(w)\not=\emptyset$ \quad \ycbox{$e(w,\circ\varphi)=\tr{r}$}~$\Rightarrow$ 
-%         \ycbox{$\exists \tr{x}:w R \tr{x}$~\mbox{and}~$e(\tr{x}, \varphi)=\tr{r}$}\quad
-%         \mbox{\medfont $\circ\in\{\Box,\Diam\}$}
-%       \end{minipage}
-%       \\[4ex]
-%       \begin{minipage}{79ex}
-%         \medfont 
-%          \begin{center}   
-%         $e(w,\tm{\Box} \a) = \tm{\min}\left(\,  \{\,e(\tr{x},\a)~|~ w R \tr{x} \,\}\cup\{1\} \,\right)$\\[1ex]
-%         $e(w,\tm{\Diam} \a) = \tm{\max}\left(\,  \{\,e(\tr{x},\a)~|~ w R \tr{x} \,\}\cup\{0\} \,\right)$
-%         \end{center}
-%       \end{minipage}
-%       \\[2ex]  
-%     \end{tabular}
-%   \end{custombox}
-
-%   \MSK
-
-%   \begin{center}
-%     \input{fig-01-ex.tex}
-%   \end{center}
-
-
-  
-%   \[
-%   \GWCL=\{~\varphi~|~\varphi~\mbox{valid in all}~
-%   \underbrace{\mbox{\bfm{witnessed crisp} G\"odel-Kripke models}}_{\mbox{\tb{$\GWCL$-models}}}~\}
-%   \]
-
-%   \VFILL
-
-
-% \end{frame}
-
-
-% \begin{frame}
-%   \frametitle{Remarks on $\GWCL$-models (1)}
-
-%   \small
-
-%   \begin{tcgreenbox}[top=-2ex,bottom=0cm]{Witnessed crisp G\"odel Modal Logic - \tm{$R$ crisp and witnessed}}
-%     \[\medfont
-%     \forall w:R(w)\not=\emptyset~~
-%     \ycbox{$e(w,\tm{\circ\varphi})=\tr{r}$}~\Rightarrow~ 
-%     \ycbox{$\exists \tb{w'}:w R \tb{w'}~\mbox{and}~ 
-%       e(\tb{w'}, \tm{\varphi})=\tr{r}$}\quad\mbox{\small $\circ\in\{\Box,\Diam\}$}
-%     \]
-%   \end{tcgreenbox}
-
-  
-%   \MSK
-
-%   \bfb{Example of a NON witnessed $\GCL$-model}
-
-  
-%   \SSK 
-  
-%   \begin{center}
-%     \input{fig-01-GC-counter-model-01.tex}
-%   \end{center}
-
-%   \BSK
-
-
-%   \bfm{Not witnessed}: $e(w_0,\Box p)=\inf\{\frac{1}{2},\frac{1}{3},\frac{1}{4},\dots\}= 0$ but $\forall k\geq 1$, $e(w_k, p)>0$
-  
-%   \VFILL  
-% \end{frame}
-
-
-% \begin{frame}
-%   \frametitle{Remarks on $\GWCL$-models (2)}
-
-%   \small
-
-%   \begin{tcgreenbox}[top=-2ex,bottom=0cm]{Witnessed crisp G\"odel Modal Logic - \tm{$R$ crisp and witnessed}}
-%     \[\medfont
-%     \forall w:R(w)\not=\emptyset~~
-%     \ycbox{$e(w,\tm{\circ\varphi})=\tr{r}$}~\Rightarrow~ 
-%     \ycbox{$\exists \tb{w'}:w R \tb{w'}~\mbox{and}~ 
-%       e(\tb{w'}, \tm{\varphi})=\tr{r}$}\quad\mbox{\small $\circ\in\{\Box,\Diam\}$}
-%     \]
-%   \end{tcgreenbox}
-
-  
-%   \MSK
-
-%   \bfb{$\GCL$-countermodel for $\tb{\varphi}=\Box \neg\neg p\to \neg\neg \Box p$}
-
-%   \SSK
-  
-%   \begin{center}
-%     \input{fig-02-GC-counter-model-02.tex}
-%     % \vspace{-2ex}
-%     % \input{fig-02-GC-counter-model-02-support-evaluations.tex}
-%   \end{center}
-
-%   \SSK
-
-%   \[ 
-%   \left.\begin{array}{r}
-%   \forall k\, e(w_k,p)>0~\tr{\Rightarrow}~\forall k\, e(w_k,\neg\neg p)=1~\tr{\Rightarrow}
-%   ~\tb{e(w_0,\Box\neg\neg p)= \tb{1}}\\[2ex]
-%   %%  
-%   e(w_0,\Box p)=0~\tr{\Rightarrow}~\tr{e(w_0,\neg\neg \Box p)=0}  
-%   \end{array}
-%   \right\}~\tr{\Rightarrow}~e(w_0,\varphi)=0
-%   \]
-
-%    \SSK
-  
-%    \bfm{Accordingly $\varphi\not\in\GCL$}. Note that the above model is infinite.
-  
-  
-%   \VFILL  
-% \end{frame}
-
-
-% \begin{frame}
-%   \frametitle{Remarks on $\GWCL$-models (3)}
-
-%   \small
-
-%   \begin{tcgreenbox}[top=-2ex,bottom=0cm]{Witnessed crisp G\"odel Modal Logic - \tm{$R$ crisp and witnessed}}
-%     \[\medfont
-%     \forall w:R(w)\not=\emptyset~~
-%     \ycbox{$e(w,\tm{\circ\varphi})=\tr{r}$}~\Rightarrow~ 
-%     \ycbox{$\exists \tb{w'}:w R \tb{w'}~\mbox{and}~ 
-%       e(\tb{w'}, \tm{\varphi})=\tr{r}$}\quad\mbox{\small $\circ\in\{\Box,\Diam\}$}
-%     \]
-%   \end{tcgreenbox}
-
-  
-%   \MSK
-
-%   \bfb{$\varphi=\Box \neg\neg p\to \neg\neg \Box p\in\GWCL$}
-%   \vspace{-2ex}
-%   \begin{center}
-%     \input{fig-02-GWC-model-for-wff-not-in-GCL.tex}
-%     %%\vspace{-4ex}
-%     %%\input{fig-02-GC-counter-model-02-support-evaluations.tex}
-%   \end{center}
-
-%   \MSK
-
-%   Since $\varphi\in \GWCL\setminus\GCL$ and every $\GWCL$-model is a
-%   $\GCL$-model \tr{$\Rightarrow$} $\GWCL\tr{\supsetneq}\GCL\supsetneq\GKL$
-  
-%   \MSK
-
-%   Since, every \emm{finite crisp model} is \emm{witnessed}, every
-%   $\varphi\in\GWCL\setminus\GCL$ has an infinite $\GCL$-countermodel.
-
-  
-%   \VFILL  
-% \end{frame}
-
-
-
-
-
-% % \begin{frame}
-% %   \frametitle{Witnessed crisp G\"odel Modal Logic $\GWCL$ - results overview}
-
-% %   %%\bfb{Witnessed crisp G\"odel Modal Logic} $\GWCL$ - \tm{$R$ crisp and witnessed}
-    
-% %   \MSK
-
-% %   \begin{itemize}
-% %   \item $\GKL\subsetneq\tm{\GCL\subsetneq\GWCL}$
-
-% %     \SSK
-    
-% %   \item Cut-free sequent calculus for $\GWCL$
-% %     \begin{itemize}
-% %     \item termination
-% %     \item completeness
-% %     \item countermodel-construction and FMP
-% %     \item proof-search implying  PSPACE-decidability 
-% %     \item JTabWb implementation
-% %     \end{itemize}
-      
-% %     \SSK
-    
-% %   \item Alternative bi-relational Kripke semantics for $\GWCL$ 
-% %   \end{itemize}
-
-% %   % \tcblower
-  
-% %   % \smallfont \tm{[1]} Ferrari, Fiorentini, Rodr{\'{\i}}guez: A
-% %   % G\"odel modal logic over witnessed crisp models. Tableaux (2025)
-
-% %   \VFILL
-
-% % \end{frame}
-
-
 
 
 
