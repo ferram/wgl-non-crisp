@@ -30,7 +30,7 @@ of a  rule of $\Calc$, it holds that $\s'\prec \s$.
 Accordingly, backward proof search in $\Calc$  always terminates,
   whatever strategy ones applies. 
 
-
+\SP
 \item[(2)] 
 $\Calc$ is a   {\red  sound} refutation calculus
 
@@ -82,16 +82,21 @@ $
 \end{center}
 
 \end{itemize}
+
+\medskip
+
 We have designed a {\red proof search strategy} for $\Calc$ which yields  {\red countermodels}
 whenever proof search fails.
 
-
+\medskip
   Main idea:
 
   \begin{itemize}
-  \item Bottom-up proof search, delaying as much as possible the application of modal rules
+  \item[$\surd$] Bottom-up proof search, delaying as much as possible the application of modal rules
 
-    \item If proof search fails, the  constraint set $\G'$ obtained at the end fully describes the countermodel.
+
+    \smallskip
+  \item[$\surd$]  If proof search fails, the  constraint set $\G_{fin}$ obtained at the end fully describes the countermodel.
   \end{itemize}
 
   
@@ -103,27 +108,31 @@ whenever proof search fails.
 
 \begin{frame}{Properties of $\Calc$}
 
-{\blue Example}
+\bfb{Example}
+\[
+\varphi\;=\; \Box(p\lor q) \to (\Box p\lor \Diam q) \qquad\text{\medfont instance of the Crisp axiom }
+\]
 
 
 \begin{itemize}
-\item   $\underbrace{\Box(p\lor q) \to (\Box p\lor \Diam q)}_{\varphi}$ (instance of the Crisp axiom) is not valid in $\GWL$
-
 \item Proof-search for $\G=\{\,   w_0:\varphi < 1    \,\}$ fails
 
-\item At the end we obtain the constraint set
-  \[
+ \smallskip
+\item In  the end we obtain the constraint set
+  \[\small
     \begin{array}{lcl}
-      \G' &=&\{\,  w_1:p<R(w_0,w_1),\;\; w_1:p\leq w_0 : q_0, \;\;  w_1 : q \geq R(w_0,w_1),
-\\[.5ex] &&
-\;\; 1> w_0 : q_0,   \;\;  R(w_0,w_1)\leq w_0 : q_0,\;
-            \underline{w_0:  \Box(p\lor q)} > w_0 : q_0,\;\;
-\\[.5ex] &&
-          \;\;  \underline{w_0: \Diam q}  \leq  w_0 : q_0,\;\;  w_0 : q_0   < 1 \,\}
+      \G_{fin} &=&\{\;  w_1:p<R(w_0,w_1)\,,\;\; w_1:p\leq w_0 : q_0\,, \;\;  w_1 : q \geq R(w_0,w_1)\,,
+\\[.5ex] &&\;\;
+1> w_0 : q_0\,,   \;\;  R(w_0,w_1)\leq w_0 : q_0\,,\;
+            \underline{w_0:  \Box(p\lor q)} > w_0 : q_0\,,
+\\[.5ex] &&\;\;
+   \underline{w_0: \Diam q}  \leq  w_0 : q_0\,,\;\;  w_0 : q_0   < 1 \;\}
     \end{array}
     \]
 
- \item We compute  $\Atmp{ \G' }$:
+
+    \smallskip
+ \item We compute  $\Atmp{ \G_{fin} }$:
 \[            
   w_0:  \Box(p\lor q) \;\;\tm{\mapsto}\;\; 1 \hspace{4em}
   w_0: \Diam q\;\;\tm{\mapsto}\;\; 0
@@ -137,8 +146,8 @@ whenever proof search fails.
 \begin{frame}{Properties of $\Calc$}
 \begin{itemize}
 
-\item $\Atmp{ \G' }$ consists of the constraints
-\[%\small
+\item $\Atmp{ \G_{fin} }$ consists of the atomic constraints
+\[\small
     \begin{array}{l}
  \ggbox{$w_1:p$} < \ycbox{$R(w_0,w_1)$}\,,\quad \ggbox{$w_1:p$}\leq \gcbox{$w_0 : q_0$}\,,\quad
  \ccbox{$w_1 : q$} \geq \ycbox{$R(w_0,w_1)$}\,
@@ -151,8 +160,9 @@ whenever proof search fails.
 \end{array}
  \]
 
-\item Solution to $\Atmp{ \G' }$:
-  \[
+ \smallskip
+\item Solution to $\Atmp{ \G_{fin} }$ (computed by the Constraint Solver):
+  \[\small
  \ggbox{$w_1:p$}\;\tm{\mapsto}\;0.5
 \hspace{2em}
  \ycbox{$R(w_0,w_1)$}\;\tm{\mapsto}\;0.6
@@ -162,8 +172,10 @@ whenever proof search fails.
  \ccbox{$w_1 : q$} \;\tm{\mapsto}\; 0.6
     \]
 
-  \item Corresponding countermodel:
-    
+    \smallskip
+  \item Corresponding countermodel for $\varphi =  \Box(p\lor q) \to (\Box p\lor \Diam q)$:
+
+    \medskip
     \input{fig-F1-counterCrisp}
     
 \end{itemize}
@@ -172,30 +184,40 @@ whenever proof search fails.
 
 %======================================================================
 
-\begin{frame}{Properties of $\Calc$}
+\begin{frame}{Space complexity}
+\small
 
-{\bf About Complexity}
 
-  \smallskip
+  \begin{itemize}
+  \item The countermodel $\M$ for $w_0:\varphi<1$ computed by the procedure  has
+  \begin{itemize}\small
+  \item[$\surd$] $depth\leq\size{\varphi}$
+  \item[$\surd$]  every world of $\M$ has at most $\size{\varphi}$ R-successors
+  \end{itemize}
+ This implies that  the \tr{size} of $\M$ is $\red O(\size{\varphi}^{\size{\varphi}})$.
 
-    The constraints set $\Atm{\G'}$ obtained at the and contains the description of the {\red whole} countermodel.
 
- As in the classical modal logic $\KL$, some formulas have countermodel of exponential size.
+  \item There are formulas having countermodels of size approximately  $\size{\varphi}^{\size{\varphi}}$
 
- Accordingly, the proof search procedure does not work in PSPACE
-    
+\item The constraints set $\Atm{\G_{fin}}$ obtained at the end of proof search contains the description of the {\red whole} countermodel.
+Accordingly,  the proof search procedure does not work in PSPACE.
+  
+  \end{itemize}
 
   
-  However:
+  
+  However, reasoning as in   \citebib{B{\'{\i}}lkov{\'{a}} et al., IJCAR, 2022}, we can prove that:
 
   \begin{theorem}
   The validity problem for $\GWL$ is PSPACE complete. 
   \end{theorem}
 
+  
   \begin{itemize}
-  \item We can define a (highly inefficient)  procedure to check if $\varphi\in\GWL$ which runs in polynomial space w.r.t.~the size of $\varphi$. 
+    \medfont
+  \item[$\surd$] (highly inefficient)  PSPACE-procedure to check if $\varphi\in\GWL$.
 
-  \item PSPACE-hardness follows from the fact that $\KL$ can be embedded into $\GWL$ (via the *-translation) and $\KL$ is PSPACE complete- 
+  \item[$\surd$]   PSPACE-hardness follows from the fact that $\KL$ can be embedded into $\GWL$ (via the *-translation) and $\KL$ is PSPACE complete. 
   \end{itemize}
 
 
@@ -210,100 +232,38 @@ whenever proof search fails.
 
 
 
-% \begin{frame}
-%   \frametitle{Countermodel construction}
-%   \small
-  
-%   Let $\Bs$ be a \emb{backward proof search strategy} for $\Calc$
-%   where \emm{a modal rule is backward applied iff no propositional
-%     rule can be applied} (plain proof-search strategy).
-
-%   \MSK
-
-%   A branch $\Bcal=\stru{\G_0,\dots,\G_n}$ of a proof-tree $\Tcal$
-%   generated by $\Bs$ is \bfb{reduced} if
-%   $\G_0$ is the root of $\Tcal$, no rule can be backward applied to $\G_n$, and $\G_n$ is not an axiom.
-
-%   \MSK
-
-%   From a reduced branch $\Bcal=\stru{\G_0,\dots,\G_n}$ \emb{we can extract}
-%   a discrete ($e$ values in $Q$) $\GWCL$-model $\Mod{\Bcal}$ such that
-%   \tb{$\Mod{\Bcal}\models \G_0$}.
-
-%   \BSK
-
-%   \begin{theorem}[Completeness and finite model property]
-%     \begin{itemize}
-%     \item\label{prop:compl:1} If $\nprovesc{\G}$, then there exists a
-%       discrete model for $\G$.
-%     \item\label{prop:compl:2}
-%       If $\nprovesc{w : \varphi < 1}$, then  $\varphi\not\in\GWCL$.
-%     \item\label{prop:compl:3} If $\varphi\not\in\GWCL$, then $\exists$ $\Mcal,w$ s.t. $e(w,\varphi)<1$ (\emm{$\Mcal$ is a countermodel for $\varphi$}).
-%     \end{itemize}
-%   \end{theorem}
-
-
-  
-  
-
-%   \VFILL
-% \end{frame}
-
-
-
-% \begin{frame}
-%   \frametitle{Countermodel construction: example}
-
-%   \small
-
-%   \begin{center}  
-%     \input{fig-02-ex6-branch.tex}
-%     \input{fig-02-ex6-countermodel.tex}
-%   \end{center}
-
-
-%   \VFILL
-% \end{frame}
-
-
 
 \begin{frame}
-  \frametitle{Complexity and implementation}
+  \frametitle{Implementation}
   \small
   
-  \bfb{Complexity}\\
-  The countermodel $\M$ for $w_0:\varphi<1$ has
-  \begin{itemize}\small
-  \item $depth\leq\size{\varphi}$
-  \item every world of $\M$ has at most $\size{\varphi}$ R-successors
-  \end{itemize}
-  this implies that the size of $\M$ is $O(\size{\varphi}^{\size{\varphi}})$.
-
-
-  % \MSK
-
-  % It is not possible to build $\M$ one branch at a time, since the
-  % constraints generated during the expansion of a branch have global
-  % validity and must be kept throughout the construction.  
-
-  \SSK
-  
-  By adapting the procedure described in
-  \citebib{B{\'{\i}}lkov{\'{a}} et al.,2022} we can prove that the
-  decision problem for $\GWCL$ is in PSPACE.
-
   \BSK
 
-  \bfb{Implementation}: \bfb{gwcref}\\
+  \bfb{gwcref}
+
+  \medskip
   %%\tm{\small [\url{https://github.com/ferram/jtabwb_provers/tree/master/gwc_ref}]}
-  Implementation of our proof-search procedure in JTabWb~\citebib{Ferrari et al., 2017}. 
+  Implementation of the proof-search procedure in JTabWb~\citebib{Ferrari et al., 2017}. 
+
+  \smallskip
   \begin{itemize}\small
   \item standard backward depth-first proof search and countermodel extraction
+
+  \smallskip
   \item consistency of atomic constraints is checked using the
     \tm{Choco-solver Java} library
+
+  \smallskip
   \item \LaTeX generation of proof-search trees and countermodels
   \end{itemize}
 
+\begin{center}
+     \footnotesize
+     \includegraphics[scale=0.03,width=2em]{download}
+
+     \blue\underline{\url{https://github.com/ferram/jtabwb_provers/tree/master/isl_gbuSL}} 
+   \end{center}
+  
   \VFILL
 
 \end{frame}

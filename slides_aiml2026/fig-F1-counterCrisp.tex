@@ -20,7 +20,7 @@
         
         
         % ARROWS
-        \draw[->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
+        \draw[magenta,->] (w0) -- (w1) node[above right=-1.4] {{\small 0.6}} ;
 
 
 
@@ -48,34 +48,6 @@
       \end{array}
       \]
     \end{minipage} 
-    % \\[10ex]
-    % \begin{array}{rcl}
-    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-    %   \inf\{\, 0\to 0,\, 0.6\to 0.6\,\}\,=\,1
-    %   \\[1ex]
-    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
-      
-    %   \inf\{\, 0\to 0,\,  0.6\to 0.5\,\}    \,=\, 0.5
-    %   \\[1ex]
-    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-    %   \sup\{\, 0\land 0,\,  0.6\land 0.6\,\}\,=\,  0.6
-    %   \\[1ex]
-    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
-    % \end{array}
-    % \begin{array}{rcl}
-    %   e(w_0,\Box (p\lor q))&=&\inf\{\, R(w_0,w_0)\to e(w_0,p\lor q),\, R(w_0,w_1)\to e(w_1,p\lor q) \,\}\,=\,
-    %   \inf\{\, \overbrace{0\to 0}^1,\, \overbrace{0.6\to 0.6}^1 \,\}\,=\,1
-    %   \\
-    %   e(w_0,\Box p) &=& \inf\{\, R(w_0,w_0)\to e(w_0,p),\,   R(w_0,w_1)\to e(w_1,p)\,\} \,=\,
-      
-    %   \inf\{\, \overbrace{0\to 0}^1,\,  \overbrace{0.6\to 0.5}^{0.5}\,\}    \,=\, 0.5
-    %   \\
-    %   e(w_0,\Diam q)&=& \sup\{\, R(w_0,w_0)\land e(w_0,q),\, R(w_0,w_1)\land e(w_1,q)\,\}\,=\,
-    %   \sup\{\, \overbrace{0\land 0}^0,\,  \overbrace{0.6\land 0.6}^{0.6}\,\}\,=\,  0.6
-    %   \\[1ex]
-    %   e(w_0,\varphi) &=& e(w_0, \Box (p\lor q))\to e(w_0, \Box p \lor \Diam q) \,=\, 1\to   0.6 \,=\, 0.6
-    % \end{array}
-  
   
 
 %%% Local Variables: 
