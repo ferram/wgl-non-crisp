@@ -96,10 +96,19 @@ whenever proof search fails.
 
 
     \smallskip
-  \item[$\surd$]  If proof search fails, the  constraint set $\G_{fin}$ obtained at the end fully describes the countermodel.
+  \item[$\surd$]  If proof search fails, the  constraint set $\G_{fin}$ obtained at the end fully describes the countermodel $\M$.
   \end{itemize}
 
+  \medskip
+  We remark that the obtained  countermodel $\M=\stru{W,R,e}$ is {\bf\red discrete}, namely: 
+  \begin{itemize}
+  \item  $W$ is finite; 
+
+\item the codomains of $R$ and $e$ are finite subsets   of $\Qrange$.
+
+  \end{itemize}
   
+
 
   \VFILL
 \end{frame}
@@ -197,7 +206,8 @@ whenever proof search fails.
  This implies that  the \tr{size} of $\M$ is $\red O(\size{\varphi}^{\size{\varphi}})$.
 
 
-  \item There are formulas having countermodels of size approximately  $\size{\varphi}^{\size{\varphi}}$
+ 
+  \item There are formulas $\red \varphi$ having countermodels of size approximately  $\red \size{\varphi}^{\size{\varphi}}$
 
 \item The constraints set $\Atm{\G_{fin}}$ obtained at the end of proof search contains the description of the {\red whole} countermodel.
 Accordingly,  the proof search procedure does not work in PSPACE.
