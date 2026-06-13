@@ -1,4 +1,9 @@
-  %%% LOGICS DIAGRAM
+%%% LOGICS DIAGRAM
+
+\definecolor{darkred}{RGB}{139,0,0}
+
+
+
 %  \begin{minipage}{\linewidth}
 %  \begin{center}\small
   \begin{tikzpicture}[
@@ -29,11 +34,11 @@
     \node[right=1ex of GWc] {\begin{minipage}{16ex}
       \small $\tb{(Cr)}$, $\tb{(Wt)}$\end{minipage}};
     \node[right=1ex of GW] {\begin{minipage}{16ex}
-      \small $\tr{\xcancel{(Cr)}}$, $\tb{ (Wt)}$   \end{minipage}};
+      \small $\color{darkred}\xcancel{\tb{(Cr)}}$, $\tb{ (Wt)}$   \end{minipage}};
     \node[left=-1ex of Gc] {\begin{minipage}{3em}
-      \small     $\tr{\xcancel{(Wt)}}$ \end{minipage}};
+      \small     $\color{darkred}\xcancel{\tb{(Wt)}}$ \end{minipage}};
   \node[right=1ex of GK] {\begin{minipage}{22ex}
-      \small $\tr{\xcancel{(Cr)}}$, $\tr{\xcancel{(Wt)}}$\end{minipage}};
+      \small $\color{darkred}\xcancel{\tb{(Cr)}}$,   $\color{darkred}\xcancel{\tb{(Wt)}}$    \end{minipage}};
 
 %%%%
   
@@ -62,5 +67,5 @@
 
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "aiml2026_slides"
+%%% TeX-master: "slides_GoedelWitnessed_aiml2026"
 %%% End: 
