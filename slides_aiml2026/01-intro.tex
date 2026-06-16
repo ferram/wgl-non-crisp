@@ -49,7 +49,7 @@ This because this is the only fuzzy logic which admits weakening and contraction
 
   \medskip
   $\tm{\PV}=\{p_1,p_2,\dots\}$, \tm{$\land$},
-  \tm{$\lor$}, \tm{$\to$} ($\tm{\neg} \varphi=\varphi\to\bot$),
+  \tm{$\lor$}, \tm{$\to$},
   \tb{$\Box$}, \tb{$\Diam$}.
 
   
@@ -90,16 +90,17 @@ This because this is the only fuzzy logic which admits weakening and contraction
     \end{tabular}
   \end{tcolorbox}
 
-\smallskip
-\medfont
-Note that
-      \\
-  $ e(w, \tm{\neg}\a) =
+%\smallskip
+%\medfont
+\[
+\tm{\neg} \varphi = \varphi\to\bot
+\hspace{3em}
+  e(w, \tm{\neg}\a) =
       \begin{cases}
         \tb 1 & \mbox{if $e(w,\a)=0$}\\
         \tb 0 &  \mbox{if $e(w,\a) > 0$}     
-      \end{cases}$
-
+      \end{cases}
+\]
 
   
   
@@ -117,9 +118,9 @@ Note that
   \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
     \hspace{-2ex}\begin{tabular}{p{72ex}}
          %\medfont
-      $e(w,\tm{\Box} \a) \;=\; \tm{\inf}_{\tr{x}\in W}\Big\{\;R(w,\tr{x})\;\tr{\to}\; e(\tr{x},\a)\;\Big\}$
+      $e(w,\tm{\Box} \a) \;=\; \tm{\inf}_{\tr{w'}\in W}\Big\{\;R(w,\tr{w'})\;\tr{\to}\; e(\tr{w'},\a)\;\Big\}$
 \\[4ex]
-      $e(w,\tm{\Diam} \a)\;=\; \tm{\sup}_{\tr{x}\in W}\Big\{\;R(w,\tr{x})\;\tr{\land}\; e(\tr{x},\a)\:\Big\}$
+      $e(w,\tm{\Diam} \a)\;=\; \tm{\sup}_{\tr{w'}\in W}\Big\{\;R(w,\tr{w'})\;\tr{\land}\; e(\tr{w'},\a)\:\Big\}$
     \end{tabular}
   \end{tcolorbox}
   
@@ -183,7 +184,7 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
   $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$
 \end{tabular}
 \]
-{\smallfont Caicedo \& Rodr{\'{\i}}guez. Bi-modal {G}{\"{o}}del logic over
+\citebib{\scriptsize Caicedo \& Rodr{\'{\i}}guez. Bi-modal {G}{\"{o}}del logic over
     [0,1]-valued Kripke frames. JLC  %\textbf{25}(1), 37--55 
     (2015)
 }
@@ -196,10 +197,8 @@ $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $
 Decidable, PSPACE complete.
 
 \smallskip
-{\smallfont
-Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
-  
-  }
+\citebib{\scriptsize
+Caicedo et al. Decidability of order-based modal logics. J.~of Comp.~and System Sciences (2017).}
 
 
 \medskip
@@ -207,7 +206,7 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
 
 \smallskip
-{ \smallfont  Metcalfe \& Olivetti. Towards a proof theory of {G}{\"{o}}del modal
+\citebib{\scriptsize  Metcalfe \& Olivetti. Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
     (2011)}
     
@@ -242,9 +241,9 @@ Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
   \BSK
   \begin{itemize}
   \item $\GCL \;\;\tm{=}\;\; \GKL\;\;\tm{+}\;\; \underbrace{\Box(\a\lor\b) \to (\Box\a \lor \Diam  \b)}_{\mathrm{(Cr)}}$
-      \smallskip
 
-      {\smallfont  Rodr{\'{\i}}guez \& Vidal. Axiomatization of crisp {G}{\"{o}}del modal
+ \smallskip
+\citebib{\scriptsize Rodr{\'{\i}}guez \& Vidal. Axiomatization of crisp {G}{\"{o}}del modal
     logic. Studia Logica  %\textbf{109}(2),  367--395 
     (2021)}   
 
@@ -299,10 +298,8 @@ Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
 \item Decidable and PSPACE complete
 
 \smallskip  
-{\smallfont
-Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).
-  
-  }
+\citebib{\scriptsize
+Caicedo et al. Decidability of order-based modal logics. J.~of Computer and System Sciences (2017).}
 
 
 
@@ -482,11 +479,9 @@ Note that the countermodel is \tm{crisp}
   
   \item  $\GKL_\Diamond$ has FMP
 
-
-  {\smallfont
+\citebib{\scriptsize
 Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %\textbf{94}(2),  189--214 
-    (2010)
-}
+    (2010)}
 
 
   \item  $\GCL_\Diamond$ has not FMP
