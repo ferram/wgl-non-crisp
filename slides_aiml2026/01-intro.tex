@@ -93,7 +93,7 @@ This because this is the only fuzzy logic which admits weakening and contraction
 %\smallskip
 %\medfont
 \[
-\tm{\neg} \varphi = \varphi\to\bot
+\tm{\neg} \varphi  \coloneq \varphi\to\bot
 \hspace{3em}
   e(w, \tm{\neg}\a) =
       \begin{cases}
@@ -170,20 +170,25 @@ This because this is the only fuzzy logic which admits weakening and contraction
   \BSK
   \begin{itemize}
   \item  %[\tm{[1]}] 
-$  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; (\a\to \b)\lor (\b\to\a) \;\;\tm{+} $  
+    $  \GKL\;\;\tm{=}\;\; \IPL \;\;\tm{+}\;\; $
+    \begin{custombox}[top=0mm,bottom=0mm,width=33em]
 \[\small
-\begin{tabular}{m{1.5em}m{12em}m{1.5em}m{16em}}
-  $(K_\Box)$ & $\Box(\a \to \b)\to (\Box\a\to \Box \b)$ & 
-  $(K_\Diam)$ & $\Diam(\a \lor \b)\to (\Diam\a\lor \Diam \b)$
-  \qquad $(F_\Diam)\; \neg \Diam\bot$ 
+  \begin{tabular}{m{1.5em}m{12em}m{1.5em}m{16em}}
+    \\[-3.5ex]
+  \tb{(Lin)}  &   $(\a\to \b)\lor (\b\to\a)$         & $\tb{(F_\Diam)}\; \neg \Diam\bot$ 
+\\[1ex]
+  $\tb{(K_\Box)}$ & $\Box(\a \to \b)\to (\Box\a\to \Box \b)$ & 
+  $\tb{(K_\Diam)}$ & $\Diam(\a \lor \b)\to (\Diam\a\lor \Diam \b)$
   \\[1ex]
-  $(FS_1)$ & $\Diam(\a \to \b)\to (\Box\a\to \Diam \b)$ & 
-  $(FS_2)$ & $(\Diam \a \to\Box \b)\to \Box(\a\to  \b)$
+  $\tb{(FS_1)}$ & $\Diam(\a \to \b)\to (\Box\a\to \Diam \b)$ & 
+  $\tb{(FS_2)}$ & $(\Diam \a \to\Box \b)\to \Box(\a\to  \b)$
   \\[1ex]
-  $(N_\Box)$ & $\vdash \a$ implies $\vdash \Box\a$ &
-  $(N_\Diam)$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$
+  $\tb{(N_\Box)}$ & $\vdash \a$ implies $\vdash \Box\a$ &
+  $\tb{(N_\Diam)}$ & $\vdash \a\to \b$ implies $\vdash \Diam \a\to\Diam\b$
 \end{tabular}
 \]
+\end{custombox}
+
 \citebib{\scriptsize Caicedo \& Rodr{\'{\i}}guez. Bi-modal {G}{\"{o}}del logic over
     [0,1]-valued Kripke frames. JLC  %\textbf{25}(1), 37--55 
     (2015)
@@ -240,7 +245,7 @@ Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
   %\BSK
   \BSK
   \begin{itemize}
-  \item $\GCL \;\;\tm{=}\;\; \GKL\;\;\tm{+}\;\; \underbrace{\Box(\a\lor\b) \to (\Box\a \lor \Diam  \b)}_{\mathrm{(Cr)}}$
+  \item $\GCL \;\;\tm{=}\;\; \GKL\;\;\tm{+}\;\; \underbrace{\Box(\a\lor\b) \to (\Box\a \lor \Diam  \b)}_{\mathrm{\tb{(Cr)}}}$
 
  \smallskip
 \citebib{\scriptsize Rodr{\'{\i}}guez \& Vidal. Axiomatization of crisp {G}{\"{o}}del modal
@@ -251,9 +256,9 @@ Analytic calculi for the fragments   $\GKL_\Box$ and $\GKL_\Diamond$
 \item $\GCL \neq \GKL$
   \[
   \begin{array}{cl}
-  \Box(p\lor q) \to (\Box p \lor\Diam q) & \in \GCL\setminus \GKL 
+  \Box(p\lor q) \to (\Box p \lor\Diam q) & \not\in \GKL 
 \\
- \text{\medfont instance of $(Cr)$}
+ \text{\medfont instance of $\tb{(Cr)}$}
   \end{array}
  \]  
 
@@ -335,31 +340,35 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
 \begin{frame}
 \frametitle{G\"odel modal logics: witnessed models}
-\[\small
- e(w,\Box \a) \,= \,\tm{\inf}\ \Big\{\,R(w,w')\,\to\, e(x,\a)~|~w'\in W \,\Big\}
- \]
+
+\begin{custombox}[top=0mm,bottom=0mm,width=25em]\small
+\smallskip\center
+  $e(w,\Box \a) \,= \,\tm{\inf}\ \Big\{\,R(w,w')\,\to\, e(w',\a)~|~w'\in W \,\Big\}$
+\smallskip
+\end{custombox}
+
 
  \begin{center}
     \input{fig-F2-nonWitnessed.tex}
   \end{center}
-  \[
-    \small
-  \begin{array}{lcl}
-    e(w_0,\Box p) &= &
-                           \inf\{\, R(w_0,w_j)\to  e(w_j,p)~|~w_j\in W \,\}
-
+  
+  \begin{tabular}{m{3em}m{0.5em}m{15em}}\small
+    $e(w_0,\Box p)$ &= &\small
+                           $\inf\{\, R(w_0,w_j)\to  e(w_j,p)~|~w_j\in W \,\}$
     \\[1ex]
-                  &\;=\; & \inf\,\{\,
+                  &= & \medfont $\inf\,\{\,
        \underbrace{\overset{\tm{0}}{R(w_0,w_0)}\to  e(w_0,p)}_{\tm 1}\,,\;
-        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}}\,,\;\dots\,\}
-        %  \underbrace{\overset{\tm{1}}{R(w_0,w_2)}\to  \overset{\tm{1/3}}{e(w_2,p)}}_{\tm{1/3}},\;\dots   \,\}
-      \\[1ex]
-       &\;=\; & \inf\,\{\, 1\,, \, 1/2\,,\, 1/3\,,\, 1/4\,, \, \dots \,\} \;=\; {\tm  0}                    
-\end{array}
-       \]
+        \underbrace{\overset{\tm{1}}{R(w_0,w_1)}\to  \overset{\tm{1/2}}{e(w_1,p)}}_{\tm{1/2}}\,,
+          \underbrace{\overset{\tm{1}}{R(w_0,w_2)}\to  \overset{\tm{1/3}}{e(w_2,p)}}_{\tm{1/3}},\;\dots   \,\}$
+      \\[2.5ex]
+                    &= &\small
+                         $\inf\,\{\, 1\,, \, 1/2\,,\, 1/3\,,\, 1/4\,, \, \dots \,\} \;=\; {\bf\red  0}$                    
+\end{tabular}
+     
 
+\smallskip
        \begin{itemize}
-       \item \tm{0} is the \tb{infimum} of the set of $R(w_0,w_j)\to  e(w_j,p)$,  but \tm{not} the minimum!
+       \item \tr{0} is the \tb{infimum} of the set of $R(w_0,w_j)\to  e(w_j,p)$,  but \tr{not} the minimum!
 
 \item Indeed, there is no $w_j$ such that $R(w_0,w_j)\to e(w_j,p) = 0$.
          
@@ -378,7 +387,8 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
 \begin{frame}\frametitle{G\"odel modal logics: witnessed models}
 
-  %\MSK
+
+  \begin{tcolorbox}[colframe=blue!75!black,width=30em]
   \[\small
     \begin{array}{lcl}
  e(w,\Box \a) &= &\tm{\inf}\ \Big\{\,R(w,w')\,\to\, e(w',\a)~|~w'\in W \,\Big\}
@@ -386,19 +396,19 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
   e(w,\Diam \a) &= &\tm{\sup}\ \Big\{\,R(w,w')\,\land\, e(w',\a)~|~w'\in W  \,\Big\}
     \end{array}
  \]
-
+\end{tcolorbox}
   
-%  {\bfb{Witnessed  G\"odel Modal Logic}} - \tm{$R$  witnessed}
 
 
+\medskip
  
   \begin{itemize}
   \item   $\M=\stru{W,R,e}$ is \tm{witnessed}  if the values of $e(w,\Box\a)$ and $e(w,\Diam\a)$
 are witnessed by some world $\tm{w'}$ in $\M$, namely:
 
 
-
- \begin{tcolorbox}[colframe=blue!75!black,width=\linewidth]
+\medskip
+ \begin{tcolorbox}[colframe=blue!75!black,width=30em]
 \[
 \begin{array}{lcl}
  e(w,\Box \a)=r  &\tm\IFF& \exists\ \tm{w'}\in W.\ R(w,\tm{w'}) \to  e(\tm{w'},\a) = r
@@ -413,7 +423,7 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 \]
 \end{tcolorbox}
 
-
+\medskip
 \item Every finite model is witnessed
 
  
@@ -437,25 +447,28 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 
 
 \[
-(Wt) \quad \Box \neg\neg \a \to \neg\neg \Box \a
+\tb{(Wt)} \quad \Box \neg\neg \a \to \neg\neg \Box \a
 \]
 \begin{itemize}
 
-\item $(Wt)$ is valid in every witnessed model (hence, in every finite model)
+\item $\tb{(Wt)}$ is valid in every witnessed model (hence, in every finite model)
 
 
   \smallskip
-\item  $(Wt)$ admits a \tb{ non-witnessed (infinite) countermodel}:
+\item  $\tb{(Wt)}$ admits a \tb{non-witnessed (infinite) countermodel}:
 
 \input{fig-F3-counterWt}
   
 \smallskip
-Note that the countermodel is \tm{crisp}
+\end{itemize}
+
+Note that the countermodel is \tm{crisp}, accordingly:
 
 
 \smallskip
+\begin{itemize}
 \item $\GKL$,  $\GCL$  and their $\Box$-fragments do not have  the \tb{Finite Model Property (FMP)}
-%\footnote{Both  $\GKL$ and $\GCL$ are complete with respect tp bounded depth models.}
+
 
 \end{itemize}
 
@@ -488,11 +501,11 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
     \begin{itemize}
     \item[-] The formula
       \[
-(Wt^c)\quad (\Diam\a\to\Diam\b)\;\to\;\neg \Diam \b \,\lor\,\Diam(\a\to\b)
+\tb{(Wt^c)}\quad (\Diam\a\to\Diam\b)\;\to\;\neg \Diam \b \,\lor\,\Diam(\a\to\b)
         \]
         is valid in all witnessed crisp models  (hence, in all finite crisp models)
 
-     \item[-] $(Wt^c)$ admits an \tb{non-witnessed (infinite) crisp countermodel}:  
+     \item[-] $\tb{(Wt^c)}$ admits a \tb{non-witnessed (infinite) crisp countermodel}:  
 
 \input{fig-F4-counterDiamFin}
 
@@ -540,7 +553,7 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 \]
 
   \begin{itemize}
-      \item[$\surd$] refutation calculus for   $\GWL$
+      \item[$\surd$] refutation calculus for   $\GWL$ (based on constraints)
  \item[$\surd$]  PSPACE completeness 
         \end{itemize}
 
@@ -604,8 +617,7 @@ $\begin{array}{ll}
 \hline\hline  &&&\\  
 $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fragments
 \\&&
-   \small  only for $\GKL_\Diamond$ & %\scriptsize sequent calculi for  $\GKL_\Box$ and $\GKL_\Diamond$
-                                
+   \small  only for $\GKL_\Diamond$ & 
   \\[1ex]
 %-----------------------------------
  \hline  &&&\\  
@@ -616,12 +628,12 @@ $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fr
  \\[1ex]                                      
 % ----------------------------
  \hline\hline \cellcolor{gray!20}   & \cellcolor{gray!20} & \cellcolor{gray!20} & \cellcolor{gray!20} \\  
-  $\GWCL$  \cellcolor{gray!20}   &  \cellcolor{gray!20}  \red\; \Huge ?  &  \cellcolor{gray!20} \darkgreen\cmark\
+  $\GWCL$  \cellcolor{gray!20}   &\cellcolor{gray!20}\center\Huge\red ?  &  \cellcolor{gray!20} \darkgreen\cmark\
                                          &  \small\cellcolor{gray!20}  refutation constraint calculus    
  \\[1ex]                                      
 % ----------------------------
  \hline \cellcolor{gray!20} &\cellcolor{gray!20}&\cellcolor{gray!20}&\cellcolor{gray!20}\\  
-  \cellcolor{gray!20}    $\GWL$   & \cellcolor{gray!20}\red\;  \Huge ? & \cellcolor{gray!20} \darkgreen\cmark\
+  \cellcolor{gray!20}    $\GWL$   &\cellcolor{gray!20}\center\Huge\red ? & \cellcolor{gray!20} \darkgreen\cmark\
                                          &\small \cellcolor{gray!20} refutation constraint calculus 
 \end{tabular}
 
@@ -634,8 +646,6 @@ $\GKL$ & \darkgreen\cmark\    &  \red\xmark\;   &\small only for $\Box/\Diam$-fr
 
 \end{itemize}  
 
-% \item[(\dag)]
-% In all the logics, the decision problem is in PSPACE
 
 
 \end{frame}
