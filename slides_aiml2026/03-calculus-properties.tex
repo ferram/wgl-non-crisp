@@ -36,12 +36,13 @@ $\Calc$ is a   {\red  sound} refutation calculus
 
 
   \begin{center}
-    \begin{tcolorbox}[colframe=blue!75!black,width=22em]
+    \begin{tcolorbox}[colframe=blue!75!black,width=30em]
        \center
   $
 \proves{\Calc}{}{\G}
 \qquad{\red \Implies}\qquad
 \M\not\models \G,\ \forall\, \M
+\quad\text{(no countermodel)}
 $
 \[\scriptsize
   \begin{array}{rcl}
@@ -71,19 +72,21 @@ $\Calc$ is a   {\red  complete} refutation calculus
 
 
   \begin{center}
-    \begin{tcolorbox}[colframe=blue!75!black,width=22em]
+    \begin{tcolorbox}[colframe=blue!75!black,width=30em]
        \center
   $
 \nproves{\Calc}{}{\G}
 \qquad{\red \Implies}\qquad
 \exists\ \M.\ \M\models \G
+\quad\text{(exists a countermodel)}
 $
  \end{tcolorbox}
 \end{center}
 
 \smallskip
 \item[(4)] 
-$\Calc$ can be easily turned into a   refutation calculus for $\GWCL$: just add the constraints $R(w,w')\in \{0,1\}$, for every label $w$, $w'$.
+  $\Calc$ can be easily turned into a   refutation calculus for $\GWCL$:\\
+  just add the constraints  $R(w,w')\in \{0,1\}$, for every label $w$, $w'$.
 
 
 
@@ -95,24 +98,18 @@ We have designed a {\red proof search strategy} for $\Calc$ which yields  {\red 
 whenever proof search fails.
 
 \medskip
-  Main idea:
 
+\begin{tcgreenbox}[top=0ex]{Proof-search strategy (sketch)}
   \begin{itemize}
-  \item[$\surd$] Bottom-up proof search, delaying as much as possible the application of modal rules
+  \item[$\surd$] Apply rules bottom-up, delaying as much as possible the application of modal rules
 
 
     \smallskip
-  \item[$\surd$]  If proof search fails, the  constraint set $\G_{fin}$ obtained at the end fully describes the countermodel $\M$.
+  \item[$\surd$]  If proof search fails, the  constraint set $\G_{fin}$ obtained at the end
+    fully describes the countermodel $\M$.
   \end{itemize}
+ \end{tcgreenbox}
 
-  \medskip
-  We remark that the obtained  countermodel $\M=\stru{W,R,e}$ is {\bf\red discrete}, namely: 
-  \begin{itemize}
-  \item  $W$ is finite; 
-
-\item the codomains of $R$ and $e$ are finite subsets   of $\Qrange$.
-
-  \end{itemize}
   
 
 
@@ -123,6 +120,17 @@ whenever proof search fails.
 
 \begin{frame}{Properties of $\Calc$}
 
+%    \medskip
+%   We remark that the obtained  countermodel $\M=\stru{W,R,e}$ is {\bf\red discrete}, namely: 
+%   \begin{itemize}
+%   \item  $W$ is finite; 
+
+% \item the codomains of $R$ and $e$ are finite subsets   of $\Qrange$.
+
+%   \end{itemize}
+
+
+  
 \bfb{Example}
 \[
 \varphi\;=\; \Box(p\lor q) \to (\Box p\lor \Diam q) \qquad\text{\medfont instance of the Crisp axiom }
@@ -199,29 +207,80 @@ whenever proof search fails.
 
 %======================================================================
 
-\begin{frame}{Space complexity}
-\small
+\begin{frame}{On complexity}
 
+  Assume that proof search for  $w_0:\varphi<1$ fails.
+
+ \smallskip
+ Let $\tb\M=\stru{W,R,e}$ be the countermodel for $w_0:\varphi<1$ computed by the procedure.
+
+ \begin{center}
+   \begin{tikzpicture}[scale=0.8]      
+      % WORLDS  
+      % w0
+      \draw[fill] (0,-0.5) circle (3pt)
+      +(0,-0)   node (w0)  {}  % used to label the circle 
+      +(0,-0.3) node  {\medfont $w_0$}
+      +(2,0) node  {\medfont $e(w_0,\varphi) < 1$ }
+      ;
+      
+      % w1 hidden
+      \draw[fill]  (-2,1)  node (w1)  {}  ;
+            
+      % w2
+      \draw[fill] (2,1)  node (w2)  {}  ;
+     
+
+\draw(0,0.5) node{$\tb \M$};
+      
+      % ARROWS
+      \draw[magenta,dashed] (w0) -- (w1) ;
+      \draw[magenta,dashed] (w0) -- (w2) ;
+    \end{tikzpicture}
+  \end{center}
+
+
+  
+  
 
   \begin{itemize}
-  \item The countermodel $\M$ for $w_0:\varphi<1$ computed by the procedure  has
-  \begin{itemize}\small
-  \item[$\surd$] $depth\leq\size{\varphi}$
+  \item[$\surd$]   $\text{depth}(\M)\leq\size{\varphi}$ (size of $\varphi$)
+
   \item[$\surd$]  every world of $\M$ has at most $\size{\varphi}$ R-successors
+
+  \item[$\surd$]  The codomains of $R$ and $e$ are finite subsets   of $\Qrange$
+\tr{(discrete countermodel)}
   \end{itemize}
  This implies that  the \tr{size} of $\M$ is $\red O(\size{\varphi}^{\size{\varphi}})$.
 
 
  
-  \item There are formulas $\red \varphi$ having countermodels of size approximately  $\red \size{\varphi}^{\size{\varphi}}$
+%   \item There are formulas $\red \varphi$ having countermodels of size approximately  $\red \size{\varphi}^{\size{\varphi}}$
 
-\item The constraints set $\Atm{\G_{fin}}$ obtained at the end of proof search contains the description of the {\red whole} countermodel.
-Accordingly,  the proof search procedure does not work in PSPACE.
+% \item The constraints set $\Atm{\G_{fin}}$ obtained at the end of proof search contains the description of the {\red whole} countermodel.
+% Accordingly,  the proof search procedure does not work in PSPACE.
   
-  \end{itemize}
+%   \end{itemize}
 
+\end{frame}
+
+
+%======================================================================
+
+\begin{frame}{On complexity}
+\small
+\begin{theorem}
+If $\varphi\not\in\GWL$,  there exists a countermodel of $\varphi$ of size  $O(\size{\varphi}^{\size{\varphi}})$.
+  \end{theorem}
+
+  \medskip
+  There are formulas $\red \varphi$ having countermodels of size approximately  $\red \size{\varphi}^{\size{\varphi}}$.
+  Accordingly,  the proof search procedure does not work in PSPACE (the constraint set
+   obtained at the end of proof search contains the description of the {\red whole} countermodel).
   
   
+
+\medskip  
   However, reasoning as in   \citebib{B{\'{\i}}lkov{\'{a}} et al., IJCAR, 2022}, we can prove that:
 
   \begin{theorem}
@@ -284,6 +343,30 @@ Accordingly,  the proof search procedure does not work in PSPACE.
 
 \end{frame}
 
+%===============================================
+
+%===============================================
+
+\section{Future work}
+\begin{frame}{Future work}
+
+\input{fig-F5-logicsDiagram}
+\begin{itemize}
+\item Axiomatization of $\GWL$ and $\GWCL$.
+
+\item In \citebib{Ferrari et al., TABLEAUX, 2025} we presented a Kripke style semantics for $\GWCL$
+  (birelational models with Fischer-Servi conditions).
+
+  Can we extend it to $\GWL$?
+
+  
+
+
+\end{itemize}
+
+
+
+\end{frame}
 
 
 %%% Local Variables: 
