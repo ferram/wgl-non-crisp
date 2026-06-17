@@ -30,7 +30,7 @@
   
   \BSK
 
-  \tb{$\Calc$ is refutation calculus} acting on constraints over
+  \tb{$\Calc$ is a  refutation calculus} acting on constraints over
   labelled formulas (labels representing worlds of G\"odel-Kripke models).
   
   \MSK
@@ -152,7 +152,7 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
 
 
 %  \small
-    Let  $\G$ be a set of constraints and  $\M=\stru{W,R,e}$ be a model.
+    Let  $\G$ be a set of constraints and  $\M=\stru{W,R,e}$  a model.
 
  \begin{center}
     \begin{tcolorbox}[colframe=blue!75!black,width=30em]
@@ -165,20 +165,16 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
   $\iota(u)\abstractorder\iota(t)$ for every constraint $u\abstractorder t\in\G$\\    
         
 \end{itemize}
-\emm{All constraints are
-    simultaneously satisfied in  $\M$ under $\iota$}. 
+\emm{All the constraints are  satisfied in  $\M$ under $\iota$} 
     \end{tcolorbox}
   \end{center}
     
-  
-
-
 
   \MSK
 
   \bfb{Example}
   \[
-  \tb{\G}\;=\;\{\; \ycbox{$w':\Box p \;\tr{<}\; w'':q$}\,,\;\ggbox{$w'':p\land q \;\tr{>}\; w':p$}\;\}
+  \tb{\G}\;=\;\{\; \ycbox{$w:\Box p \;\tr{<}\; w':q$}\,,\;\ggbox{$w':p\land q \;\tr{>}\; w:p$}\;\}
   \]
   \vspace{-5ex}
   \begin{center}
@@ -245,8 +241,10 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
     \small    \tb{Interpretation $\iota$}
       $
       \begin{array}{rcl}
-        w'&\mapsto&\tm{w_0}\\
-        w''&\mapsto&\tm{w_2}\\
+        \text{\tb{label}} & & \text{\tb{world}}
+                              \\
+        w&\mapsto&\tm{w_0}\\
+        w'&\mapsto&\tm{w_2}\\
       \end{array}
       $
 
@@ -267,25 +265,21 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
 \begin{frame}
   \frametitle{The calculus $\Calc$: soundness}
   
-  $\Calc$ is a \emm{refutation calculus for constraint sets $\G$}, namely:
-
-  \SSK
 
   \bfb{Soundness}  
   \begin{center}
     \begin{tcolorbox}[colframe=blue!75!black,width=30em]
       \center
       $
-      \provesgw{\Gamma}
+      \proves{\Calc}{}{\G}
       \quad \tr{\Rightarrow}\quad
       \mbox{there is no $\GWL$-model $\M$ s.t.}~\M\models\G
       $
+      \\[1ex]
+      $\scriptsize \proves{\Calc}{}{\G} \quad {\red \rightsquigarrow} \quad \mbox{there exists a $\Calc$-derivation of $\G$}$
     \end{tcolorbox}
   \end{center}
 
-  %\begin{theorem}[Soundness]
-  %  If $$, then $\M\not\models\G$, for every $\M$.
-  %\end{theorem}
   
   \SSK
 
@@ -294,21 +288,20 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
     \vspace{-2ex}
     \[
     \begin{array}{c}
-      \mbox{%If we can build a derivation for the constraint
-      $\provesgw $  \ycbox{$w_0:\varphi<1$}}
-      \\[1ex] 
+      \proves{\Calc}{}{\ycbox{$w_0:\varphi<1$}}
+      \\[2ex] 
       \tr{\Downarrow}
       \\[1ex] 
-        \mbox{there is no $\M$ s.t. $\M\models \ycbox{$w_0:\varphi <1$}$}\\
+      \mbox{there is no $\M$ s.t. $\M\models \ycbox{$w_0:\varphi <1$}$}
+\quad  \text{\blue\em\scriptsize \emph\ no $\GWL$-countermodel for $\varphi$}
+      \\[2ex]
         \tr{\Downarrow}
         \\[1ex] 
       \tb{\forall\,\M\,,\,\forall\,w\in\M}~e(w,\varphi)=1
-      \\[.5ex]
-      \text{\blue\em\scriptsize \emph\ no $\GWL$-countermodel for $\varphi$}
-        \\[1ex]        %\tb{\forall\,\M}=\stru{W,R,e}~\mbox{and}~\t5b{\forall\,w}\in W~\tb{e(w,\varphi)=1}\\
+      \\[1ex]
         \tr{\Downarrow}
         \\[1ex]
-        \varphi\in\GWCL
+        \varphi\in\GWL
     \end{array}
     \]
     \vspace{.5ex}
@@ -330,10 +323,11 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
 
   \medskip
   {\blue\bf Rules for $\land$-constraints}
-  \[
-e(w,\, \a \,\tr{\land}\, \b)\;=\; e(w,\a)\;\tr{\land}\;e(w,\b)\;=\;\tr{\min}\{\; e(w,\a)\,,\,e(w,\b)    \;\}
-    \]
-   
+
+   \begin{tcolorbox}[colframe=blue!75!black,width=33em]
+      \center
+$e(w,\, \a \,\tr{\land}\, \b)\;=\; e(w,\a)\;\tr{\land}\;e(w,\b)\;=\;\tr{\min}\{\; e(w,\a)\,,\,e(w,\b)    \;\}$
+\end{tcolorbox}   
     
   
   \[\small
@@ -369,17 +363,19 @@ e(w,\, \a \,\tr{\land}\, \b)\;=\; e(w,\a)\;\tr{\land}\;e(w,\b)\;=\;\tr{\min}\{\;
 
 \begin{frame}
   \frametitle{The calculus $\Calc$: some rules}
-
   
  {\blue\bf Rule for $\Box$-constraints}
 
- \[ \small
+ \begin{tcolorbox}[colframe=blue!75!black,width=33em]
+      \center
+ $ \small
  e(w, {\Box} \a) = {\tr\inf}\ \Big\{\,R(w,w')\,{\to}\, e(w',\a)~|~w'\in W\,\Big\}
-      %\quad $e(w, {\Diam} \a)= {\sup}_{{x}\in W}\Big\{\,R(w,{x})\, {\land}\, e(x,\a)\,\Big\}$
- \]
+ \qquad \tr{\inf = \min}$
+\end{tcolorbox}
  
  \begin{itemize}
- \item 
+ \item \small
+
  
  \smallskip
  Let   $e(w, \Box \a)=\tm r$. The value $\tm r$ is \tb{witnessed} by a world $\tb{w_1}$, namely: 
@@ -428,35 +424,38 @@ Without the witnessed condition, the rule is not sound.
     \RightLabel{\small$\ruleAxat$}
     \UIC{$\G$}    
     \DP  %\quad\mbox{if $\Atmp{\G}$ is not consistent}
-\hspace{4em} \text{\tb{Soundness condition:}}\qquad \M\not\models \G,\quad \forall\M
-  \]
+\hspace{4em} \text{\tb{Soundness condition:}}\qquad \M\not\models \G,\quad \forall\,\M
+\quad\text{(no countermodel)}
+\]
 
 
 \medskip
   \begin{tcgreenbox}[top=0ex]{}
-    A set of atomic constraint \bfb{$\Gat$ is consistent} if we can
-    define a function \tm{$\s$ (substitution)} mapping:
+    A set of atomic constraint \bfb{$\Gat$ is consistent} iff there exists
+     a  \tr{substitution $\s$} mapping
     \[
-        \tb{\fbox{$w:p$}}\mapsto r\in\Qrange\quad \tb{\fbox{$R(w,w')$}}\mapsto r\in\Qrange\quad \tb{w:\bot}\mapsto 0
+      \tb{\fbox{$w:p$}}\;\;\tr{\mapsto}\;\; r\in\Qrange
+      \qquad
+      \tb{\fbox{$R(w,w')$}}\;\;\tr{\mapsto}\;\; r\in\Qrange
+      \qquad
+      \tb{w:\bot}\;\;\tr{\mapsto}\;\; 0
     \]
-    so that \emm{all constraints in $\s(\Gat)$ are simultaneously satisfied}.
-    %% for every $u\abstractorder t\in\Gat$,
-    %% $\s(u)\abstractorder\s(t)$ holds ().
+    such that \tr{$\s$ is a solution to $\G$  (all the constraints in $\s(\Gat)$ are  satisfied)}.
   \end{tcgreenbox}
 
   \SSK
 
   \bfb{Example}
-\medfont
+\small%\medfont
 \[\medfont
     \G= \{\;\ycbox{$w_1 : p$} > \gcbox{$R(w_1,w_2)$}\,,\; \ggbox{$w_2 : p$} \leq \gcbox{$R(w_1,w_2)$}\,,\;
     \gcbox{$R(w_1,w_2)$} < 1\,,\;  \ggbox{$w_2 : p$} > \underset{\tm 0}{w_1 :\bot}   \;\}
   \]
-  is \tr{consistent}. Indeed, we can take the following substitution:
+Solution $\tm{\s}$ to $\G$:
     \[\medfont
       \begin{array}{c}
-      \tm{\s}:\; \ycbox{$w_1:p$}\,\mapsto\, 0.8\,,\;
-    \gcbox{$R(w_1,w_2)$}\,\mapsto 0.6\,\,,\;
+      \ycbox{$w_1:p$}\,\mapsto\, 0.8\,,\quad
+    \gcbox{$R(w_1,w_2)$}\,\mapsto 0.6\,\,,\quad
     \ggbox{$w_2:p$}\,\mapsto 0.4
 \\[4ex]
 \scriptsize
@@ -493,15 +492,19 @@ Without the witnessed condition, the rule is not sound.
  \]
 %The side condition guarantees that there is no model $\M$ such that $\M\models \G$.
   
-\[
-    \mbox{\medfont $\Atmp{\G}\;=\;\Atm{\G}\;\bigcup\;
+ \[
+   \begin{array}{l}
+    \mbox{\medfont $\tb{\Atmp{\G}}\;=\;\Atm{\G}\;\bigcup\;
       \underbrace{ %
         \{\tb{1} > t\,|\,\tb{\fbox{$w : \Box \a$}} > t \in \G\,\}
         \cup
         \{\tm{0} < t\,|\,\tm{\fbox{$w : \Diam \a$}} < t \in \G\,\}
-        }_{\mbox{needed to guarantee the coherence}}$}
+     }_{\mbox{needed to guarantee the coherence}}$}
+     \\[2ex]
+\scriptsize     \Atm{\G}\quad {\red \rightsquigarrow} \quad \text{atomic constraints in $\G$}
+   \end{array}  
    \]
-Note that $\Atmp{\G}$ only consists of atomic constraints
+
 
 
 
@@ -515,12 +518,7 @@ Note that $\Atmp{\G}$ only consists of atomic constraints
 \qquad\text{\red not consistent}
     \end{array}
   \]
-  % Indeed, there is no $\s$ such that:
-  %  \[\medfont
-  %    \tb{1} > \s(\ggbox{$w_1:p_1$})\,,\;\s(\ggbox{$w_1:  p_1$}) \leq 1\,,\; \s(\ggbox{$w_1:p_1$}) \geq 1
-  %    \]
-We conclude that there is no  $\GWL$-model $\M$ such that $\M\models \G$
-
+ 
 
 
   \MSK
@@ -542,8 +540,7 @@ We conclude that there is no  $\GWL$-model $\M$ such that $\M\models \G$
 \end{minipage}
 \end{center}
 
-\smallskip
-%In the above example:
+\medskip
 \[
     \Atmp{\G} \quad\tr{\leadsto}\quad   \{\;{1} > \ggbox{$X$}\,,\;\ggbox{$X$} \leq 1\,,\; \ggbox{$X$} \geq 1\;\}
 \qquad\text{\tr{no solution}}
