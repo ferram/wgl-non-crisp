@@ -243,8 +243,8 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
       \begin{array}{rcl}
         \text{\tb{label}} & & \text{\tb{world}}
                               \\
-        w&\mapsto&\tm{w_0}\\
-        w'&\mapsto&\tm{w_2}\\
+        w&\tm{\mapsto}& w_0\\
+        w'&\tm{\mapsto}& w_2
       \end{array}
       $
 
@@ -281,7 +281,7 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
   \end{center}
 
   
-  \SSK
+  \SP
 
   {\small
     \begin{tcgreenbox}{Application}
@@ -428,8 +428,7 @@ Without the witnessed condition, the rule is not sound.
 \quad\text{(no countermodel)}
 \]
 
-
-\medskip
+\MP
   \begin{tcgreenbox}[top=0ex]{}
     A set of atomic constraint \bfb{$\Gat$ is consistent} iff there exists
      a  \tr{substitution $\s$} mapping
@@ -448,10 +447,10 @@ Without the witnessed condition, the rule is not sound.
   \bfb{Example}
 \small%\medfont
 \[\medfont
-    \G= \{\;\ycbox{$w_1 : p$} > \gcbox{$R(w_1,w_2)$}\,,\; \ggbox{$w_2 : p$} \leq \gcbox{$R(w_1,w_2)$}\,,\;
+    \Gat= \{\;\ycbox{$w_1 : p$} > \gcbox{$R(w_1,w_2)$}\,,\; \ggbox{$w_2 : p$} \leq \gcbox{$R(w_1,w_2)$}\,,\;
     \gcbox{$R(w_1,w_2)$} < 1\,,\;  \ggbox{$w_2 : p$} > \underset{\tm 0}{w_1 :\bot}   \;\}
   \]
-Solution $\tm{\s}$ to $\G$:
+Solution $\tm{\s}$ to $\Gat$:
     \[\medfont
       \begin{array}{c}
       \ycbox{$w_1:p$}\,\mapsto\, 0.8\,,\quad
@@ -459,7 +458,7 @@ Solution $\tm{\s}$ to $\G$:
     \ggbox{$w_2:p$}\,\mapsto 0.4
 \\[4ex]
 \scriptsize
-        \s(\G) 
+        \s(\Gat) 
 \\[-2ex]
 \rotatebox{-90}{$\tr{\mapsto}$} 
 \\[3ex]
@@ -496,9 +495,9 @@ Solution $\tm{\s}$ to $\G$:
    \begin{array}{l}
     \mbox{\medfont $\tb{\Atmp{\G}}\;=\;\Atm{\G}\;\bigcup\;
       \underbrace{ %
-        \{\tb{1} > t\,|\,\tb{\fbox{$w : \Box \a$}} > t \in \G\,\}
-        \cup
-        \{\tm{0} < t\,|\,\tm{\fbox{$w : \Diam \a$}} < t \in \G\,\}
+        \{\;\tb{1} > t\,|\,\tb{\fbox{$w : \Box \a$}} > t \in \G\;\}
+        \;\cup\;
+        \{\;\tm{0} < t\,|\,\tm{\fbox{$w : \Diam \a$}} < t \in \G\;\}
      }_{\mbox{needed to guarantee the coherence}}$}
      \\[2ex]
 \scriptsize     \Atm{\G}\quad {\red \rightsquigarrow} \quad \text{atomic constraints in $\G$}
@@ -508,7 +507,7 @@ Solution $\tm{\s}$ to $\G$:
 
 
 
-\smallskip
+\SP
   \bfb{Example}
   \[
     \begin{array}{rcl}
@@ -521,7 +520,7 @@ Solution $\tm{\s}$ to $\G$:
  
 
 
-  \MSK
+  \MP
 
   \begin{itemize}
   \item 

@@ -83,16 +83,16 @@ $
  \end{tcolorbox}
 \end{center}
 
-\smallskip
-\item[(4)] 
-  $\Calc$ can be easily turned into a   refutation calculus for $\GWCL$:\\
-  just add the constraints  $R(w,w')\in \{0,1\}$, for every label $w$, $w'$.
+% \smallskip
+% \item[(4)] 
+%   $\Calc$ can be easily turned into a   refutation calculus for $\GWCL$:\\
+%   just add the constraints  $R(w,w')\in \{0,1\}$, for every label $w$, $w'$.
 
 
 
 \end{itemize}
 
-\medskip
+\MP
 
 We have designed a {\red proof search strategy} for $\Calc$ which yields  {\red countermodels}
 whenever proof search fails.
@@ -101,7 +101,7 @@ whenever proof search fails.
 
 \begin{tcgreenbox}[top=0ex]{Proof-search strategy (sketch)}
   \begin{itemize}
-  \item[$\surd$] Apply rules bottom-up, delaying as much as possible the application of modal rules
+  \item[$\surd$] Apply rules bottom-up, delaying as much as possible the application of modal rules.
 
 
     \smallskip
@@ -110,8 +110,14 @@ whenever proof search fails.
   \end{itemize}
  \end{tcgreenbox}
 
-  
 
+ \bigskip
+ \bfb{Remark}
+
+ \smallskip
+  $\Calc$ can be  turned into a   refutation calculus for $\GWCL$:\\
+   just add the constraints  $R(w,w')\in \{0,1\}$, for every label $w$, $w'$.
+ 
 
   \VFILL
 \end{frame}
@@ -133,14 +139,20 @@ whenever proof search fails.
   
 \bfb{Example}
 \[
-\varphi\;=\; \Box(p\lor q) \to (\Box p\lor \Diam q) \qquad\text{\medfont instance of the Crisp axiom }
+  \varphi\;=\; \Box(p\lor q) \to (\Box p\lor \Diam q) \qquad
+  \begin{minipage}{15em}\small
+    instance of the Crisp axiom
+    \\[.5ex]
+$\varphi\not\in\GWL$
+  \end{minipage}
 \]
 
 
+\medskip
 \begin{itemize}
 \item Proof-search for $\G=\{\,   w_0:\varphi < 1    \,\}$ fails
 
- \smallskip
+ \medskip
 \item In  the end we obtain the constraint set
   \[\small
     \begin{array}{lcl}
@@ -154,7 +166,7 @@ whenever proof search fails.
     \]
 
 
-    \smallskip
+    \medskip
  \item We compute  $\Atmp{ \G_{fin} }$:
 \[            
   w_0:  \Box(p\lor q) \;\;\tm{\mapsto}\;\; 1 \hspace{4em}
@@ -195,8 +207,8 @@ whenever proof search fails.
  \ccbox{$w_1 : q$} \;\tm{\mapsto}\; 0.6
     \]
 
-    \smallskip
-  \item Corresponding countermodel for $\varphi =  \Box(p\lor q) \to (\Box p\lor \Diam q)$:
+  \MP
+  \item Computed countermodel for $\varphi =  \Box(p\lor q) \to (\Box p\lor \Diam q)$:
 
     \medskip
     \input{fig-F1-counterCrisp}
@@ -212,7 +224,7 @@ whenever proof search fails.
   Assume that proof search for  $w_0:\varphi<1$ fails.
 
  \smallskip
- Let $\tb\M=\stru{W,R,e}$ be the countermodel for $w_0:\varphi<1$ computed by the procedure.
+ Let $\tb{\M=\stru{W,R,e}}$ be the countermodel for $w_0:\varphi<1$ computed by the procedure.
 
  \begin{center}
    \begin{tikzpicture}[scale=0.8]      
@@ -248,19 +260,14 @@ whenever proof search fails.
 
   \item[$\surd$]  every world of $\M$ has at most $\size{\varphi}$ R-successors
 
-  \item[$\surd$]  The codomains of $R$ and $e$ are finite subsets   of $\Qrange$
+  \item[$\surd$]  The codomains of $R$ and $e$ are finite subsets   of $\Qrange$\\
 \tr{(discrete countermodel)}
-  \end{itemize}
- This implies that  the \tr{size} of $\M$ is $\red O(\size{\varphi}^{\size{\varphi}})$.
+\end{itemize}
+
+\smallskip
+Accordingly, the \tr{size} of $\M$ is $\red O(\size{\varphi}^{\size{\varphi}})$.
 
 
- 
-%   \item There are formulas $\red \varphi$ having countermodels of size approximately  $\red \size{\varphi}^{\size{\varphi}}$
-
-% \item The constraints set $\Atm{\G_{fin}}$ obtained at the end of proof search contains the description of the {\red whole} countermodel.
-% Accordingly,  the proof search procedure does not work in PSPACE.
-  
-%   \end{itemize}
 
 \end{frame}
 
@@ -280,7 +287,7 @@ If $\varphi\not\in\GWL$,  there exists a countermodel of $\varphi$ of size  $O(\
   
   
 
-\medskip  
+\MP  
   However, reasoning as in   \citebib{B{\'{\i}}lkov{\'{a}} et al., IJCAR, 2022}, we can prove that:
 
   \begin{theorem}
@@ -290,9 +297,16 @@ If $\varphi\not\in\GWL$,  there exists a countermodel of $\varphi$ of size  $O(\
   
   \begin{itemize}
     \medfont
-  \item[$\surd$] (highly inefficient)  PSPACE-procedure to check if $\varphi\in\GWL$.
+  \item (Highly inefficient)  PSPACE-procedure to check if $\varphi\in\GWL$.
 
-  \item[$\surd$]   PSPACE-hardness follows from the fact that $\KL$ can be embedded into $\GWL$ (via the *-translation) and $\KL$ is PSPACE complete. 
+  \item PSPACE-hardness follows from the fact that:
+    \begin{itemize}\medfont
+    \item[$\surd$]    $\KL$ can be embedded into $\GWL$ (via the *-translation)
+
+\item[$\surd$]  $\KL$ is PSPACE complete
+    \end{itemize}
+
+
   \end{itemize}
 
 
@@ -332,6 +346,8 @@ If $\varphi\not\in\GWL$,  there exists a countermodel of $\varphi$ of size  $O(\
   \item \LaTeX generation of proof-search trees and countermodels
   \end{itemize}
 
+\bigskip
+  
 \begin{center}
      \footnotesize
      \includegraphics[scale=0.03,width=2em]{download}
@@ -347,17 +363,21 @@ If $\varphi\not\in\GWL$,  there exists a countermodel of $\varphi$ of size  $O(\
 
 %===============================================
 
+
 \section{Future work}
-\begin{frame}{Future work}
+\begin{frame}{Work in progress \& future work}
 
 \input{fig-F5-logicsDiagram}
 \begin{itemize}
 \item Axiomatization of $\GWL$ and $\GWCL$.
 
+
+\item Refine the definition of witnessed model.
+  
 \item In \citebib{Ferrari et al., TABLEAUX, 2025} we presented a Kripke style semantics for $\GWCL$
   (birelational models with Fischer-Servi conditions).
 
-  Can we extend it to $\GWL$?
+  Extend it to $\GWL$.
 
   
 
