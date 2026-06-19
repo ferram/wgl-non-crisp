@@ -17,14 +17,15 @@
 
 A \emph{$\GWM$-bimodel} is a structure $\K=\stru{X,\leq,S,V}$ where
 $X$ (the set of worlds) is a nonempty finite set, $\leq$ is a partial
-order relation, $S\subseteq X \times X$, $V$ (the evaluation function)
+order relation (intuitionistic accessibility relation), $S\subseteq X \times X$ (modal accesibility relation),
+$V$ (the evaluation function)
 is a map from $X$ to $2^\PV$ which is persistent ($x \leq y$ implies
 $V(x)\subseteq V(y)$).  We require that $\leq$ satisfies the following
 connectedness property:
 \begin{itemize}
 \item  if $x \leq y$ and $x \leq z$, then $y\leq z$ or $z\leq y$.
 \end{itemize}
-The  following conditions must be met (see Fig.~\ref{fig:F}):
+The  following Fischer-Servi conditions must be met (see Fig.~\ref{fig:F}):
 
 \begin{enumerate}[label=(F\arabic*), ref=(F\arabic*),leftmargin=*]
 \item\label{F1} if $x_1\leq x_2$ and $x_1 S y_1$, there exists $y_2$
@@ -221,6 +222,9 @@ The  following conditions must be met (see Fig.~\ref{fig:F}):
 % ############################################################
 %
 %
+
+
+\noindent
 The forcing relation $\forcing$ between worlds of $\K$ and formulas is
 defined as follows:
 \begin{itemize}
@@ -251,9 +255,9 @@ A formula $\varphi$ is valid in a $\GWM$-bimodel $\K$ iff $x\forcing
 the set of formulas valid in all the $\GWM$-bimodels; we show that
 $\LBM$ coincides with $\GWL$.
 To this aim, we establish
-a correspondence between the class of discrete $\GWM$-models and a particular 
-class of $\GWM$-bimodels ensuring that, given any $\M$,  validity in $\M$ simulates
-forcing in the corresponding $\K$.
+a correspondence between the class of discrete $\GWM$-models and a proper class
+of $\GWM$-bimodels which preserves validity of formulas.
+
 
 
 Let $\K=\stru{X,\leq,S,V}$ and let $x$, $y$ be elements of $X$; we set
@@ -326,7 +330,7 @@ By definition $\LBM\subseteq \LBMR$. We prove the converse relation, namely  $\L
 
 \noindent
 Let $\K=\stru{X,\leq,S,V}$ be a regular model.
-The \emph{height} of $\K$, denoted by $\height{\K}$, is the height of a cluster.
+The \emph{height} of $\K$, denoted by $\height{\K}$, is the height of a cluster of $\K$.
 Let  $\height{\K}=k$;  a \emph{ranking} over $\K$ is an order preserving map 
  $\Rn : \{0,\dots, k\} \to (0,1]_\mathrm{Q}$  such that  $\Rnof{k} = 1$.
   The function $\Rn$ is extended to the worlds of $\K$ by setting
@@ -379,19 +383,11 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   is defined as follows:
 \right)
 \]
 In the notations  $\Rnof{\clust{x},\varphi}$ and $\Rnof{S_{\clust{x},\clust{y}}}$,
-we often replace a   cluster $\clust{z}$ with the $z$ (e.g.,
-we write $\Rnof{S_{x,y}}$ or   $\Rnof{S_{\clust{x},y}}$  instead of
+we often replace a   cluster $\clust{z}$ with a representative elemente $z$ (e.g.,
+we write $\Rnof{S_{x,y}}$   instead of
 $\Rnof{S_{\clust{x},\clust{y}}}$).
 
-% By definition of $\Rnof{S_{\clust{x},\clust{y}}}$ and property~\ref{F1} we get:
 
-% \begin{enumerate}[label=(P\arabic*), ref=(P\arabic*),leftmargin=*,start=4]
-
-% \item\label{prop:Rn:4}
-%   Let $\Rnof{S_{\clust{x},\clust{y}}}=r$. For every $x'\in\clust{x}$ such that $\Rnof{x'}\leq r$,
-%   there exists $y'\in\clust{y}$ such that $x' S y'$.
-  
-% \end{enumerate}  
 
 % ############################################################## 
 %% FIG. RANKED GW-BIMODEL
@@ -410,7 +406,7 @@ $\Rnof{S_{\clust{x},\clust{y}}}$).
       \Rnof{y_1,p}=1,\quad \Rnof{y_1,q}=0.4,\quad \Rnof{z_1,p}=0.6,\quad \Rnof{z_1,q}=0.8,\quad
       \Rnof{x_1,p}=\Rnof{x_1,q}=0
  \\[1ex]
-      \Rnof{y_1,p\land q} =0.4,\quad   \Rnof{y_1,p\lor q} =1,\quad  \Rnof{y_1,p\to q} =0.4\quad \Rnof{y_1,q\to q} = 1,
+      \Rnof{y_1,p\land q} =0.4,\quad   \Rnof{y_1,p\lor q} =1,\quad  \Rnof{z_1,q\to p} =0.6\quad \Rnof{z_1,p\to q} = 1,
 \\[.5ex]
       \Rnof{y_1,\Box q} =1,\quad \Rnof{y_1,\Diam q} =0
  \\[1ex]
@@ -430,9 +426,9 @@ $\Rnof{S_{\clust{x},\clust{y}}}$).
    Let us consider the   $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
    displayed in Fig.~\ref{fig:rankedBiModel}.
 The worlds of $\K$ have the form $w_r$, where $w\in\{x,y,z\}$ and  $r\in\{0.4,\,0.6,\,0.8,\,1\}$.
-The relation $\leq$ is
+The intuitionistic accessibility relation $\leq$ is
   represented by the straight lines ($w\leq w'$ iff $w$ is below or
-  equal to $w'$), the relation $S$ is depicted by the arrows.
+  equal to $w'$), the modal accessibility relation $S$ is depicted by  arrows.
  The   propositional variables in $V(w_r)$ are displayed to the right of
   $w_r$. 
 Formally;
@@ -464,10 +460,13 @@ There are three clusters $\clust{x_1}$, $\clust{y_1}$ and
   \Rnof{0} = 0.4, \quad  \Rnof{1} = 0.6, \quad  \Rnof{2} = 0.8, \quad   \Rnof{3} = 1
 \]
 and let us consider the  ranked $\GWM$-bimodel $(\K,\Rn)$.
-In  $(\K,\Rn)$, for every world $w_r$ in $\K$  it holds that $\Rnof{w_r}=r$.
-Let $w$ and $w'$ be any two worlds of $\K$; then
+We have:
+% In  $(\K,\Rn)$, for every world $w_r$ in $\K$  it holds that $\Rnof{w_r}=r$.
+% Let $w$ and $w'$ be any two worlds of $\K$; then
 \[
- \Rnof{S_{w,w'}} \;=\; 
+\Rnof{w_r}=r
+\hspace{4em}
+  \Rnof{S_{w,w'}} \;=\; 
   \begin{cases}
 0.8 &\text{if $w=x_1$ and $w'=y_1$}
 \\[0.5ex]
@@ -502,7 +501,7 @@ ranking of some formulas.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \ref{lemma:Rn:prop}.
+ \emph{Proof of \ref{lemma:Rn:prop}}.
   We prove that  $\Rnof{x,\a\land \b} =  \Rnof{x,\a}\land  \Rnof{x,\b}$.
   Let $r=\Rnof{x,\a\land \b}$, $a=\Rnof{x,\a}$ and
   $b=\Rnof{x,\b}$; we show that $r= \min(a,b)$.
@@ -527,7 +526,8 @@ By~\ref{prop:Rn:3},   $x_r\forcing \a\land \b$ and $(x_r)^-\nforcing \a\land
   The proof of  $\Rnof{x,\a\lor \b}= \Rnof{x,\a}\lor \Rnof{x,\b}$ is similar.
 
 We prove $\Rnof{x,\a\to \b} =\Rnof{x,\a}\to \Rnof{x,\b}$.
-  Let $r=\Rnof{x,\a\to \b}$, $a=\Rnof{x,\a}$ and $b=\Rnof{x,\b}$.
+Let $r=\Rnof{x,\a\to \b}$, $a=\Rnof{x,\a}$ and $b=\Rnof{x,\b}$;
+we show that $r = a\to b$.
   Let us assume $r=0$. By~\ref{prop:Rn:1},  $\xmax \nforcing \a\to \b$,
   hence $\xmax \forcing \a$ and $\xmax \nforcing \b$.  This implies  $a> 0$ 
   and   $b=0$, hence $a\to b = 0$.  Let us assume $r=1$.
@@ -547,12 +547,12 @@ We prove $\Rnof{x,\a\to \b} =\Rnof{x,\a}\to \Rnof{x,\b}$.
 
 \smallskip
 \noindent
-\ref{lemma:Rn:box}.
-Let $r=\Rnof{x,\Box \a}$; to prove~\ref{lemma:Rn:box}  we show that:
+\emph{Proof of \ref{lemma:Rn:box}}.
+Let $r=\Rnof{x,\Box \a}$;   we show that:
 
  \begin{enumerate}[label=(\arabic*), ref=(\arabic*),leftmargin=*]
 \item\label{lemma:Rn:box:goal}
-  $\min_{y\in X}\{\,\Rnof{S_{x,y}}\to \Rnof{y,\a} \,\}\,=\, r$.
+  $r\,= \,\min_{y\in X}\{\,\Rnof{S_{x,y}}\to \Rnof{y,\a} \,\}$.
 \end{enumerate}
 
 \noindent 
@@ -636,19 +636,19 @@ By~\ref{F1},  there exists
  $y_r$ such that $x_r S y_r$ and $y_1\leq y_r$;  by Lemma~\ref{lemma:reg}\ref{lemma:reg:1}, $\Rnof{y_r} =\Rnof{x_ r}= r$. 
 Since $x_r\forcing \Box \a$, we get $y_r\forcing \a$; it follows that
 $\Rnof{y,\a} \geq r$, and this concludes the proof of~\ref{lemma:Rn:box:3}.
-
+From~\ref{lemma:Rn:box:2} and~\ref{lemma:Rn:box:3}, point~\ref{lemma:Rn:box:goal} follows.
 
 
 %###########################################################################
 
 \smallskip
 \noindent
-\ref{lemma:Rn:diam}.
-Let $r=\Rnof{x,\Diam \a}$; to prove~\ref{lemma:Rn:diam}  we show that:
+\emph{Proof of \ref{lemma:Rn:diam}}.
+Let $r=\Rnof{x,\Diam \a}$;   we show that:
 
  \begin{enumerate}[label=(\arabic*), ref=(\arabic*),leftmargin=*,start=2]
 \item\label{lemma:Rn:diam:goal}
-  $\max_{y\in X}\{\,\Rnof{S_{x,y}}\land \Rnof{y,\a} \,\}\,=\, r$.
+  $r\,=\,\max_{y\in X}\{\,\Rnof{S_{x,y}}\land \Rnof{y,\a} \,\}$.
 \end{enumerate}
 Let us assume $r=0$. By~\ref{prop:Rn:1}, it holds that $\xmax \nforcing  \Diam \a$.
 We show that:
