@@ -17,7 +17,7 @@
 
 A \emph{$\GWM$-bimodel} is a structure $\K=\stru{X,\leq,S,V}$ where
 $X$ (the set of worlds) is a nonempty finite set, $\leq$ is a partial
-order relation (intuitionistic accessibility relation), $S\subseteq X \times X$ (modal accesibility relation),
+order relation (intuitionistic accessibility relation), $S\subseteq X \times X$ (modal accessibility relation),
 $V$ (the evaluation function)
 is a map from $X$ to $2^\PV$ which is persistent ($x \leq y$ implies
 $V(x)\subseteq V(y)$).  We require that $\leq$ satisfies the following
@@ -383,7 +383,7 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   is defined as follows:
 \right)
 \]
 In the notations  $\Rnof{\clust{x},\varphi}$ and $\Rnof{S_{\clust{x},\clust{y}}}$,
-we often replace a   cluster $\clust{z}$ with a representative elemente $z$ (e.g.,
+we often replace a   cluster $\clust{z}$ with a representative element $z$ (e.g.,
 we write $\Rnof{S_{x,y}}$   instead of
 $\Rnof{S_{\clust{x},\clust{y}}}$).
 
@@ -687,14 +687,14 @@ $\Rnof{S_{x,{y_r}}}\land \Rnof{y_r,\a}= r$.
 \end{enumerate}
 Since $x_r S y_r$, it holds that $\Rnof{S_{x,{y_r}}}\geq r$.
 If  $\Rnof{S_{x,{y_r}}} = r$, we immediately get $\Rnof{S_{x,{y_r}}}\land \Rnof{y_r,\a}= r$.
-  Let us assume   $\Rnof{S_{x,{y_r}}}> r$. By~\ref{F1} there exists $y^\star\in \clust{y_r}$ such
+Let us assume   $\Rnof{S_{x,{y_r}}}> r$.  Note that  $\Rnof{S_{x,{y_r}}}\geq  \Rnof{(x_r)^-}$,
+hence there exists $y^\star\in \clust{y_r}$ such
   that $(x_r)^- S y^\star$.
   Since $(x_r)^-\nforcing \Diam\a$, we get  $y^\star\nforcing \a$.
   By Lemma~\ref{lemma:reg}\ref{lemma:reg:2} $y^\star =(y_r)^-$, hence $\Rnof{y_r,\a}=r$.
   To sum up,   $\Rnof{S_{x,{y_r}}}> r$ and $\Rnof{y_r,\a}=r$, hence
   $\Rnof{S_{x,{y_r}}}\land \Rnof{y_r,\a}= r$; this proves~\ref{lemma:Rn:diam:2}.
-To conclude the proof of~\ref{lemma:Rn:diam:goal},
-we show that
+We show that
   
  \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=6]
  \item\label{lemma:Rn:diam:3}
@@ -709,9 +709,10 @@ we show that
  By Lemma~\ref{lemma:reg}\ref{lemma:reg:1}  $\Rnof{y^\star}= \Rnof{(x_r)^-}$.
  Since $\Rnof{x,\Diam \a}=r$ and $\Rnof{(x_r)^-} > r$, we have $(x_r)^-\nforcing \Diam \a$,
  hence  $y^\star\nforcing \a$.
- It follows that  $\Rnof{y,\a}< \Rnof{y^\star}$, hence   $\Rnof{y,\a}\leq r$.
- This implies  $\Rnof{S_{x,y}}\land \Rnof{y,\a}\leq  r$,
-and this proves~\ref{lemma:Rn:diam:3}.
+ It follows that  $\Rnof{y,\a}< \Rnof{y^\star}$, and this implies   $\Rnof{y,\a}\leq r$.
+ It follows that  $\Rnof{S_{x,y}}\land \Rnof{y,\a}\leq  r$,
+and this proves~\ref{lemma:Rn:diam:3}. From~\ref{lemma:Rn:diam:2} and~\ref{lemma:Rn:diam:3}, point~\ref{lemma:Rn:diam:goal} follows.
+
 \end{proof}
 
 
