@@ -383,9 +383,9 @@ denoted by $\Rnof{S_{\clust{x},\clust{y}}}$   is defined as follows:
 \right)
 \]
 In the notations  $\Rnof{\clust{x},\varphi}$ and $\Rnof{S_{\clust{x},\clust{y}}}$,
-we often replace a   cluster $\clust{z}$ with a representative element $z$ (e.g.,
-we write $\Rnof{S_{x,y}}$   instead of
-$\Rnof{S_{\clust{x},\clust{y}}}$).
+we often replace a   cluster $\clust{z}$ with an element $z$;
+for instance, 
+we write $\Rnof{S_{x,y}}$   instead of $\Rnof{S_{\clust{x},\clust{y}}}$).
 
 
 
@@ -461,8 +461,6 @@ There are three clusters $\clust{x_1}$, $\clust{y_1}$ and
 \]
 and let us consider the  ranked $\GWM$-bimodel $(\K,\Rn)$.
 We have:
-% In  $(\K,\Rn)$, for every world $w_r$ in $\K$  it holds that $\Rnof{w_r}=r$.
-% Let $w$ and $w'$ be any two worlds of $\K$; then
 \[
 \Rnof{w_r}=r
 \hspace{4em}
@@ -488,7 +486,7 @@ ranking of some formulas.
 
 
 \begin{lemma}\label{lemma:Rn}
-  Let $\K$ be a regular $\GWM$-bimodel and $\Rn$ a ranking over $\K$.
+  Let $(\K,\Rn)$ be a ranked   $\GWM$-bimodel, where $\K=\stru{X,\leq,S,V}$.
   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
   \item\label{lemma:Rn:prop}
     $\Rnof{x,\a\star \b}   = \Rnof{x,\a} \star \Rnof{x,\b}$,   for $\star\in \{\,\land,\,\lor,\,\to\,\}$.
@@ -719,7 +717,7 @@ and this proves~\ref{lemma:Rn:diam:3}. From~\ref{lemma:Rn:diam:2} and~\ref{lemma
   
 \noindent
 A \emph{correspondence} between a  $\GWM$-model $\M=\stru{W,R,e}$ and a ranked
-$\GWM$-bimodel $(\K,\Rn)$, where $\K=\stru{X,\leq,S,V}$ is a regular model, is a 1-1 map
+$\GWM$-bimodel $(\K,\Rn)$, where $\K=\stru{X,\leq,S,V}$, is a 1-1 map
 $\Phi$ between the worlds of $\M$ and the clusters of $\K$ satisfying
 the following conditions:
 
@@ -834,27 +832,22 @@ Let $\M=\stru{W,R,e}$ and  $\K=\stru{X,\leq,S,V}$.
 We have:
 \[
   \begin{array}{rcll}
-  e(w,\Box \a) & \;=\; & \min_{w'\in W}\{\, R(w,w') \to e(w',\a) \,\}    
+  e(w,\Box \a) & \;=\; & \min\; \{\; R(w,w') \to e(w',\a)~|~w'\in W \;\}    
 &
     \\[.5ex]
- & \;=\; & \min_{w'\in W}\{\, \Rnof{S_{\Phi(w),\Phi(w')} } \to e(w',\a) \,\}    
+ & \;=\; & \min\;\{\; \Rnof{S_{\Phi(w),\Phi(w')} } \to e(w',\a)~|~w'\in W \;\}    
 &\text{\ref{corr:1}}
-    \\[.5ex]
-               & \;=\; &
-   \min_{w'\in W}\{\, \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a} \,\}
-&\text{ind.~hyp.}
 \\[.5ex]
  & \;=\; &
-   \min\;\underbrace{\{\, \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}~|~w'\in W \,\}}_{\Qcal_1}                         
-&
+   \min\;\underbrace{\{\; \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}~|~w'\in W \;\}}_{\Qcal_1}                         
+&\text{ind.~hyp.}
 %======================================
     \\[5ex]
-    \Rnof{\Phi(w),\Box \a}   & \;=\; &
-                                       \min_{y\in X}\{\, \Rnof{S_{\Phi(w),y} } \to \Rnof{y,\a} \,\}
-&\text{ Lemma~\ref{lemma:Rn}\ref{lemma:Rn:box}}
-\\[.5ex]
+    \Rnof{\Phi(w),\Box \a}   
  & \;=\; &
- \min\;\underbrace{\{\, \Rnof{S_{\Phi(w),y} } \to \Rnof{y,\a}~|~y\in X \,\}}_{\Qcal_2}
+           \min\;\underbrace{\{\; \Rnof{S_{\Phi(w),y} } \to \Rnof{y,\a}~|~y\in X \;\}}_{\Qcal_2}
+&\text{ Lemma~\ref{lemma:Rn}\ref{lemma:Rn:box}}
+           
     \end{array}
 \]
 We show that  $\Qcal_1=\Qcal_2$.
@@ -863,23 +856,24 @@ $q_1=\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}$, where $w'\in W$.
 Let $y\in \Phi(w')$; 
 then $\Phi(w')=\clust{y}$ hence:
 \[
-    \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\;
-\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\;=\;
-    q_1    
-  \]
-Since $\Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}\in \Qcal_2$,
-we get $q_1\in\Qcal_2$;
-this proves $\Qcal_1\subseteq \Qcal_2$.
+  q_1\;=\;
+  \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}    
+  \;=\;
+  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}
+\;\in\Qcal_2  
+\qquad y\in X
+\]
+This proves $\Qcal_1\subseteq \Qcal_2$.
 Conversely, let $q_2\in\Qcal_2$
 and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$, where $y\in X$.
 Since $\Phi$ is surjective, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
 \[
-    \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;=\;
-        \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} \;=\; q_2
+q_2\;=\;   \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} 
+\;=\;
+  \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;\in\Qcal_1
+\qquad w'\in W
 \]
-Since  $\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}\in \Qcal_1$,
-we get $q_2\in\Qcal_1$.
-This proves $\Qcal_2\subseteq \Qcal_1$.
+Accordingly, $\Qcal_2\subseteq \Qcal_1$.
 Having proved that $\Qcal_1=\Qcal_2$, we conclude
  $e(w,\Box \a)  = \Rnof{\Phi(w),\Box \a}$. 
  The proof of  $e(w,\Diam \a)  = \Rnof{\Phi(w),\Diam \a}$ is similar.
