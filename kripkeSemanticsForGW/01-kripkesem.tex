@@ -851,31 +851,62 @@ We have:
     \end{array}
 \]
 We show that  $\Qcal_1=\Qcal_2$.
-Let $q_1\in \Qcal_1$ and let us assume that
-$q_1=\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}$, where $w'\in W$.  
-Let $y\in \Phi(w')$; 
-then $\Phi(w')=\clust{y}$ hence:
+Let $q_1\in \Qcal_1$; then:
 \[
-  q_1\;=\;
+q_1\;=\;
   \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}    
   \;=\;
   \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}
 \;\in\Qcal_2  
-\qquad y\in X
-\]
+\qquad
+\begin{minipage}{5em}
+    $w'\in W$
+    \\
+    $y\in \Phi(w')$
+\end{minipage}
+\]  
 This proves $\Qcal_1\subseteq \Qcal_2$.
-Conversely, let $q_2\in\Qcal_2$
-and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$, where $y\in X$.
-Since $\Phi$ is surjective, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
+Conversely, let $q_2\in\Qcal_2$; then:
 \[
 q_2\;=\;   \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} 
 \;=\;
   \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;\in\Qcal_1
-\qquad w'\in W
+  \qquad
+  \begin{minipage}{5em}
+    $y\in X$
+    \\
+   $y\in \Phi(w')$
+\end{minipage}
 \]
 Accordingly, $\Qcal_2\subseteq \Qcal_1$.
 Having proved that $\Qcal_1=\Qcal_2$, we conclude
  $e(w,\Box \a)  = \Rnof{\Phi(w),\Box \a}$. 
+% %% MORE VERBOSE
+% Let $q_1\in \Qcal_1$ and let us assume that
+% $q_1=\Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}$, where $w'\in W$.  
+% Let $y\in \Phi(w')$; 
+% then $\Phi(w')=\clust{y}$ hence:
+% \[
+%   q_1\;=\;
+%   \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}    
+%   \;=\;
+%   \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}
+% \;\in\Qcal_2  
+% \qquad y\in X
+% \]
+% This proves $\Qcal_1\subseteq \Qcal_2$.
+% Conversely, let $q_2\in\Qcal_2$
+% and let us assume that $q_2=  \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a}$, where $y\in X$.
+% Since $\Phi$ is surjective, there exists $w'\in W$ such that $\Phi(w') = \clust{y}$, hence:
+% \[
+% q_2\;=\;   \Rnof{S_{\Phi(w),y}}\to  \Rnof{y,\a} 
+% \;=\;
+%   \Rnof{S_{\Phi(w),\Phi(w')} } \to \Rnof{\Phi(w'),\a}  \;\in\Qcal_1
+% \qquad w'\in W
+% \]
+% Accordingly, $\Qcal_2\subseteq \Qcal_1$.
+% Having proved that $\Qcal_1=\Qcal_2$, we conclude
+%  $e(w,\Box \a)  = \Rnof{\Phi(w),\Box \a}$. 
  The proof of  $e(w,\Diam \a)  = \Rnof{\Phi(w),\Diam \a}$ is similar.
 \end{proof}
 
@@ -919,12 +950,13 @@ V \;=\; \{\, (w_r, p)~|~\text{ $r \leq e(w,p)$ }  \,\}
 \end{array}
 \]
     One can easily  check that $\K$ is a  well-defined regular $\GWM$-bimodel.
-   For every $w\in W$, the set of  $w_r$ such that $r\in \Qcal$ is a cluster of $\K$.
+    For every $w\in W$, the set of  $w_r$ such that $r\in \Qcal$ is a cluster of $\K$.
+    We point out that, if  $(w_r, w'_r)\in S$, then $R(w,w') > 0$.
     Let  $r_0,r_1, \dots, r_{k}$ be an enumeration of the elements of $\Qcal$ in ascending order
     (thus, $r_k=1$).
    The map $\Rn : \{0,\dots,k\}\to\Qcal$
-    such that $\Rnof{k} = r_k$ is a ranking over $\K$.  Note that $\Rnof{w_{r_j}}=r_j$.
-    The function $\Phi$ mapping the world $w$ of $\M$ to the cluster
+    such that $\Rnof{k} = r_k$ is a ranking over $\K$;  note that $\Rnof{w_{r_j}}=r_j$.
+    The function $\Phi$ mapping a world $w$ of $\M$ to the cluster
     $\clust{w_1}$ settles a correspondence between $\M$ and  $(\K,\Rn)$. 
 
     \smallskip
@@ -936,14 +968,14 @@ V \;=\; \{\, (w_r, p)~|~\text{ $r \leq e(w,p)$ }  \,\}
      \begin{array}{l}
 W\,=\,\{\, \clust{x}~|~x\in W   \,\}
        \qquad
-       R(\clust{x},  \clust{x'}) \,=\, \Rnof{S_{x,x'}}
+       R(\clust{x},  \clust{y}) \,=\, \Rnof{S_{x,y}}
 \qquad
 e(\clust{x},p)\,=\, \Rnof{\clust{x},p}
      \end{array}
 \]
-One can easily check that $\M$ is well-defined.  Let $\Phi$ be the map
-between the worlds of $\M$ and the clusters of $\K$ such that,
-given a    a world $\clust{x}$ of $\M$, $\Phi(\clust{x})=\clust{x}$.
+One can easily check that $\M$ is well-defined.  Let $\Phi$ be the identity map
+between the worlds of $\M$ and the clusters of $\K$ 
+(namely, $\Phi(\clust{x})=\clust{x}$, for every $x\in X$).
 One can easily check that   $\Phi$
    is  a correspondence between $\M$ and  $(\K,\Rn)$. 
  \end{proof}
