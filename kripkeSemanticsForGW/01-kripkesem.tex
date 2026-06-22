@@ -907,7 +907,7 @@ Having proved that $\Qcal_1=\Qcal_2$, we conclude
 % Accordingly, $\Qcal_2\subseteq \Qcal_1$.
 % Having proved that $\Qcal_1=\Qcal_2$, we conclude
 %  $e(w,\Box \a)  = \Rnof{\Phi(w),\Box \a}$. 
- The proof of  $e(w,\Diam \a)  = \Rnof{\Phi(w),\Diam \a}$ is similar.
+ The proof that  $e(w,\Diam \a)  = \Rnof{\Phi(w),\Diam \a}$ is similar.
 \end{proof}
 
 
@@ -1104,7 +1104,7 @@ One can easily check that   $\Phi$
 
 
  
- \begin{example}
+ \begin{example}\label{ex:countermodelCrisp}
 Let us consider the $\GWM$-countermodel $\M$ for the formula $\varphi=\Box (p\lor q)\to (\Box p \lor \Diam q) $ (instance of (Cr)) 
 shown in Fig.~\ref{fig:corrCrispAx} on the left.
 On the right of the figure, we define the ranked $\GWM$-bimodel $(\K,\Rn)$  corresponding to $\M$ obtained by applying the
@@ -1134,6 +1134,71 @@ proof of $\GWL\subseteq \LBM$ is similar and relies on
 Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   
 \end{proof}
+
+
+
+\subsection{Crisp models}
+
+Let $\K=\stru{X,\leq,S,V}$ be a regular $\GWL$-bimodel; $\K$ is \emph{crisp} iff the following condition holds:
+\begin{itemize}
+\item if $x S y$ then, $\xmin S \ymin$.
+\end{itemize}
+Note that none of the $\GWL$-models in Figs.~\ref{fig:rankedBiModel} and \ref{fig:corrCrispAx} is crisp.
+
+\begin{lemma}\label{lemma:crispModel}
+  Let $\K=\stru{X,\leq,S,V}$ be a crisp regular $\GWL$-bimodel and let  $x$.
+
+   \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
+   \item\label{lemma:crispModel:1}
+Assume $x Sy$.  Then,
+ for every $x'\in\clust{x}$ there exists  $y'\in\clust{y}$ such that $x'S y'$.
+
+\item\label{lemma:crispModel:2} 
+$x\forcing \Box \a$ if and only if, for every $y\in X$ such that $x S y$, $y\forcing \a$.
+
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  ** TO DO **
+\end{proof}
+
+
+\begin{example}\label{ex:crispModel}
+  In Ex.~\ref{ex:countermodelCrisp} we have shown a regular $\GWL$-model falsifying an instance of
+  the Crisp axiom $\psi=\Box (\a\lor \b)\to (\Box \a \lor \Diam \b)$. Note that such a model is not crisp,
+  since $x_{0.6} S y_{0.6}$, but it is not true that  $x_{1} S y_{1}$. We show that $\psi$ is valid in all crisp
+  regular $\GWL$-bimodels. Let us assume, by contradiction, that there exists a  regular $\GWL$-bimodel
+  $\K=\stru{X,\leq,S,V}$ and $x_0\in W$ such that $x_0\nforcing \psi$. 
+  Then, there exists $x_1$ such hat $x_0\leq x_1$ and $x_1\forcing \Box (\a\lor \b)$ and  $x_1\nforcing \Box \a \lor \Diam \b$,
+  thus   $x_1\nforcing \Box \a$ and  $x_1\nforcing  \Diam \b$.
+  Since $x_1\nforcing \Box \a$, by Lemma~\ref{lemma:crispModel}\ref{lemma:crispModel:2} 
+  there exists $y_1\in X$ such that  $x_1 S y_1$ and    $y_1\nforcing  \a$. By the fact that  $x_1\forcing \Box (\a\lor \b)$,
+  we get $y_1\forcing \a\lor \b$, and this implies $y_1\forcing \b$.
+It follows that   $x_1\forcing  \Diam \b$, a contradiction.
+We conclude that the Crisp axiom is valid in all crisp  regular $\GWL$-bimodels.
+\EndEx
+\end{example}
+
+
+
+\begin{proposition}\label{prop:PhiCrisp}
+ Let $\Phi$ be a correspondence between the $\GWM$-model $\M$ and  the ranked $\GWM$-bimodel $(\K,\Rn)$.
+Then, $\M$ is crisp if and only if $\K$ is crisp.
+\end{proposition}
+
+
+\begin{proof}
+  ** TO DO **
+\end{proof}
+
+
+As a consequence we get:
+
+\begin{proposition}
+  The set of formulas valid in all the crisp  regular $\GWM$-bimodel coincides with $\GWCL$.
+\end{proposition}
+
 
 
 \subsection{On condition \ref{F4}}
