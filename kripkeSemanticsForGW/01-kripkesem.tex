@@ -1135,7 +1135,52 @@ Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   
 \end{proof}
 
+\begin{example}\label{ex:axiomGW}
+  Let $\varphi$ be the axiom
+  \[
+\Box(\, \underbrace{((\a\to \b)\to\b) \,\land\, (\b\to\a)}_{\psi}  \,) \; \to \; (\,(\Box\a \to \Box\b) \to \Box \b\,)
+  \]
+ We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWL$.
+Let us assume, by contradiction,   $\varphi\not\in\GWL$.
+By  Prop.~\ref{prop:equivGWC}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
+and $x_0\in X$ such that $x_0\nforcing \varphi$.
+It follows that there exists $x_1$ and $y_1$ such that:
+\begin{itemize}
+\item $x_0\leq x_1$ and $x_1 S y_1$;
 
+\item $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$ and $y_1\nforcing  \b$.
+\end{itemize}
+We prove that:
+
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
+\item\label{ex:axiomGW:1}
+ There is $x\in X$ such that $x_1< x$ and $x\forcing\Box\a$. 
+\end{enumerate}
+Let $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$ and
+let us assume $\xmax \nforcing \Box \a$. Then, there exists $z\in X$ such that
+$\xmax S z$ and $z\nforcing \a$. Since $\xmax\forcing\Box\psi$, it follows that $z\forcing \psi$.
+Since d $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
+Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
+hence $z\forcing \a$ and $z\nforcing \b$, a contradiction.
+This implies that  $\xmax \forcing \Box \a$. Note that $x_1\nforcing \Box\a$,
+otherwise  $x_1\forcing\Box\b$ would follow, in contradiction with the fact that
+$x_1 S y_1$ and   $y_1\nforcing  \b$; this concludes the proof of~\ref{ex:axiomGW:1}
+
+By~\ref{ex:axiomGW:1},  there exists  $x_2\in X$  such that:
+
+\begin{itemize}
+\item $x_1\leq x_2$ and   $x_2\forcing\Box\a$  and $(x_2)^-\nforcing \Box \a$.
+\end{itemize}
+There exists $z_1\in W$ such that $(x_2)^- S z_1$ and $z_1\nforcing \a$.
+By~\ref{F1}, there exists $z_2$ such that:
+\begin{itemize}
+\item $z_1\leq z_2$ and $x_2 S z_2$.
+\end{itemize}
+Note that $x_1\leq (x_2)-$, hence $z_2\forcing \psi$. Since $z_2\nforcing \a$, if follows
+that $z_2\nforcing \b$, hence $z_2\nforcing \a\to\b$.
+
+
+\end{example}
 
 \subsection{Crisp models}
 
