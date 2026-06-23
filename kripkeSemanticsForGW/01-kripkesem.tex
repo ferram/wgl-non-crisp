@@ -4,8 +4,13 @@
 \newcommand{\height}[1]{\mathrm{h}(#1)}
 \newcommand{\clust}[1]{[#1]_\sim}
 
+
+
+
 \section{Bi-relational Kripke Semantics}
 \label{sec:bimodels}
+
+
 
 % This section presents an alternative connection between the previously
 % introduced semantics and another well-known bi-relational semantics.
@@ -1135,51 +1140,52 @@ Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   
 \end{proof}
 
+
+
 \begin{example}\label{ex:axiomGW}
-  Let $\varphi$ be the axiom
+  Let $\varphi$ be the axiom 
   \[
 \Box(\, \underbrace{((\a\to \b)\to\b) \,\land\, (\b\to\a)}_{\psi}  \,) \; \to \; (\,(\Box\a \to \Box\b) \to \Box \b\,)
   \]
- We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWL$.
+introduced in~\cite{VidalR:26}.
+  We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWL$.
 Let us assume, by contradiction,   $\varphi\not\in\GWL$.
 By  Prop.~\ref{prop:equivGWC}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
 and $x_0\in X$ such that $x_0\nforcing \varphi$.
-It follows that there exists $x_1$ and $y_1$ such that:
+It follows that there exists $x_1$  such that:
 \begin{itemize}
-\item $x_0\leq x_1$ and $x_1 S y_1$;
+\item $x_0\leq x_1$;
 
-\item $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$ and $y_1\nforcing  \b$.
+\item $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$ and $x_1\nforcing \Box \b$.
 \end{itemize}
-We prove that:
+Note that  $x_1\nforcing \Box \a$.  We prove that:
 
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
 \item\label{ex:axiomGW:1}
- There is $x\in X$ such that $x_1< x$ and $x\forcing\Box\a$. 
+  Let  $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$; then,
+   $\xmax \forcing \Box \a$. 
 \end{enumerate}
-Let $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$ and
-let us assume $\xmax \nforcing \Box \a$. Then, there exists $z\in X$ such that
+Let us assume $\xmax \nforcing \Box \a$. Then, there exists $z\in X$ such that
 $\xmax S z$ and $z\nforcing \a$. Since $\xmax\forcing\Box\psi$, it follows that $z\forcing \psi$.
-Since d $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
+Since  $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
 Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
-hence $z\forcing \a$ and $z\nforcing \b$, a contradiction.
-This implies that  $\xmax \forcing \Box \a$. Note that $x_1\nforcing \Box\a$,
-otherwise  $x_1\forcing\Box\b$ would follow, in contradiction with the fact that
-$x_1 S y_1$ and   $y_1\nforcing  \b$; this concludes the proof of~\ref{ex:axiomGW:1}
-
-By~\ref{ex:axiomGW:1},  there exists  $x_2\in X$  such that:
-
-\begin{itemize}
-\item $x_1\leq x_2$ and   $x_2\forcing\Box\a$  and $(x_2)^-\nforcing \Box \a$.
-\end{itemize}
-There exists $z_1\in W$ such that $(x_2)^- S z_1$ and $z_1\nforcing \a$.
-By~\ref{F1}, there exists $z_2$ such that:
-\begin{itemize}
-\item $z_1\leq z_2$ and $x_2 S z_2$.
-\end{itemize}
-Note that $x_1\leq (x_2)-$, hence $z_2\forcing \psi$. Since $z_2\nforcing \a$, if follows
-that $z_2\nforcing \b$, hence $z_2\nforcing \a\to\b$.
-
-
+hence $z\forcing \a$, a contradiction. This proves~\ref{ex:axiomGW:1}.
+By~\ref{ex:axiomGW:1} and the fact that   $x_1\nforcing \Box\a$, we get: 
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=2]
+\item\label{ex:axiomGW:2}
+  there exists $x_2\in X$ such that $x_1 < x_2$ and   $x_2\forcing\Box\a$  and $(x_2)^-\nforcing \Box \a$.
+\end{enumerate}
+We show that~\ref{ex:axiomGW:2} yields a contradiction.
+Since  $(x_2)^-\nforcing \Box \a$, there exists $y\in X$ such that
+$(x_2)^- S y$ and $y\nforcing \a$. Note that $x_1\leq (x_2)^-$, hence $y\nforcing \psi$.
+It follows that  $y\nforcing\b$,  which implies $y\nforcing \a\to \b$.
+There exists $y'\in X$ such that  $y \leq y'$ and   $y'\forcing \a$ and $y'\nforcing \b$.
+By~\ref{F2}, there exists $x'\in X$ such that $(x_2)^-\leq x'$ and $x' S y'$.
+Note that $y <  y'$, hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
+Since $x_2\forcing \Box\a$ and  $x_2\forcing \Box\a\to \Box\b$, we get $x'\forcing\Box \b$.
+This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$.
+We conclude that $\varphi\in\GWL$.
+\EndEx
 \end{example}
 
 \subsection{Crisp models}
