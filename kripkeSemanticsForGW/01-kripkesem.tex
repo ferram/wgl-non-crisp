@@ -1177,12 +1177,12 @@ By~\ref{ex:axiomGW:1} and the fact that   $x_1\nforcing \Box\a$, we get:
 \end{enumerate}
 We show that~\ref{ex:axiomGW:2} yields a contradiction.
 Since  $(x_2)^-\nforcing \Box \a$, there exists $y\in X$ such that
-$(x_2)^- S y$ and $y\nforcing \a$. Note that $x_1\leq (x_2)^-$, hence $y\nforcing \psi$.
+$(x_2)^- S y$ and $y\nforcing \a$. Note that $x_1\leq (x_2)^-$, hence $y\forcing \psi$.
 It follows that  $y\nforcing\b$,  which implies $y\nforcing \a\to \b$.
 There exists $y'\in X$ such that  $y \leq y'$ and   $y'\forcing \a$ and $y'\nforcing \b$.
 By~\ref{F2}, there exists $x'\in X$ such that $(x_2)^-\leq x'$ and $x' S y'$.
-Note that $y <  y'$, hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
-Since $x_2\forcing \Box\a$ and  $x_2\forcing \Box\a\to \Box\b$, we get $x'\forcing\Box \b$.
+We remark that $y <  y'$ (indeed,  $y\nforcing \a$  and $y'\forcing \a$ ), hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
+Since $x_1\forcing \Box\a\to \Box\b$ and $x_2\forcing \Box\a$ and  $x_1< x_2\leq x_1$, we get $x'\forcing\Box \b$.
 This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$.
 We conclude that $\varphi\in\GWL$.
 \EndEx
