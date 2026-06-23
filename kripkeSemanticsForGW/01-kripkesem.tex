@@ -1121,7 +1121,7 @@ $x_1\nforcing \varphi$; accordingly, $\K$ is a countermodel for $\varphi$.
 
 
 
-\begin{proposition}\label{prop:equivGWC}
+\begin{proposition}\label{prop:equivGW}
   $\LBMR =\GWL$.
 \end{proposition}
 
@@ -1142,15 +1142,16 @@ Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
 
 
 
+
 \begin{example}\label{ex:axiomGW}
   Let $\varphi$ be the axiom 
   \[
 \Box(\, \underbrace{((\a\to \b)\to\b) \,\land\, (\b\to\a)}_{\psi}  \,) \; \to \; (\,(\Box\a \to \Box\b) \to \Box \b\,)
   \]
 introduced in~\cite{VidalR:26}.
-  We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWL$.
+  We exploit Prop.~\ref{prop:equivGW} to show that $\varphi\in\GWL$.
 Let us assume, by contradiction,   $\varphi\not\in\GWL$.
-By  Prop.~\ref{prop:equivGWC}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
+By  Prop.~\ref{prop:equivGW}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
 and $x_0\in X$ such that $x_0\nforcing \varphi$.
 It follows that there exists $x_1$  such that:
 \begin{itemize}
@@ -1191,10 +1192,56 @@ We conclude that $\varphi\in\GWL$.
 \subsection{Crisp models}
 
 Let $\K=\stru{X,\leq,S,V}$ be a regular $\GWL$-bimodel; $\K$ is \emph{crisp} iff the following condition holds:
-\begin{itemize}
-\item if $x S y$ then, $\xmin S \ymin$.
-\end{itemize}
+
+\begin{enumerate}[label=(F\arabic*), ref=(F\arabic*),leftmargin=*,start=5]
+\item\label{F5} 
+ if  $x_1\leq x_2$ and  $x_2 S y_2$,  there exists $y_1$ such that  $x_1 S y_1$ and  $y_1\leq y_2$.
+
+
+ % F5
+    % NODES
+    \begin{tikzpicture}[scale=0.8]
+      \draw[fill] (0,0) circle (2pt)
+      +(0,-0)   node (x1)  {}  % used to label the circle 
+      +(-0.5,0) node  {$x_1$}
+      ;
+      
+      \draw[fill] (0,1) circle (2pt)
+      +(0,-0)   node (x2)  {}  % used to label the circle 
+      +(-0.5,0) node  {$x_2$}
+      ;
+      
+      \draw[fill] (2,0) circle (2pt)
+      +(0,-0)   node (y1)  {}  % used to label the circle 
+      +(0.4,0) node  {$y_1$}
+      ;
+      
+      
+      \draw[fill] (2,1) circle (2pt)
+      +(0,-0)   node (y2)  {}  % used to label the circle 
+      +(0.4,0) node  {$y_2$}
+      ;
+      
+      
+      % ARROWS
+      
+      \draw (x1) -- (x2);
+      \draw[->,dotted] (x1) -- (y1);
+      
+      \draw[dotted] (y1) -- (y2);
+      \draw[->] (x2) -- (y2);
+      
+      % NOTES  
+      \draw (-0.5,0.5) node{$\leq$}; 
+      \draw (1,-0.3) node{$S$}; 
+      \draw (1,0.5) node{\ref{F5}}; 
+           
+    \end{tikzpicture}
+ 
+\end{enumerate}
 Note that none of the $\GWL$-models in Figs.~\ref{fig:rankedBiModel} and \ref{fig:corrCrispAx} is crisp.
+For instance, in the model in  Fig.~\ref{fig:rankedBiModel} it holds that $x_1\leq x_{0.8}$ and $x_{0.8} S y_{0.8}$,
+but there is no $y$ such that  $x_1 S y$ and $y\leq y_{0.8}$. 
 
 \begin{lemma}\label{lemma:crispModel}
   Let $\K=\stru{X,\leq,S,V}$ be a crisp regular $\GWL$-bimodel and let  $x$.
@@ -1246,13 +1293,69 @@ Then, $\M$ is crisp if and only if $\K$ is crisp.
 
 As a consequence we get:
 
-\begin{proposition}
+\begin{proposition}\label{prop:equivGWC}
   The set of formulas valid in all the crisp  regular $\GWM$-bimodel coincides with $\GWCL$.
 \end{proposition}
 
+\begin{example}\label{ex:axiomGWC1}
+Let $\varphi=\neg \Diam \a\lor \neg\neg\Diam \a$.   We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWCL$.
+Let us assume, by contradiction,   $\varphi\not\in\GWCL$.
+By  Prop.~\ref{prop:equivGWC}, there exists a crisp regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
+and $x_0\in X$ such that:
+
+\begin{itemize}
+\item $x_0\nforcing\neg \Diam \a$ and  $x_0\nforcing\neg\neg\Diam \a$.
+\end{itemize}
+There exists $x_1\in X$ such that $x_0\leq x_1$ and $x_1\forcing  \Diam \a$;
+hence  there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing \a$.
+By~\ref{F5}, there exists $y_0\in X$ such that  $x_0 S y_0$ and $y_0 \leq y_1$.
+Since $y_1\forcing \a$, there is no $y\in X$ such that $y_0\leq y$ and $y\forcing \neg \a$,
+hence $y_0\forcing\neg\neg \a$. It follows that  $x_0\nforcing\neg\neg\Diam \a$, a contradiction.
+We conclude that   $\varphi\in\GWCL$.
+\EndEx  
+  \end{example}
+
+  
+\begin{example}\label{ex:axiomGWC2}
+
+Let $\varphi$ be the axiom 
+  \[
+    (\,(\Diam\a\to\Diam\b)\,\land\,((\Diam\b\to\Diam\g)\to\Diam\g)\,)\;\to\;
+    (\, \Diam\g\,\lor\,\Diam(\,\underbrace{(\a\to\b)\land((\b\to\g)\to\g)}_\psi \,)   \,)
+  \]
+introduced in~\cite{VidalR:26}.
+  We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWCL$.
+Let us assume, by contradiction,   $\varphi\not\in\GWCL$.
+By  Prop.~\ref{prop:equivGWC}, there exists a crisp regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
+and $x_0\in X$ such that:
+\begin{itemize}
+\item $x_0\forcing\Diam\a\to\Diam\b$ and $x_0\forcing (\Diam\b\to\Diam\g)\to\Diam\g$
+  and $x_0\nforcing  \Diam\g$ and  $x_0\nforcing  \Diam\psi$. 
+\end{itemize}
+We get $x_0\nforcing \Diam\b\to\Diam\g$, hence there exists $x'\in X$
+such that $x_0\leq x'$ and $x'\forcing \Diam\b$ and $x'\nforcing\Diam \g$.
+Once can easily check that $x_0\nforcing\Diam \b$, hence 
+ there exists $x_1\in X$ such that:
+\begin{itemize}
+\item $x_0 < x_1$ and  $x_1\forcing \Diam\b$ and $(x_1)^-\nforcing \Diam \b$.
+\end{itemize}
+Since  $x_1\forcing \Diam\b$, there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing\b$. 
+Since $\K$ is Crisp, there are $y_0$ and $y'$ in $X$ such that:
+\begin{itemize}
+\item $x_0 S y_0$ and $(x_1)^- S y'$.
+\end{itemize}
+By properties of Crisp models we get:
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
+\item\label{ex:axiomGWC:1}
+  $y_0\leq y'< y_1$ and $y'=(y_1)^-$.  
+\end{enumerate}
+Note that   $(x_1)^-\nforcing \Diam \a$, hence $y'\nforcing \a$ and  $y'\nforcing \b$.
+By~\ref{ex:axiomGWC:1}, we get $y_0\forcing \psi$, hence $x_0\forcing \Diam \psi$, a contradiction.
+We conclude $\varphi\in\GWCL$. \EndEx
+ \end{example} 
 
 
-\subsection{On condition \ref{F4}}
+ \subsection{On condition \ref{F4}}
 
   
 %############################################################
@@ -1393,7 +1496,49 @@ the left-most $\GWCM$-bimodel $\K=\stru{X,\leq,S,V}$, where $x_1 <
 x_2$, $x_1 S y_1$, $V(y_1)=\{p\}$; $\K$ does not match
 condition~\ref{F1}, moreover $\K$ is a countermodel for the formula
 $\varphi= \Diam p\to \neg\neg\Diam p$ of $\GWL$ (indeed,
-$x_1\nforcing \varphi$). A similar analysis applies to conditions~\ref{F2} and \ref{F3}.
+$x_1\nforcing \varphi$). A similar analysis applies to conditions~\ref{F2} and~\ref{F3}.
+
+In the same way, if  a crisp $\GWL$-bimodel does not satisfy condition~\ref{F5},
+we can falsify the instance $\neg\Diam p\lor \Diam\neg\neg p$ of the formula in  Ex.~\ref{ex:axiomGWC1}:
+
+
+% F5 countermodel
+% NODES
+    \begin{tikzpicture}[scale=0.8]
+ \draw[fill] (0,0) circle (2pt)
+   +(0,-0)   node (x1)  {}  % used to label the circle 
+  +(-0.5,0) node  {$x_1$}
+  ;
+
+ \draw[fill] (0,1) circle (2pt)
+   +(0,-0)   node (x2)  {}  % used to label the circle 
+  +(-0.5,0) node  {$x_2$}
+  ;
+
+
+\draw[fill] (2,1) circle (2pt)
+   +(0,-0)   node (y2)  {}  % used to label the circle 
+   +(0.4,0) node  {$y_2$}
+     +(0,0.4) node  {$p$}
+  ;
+
+
+% ARROWS
+  
+\draw (x1) -- (x2);
+\draw[->] (x2) -- (y2);
+
+% NOTES  
+\draw (-0.5,0.5) node{$\leq$}; 
+\draw (1,1.3) node{$S$}; 
+  \draw (1,0.5) node{\ref{F5}}; 
+
+
+       \end{tikzpicture}
+
+
+
+
 
 On the contrary, it seems that it is
 not possible to build a countermodel $\K$ for a formula $\varphi$ of
