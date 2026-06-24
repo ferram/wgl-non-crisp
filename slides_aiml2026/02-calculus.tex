@@ -72,7 +72,7 @@
       };
 
       %% C-TERM
-      \draw (-1.5,-2) node{
+      \draw (-1.5,-2.2) node{
         \framebox{\medfont 
           $
           \begin{array}{c}
@@ -88,7 +88,7 @@
       };
 
       %% ATOMIC_C-TERM
-      \draw (7,-2) node{
+      \draw (6,-2.2) node{
         \framebox{\medfont 
           $
           \begin{array}{c}
@@ -104,17 +104,17 @@
 
       %%%%%%%%%%%%%%%%%%%%% ARROWS
       %% from CONSTRAINT to ABSTRACT_ORDER
-      \draw[thick,->] (-0.8,.3) to[out=50,in=-180,relative] (1.6,1);
+      \draw[line width=1.5pt,->] (-0.8,.3) to[out=50,in=-180,relative] (1.6,1);
       %% from ATOMIC_CONSTRAINT to ABSTRACT_ORDER
-      \draw[thick,->] (6,.3) to[out=-50,in=-160,relative] (4.6,1);
+      \draw[line width=1.5pt,->] (6,.3) to[out=-50,in=-160,relative] (4.6,1);
       %% from CONSTRAINT left to C-TERM
-      \draw[blue,thick,->] (-1.5,-.2) to[out=0,in=-140,relative] (-2,-.8);
+      \draw[blue,line width=1.5pt,->] (-1.5,-0.1) to[out=-50,in=-145,relative] (-2,-1);
       %% from CONSTRAINT right to ATOMIC_C-TERM
-      \draw[magenta,thick,->] (-.3,0) to[out=20,in=200,relative] (4,-1.5);
+      \draw[magenta,line width=1.5pt,->] (-.3,-0.1) to[out=30,in=200,relative] (4.2,-1.7);
       %% from ATOMIC_CONSTRAINT right to ATOMIC_C-TERM
-      \draw[magenta,thick,->] (6.7,0) to[out=20,in=130,relative] (7.5,-1);
+      \draw[magenta,line width=1.5pt,->] (6.6,0) to[out=40,in=140,relative] (7.4,-1);
       %% from ATOMIC_CONSTRAINT left to ATOMIC_C-TERM
-      \draw[magenta,thick,->] (5.4,0) to[out=-10,in=-130,relative] (4.5,-1);
+      \draw[magenta,line width=1.5pt,->] (5.5,0) to[out=10,in=-130,relative] (4.5,-1);
       
     \end{tikzpicture}
   \end{center}
@@ -154,20 +154,20 @@ Let $\tm{r}$ be   the value of $\a$ at $w_1$.\\[-2.5ex]
 %  \small
     Let  $\G$ be a set of constraints and  $\M=\stru{W,R,e}$  a model.
 
- \begin{center}
+ %\begin{center}
     \begin{tcolorbox}[colframe=blue!75!black,width=30em]
       \center
-    \bfb{$\Mcal\models \G$  ($\Mcal$ satisfies $\G$)} iff:
-      \begin{itemize}
-      \item  there exists an  interpretation
-  $\iota$  mapping each world label in $\G$ to a world in $W$
-  such that
-  $\iota(u)\abstractorder\iota(t)$ for every constraint $u\abstractorder t\in\G$\\    
-        
-\end{itemize}
+    \bfb{$\Mcal\models \G$  ($\Mcal$ satisfies $\G$)} iff:\\[2ex]
+    there exists an  interpretation
+    $\iota$  mapping each world label in $\G$ to a world in $W$
+    such that
+    $\iota(u)\abstractorder\iota(t)$ for every constraint $u\abstractorder t\in\G$\\    
+
+    \MSK
+
 \emm{All the constraints are  satisfied in  $\M$ under $\iota$} 
     \end{tcolorbox}
-  \end{center}
+  %\end{center}
     
 
   \MSK

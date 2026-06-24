@@ -27,15 +27,13 @@
     algebra}, interpreting $x\land y$ with the continuous t-norm
   $\min\{x,y\}$ and $\to$ as its residuum, since\dots
   
-    \SSK  
-
-    \dots\emb{this is the only
+  \SSK  
+  
+  \dots\emb{this is the only
     fuzzy logic whose modal analogue admits the normality axiom} $\Box
   (\a\to\b) \to (\Box\a\to\Box\b)$ \citebib{Bou et al., 2011}.
 
   
-This because this is the only fuzzy logic which admits weakening and contraction. 
-
   
   \VFILL
 \end{frame}
@@ -140,11 +138,13 @@ This because this is the only fuzzy logic which admits weakening and contraction
   
   Assume that $\blue \M\not\models \varphi$:
 
-\smallskip
+  \smallskip
   \begin{itemize}
   \item there is a world $w$  in $\M$ such that $e(w,\varphi) < 1$
   \end{itemize}
-\smallskip
+
+
+  \MSK
   
   We say that $\M$ is a \tb{countermodel} for $\varphi$.
 
@@ -325,7 +325,7 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
  Analytic calculus for   $\GCL_\Diam$.
 
  \smallskip
-{ \smallfont  Metcalfe, Olivetti: Towards a proof theory of {G}{\"{o}}del modal
+\citebib{\scriptsize  Metcalfe, Olivetti: Towards a proof theory of {G}{\"{o}}del modal
     logics. LMCS  % \textbf{7}(2)
     (2011)} 
     
@@ -369,14 +369,13 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 \end{tabular}
      
 
-\smallskip
-       \begin{itemize}
-       \item \tr{0} is the \tb{infimum} of the set of $R(w_0,w_j)\to  e(w_j,p)$,  but \tr{not} the minimum!
+\MSK
 
-   (there is no $w_j$ such that $R(w_0,w_j)\to e(w_j,p) = 0$)
+
+\tr{0} is the \tb{infimum} of the set of $R(w_0,w_j)\to e(w_j,p)$, but
+\tr{not} the minimum!  (there is no $w_j$ such that $R(w_0,w_j)\to
+e(w_j,p) = 0$)
          
-       \end{itemize}
-
 
 \end{frame}
 
@@ -405,15 +404,15 @@ Caicedo et al. Decidability of order-based modal logics. J.~of Computer and Syst
 
 \medskip
  
-  \begin{itemize}
-  \item   $\M=\stru{W,R,e}$ is \tm{witnessed}  if the values of $e(w,\Box\a)$ and $e(w,\Diam\a)$
+
+$\M=\stru{W,R,e}$ is \tm{witnessed}  if the values of $e(w,\Box\a)$ and $e(w,\Diam\a)$
 are witnessed by some world $\tm{w'}$ in $\M$, namely:
 
 
 \medskip
- \begin{tcolorbox}[colframe=blue!75!black,width=30em]
-\[
-\begin{array}{lcl}
+\begin{tcolorbox}[colframe=blue!75!black,width=30em]
+  \[
+  \begin{array}{lcl}
  e(w,\Box \a)=\tb{r}  &\tm\IFF& \exists\ \tm{w'}\in W.\ R(w,\tm{w'}) \to  e(\tm{w'},\a) = \tb{r}
 \\[.3ex]
         &&\tb{\text{\small infimum}  \,=\,  \text{\small minimum} }
@@ -427,10 +426,8 @@ are witnessed by some world $\tm{w'}$ in $\M$, namely:
 \end{tcolorbox}
 
 \medskip
-\item Every finite model is witnessed
+ Every finite model is witnessed
 
- 
-\end{itemize}
 
 
 
@@ -527,15 +524,12 @@ Caicedo, Rodr{\'{\i}}guez: Standard {G}{\"{o}}del modal logics. Studia Logica  %
 
 \begin{frame}\frametitle{G\"odel modal logics:  $\GWCL$ and  $\GWL$ }
 
+  Witnessed models have been discusses in many papers
+
+  \MSK
+
  
   \begin{itemize}
-
-\item Witnessed condition has been discusses in many papers
-
-
-
-\medskip
-    
 \item  In  \citebib{Ferrari et al.,  TABLEAUX 2025} we have introduced the logic
     \[
  \GWCL\;=\;\{~\varphi~|~\varphi~\mbox{valid in all}~
