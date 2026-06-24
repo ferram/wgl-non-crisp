@@ -1097,11 +1097,11 @@ One can easily check that   $\Phi$
       \\[1ex]
       e(x,\Diam q)&=&  0.6 &=& \Rnof{x,\Diam q}
       \\[1ex]
-      e(x,\varphi) &=& 0.6  &=& \Rnof{x,\varphi}
+      e(x,\chi) &=& 0.6  &=& \Rnof{x,\chi}
     \end{array}
   \]
   
-  \caption{A $\GWM$-countermodel for the formula $\varphi=\Box (p\lor q)\to
+  \caption{A $\GWM$-countermodel for the formula $\chi=\Box (p\lor q)\to
     (\Box p \lor \Diam q) $ (instance of (Cr)) and the corresponding ranked $\GWM$-bimodel.}
   \label{fig:corrCrispAx}
 \end{figure}
@@ -1110,13 +1110,13 @@ One can easily check that   $\Phi$
 
  
  \begin{example}\label{ex:countermodelCrisp}
-Let us consider the $\GWM$-countermodel $\M$ for the formula $\varphi=\Box (p\lor q)\to (\Box p \lor \Diam q) $ (instance of (Cr)) 
+Let us consider the $\GWM$-countermodel $\M$ for the formula $\chi=\Box (p\lor q)\to (\Box p \lor \Diam q) $ (instance of (Cr)) 
 shown in Fig.~\ref{fig:corrCrispAx} on the left.
 On the right of the figure, we define the ranked $\GWM$-bimodel $(\K,\Rn)$  corresponding to $\M$ obtained by applying the
 procedure described in the proof of  Lemma~\ref{lemma:Phi}\ref{lemma:Phi:MtoK}. 
-Since $e(x,\varphi) = 0.6$, by Prop.~\ref{prop:Phi}
+Since $e(x,\chi) = 0.6$, by Prop.~\ref{prop:Phi}
 we get  $\Rnof{\clust{x_1},\varphi}=0.6$. Since $\Rnof{x_1}=1$, it holds that
-$x_1\nforcing \varphi$; accordingly, $\K$ is a countermodel for $\varphi$.
+$x_1\nforcing \chi$; accordingly, $\K$ is a countermodel for $\chi$.
  \end{example}
 
 
@@ -1144,12 +1144,12 @@ Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
 
 
 \begin{example}\label{ex:axiomGW}
-  Let $\varphi$ be the axiom 
+  Let $\varphi_\Box$ be the axiom 
   \[
 \Box(\, \underbrace{((\a\to \b)\to\b) \,\land\, (\b\to\a)}_{\psi}  \,) \; \to \; (\,(\Box\a \to \Box\b) \to \Box \b\,)
   \]
 introduced in~\cite{VidalR:26}.
-  We exploit Prop.~\ref{prop:equivGW} to show that $\varphi\in\GWL$.
+  We exploit Prop.~\ref{prop:equivGW} to show that $\varphi_\Box\in\GWL$.
 Let us assume, by contradiction,   $\varphi\not\in\GWL$.
 By  Prop.~\ref{prop:equivGW}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
 and $x_0\in X$ such that $x_0\nforcing \varphi$.
@@ -1167,7 +1167,7 @@ Note that  $x_1\nforcing \Box \a$.  We prove that:
    $\xmax \forcing \Box \a$. 
 \end{enumerate}
 Let us assume $\xmax \nforcing \Box \a$. Then, there exists $z\in X$ such that
-$\xmax S z$ and $z\nforcing \a$. Since $\xmax\forcing\Box\psi$, it follows that $z\forcing \psi$.
+$\xmax S z$ and $z\nforcing \a$. Since $x_1\forcing\Box\psi$ and $x_1\leq \xmax$, it follows that $z\forcing \psi$.
 Since  $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
 Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
 hence $z\forcing \a$, a contradiction. This proves~\ref{ex:axiomGW:1}.
@@ -1185,7 +1185,7 @@ By~\ref{F2}, there exists $x'\in X$ such that $(x_2)^-\leq x'$ and $x' S y'$.
 We remark that $y <  y'$ (indeed,  $y\nforcing \a$  and $y'\forcing \a$ ), hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
 Since $x_1\forcing \Box\a\to \Box\b$ and $x_2\forcing \Box\a$ and  $x_1< x_2\leq x_1$, we get $x'\forcing\Box \b$.
 This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$.
-We conclude that $\varphi\in\GWL$.
+We conclude that $\varphi_\Box\in\GWL$.
 \EndEx
 \end{example}
 
@@ -1244,7 +1244,7 @@ For instance, in the model in  Fig.~\ref{fig:rankedBiModel} it holds that $x_1\l
 but there is no $y$ such that  $x_1 S y$ and $y\leq y_{0.8}$. 
 
 \begin{lemma}\label{lemma:crispModel}
-  Let $\K=\stru{X,\leq,S,V}$ be a crisp regular $\GWL$-bimodel and let  $x$.
+  Let $\K=\stru{X,\leq,S,V}$ be a crisp regular $\GWL$-bimodel and let  $x\in X$.
 
    \begin{enumerate}[label=(\roman*), ref=(\roman*),leftmargin=*]
    \item\label{lemma:crispModel:1}
@@ -1264,17 +1264,19 @@ $x\forcing \Box \a$ if and only if, for every $y\in X$ such that $x S y$, $y\for
 
 \begin{example}\label{ex:crispModel}
   In Ex.~\ref{ex:countermodelCrisp} we have shown a regular $\GWL$-model falsifying an instance of
-  the Crisp axiom $\psi=\Box (\a\lor \b)\to (\Box \a \lor \Diam \b)$. Note that such a model is not crisp,
-  since $x_{0.6} S y_{0.6}$, but it is not true that  $x_{1} S y_{1}$. We show that $\psi$ is valid in all crisp
-  regular $\GWL$-bimodels. Let us assume, by contradiction, that there exists a  regular $\GWL$-bimodel
-  $\K=\stru{X,\leq,S,V}$ and $x_0\in W$ such that $x_0\nforcing \psi$. 
-  Then, there exists $x_1$ such hat $x_0\leq x_1$ and $x_1\forcing \Box (\a\lor \b)$ and  $x_1\nforcing \Box \a \lor \Diam \b$,
-  thus   $x_1\nforcing \Box \a$ and  $x_1\nforcing  \Diam \b$.
-  Since $x_1\nforcing \Box \a$, by Lemma~\ref{lemma:crispModel}\ref{lemma:crispModel:2} 
+  the Crisp axiom $(Cr)=\Box (\a\lor \b)\to (\Box \a \lor \Diam \b)$. Note that such a model is not crisp.
+  We show that $(Cr)$ is valid in all crisp
+  regular $\GWL$-bimodels.
+  Let  $\K=\stru{X,\leq,S,V}$ be a crisp regular  $\GWL$-bimodel and let $x_0\in X$,
+  we show that $x_0\forcing (Cr)$.
+  Let  $x_1\in X$ such that $x_0\leq x_1$ and  $x_1\forcing \Box (\a\lor \b)$, we show that
+  $x_1\forcing \Box \a \lor \Diam \b$. To this aim, we assume    $x_1\nforcing \Box \a$ and we prove
+  $x_1\forcing  \Diam \b$.
+ Since    $x_1\nforcing \Box \a$,   by Lemma~\ref{lemma:crispModel}\ref{lemma:crispModel:2}, 
   there exists $y_1\in X$ such that  $x_1 S y_1$ and    $y_1\nforcing  \a$. By the fact that  $x_1\forcing \Box (\a\lor \b)$,
-  we get $y_1\forcing \a\lor \b$, and this implies $y_1\forcing \b$.
-It follows that   $x_1\forcing  \Diam \b$, a contradiction.
-We conclude that the Crisp axiom is valid in all crisp  regular $\GWL$-bimodels.
+  we get $y_1\forcing \a\lor \b$; this implies $y_1\forcing \b$,
+  hence  $x_1\forcing  \Diam \b$. This proves that $x_1\forcing \Box \a \lor \Diam \b$.
+  We conclude $x_0\forcing \psi$, hence  $(Cr)$ is valid in all crisp  regular $\GWL$-bimodels.
 \EndEx
 \end{example}
 
@@ -1298,60 +1300,63 @@ As a consequence we get:
 \end{proposition}
 
 \begin{example}\label{ex:axiomGWC1}
-Let $\varphi=\neg \Diam \a\lor \neg\neg\Diam \a$.   We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWCL$.
-Let us assume, by contradiction,   $\varphi\not\in\GWCL$.
-By  Prop.~\ref{prop:equivGWC}, there exists a crisp regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-and $x_0\in X$ such that:
-
-\begin{itemize}
-\item $x_0\nforcing\neg \Diam \a$ and  $x_0\nforcing\neg\neg\Diam \a$.
-\end{itemize}
-There exists $x_1\in X$ such that $x_0\leq x_1$ and $x_1\forcing  \Diam \a$;
+Let $\varphi=\neg \Diam \a\lor \Diam\neg\neg \a$.   We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWCL$.
+Let $\K=\stru{X,\leq,S,V}$ be a  crisp regular  $\GWM$-bimodel and let $x_0\in X$;
+we show $x_0\forcing \varphi$.
+To this aim, we assume  $x_0\nforcing\neg \Diam \a$ and we prove   $x_0\forcing\Diam\neg\neg \a$.
+Since   $x_0\nforcing\neg \Diam \a$, there exists $x_1\in X$ such that $x_0\leq x_1$ and $x_1\forcing  \Diam \a$;
 hence  there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing \a$.
 By~\ref{F5}, there exists $y_0\in X$ such that  $x_0 S y_0$ and $y_0 \leq y_1$.
-Since $y_1\forcing \a$, there is no $y\in X$ such that $y_0\leq y$ and $y\forcing \neg \a$,
-hence $y_0\forcing\neg\neg \a$. It follows that  $x_0\nforcing\neg\neg\Diam \a$, a contradiction.
-We conclude that   $\varphi\in\GWCL$.
+Since $y_1\forcing \a$, we get $y\forcing \neg \a$;
+it follows that  $y_0\forcing\neg\neg \a$,  hence  $x_0\forcing\Diam\neg\neg \a$.
+This proves that $\varphi$ is valid in every   regular $\GWM$-bimodel; we conclude
+ $\varphi\in\GWCL$.
 \EndEx  
   \end{example}
 
   
 \begin{example}\label{ex:axiomGWC2}
 
-Let $\varphi$ be the axiom 
+Let $\varphi_\Diam$ be the axiom 
   \[
     (\,(\Diam\a\to\Diam\b)\,\land\,((\Diam\b\to\Diam\g)\to\Diam\g)\,)\;\to\;
     (\, \Diam\g\,\lor\,\Diam(\,\underbrace{(\a\to\b)\land((\b\to\g)\to\g)}_\psi \,)   \,)
   \]
 introduced in~\cite{VidalR:26}.
-  We exploit Prop.~\ref{prop:equivGWC} to show that $\varphi\in\GWCL$.
-Let us assume, by contradiction,   $\varphi\not\in\GWCL$.
-By  Prop.~\ref{prop:equivGWC}, there exists a crisp regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-and $x_0\in X$ such that:
+Let  $\K=\stru{X,\leq,S,V}$ be  a crisp regular  $\GWM$-bimodel and let $x_0\in X$;
+we show that $x_0\forcing \varphi_\Diam$.
+Let $x_1\in X$ such that:
 \begin{itemize}
-\item $x_0\forcing\Diam\a\to\Diam\b$ and $x_0\forcing (\Diam\b\to\Diam\g)\to\Diam\g$
-  and $x_0\nforcing  \Diam\g$ and  $x_0\nforcing  \Diam\psi$. 
+\item $x_0\leq x_1$ and  $x_1\forcing   \Diam\a\to\Diam\b$ and   $x_1\forcing (\Diam\b\to\Diam\g)\to\Diam\g$
 \end{itemize}
-We get $x_0\nforcing \Diam\b\to\Diam\g$, hence there exists $x'\in X$
-such that $x_0\leq x'$ and $x'\forcing \Diam\b$ and $x'\nforcing\Diam \g$.
-Once can easily check that $x_0\nforcing\Diam \b$, hence 
- there exists $x_1\in X$ such that:
-\begin{itemize}
-\item $x_0 < x_1$ and  $x_1\forcing \Diam\b$ and $(x_1)^-\nforcing \Diam \b$.
-\end{itemize}
-Since  $x_1\forcing \Diam\b$, there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing\b$. 
-Since $\K$ is Crisp, there are $y_0$ and $y'$ in $X$ such that:
-\begin{itemize}
-\item $x_0 S y_0$ and $(x_1)^- S y'$.
-\end{itemize}
-By properties of Crisp models we get:
+We prove:
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
 \item\label{ex:axiomGWC:1}
-  $y_0\leq y'< y_1$ and $y'=(y_1)^-$.  
+$x_1\forcing \Diam \g\lor\Diam \psi$.  
 \end{enumerate}
-Note that   $(x_1)^-\nforcing \Diam \a$, hence $y'\nforcing \a$ and  $y'\nforcing \b$.
-By~\ref{ex:axiomGWC:1}, we get $y_0\forcing \psi$, hence $x_0\forcing \Diam \psi$, a contradiction.
-We conclude $\varphi\in\GWCL$. \EndEx
+Let us assume  $x_1\forcing \Diam\b$.
+Then, there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing \b$;
+it follows that $x_1\forcing \Diam \psi$, hence~\ref{ex:axiomGWC:1} holds.
+
+Let us assume  $x_1\nforcing \Diam\b$; to prove~\ref{ex:axiomGWC:1},
+we assume
+$x_1\nforcing \Diam \g$ and we prove $x_1\forcing \Diam \psi$.
+Since $x_1\nforcing \Diam \g$, we get   $x_1\nforcing \Diam\b\to\Diam\g$.
+There exists $x'\in X$ such that $x_1\leq x'$ and $x'\forcing  \Diam\b$ and
+$x'\nforcing \Diam\g$. Since  $x_1\nforcing\Diam \b$, there exists $x_2\in X$ such that:
+\begin{itemize}
+\item $x_1 < x_2$ and  $x_2\forcing \Diam\b$ and $(x_2)^-\nforcing \Diam \b$.
+\end{itemize}
+There exists $y_2\in X$ such that $x_2 S y_2$ and $y_2\forcing\b$. 
+By~\ref{F5}, there exist $y_1$ and  $yX$ such that  $x_1 S y_1$ and  $(x_2)^- S y'$. Note that:
+\begin{itemize}
+\item
+  $y_1\leq y'< y_2$ and $y'=(y_2)^-$.  
+\end{itemize}
+Note that   $(x_2)^-\nforcing \Diam \a$ (otherwise,  $(x_2)^-\forcing \Diam \b$ would follow), hence $y'\nforcing \a$ and  $y'\nforcing \b$.
+Since $y_2\forcing \b$, we get $y_1\forcing \psi$, and this proves $x_1\forcing \Diam \psi$.
+This concludes the proof of  $x_0\forcing \varphi_\Diam$.
+We conclude $\varphi_\Diam\in\GWCL$. \EndEx
  \end{example} 
 
 
