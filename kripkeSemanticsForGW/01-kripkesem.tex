@@ -1150,19 +1150,20 @@ Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   \]
 introduced in~\cite{VidalR:26}.
   We exploit Prop.~\ref{prop:equivGW} to show that $\varphi_\Box\in\GWL$.
-Let us assume, by contradiction,   $\varphi\not\in\GWL$.
-By  Prop.~\ref{prop:equivGW}, there exists a regular  $\GWM$-bimodel $\K=\stru{X,\leq,S,V}$
-and $x_0\in X$ such that $x_0\nforcing \varphi$.
-It follows that there exists $x_1$  such that:
+  Let  $\K=\stru{X,\leq,S,V}$ be a regular   $\GWM$-bimodel and let  $x_0\in X$;
+  we show that  $x_0\forcing \varphi_\Box$.
+  Let $x_1\in X$ such that
 \begin{itemize}
-\item $x_0\leq x_1$;
-
-\item $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$ and $x_1\nforcing \Box \b$.
+\item $x_0\leq x_1$ and $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$.
 \end{itemize}
-Note that  $x_1\nforcing \Box \a$.  We prove that:
-
+We show that:
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
 \item\label{ex:axiomGW:1}
+$x_1\forcing  \Box \a$.
+\end{enumerate}
+Let us assume, by contradiction,  $x_1\nforcing  \Box \a$. Firstly, we prove that:
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*.start=2]
+\item\label{ex:axiomGW:2}
   Let  $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$; then,
    $\xmax \forcing \Box \a$. 
 \end{enumerate}
@@ -1171,21 +1172,22 @@ $\xmax S z$ and $z\nforcing \a$. Since $x_1\forcing\Box\psi$ and $x_1\leq \xmax$
 Since  $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
 Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
 hence $z\forcing \a$, a contradiction. This proves~\ref{ex:axiomGW:1}.
-By~\ref{ex:axiomGW:1} and the fact that   $x_1\nforcing \Box\a$, we get: 
-\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=2]
-\item\label{ex:axiomGW:2}
+From~\ref{ex:axiomGW:1} and the assumption $x_1\nforcing  \Box \a$, we get:
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=3]
+\item\label{ex:axiomGW:3}
   there exists $x_2\in X$ such that $x_1 < x_2$ and   $x_2\forcing\Box\a$  and $(x_2)^-\nforcing \Box \a$.
 \end{enumerate}
-We show that~\ref{ex:axiomGW:2} yields a contradiction.
 Since  $(x_2)^-\nforcing \Box \a$, there exists $y\in X$ such that
 $(x_2)^- S y$ and $y\nforcing \a$. Note that $x_1\leq (x_2)^-$, hence $y\forcing \psi$.
 It follows that  $y\nforcing\b$,  which implies $y\nforcing \a\to \b$.
 There exists $y'\in X$ such that  $y \leq y'$ and   $y'\forcing \a$ and $y'\nforcing \b$.
 By~\ref{F2}, there exists $x'\in X$ such that $(x_2)^-\leq x'$ and $x' S y'$.
 We remark that $y <  y'$ (indeed,  $y\nforcing \a$  and $y'\forcing \a$ ), hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
-Since $x_1\forcing \Box\a\to \Box\b$ and $x_2\forcing \Box\a$ and  $x_1< x_2\leq x_1$, we get $x'\forcing\Box \b$.
-This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$.
-We conclude that $\varphi_\Box\in\GWL$.
+Since $x_1\forcing \Box\a\to \Box\b$ and $x_2\forcing \Box\a$ and  $x_1< x_2\leq x'$, we get $x'\forcing\Box \b$.
+This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$, and this proves~\ref{ex:axiomGW:1}
+From the fact that   $x_1\forcing \Box \a\to \Box\b$ and~\ref{ex:axiomGW:1}, we get   $x_1\forcing\b$.
+This conclude the proof that   $x_0\forcing \varphi_\Box$, and this implies
+$\varphi_\Box\in\GWL$.
 \EndEx
 \end{example}
 
@@ -1348,7 +1350,7 @@ $x'\nforcing \Diam\g$. Since  $x_1\nforcing\Diam \b$, there exists $x_2\in X$ su
 \item $x_1 < x_2$ and  $x_2\forcing \Diam\b$ and $(x_2)^-\nforcing \Diam \b$.
 \end{itemize}
 There exists $y_2\in X$ such that $x_2 S y_2$ and $y_2\forcing\b$. 
-By~\ref{F5}, there exist $y_1$ and  $yX$ such that  $x_1 S y_1$ and  $(x_2)^- S y'$. Note that:
+By~\ref{F5}, there exist $y_1$ and  $y'$ such that  $x_1 S y_1$ and  $(x_2)^- S y'$. Note that:
 \begin{itemize}
 \item
   $y_1\leq y'< y_2$ and $y'=(y_2)^-$.  
