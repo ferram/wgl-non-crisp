@@ -1091,13 +1091,13 @@ One can easily check that   $\Phi$
  $\Phi(x) = \clust{x_1}\qquad  \Phi(y) = \clust{y_1}$
    \[\small
     \begin{array}{rclcl}
-      e(x,\Box (p\lor q))&=& 1 &=& \Rnof{x,\Box(p\lor q)}
+      e(x,\Box (p\lor q))&=& 1 &=& \Rnof{\Phi(x),\Box(p\lor q)}
       \\[1ex]
-      e(x,\Box p) &=&  0.5&=& \Rnof{x,\Box p)}
+      e(x,\Box p) &=&  0.5&=& \Rnof{\Phi(x),\Box p)}
       \\[1ex]
-      e(x,\Diam q)&=&  0.6 &=& \Rnof{x,\Diam q}
+      e(x,\Diam q)&=&  0.6 &=& \Rnof{\Phi(x),\Diam q}
       \\[1ex]
-      e(x,\chi) &=& 0.6  &=& \Rnof{x,\chi}
+      e(x,\chi) &=& 0.6  &=& \Rnof{\Phi(x),\chi}
     \end{array}
   \]
   
@@ -1134,8 +1134,8 @@ and $(\K,\Rn)$. By Prop.~\ref{prop:Phi}, $\Rnof{\Phi(w),\varphi} =
 e(w,\varphi)$, hence $\Rnof{\Phi(w),\varphi} < 1$.
 Let $x^\star$  be the $\leq$-minimum element in the cluster $\Phi(w)$;
 by  property~\ref{prop:Rn:2},   $x^\star\nforcing \varphi$,
-hence  $\varphi\not\in \LBM$. This proves that $\LBM\subseteq \GWL$.  The
-proof of $\GWL\subseteq \LBM$ is similar and relies on
+hence  $\varphi\not\in \LBMR$. This proves that $\LBM\subseteq \GWL$.  The
+proof of $\GWL\subseteq \LBMR$ is similar and relies on
 Lemma~\ref{lemma:Phi}\ref{lemma:Phi:KtoM}.
   
 \end{proof}
@@ -1154,39 +1154,37 @@ introduced in~\cite{VidalR:26}.
   we show that  $x_0\forcing \varphi_\Box$.
   Let $x_1\in X$ such that
 \begin{itemize}
-\item $x_0\leq x_1$ and $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$.
+\item $x_0\leq x_1$ and $x_1\forcing \Box \psi$ and $x_1\forcing \Box \a\to \Box\b$;
 \end{itemize}
-We show that:
+we prove that
 \begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*]
 \item\label{ex:axiomGW:1}
-$x_1\forcing  \Box \a$.
+$x_1\forcing  \Box \b$.
 \end{enumerate}
-Let us assume, by contradiction,  $x_1\nforcing  \Box \a$. Firstly, we prove that:
-\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*.start=2]
+To prove~\ref{ex:axiomGW:1}, we show that $x_1\forcing  \Box \a$.
+Let us assume, by contradiction,  $x_1\nforcing  \Box \a$;
+let  $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$.
+Firstly, we show that  $\xmax \forcing \Box \a$.
+Let  $z\in X$ such that $\xmax S z$. Since  $x_1\forcing\Box\psi$ and $x_1\leq \xmax$,
+it holds that $z\forcing \psi$.  Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
+hence $z\forcing \a$; this proves  $\xmax \forcing \Box \a$.
+Since   $x_1\nforcing  \Box \a$  and   $\xmax \forcing \Box \a$ and $x_1\leq \xmax$,   the following property holds:
+\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=2]
 \item\label{ex:axiomGW:2}
-  Let  $\xmax$ be the $\leq$-maximum element in the cluster $\clust{x_1}$; then,
-   $\xmax \forcing \Box \a$. 
-\end{enumerate}
-Let us assume $\xmax \nforcing \Box \a$. Then, there exists $z\in X$ such that
-$\xmax S z$ and $z\nforcing \a$. Since $x_1\forcing\Box\psi$ and $x_1\leq \xmax$, it follows that $z\forcing \psi$.
-Since  $z\nforcing \a$, we get $z\nforcing \b$, and this implies $z\nforcing \a \to \b$.
-Note that $z$ is  the $\leq$-maximum element in the cluster $\clust{z}$,
-hence $z\forcing \a$, a contradiction. This proves~\ref{ex:axiomGW:1}.
-From~\ref{ex:axiomGW:1} and the assumption $x_1\nforcing  \Box \a$, we get:
-\begin{enumerate}[label=(\alph*), ref=(\alph*),leftmargin=*,start=3]
-\item\label{ex:axiomGW:3}
   there exists $x_2\in X$ such that $x_1 < x_2$ and   $x_2\forcing\Box\a$  and $(x_2)^-\nforcing \Box \a$.
 \end{enumerate}
-Since  $(x_2)^-\nforcing \Box \a$, there exists $y\in X$ such that
+Since  $(x_2)^-\nforcing \Box \a$ and  $x_2\forcing\Box\a$, there exists $y\in X$ such that
 $(x_2)^- S y$ and $y\nforcing \a$. Note that $x_1\leq (x_2)^-$, hence $y\forcing \psi$.
 It follows that  $y\nforcing\b$,  which implies $y\nforcing \a\to \b$.
 There exists $y'\in X$ such that  $y \leq y'$ and   $y'\forcing \a$ and $y'\nforcing \b$.
 By~\ref{F2}, there exists $x'\in X$ such that $(x_2)^-\leq x'$ and $x' S y'$.
 We remark that $y <  y'$ (indeed,  $y\nforcing \a$  and $y'\forcing \a$ ), hence   $(x_2)^-< x'$, which implies  $x_2\leq x'$.
 Since $x_1\forcing \Box\a\to \Box\b$ and $x_2\forcing \Box\a$ and  $x_1< x_2\leq x'$, we get $x'\forcing\Box \b$.
-This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$, and this proves~\ref{ex:axiomGW:1}
-From the fact that   $x_1\forcing \Box \a\to \Box\b$ and~\ref{ex:axiomGW:1}, we get   $x_1\forcing\b$.
-This conclude the proof that   $x_0\forcing \varphi_\Box$, and this implies
+This yields a contradiction, since $x'S y'$ and $y'\nforcing \b$;
+as a consequence,  the assumption   $x_1\nforcing  \Box \a$ is false,
+thus   $x_1\forcing  \Box \a$.  Since  $x_1\forcing \Box \a\to \Box\b$, we get $x_1\forcing  \Box \b$,
+and this proves~\ref{ex:axiomGW:1}.
+We conclude  that   $x_0\forcing \varphi_\Box$, accordingly
 $\varphi_\Box\in\GWL$.
 \EndEx
 \end{example}
@@ -1253,8 +1251,14 @@ but there is no $y$ such that  $x_1 S y$ and $y\leq y_{0.8}$.
 Assume $x Sy$.  Then,
  for every $x'\in\clust{x}$ there exists  $y'\in\clust{y}$ such that $x'S y'$.
 
+
 \item\label{lemma:crispModel:2} 
+Let  $\Rn$ be a ranking over $\K$.  For every $x,y\in X$,  $\Rnof{S_{x,y}}\in\{0,1\}$.
+
+\item\label{lemma:crispModel:3} 
 $x\forcing \Box \a$ if and only if, for every $y\in X$ such that $x S y$, $y\forcing \a$.
+
+
 
 \end{enumerate}
 \end{lemma}
@@ -1274,7 +1278,7 @@ $x\forcing \Box \a$ if and only if, for every $y\in X$ such that $x S y$, $y\for
   Let  $x_1\in X$ such that $x_0\leq x_1$ and  $x_1\forcing \Box (\a\lor \b)$, we show that
   $x_1\forcing \Box \a \lor \Diam \b$. To this aim, we assume    $x_1\nforcing \Box \a$ and we prove
   $x_1\forcing  \Diam \b$.
- Since    $x_1\nforcing \Box \a$,   by Lemma~\ref{lemma:crispModel}\ref{lemma:crispModel:2}, 
+ Since    $x_1\nforcing \Box \a$,   by Lemma~\ref{lemma:crispModel}\ref{lemma:crispModel:3}, 
   there exists $y_1\in X$ such that  $x_1 S y_1$ and    $y_1\nforcing  \a$. By the fact that  $x_1\forcing \Box (\a\lor \b)$,
   we get $y_1\forcing \a\lor \b$; this implies $y_1\forcing \b$,
   hence  $x_1\forcing  \Diam \b$. This proves that $x_1\forcing \Box \a \lor \Diam \b$.
@@ -1309,9 +1313,9 @@ To this aim, we assume  $x_0\nforcing\neg \Diam \a$ and we prove   $x_0\forcing\
 Since   $x_0\nforcing\neg \Diam \a$, there exists $x_1\in X$ such that $x_0\leq x_1$ and $x_1\forcing  \Diam \a$;
 hence  there exists $y_1\in X$ such that $x_1 S y_1$ and $y_1\forcing \a$.
 By~\ref{F5}, there exists $y_0\in X$ such that  $x_0 S y_0$ and $y_0 \leq y_1$.
-Since $y_1\forcing \a$, we get $y\forcing \neg \a$;
+Since $y_1\forcing \a$, 
 it follows that  $y_0\forcing\neg\neg \a$,  hence  $x_0\forcing\Diam\neg\neg \a$.
-This proves that $\varphi$ is valid in every   regular $\GWM$-bimodel; we conclude
+This proves that    $x_0\forcing \varphi$, and this implies
  $\varphi\in\GWCL$.
 \EndEx  
   \end{example}
@@ -1342,7 +1346,7 @@ it follows that $x_1\forcing \Diam \psi$, hence~\ref{ex:axiomGWC:1} holds.
 
 Let us assume  $x_1\nforcing \Diam\b$; to prove~\ref{ex:axiomGWC:1},
 we assume
-$x_1\nforcing \Diam \g$ and we prove $x_1\forcing \Diam \psi$.
+$x_1\nforcing \Diam \g$ and we show $x_1\forcing \Diam \psi$.
 Since $x_1\nforcing \Diam \g$, we get   $x_1\nforcing \Diam\b\to\Diam\g$.
 There exists $x'\in X$ such that $x_1\leq x'$ and $x'\forcing  \Diam\b$ and
 $x'\nforcing \Diam\g$. Since  $x_1\nforcing\Diam \b$, there exists $x_2\in X$ such that:
@@ -1350,15 +1354,23 @@ $x'\nforcing \Diam\g$. Since  $x_1\nforcing\Diam \b$, there exists $x_2\in X$ su
 \item $x_1 < x_2$ and  $x_2\forcing \Diam\b$ and $(x_2)^-\nforcing \Diam \b$.
 \end{itemize}
 There exists $y_2\in X$ such that $x_2 S y_2$ and $y_2\forcing\b$. 
-By~\ref{F5}, there exist $y_1$ and  $y'$ such that  $x_1 S y_1$ and  $(x_2)^- S y'$. Note that:
+By~\ref{F5}, there exist   $y'$ and $y_1$ such that:
+\begin{itemize}
+\item $(x_2)^- S y'$ and $y'\leq y_2$;
+
+\item $x_1 S y_1$ and $y_1\leq y_2$.
+\end{itemize}
+Since $x_1\leq (x_2)^- < x_2$, we get:
 \begin{itemize}
 \item
   $y_1\leq y'< y_2$ and $y'=(y_2)^-$.  
 \end{itemize}
-Note that   $(x_2)^-\nforcing \Diam \a$ (otherwise,  $(x_2)^-\forcing \Diam \b$ would follow), hence $y'\nforcing \a$ and  $y'\nforcing \b$.
-Since $y_2\forcing \b$, we get $y_1\forcing \psi$, and this proves $x_1\forcing \Diam \psi$.
-This concludes the proof of  $x_0\forcing \varphi_\Diam$.
-We conclude $\varphi_\Diam\in\GWCL$. \EndEx
+Note that  $(x_2)^-\nforcing \Diam \b$  and   $(x_2)^-\nforcing \Diam \a$ (otherwise,  $(x_2)^-\forcing \Diam \b$ would follow),
+hence $y'\nforcing \b$ and  $y'\nforcing \a$.
+Since $y_2\forcing \b$, we get $y_1\forcing \psi$, hence $x_1\forcing \Diam \psi$,
+and this concludes the proof of~\ref{ex:axiomGWC:1}.
+We  conclude  $x_0\forcing \varphi_\Diam$,
+hence $\varphi_\Diam\in\GWCL$. \EndEx
  \end{example} 
 
 
@@ -1500,13 +1512,14 @@ Fig.~\ref{fig:Fcountermodels}, if any of the conditions~\ref{F1},
 \ref{F2}, and~\ref{F3}  is ruled out, we can build a
 countermodel for a formula of $\GWL$. For instance, let us consider
 the left-most $\GWCM$-bimodel $\K=\stru{X,\leq,S,V}$, where $x_1 <
-x_2$, $x_1 S y_1$, $V(y_1)=\{p\}$; $\K$ does not match
+x_2$, $x_1 S y_1$,  $V(x_1)=V(x_2)=\emptyset$,   $V(y_1)=\{p\}$; $\K$ does not match
 condition~\ref{F1}, moreover $\K$ is a countermodel for the formula
 $\varphi= \Diam p\to \neg\neg\Diam p$ of $\GWL$ (indeed,
 $x_1\nforcing \varphi$). A similar analysis applies to conditions~\ref{F2} and~\ref{F3}.
 
 In the same way, if  a crisp $\GWL$-bimodel does not satisfy condition~\ref{F5},
-we can falsify the instance $\neg\Diam p\lor \Diam\neg\neg p$ of the formula in  Ex.~\ref{ex:axiomGWC1}:
+we can falsify the instance $\neg\Diam p\lor \Diam\neg\neg p$ of the formula in  Ex.~\ref{ex:axiomGWC1}
+which is valid in $\GWCL$:
 
 
 % F5 countermodel
@@ -1549,7 +1562,7 @@ we can falsify the instance $\neg\Diam p\lor \Diam\neg\neg p$ of the formula in 
 
 On the contrary, it seems that it is
 not possible to build a countermodel $\K$ for a formula $\varphi$ of
-$\GWCL$ violating condition~\ref{F4};
+$\GWL$ violating condition~\ref{F4};
  actually, we conjecture that condition~\ref{F4} is redundant.
 
  
